@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>如何优雅地发布Hexo博客 | 知识铺</title>
+  <meta name="keywords" content=" hexo ">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="电商网站SEO不好做，因为电商的竞争激烈。实际上，对电商网站来说，可能另辟蹊径会更好做一些。很多时候，电商网站都是格式化的数据，而搜索引擎又特别喜欢格式化的数据，比如产品的名称、价格、颜色、大小、尺寸……你可以把这些标号通通提交给搜索引擎，让搜索引擎帮你获得更高的展现。 首先，把网站所有商品的名称、ID、URL全部下载下来。 第二，跑一下数据，比如有些页面的优先级不是很高，有时候可以把这些优先级调">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电商网站SEO优化指南">
+<meta property="og:url" content="https://blog.zshipu.com/reading/2019/11/10/电商网站SEO优化指南/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="电商网站SEO不好做，因为电商的竞争激烈。实际上，对电商网站来说，可能另辟蹊径会更好做一些。很多时候，电商网站都是格式化的数据，而搜索引擎又特别喜欢格式化的数据，比如产品的名称、价格、颜色、大小、尺寸……你可以把这些标号通通提交给搜索引擎，让搜索引擎帮你获得更高的展现。 首先，把网站所有商品的名称、ID、URL全部下载下来。 第二，跑一下数据，比如有些页面的优先级不是很高，有时候可以把这些优先级调">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-11-10T14:40:08.671Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电商网站SEO优化指南">
+<meta name="twitter:description" content="电商网站SEO不好做，因为电商的竞争激烈。实际上，对电商网站来说，可能另辟蹊径会更好做一些。很多时候，电商网站都是格式化的数据，而搜索引擎又特别喜欢格式化的数据，比如产品的名称、价格、颜色、大小、尺寸……你可以把这些标号通通提交给搜索引擎，让搜索引擎帮你获得更高的展现。 首先，把网站所有商品的名称、ID、URL全部下载下来。 第二，跑一下数据，比如有些页面的优先级不是很高，有时候可以把这些优先级调">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(22)</small></div></li>
+    
+        
+            
+            <li><div data-rel="hexo"><i class="fold iconfont icon-right"></i>hexo<small>(2)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="个人建站">个人建站<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="22">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">个人博客</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/note/2019/11/03/hexo-通过hexo-admin进行全自动发布文章，能在线拷贝图片，实时查看效果，更加优雅！！！完成hexo-g-d-，彻底脱离命令行操作！！！！/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo 通过hexo-admin进行全自动发布文章，能在线拷贝图片，实时查看效果，更加优雅！！！完成hexo g -d ，彻底脱离命令行操作！！！！">hexo 通过hexo-admin进行全自动发布文章，能在线拷贝图片，实时查看效果，更加优雅！！！完成hexo g -d ，彻底脱离命令行操作！！！！</span>
+            <span class="post-date" title="2019-11-03 13:22:00">2019/11/03</span>
+        </a>
+        
+        <a  class="hexo 个人建站 "
+           href="/note/2019/11/03/Hexo admin 自动发布文章/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hexo admin 自动发布文章">Hexo admin 自动发布文章</span>
+            <span class="post-date" title="2019-11-03 13:12:00">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/hexo-admin安装使用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hexo-admin安装使用">hexo-admin安装使用</span>
+            <span class="post-date" title="2019-11-03 13:10:40">2019/11/03</span>
+        </a>
+        
+        <a  class="hexo "
+           href="/note/2019/11/03/Hexo搭建个人博客/"
+           data-tag="hexo,个人博客"
+           data-author="" >
+            <span class="post-title" title="Hexo搭建个人博客">Hexo搭建个人博客</span>
+            <span class="post-date" title="2019-11-03 12:56:00">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/hexo主题之hexo-theme-yilia-plus/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hexo + GitHub Pages 搭建博客的教程">Hexo + GitHub Pages 搭建博客的教程</span>
+            <span class="post-date" title="2019-11-03 12:22:27">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/不停折腾hexo-admin，直到完全实时自动发布为止/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="不停折腾hexo-admin，直到完全实时自动发布为止">不停折腾hexo-admin，直到完全实时自动发布为止</span>
+            <span class="post-date" title="2019-11-03 21:34:19">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/04/linux-find命令详解大全/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="linux find命令详解大全">linux find命令详解大全</span>
+            <span class="post-date" title="2019-11-04 13:26:38">2019/11/04</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个属于技术宅的产品-万站联盟接入-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个属于技术宅的产品,万站联盟接入- 知识铺">从零开始创建一个属于技术宅的产品,万站联盟接入- 知识铺</span>
+            <span class="post-date" title="2019-11-03 15:04:38">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/中小网站SEO九大步骤/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="中小网站SEO九大步骤">中小网站SEO九大步骤</span>
+            <span class="post-date" title="2019-11-10 22:35:13">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个属于程序员的网站，第一个个人博客-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个属于程序员的网站，第一个个人博客-知识铺">从零开始创建一个属于程序员的网站，第一个个人博客-知识铺</span>
+            <span class="post-date" title="2019-11-03 14:54:30">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个属于技术宅的产品，万站联盟-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个属于技术宅的产品，万站联盟- 知识铺">从零开始创建一个属于技术宅的产品，万站联盟- 知识铺</span>
+            <span class="post-date" title="2019-11-03 14:56:02">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/企业网站SEO优化指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="企业网站SEO优化指南">企业网站SEO优化指南</span>
+            <span class="post-date" title="2019-11-10 22:37:24">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个漂亮的todo-第一版-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个漂亮的todo 第一版- 知识铺">从零开始创建一个漂亮的todo 第一版- 知识铺</span>
+            <span class="post-date" title="2019-11-03 15:43:40">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/大型网站SEO十二步曲/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大型网站SEO十二招，惊天逆袭排行榜">大型网站SEO十二招，惊天逆袭排行榜</span>
+            <span class="post-date" title="2019-11-10 22:27:12">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/如何优雅地发布Hexo博客/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="如何优雅地发布Hexo博客">如何优雅地发布Hexo博客</span>
+            <span class="post-date" title="2019-11-03 12:07:00">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/偏向内容网站SEO优化指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="偏向内容网站SEO优化指南">偏向内容网站SEO优化指南</span>
+            <span class="post-date" title="2019-11-10 22:38:48">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/如何让百度收录新站/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何让百度收录新站">如何让百度收录新站</span>
+            <span class="post-date" title="2019-11-09 20:27:00">2019/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/影响网站收录的15个因素/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="影响网站收录的15个因素">影响网站收录的15个因素</span>
+            <span class="post-date" title="2019-11-09 20:48:18">2019/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/新站SEO绝密九式，不小心泄漏/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="新站SEO绝密九式，不小心泄漏">新站SEO绝密九式，不小心泄漏</span>
+            <span class="post-date" title="2019-11-10 22:32:19">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/新站不被收录自检/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="新站不被收录自检">新站不被收录自检</span>
+            <span class="post-date" title="2019-11-09 20:50:27">2019/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/电商网站SEO优化指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="电商网站SEO优化指南">电商网站SEO优化指南</span>
+            <span class="post-date" title="2019-11-10 22:40:06">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/网站收录踩过的坑/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网站收录踩过的坑">网站收录踩过的坑</span>
+            <span class="post-date" title="2019-11-09 21:30:44">2019/11/09</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-如何优雅地发布Hexo博客" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">如何优雅地发布Hexo博客</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color5">hexo</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-03 16:59:53'>2019-11-03 12:07</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境说明"><span class="toc-text">环境说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NodeJs"><span class="toc-text">NodeJs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo"><span class="toc-text">Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-admin"><span class="toc-text">Hexo-admin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-1"><span class="toc-text">step 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step-2"><span class="toc-text">step 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step-3"><span class="toc-text">step 3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step-4"><span class="toc-text">step 4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step-5"><span class="toc-text">step 5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step-6"><span class="toc-text">step 6</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx"><span class="toc-text">Nginx</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>知识铺： 致力于打造轻知识点，持续更新每次的知识点较少，阅读不累。不占太多时间，不停地来唤醒记忆深处的知识点。</p>
+<blockquote>
+<p>次优雅的发布hexo博客方式，为什么说是次优雅，因为它是目前我自己所知道的比较优雅的发布方式，可能存在其他更好的方式，欢迎指教~<br>转载：<a href="https://link.jianshu.com?t=http://blog.lzoro.com" target="_blank" rel="noopener">http://blog.lzoro.com</a></p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>就目前而言，我所知道的发布Hexo的博客有如下几种：<br>1、原始方式，也就是在服务器上编写md文件，然后利用<code>hexo g</code>来生成；<br>2、利用github+hook来管理，<a href="https://link.jianshu.com?t=http://www.swiftyper.com/" target="_blank" rel="noopener">小锅</a>这里有<a href="https://link.jianshu.com?t=http://www.swiftyper.com/2016/04/17/deploy-hexo-with-git-hook/" target="_blank" rel="noopener">一篇教程</a>；<br>3、其他(hexo-admin or other plugins)；<br>我所用的这个方式就属于第三种，略微改进版。也许你已经看过[那么可以概览之后忽略]，也许你没看过，那么请耐心看完，反正都点进来了，也许有福利呢，who knows…</p>
+<p> <img src="//upload-images.jianshu.io/upload_images/5548926-52355809250f78c7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/116/format/webp" alt></p>
+<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><p>格子这里所使用的环境如下：</p>
+<p><code>1、阿里云 Linux 3.10.0-514.6.2.el7.x86_64
+2、NodeJs 6.10.3
+3、Hexo-cli: 1.0.2
+4、Hexo 3.3.7
+5、Hexo-admin 
+6、Nginx1.9.9</code> </p>
+<p>本篇博客的重点在于Hexo博客的优雅发布，所以其他必需环境的安装大部分会简短带过。如果还未安装过相关环境或者不会安装相关环境的请自行百度，网上有特别丰富的教程资料，这里只给出部分链接供参考。</p>
+<p>重要说明：格子未直接使用<code>hexo server</code>启动hexo服务来对外提供博客的访问，而是通过nginx作为web服务器对外提供服务。</p>
+<h2 id="NodeJs"><a href="#NodeJs" class="headerlink" title="NodeJs"></a>NodeJs</h2><p><strong>下载地址</strong></p>
+<p><code>http://nodejs.cn/download/</code> </p>
+<p><strong>安装</strong><br>请参考<a href="https://link.jianshu.com?t=http://www.cnblogs.com/8765h/p/4777746.html" target="_blank" rel="noopener">这里</a>，注意自己选择的安装包。</p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><strong>官网</strong></p>
+<p><code>https://hexo.io/</code> </p>
+<p><strong>安装</strong><br>请参考<a href="https://link.jianshu.com?t=http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="noopener">这里</a>。需要注意的是，格子这里是将环境搭建在阿里云机器上，并不是通过GitHub托管，毕竟用GitHub的子域名感觉不够高大上，毕竟装(chui)比(niu)要装一整套的。所以我就花重金买了域名，买了云主机，买了oss，这样装备齐全之后，感觉逼格都提高了。</p>
+<p> <img src="//upload-images.jianshu.io/upload_images/5548926-2ea2b5f9101c0865.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/137/format/webp" alt></p>
+<p>另：安装完博客之后，有很多主题可供挑选，点击<a href="https://link.jianshu.com?t=https://hexo.io/themes/" target="_blank" rel="noopener">这里</a>，找到自己喜欢的主题，并给hexo换上，舒舒服服地来一发吧。</p>
+<h2 id="Hexo-admin"><a href="#Hexo-admin" class="headerlink" title="Hexo-admin"></a>Hexo-admin</h2><p>主角登场了，前面也有提到过，管理Hexo博客，我所知道的有几种方式。用手动管理的方式未免显得太过于原始人，即便你用本地的Markdown编辑器洋洋洒洒地写完了一篇博客，还是得屁颠屁颠地连接到服务器，然后将文件上传到博客服务器，再然后谄媚地告诉服务器，乖，帮我执行一下<code>hexo g</code>，命令执行完，静态页面生成后一篇博客才叫告一段落。<br>也许你不嫌麻烦，觉得这样也挺好的，没那么多屁事儿折腾，那么就坚持自己的做法也未尝不可。<br>但是，如果你跟我一样嫌(tai)麻(lan)烦(le)的话，那么利用Hexo-admin插件，加上自己部分diy，也许一个自己比较满意的Hexo博客发布方式就到手了，岂不是一大爽事。</p>
+<blockquote>
+<p>就是这个feel~倍儿爽</p>
+</blockquote>
+<p>反正我就是懒，不要拉我，让我懒。其实有时候这种“懒”往往能促使人进步，如果不嫌麻烦甘于重复劳动，虽然会少掉很多折腾，但也会少掉很多发现和进步。<br>好了，鸡汤喝完，该说正事儿了。</p>
+<p><strong>hexo-admin官网</strong><br><a href="https://link.jianshu.com?t=https://jaredforsyth.com/hexo-admin/" target="_blank" rel="noopener">https://jaredforsyth.com/hexo-admin/</a></p>
+<h3 id="step-1"><a href="#step-1" class="headerlink" title="step 1"></a>step 1</h3><p>安装必要环境，请参照上面</p>
+<h3 id="step-2"><a href="#step-2" class="headerlink" title="step 2"></a>step 2</h3><p>初始化博客，一般到这里你应该是已经初始化自己的博客了，如果还没有的话，请看下面</p>
+<p><code>cd /usr/local/
+hexo init yourblog
+cd yourblog
+npm install</code> </p>
+<h3 id="step-3"><a href="#step-3" class="headerlink" title="step 3"></a>step 3</h3><p>安装hexo-admin插件，并且启动hexo服务，打开浏览器访问能看到基本的界面</p>
+<p><code>npm install --save hexo-admin
+hexo server -d
+open http://localhost:4000/admin/</code> </p>
+<p><strong>登录界面</strong></p>
+<p> <img src="//upload-images.jianshu.io/upload_images/5548926-76381c3b23a04058.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1061/format/webp" alt></p>
+<p>到这里，没进行配置的小伙伴可能还无法登录，请接着往下看。</p>
+<h3 id="step-4"><a href="#step-4" class="headerlink" title="step 4"></a>step 4</h3><p>在hexo的_config.yml配置hexo-admin</p>
+<p><code>admin:
+   username: zoro
+   password_hash:be121740bf988b2225a313fa1f107ca1
+   secret: hey hexo
+   deployCommand: &#39;./admin_script/hexo-generate.sh&#39;
+  &#39;# expire: 60*1</code> </p>
+<p><code>注</code><br>1、password_hash就是密码，通过bcrypt hash，你可以用尽你一切手段对自己的密码做一个bcrypt加密，C/Java/Python都可以，做人嘛，重要的是嗨森；<br>2、secret用以cookies安全；<br>3、deployCommand就是一个关键点，不要着急，下面给出说明；</p>
+<p><strong>主页</strong></p>
+<p> <img src="//upload-images.jianshu.io/upload_images/5548926-cfba47671e9c6e9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt></p>
+<ul>
+<li>Post：博客文章列表，包括已经发布的和还在草稿箱等待宠幸的；</li>
+<li>Pages：就是诸如标签云之类的页面管理；</li>
+<li>About：关于admin插件的说明</li>
+<li>hexo-gen：这个原来是Deploy，被我修改了，关键节点；</li>
+<li>Settings:配置；</li>
+</ul>
+<h3 id="step-5"><a href="#step-5" class="headerlink" title="step 5"></a>step 5</h3><p>先解释一下上面配置的那个<code>deployCommand</code>的用处，目的在于页面上你点击了Deploy页面下面的Deploy按钮的时候，所执行的脚本，这里格子拿它来作为执行<code>hexo g</code>的载体。<br>说到这里，可能有些人不是很理解为什么要这么做，看官莫急，听我细细道来。<br>其实，当你以<code>hexo server -d</code>启动了hexo服务的时候，hexo-admin插件在你修改了 某篇博已发布博客，或者新发布博客的时候，会在后台帮你执行一系列操作，所以这个时候，你可以通过<code>http://localhost:4000</code>访问就可以看到刚才发布到博客了，看到这里，有读者应该就要心里问候格子声：那你是不是傻，为什么还要折腾？容我说一句，原因只有一点：以<code>hexo server</code>启动的hexo对外提供的服务，并不是特别稳定，访问略慢，毕竟不是专门的web服务容器，而且如果你不以<code>nohup</code>方式启动的话，一旦关掉Xshell等操作界面的时候，就会被迫关掉，所以带来了一系列令人不喜的体验，这就是我折腾的唯一原因。<br>因此，其实格子是以Nginx为web服务容器对外提供博客服务，每次将新博客生成静态Html放到Nginx配置的目录下，速度不要太快；格子的云主机只有<code>1G内存 单核CPU</code>,还是能有不俗的访问体验，所以觉得还算没白折腾。<br>有点走题，话说回来，大体的步骤是这样：<br>1、Nginx提供web服务<br>2、hexo-admin提供博客管理<br>3、利用hexo-admin在浏览器实现博客编写，或者自己本地md编辑器写好之后粘贴到hexo-admin，后者可能更为保险，防止丢失。<br>4、利用hexo-admin留下来的deploy按钮，去执行我们放在博客服务器上的脚本，来生成html页面；</p>
+<p>所以，<strong>重点</strong>来了，在_config.yml里面填写好deployCommand的存储路径之后，在该路径下生成脚本；</p>
+<p><code>touch hexo-generate.sh;
+vim hexo-generate.sh;</code> </p>
+<p>输入以下内容</p>
+<p><code>#!/usr/bin/env sh
+hexo g</code> </p>
+<p>保存退出，并赋予执行权限</p>
+<p><code>执行Shift+:，输入q，如下
+:q
+chmod +x hexo-generate.sh</code>    </p>
+<h3 id="step-6"><a href="#step-6" class="headerlink" title="step 6"></a>step 6</h3><p>验证效果，这里我没有贴出Nginx的配置，稍等给出，可以先行验证是否有效果<br>1、启动hexo server<br>2、访问<code>http://localhost:4000/admin</code>并登陆<br>3、进入Posts页面，新建博客并编写发布；<br>4、进入Deploy页面（如果你还没改掉改名称的话），点击下面的Deploy按钮<br>5、进入博客目录-&gt;public，查看相应的html是否有生成，如果有，那么恭喜你成功了。</p>
+<p>这里有两个问题：<br>①、hexo-admin的作者将hexo-admin的服务依赖于hexo来运行[<code>hexo s</code>]，个人觉得有点浪费资源，但有碍于没时间，只好暂时将就这样。有兴趣的人，可以去阅读源码，然后将hexo-admin处理成独立的服务。<br>②、Deploy页面的功能其实被我们diy成<code>hexo generate</code>的执行者了，所以有强迫症的小伙伴可以将页面内容改成具体含义的，比如格子改成了<code>hexo-gen</code>，修改路径在hexo目录下，<code>node_modules/hexo-admin/www/bundle.js</code>；<br>差不多就是这样，突然觉得有点没头没尾，因为没有讲Nginx部分，下面给出，这样大家应该不会觉得特别乱；</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p><strong>下载</strong><br><a href="https://link.jianshu.com?t=http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a><br><strong>安装</strong><br>请搜索网上安装教程，特别多，这里不做重复劳动了。如果有什么问题可以留言指出。<br><strong>配置</strong></p>
+<p> <code>server {
+        listen 80;
+        #域名，多个用空格隔开
+        server_name lzoro.com blog.lzoro.com;
+        #配置hexo博客目录
+        root /usr/local/hexo/public;
+        location / {
+                index  index.html index.htm;
+        }
+        access_log /tmp/logs/nginx/hexo.access.log;
+    }</code></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>如何优雅地发布Hexo博客</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-03, 12:07:00</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-03, 16:59:53</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/reading/2019/11/03/如何优雅地发布Hexo博客/" title="如何优雅地发布Hexo博客">https://blog.zshipu.com/reading/2019/11/03/如何优雅地发布Hexo博客/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+					| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#hexo','#个人博客',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

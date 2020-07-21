@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>Hexo搭建个人博客 | 知识铺</title>
+  <meta name="keywords" content=" hexo , 个人博客 ">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="电商网站SEO不好做，因为电商的竞争激烈。实际上，对电商网站来说，可能另辟蹊径会更好做一些。很多时候，电商网站都是格式化的数据，而搜索引擎又特别喜欢格式化的数据，比如产品的名称、价格、颜色、大小、尺寸……你可以把这些标号通通提交给搜索引擎，让搜索引擎帮你获得更高的展现。 首先，把网站所有商品的名称、ID、URL全部下载下来。 第二，跑一下数据，比如有些页面的优先级不是很高，有时候可以把这些优先级调">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电商网站SEO优化指南">
+<meta property="og:url" content="https://blog.zshipu.com/reading/2019/11/10/电商网站SEO优化指南/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="电商网站SEO不好做，因为电商的竞争激烈。实际上，对电商网站来说，可能另辟蹊径会更好做一些。很多时候，电商网站都是格式化的数据，而搜索引擎又特别喜欢格式化的数据，比如产品的名称、价格、颜色、大小、尺寸……你可以把这些标号通通提交给搜索引擎，让搜索引擎帮你获得更高的展现。 首先，把网站所有商品的名称、ID、URL全部下载下来。 第二，跑一下数据，比如有些页面的优先级不是很高，有时候可以把这些优先级调">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-11-10T14:40:08.671Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电商网站SEO优化指南">
+<meta name="twitter:description" content="电商网站SEO不好做，因为电商的竞争激烈。实际上，对电商网站来说，可能另辟蹊径会更好做一些。很多时候，电商网站都是格式化的数据，而搜索引擎又特别喜欢格式化的数据，比如产品的名称、价格、颜色、大小、尺寸……你可以把这些标号通通提交给搜索引擎，让搜索引擎帮你获得更高的展现。 首先，把网站所有商品的名称、ID、URL全部下载下来。 第二，跑一下数据，比如有些页面的优先级不是很高，有时候可以把这些优先级调">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(22)</small></div></li>
+    
+        
+            
+            <li><div data-rel="hexo"><i class="fold iconfont icon-right"></i>hexo<small>(2)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="个人建站">个人建站<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="22">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">个人博客</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/note/2019/11/03/hexo-通过hexo-admin进行全自动发布文章，能在线拷贝图片，实时查看效果，更加优雅！！！完成hexo-g-d-，彻底脱离命令行操作！！！！/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo 通过hexo-admin进行全自动发布文章，能在线拷贝图片，实时查看效果，更加优雅！！！完成hexo g -d ，彻底脱离命令行操作！！！！">hexo 通过hexo-admin进行全自动发布文章，能在线拷贝图片，实时查看效果，更加优雅！！！完成hexo g -d ，彻底脱离命令行操作！！！！</span>
+            <span class="post-date" title="2019-11-03 13:22:00">2019/11/03</span>
+        </a>
+        
+        <a  class="hexo 个人建站 "
+           href="/note/2019/11/03/Hexo admin 自动发布文章/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hexo admin 自动发布文章">Hexo admin 自动发布文章</span>
+            <span class="post-date" title="2019-11-03 13:12:00">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/hexo-admin安装使用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hexo-admin安装使用">hexo-admin安装使用</span>
+            <span class="post-date" title="2019-11-03 13:10:40">2019/11/03</span>
+        </a>
+        
+        <a  class="hexo "
+           href="/note/2019/11/03/Hexo搭建个人博客/"
+           data-tag="hexo,个人博客"
+           data-author="" >
+            <span class="post-title" title="Hexo搭建个人博客">Hexo搭建个人博客</span>
+            <span class="post-date" title="2019-11-03 12:56:00">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/hexo主题之hexo-theme-yilia-plus/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hexo + GitHub Pages 搭建博客的教程">Hexo + GitHub Pages 搭建博客的教程</span>
+            <span class="post-date" title="2019-11-03 12:22:27">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/不停折腾hexo-admin，直到完全实时自动发布为止/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="不停折腾hexo-admin，直到完全实时自动发布为止">不停折腾hexo-admin，直到完全实时自动发布为止</span>
+            <span class="post-date" title="2019-11-03 21:34:19">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/04/linux-find命令详解大全/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="linux find命令详解大全">linux find命令详解大全</span>
+            <span class="post-date" title="2019-11-04 13:26:38">2019/11/04</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个属于技术宅的产品-万站联盟接入-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个属于技术宅的产品,万站联盟接入- 知识铺">从零开始创建一个属于技术宅的产品,万站联盟接入- 知识铺</span>
+            <span class="post-date" title="2019-11-03 15:04:38">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/中小网站SEO九大步骤/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="中小网站SEO九大步骤">中小网站SEO九大步骤</span>
+            <span class="post-date" title="2019-11-10 22:35:13">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个属于程序员的网站，第一个个人博客-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个属于程序员的网站，第一个个人博客-知识铺">从零开始创建一个属于程序员的网站，第一个个人博客-知识铺</span>
+            <span class="post-date" title="2019-11-03 14:54:30">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个属于技术宅的产品，万站联盟-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个属于技术宅的产品，万站联盟- 知识铺">从零开始创建一个属于技术宅的产品，万站联盟- 知识铺</span>
+            <span class="post-date" title="2019-11-03 14:56:02">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/企业网站SEO优化指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="企业网站SEO优化指南">企业网站SEO优化指南</span>
+            <span class="post-date" title="2019-11-10 22:37:24">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个漂亮的todo-第一版-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个漂亮的todo 第一版- 知识铺">从零开始创建一个漂亮的todo 第一版- 知识铺</span>
+            <span class="post-date" title="2019-11-03 15:43:40">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/大型网站SEO十二步曲/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大型网站SEO十二招，惊天逆袭排行榜">大型网站SEO十二招，惊天逆袭排行榜</span>
+            <span class="post-date" title="2019-11-10 22:27:12">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/如何优雅地发布Hexo博客/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="如何优雅地发布Hexo博客">如何优雅地发布Hexo博客</span>
+            <span class="post-date" title="2019-11-03 12:07:00">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/偏向内容网站SEO优化指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="偏向内容网站SEO优化指南">偏向内容网站SEO优化指南</span>
+            <span class="post-date" title="2019-11-10 22:38:48">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/如何让百度收录新站/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何让百度收录新站">如何让百度收录新站</span>
+            <span class="post-date" title="2019-11-09 20:27:00">2019/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/影响网站收录的15个因素/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="影响网站收录的15个因素">影响网站收录的15个因素</span>
+            <span class="post-date" title="2019-11-09 20:48:18">2019/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/新站SEO绝密九式，不小心泄漏/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="新站SEO绝密九式，不小心泄漏">新站SEO绝密九式，不小心泄漏</span>
+            <span class="post-date" title="2019-11-10 22:32:19">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/新站不被收录自检/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="新站不被收录自检">新站不被收录自检</span>
+            <span class="post-date" title="2019-11-09 20:50:27">2019/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/电商网站SEO优化指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="电商网站SEO优化指南">电商网站SEO优化指南</span>
+            <span class="post-date" title="2019-11-10 22:40:06">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/网站收录踩过的坑/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网站收录踩过的坑">网站收录踩过的坑</span>
+            <span class="post-date" title="2019-11-09 21:30:44">2019/11/09</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-Hexo搭建个人博客" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Hexo搭建个人博客</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="hexo">hexo</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color5">hexo</a>
+            
+            <a href="javascript:" class="color5">个人博客</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-03 16:59:53'>2019-11-03 12:56</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo"><span class="toc-text">Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo优势"><span class="toc-text">hexo优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装hexo"><span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo指令"><span class="toc-text">hexo指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github"><span class="toc-text">Github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Github简介"><span class="toc-text">Github简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#清空Github仓库内容"><span class="toc-text">清空Github仓库内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置SSH-key"><span class="toc-text">配置SSH key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy到github中"><span class="toc-text">Deploy到github中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改主题"><span class="toc-text">修改主题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next主题修改"><span class="toc-text">Next主题修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语言修改"><span class="toc-text">语言修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建带日期格式的博文"><span class="toc-text">新建带日期格式的博文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#侧栏头像"><span class="toc-text">侧栏头像</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#In-theme-directory-source-images-images-avatar-gif"><span class="toc-text">In theme directory (source/images): /images/avatar.gif</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#In-site-directory-source-uploads-uploads-avatar-gif"><span class="toc-text">In site directory (source/uploads): /uploads/avatar.gif</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#You-can-also-use-other-linking-images"><span class="toc-text">You can also use other linking images.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#If-true-the-avatar-would-be-dispalyed-in-circle"><span class="toc-text">If true, the avatar would be dispalyed in circle.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#If-true-the-avatar-would-be-rotated-with-the-cursor"><span class="toc-text">If true, the avatar would be rotated with the cursor.</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加标签和分类"><span class="toc-text">添加标签和分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对文章进行加密"><span class="toc-text">对文章进行加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-admin编辑博客"><span class="toc-text">Hexo admin编辑博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阅读全文"><span class="toc-text">阅读全文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改标签样式"><span class="toc-text">修改标签样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改布局模板"><span class="toc-text">修改布局模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换主题风格"><span class="toc-text">切换主题风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置浏览进度"><span class="toc-text">配置浏览进度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地搜索"><span class="toc-text">本地搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SiteMap插件"><span class="toc-text">SiteMap插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置菜单及对应页面"><span class="toc-text">设置菜单及对应页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网站图标设置"><span class="toc-text">网站图标设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设定站点建立时间"><span class="toc-text">设定站点建立时间</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Specify-the-date-when-the-site-was-setup"><span class="toc-text">Specify the date when the site was setup.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#If-not-defined-current-year-will-be-used"><span class="toc-text">If not defined, current year will be used.</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改侧栏颜色"><span class="toc-text">修改侧栏颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建同名文件夹"><span class="toc-text">创建同名文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置博客透明度"><span class="toc-text">设置博客透明度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片点击放大"><span class="toc-text">图片点击放大</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#博客访问量统计"><span class="toc-text">博客访问量统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改powered标识"><span class="toc-text">修改powered标识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计字数"><span class="toc-text">统计字数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#社交账号"><span class="toc-text">社交账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#友情链接"><span class="toc-text">友情链接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Available-values-block-inline"><span class="toc-text">Available values: block | inline</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#评论系统"><span class="toc-text">评论系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名聊天"><span class="toc-text">匿名聊天</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打赏功能"><span class="toc-text">打赏功能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#If-true-reward-would-be-displayed-in-every-article-by-default"><span class="toc-text">If true, reward would be displayed in every article by default.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#You-can-show-or-hide-reward-in-a-specific-article-throuth-reward-true-false-in-Front-matter"><span class="toc-text">You can show or hide reward in a specific article throuth reward: true | false in Front-matter.</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#百度SEO"><span class="toc-text">百度SEO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#百度统计"><span class="toc-text">百度统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文章置顶"><span class="toc-text">文章置顶</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>知识铺： 致力于打造轻知识点，持续更新每次的知识点较少，阅读不累。不占太多时间，不停地来唤醒记忆深处的知识点。</p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。<br>hexo官网： <a href="https://links.jianshu.com/go?to=http%3A%2F%2Fhexo.io" target="_blank" rel="noopener">http://hexo.io</a><br>github: <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo" target="_blank" rel="noopener">https://github.com/hexojs/hexo</a></p>
+<h3 id="hexo优势"><a href="#hexo优势" class="headerlink" title="hexo优势"></a>hexo优势</h3><p>由于github pages存放的都是静态文件，hexo所做的就是将md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到github。<br>hexo具有以下特点：</p>
+<blockquote>
+<ul>
+<li>超快速度：Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染</li>
+<li>支持 Markdown：Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件</li>
+<li>一键部署：只需一条指令即可部署到 GitHub Pages, Heroku 或其他网站。</li>
+<li>丰富的插件：Hexo 拥有强大的插件系统，安装插件可以让 Hexo 支持 Jade, CoffeeScript</li>
+</ul>
+</blockquote>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
+<ul>
+<li><a href="https://links.jianshu.com/go?to=http%3A%2F%2Fnodejs.org%2F" target="_blank" rel="noopener">Node.js</a> (Node.js 版本需不低于 8.6，建议使用 Node.js 10.0 及以上版本)</li>
+<li><a href="https://links.jianshu.com/go?to=http%3A%2F%2Fgit-scm.com%2F" target="_blank" rel="noopener">Git</a></li>
+</ul>
+<p>如果您的电脑中已经安装上述必备程序，那么恭喜您！接下来只需要使用 npm 即可完成 Hexo 的安装。</p>
+<p><code>npm install hexo-cli -g
+hexo init 
+npm install
+hexo s</code> </p>
+<p>如果您的电脑中尚未安装所需要的程序，请根据hexo官网安装指示完成安装:<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fhexo.io%2Fzh-cn%2Fdocs%2F" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a>。</p>
+<h3 id="hexo指令"><a href="#hexo指令" class="headerlink" title="hexo指令"></a>hexo指令</h3><p>配置好之后，hexo就可以使用了，常用的hexo命令可访问<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fhexo.io%2Fzh-cn%2Fdocs%2Fcommands.html" target="_blank" rel="noopener">hexo指令</a>。</p>
+<p><code>hexo new &quot;postName&quot; #新建文章
+hexo new page &quot;pageName&quot; #新建页面
+hexo generate #生成静态页面至public目录
+hexo server #开启预览访问端口（默认端口4000，&#39;ctrl + c&#39;关闭server）
+hexo deploy #部署到GitHub
+hexo help  # 查看帮助
+hexo version  #查看Hexo的版本</code> </p>
+<p>缩写形式：</p>
+<p><code>hexo n == hexo new
+hexo g == hexo generate
+hexo s == hexo server
+hexo d == hexo deploy</code> </p>
+<p>组合命令</p>
+<p><code>hexo s -g #生成并本地预览
+hexo d -g #生成并上传</code> </p>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>GitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名GitHub。</p>
+<h3 id="Github简介"><a href="#Github简介" class="headerlink" title="Github简介"></a>Github简介</h3><p>作为开源代码库以及版本控制系统，Github拥有超过900万开发者用户。随着越来越多的应用程序转移到了云上，Github已经成为了管理软件开发以及发现已有代码的首选方法。</p>
+<p>如前所述，作为一个分布式的版本控制系统，在Git中并不存在主库这样的概念，每一份<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fbaike.baidu.com%2Fitem%2F%25E5%25A4%258D%25E5%2588%25B6" target="_blank" rel="noopener">复制</a>出的库都可以独立使用，任何两个库之间的不一致之处都可以进行合并。</p>
+<h3 id="清空Github仓库内容"><a href="#清空Github仓库内容" class="headerlink" title="清空Github仓库内容"></a>清空Github仓库内容</h3><p>如果想要清空github仓库中的内容，可以先创建分支，然后清空本地master中的文件，保留.git和readme.md，清空后git到远程仓库中，可参考<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fblog.csdn.net%2Fsinat_34937826%2Farticle%2Fdetails%2F90512474" target="_blank" rel="noopener">Github清空远程仓库</a><br>。</p>
+<h3 id="配置SSH-key"><a href="#配置SSH-key" class="headerlink" title="配置SSH key"></a>配置SSH key</h3><p>为什么要配置这个呢？因为你提交代码肯定要拥有你的github权限才可以，但是直接使用用户名和密码太不安全了，所以我们使用ssh key来解决本地和服务器的连接问题。</p>
+<p><code>$ cd ~/. ssh #检查本机已存在的ssh密钥</code> </p>
+<p>如果提示：No such file or directory 说明你是第一次使用git。</p>
+<p><code>ssh-keygen -t rsa -C &quot;邮件地址&quot;</code> </p>
+<p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到 <code>.ssh\id_rsa.pub</code> 文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
+<p> <img src="//upload-images.jianshu.io/upload_images/763395-3393bb77d5fa0b4a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1035/format/webp" alt></p>
+<p> 配置SSH key</p>
+<p>测试是否成功<code>ssh -T git@github.com # 注意邮箱地址不用改</code> </p>
+<p>看到如下提示，说明配置成功。</p>
+<blockquote>
+<p>You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+</blockquote>
+<p>此时你还需要配置：</p>
+<p><code>$ git config --global user.name &quot;liuxianan&quot;// 你的github用户名，非昵称
+$ git config --global user.email  &quot;xxx@qq.com&quot;// 填写你的github注册邮箱</code> </p>
+<blockquote>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.cnblogs.com%2Fliuxianan%2Fp%2Fbuild-blog-website-by-hexo-github.html" target="_blank" rel="noopener">使用hexo+github搭建免费个人博客详细教程</a></p>
+</blockquote>
+<h3 id="Deploy到github中"><a href="#Deploy到github中" class="headerlink" title="Deploy到github中"></a>Deploy到github中</h3><p>修改站点配置文件(_config.yml)，修改 depoly ：</p>
+<p><code>deploy:
+  type: git 
+  repo: git@github.com:username/username.github.io.git //替换成自己的邮箱
+  branch: master</code> </p>
+<p>如果不行，安装插件：</p>
+<p><code>npm install hexo-deployer-git --save</code> </p>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>hexo的主题非常之多，可以从官网的<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fhexo.io%2Fthemes%2F" target="_blank" rel="noopener">主题</a>中自由选择。这里以next主题为例。<br>主题的下载可以通过git到hexo/theme或者直接download zip然后解压到hexo/theme文件夹。<br>在站点配置文件(_config.yml)中查找theme，</p>
+<p> <img src="//upload-images.jianshu.io/upload_images/763395-b94f5483f3aa35cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/342/format/webp" alt></p>
+<p> 修改主题</p>
+<p>然后将landscape修改为next或者hexo-theme-next，具体以theme中文件夹名称为主。<br><code>hexo d -g</code>后<code>hexo s</code>并刷新网页，可以看到主题已经更换成了next。</p>
+<h2 id="Next主题修改"><a href="#Next主题修改" class="headerlink" title="Next主题修改"></a>Next主题修改</h2><h3 id="语言修改"><a href="#语言修改" class="headerlink" title="语言修改"></a>语言修改</h3><p>在站点文件_config.yml中查找language并将en修改为简体中文（zh-CN）：</p>
+<p><code>title: 明明如月
+subtitle:
+description:
+keywords:
+author: sunfove
+language: zh-CN //语言名称要写对
+timezone:</code> </p>
+<p>注意更改的语言名称要写对，具体查看主题文件夹下的language文件夹中的名称。</p>
+<h3 id="新建带日期格式的博文"><a href="#新建带日期格式的博文" class="headerlink" title="新建带日期格式的博文"></a>新建带日期格式的博文</h3><p>使用hexo new post “博文名称”生成的博文以博文名称生成文件，当文件太多时不便于管理查看，生成yyyy-MM-dd-博文名称的名称有助于我们管理自己的博文。<br>在站点文件_config.yml中设置博客生成名称:</p>
+<p><code># Writing
+new_post_name: :year-:month-:day-:title.md # File name of new posts</code> </p>
+<p>重新执行hexo new post “博文名称”命令，就可以生成yyyy-MM-dd-博文名称.md类型的名称了。</p>
+<h3 id="侧栏头像"><a href="#侧栏头像" class="headerlink" title="侧栏头像"></a>侧栏头像</h3><p>在主题文件_config.yml中搜索：</p>
+<p>`avatar:</p>
+<h1 id="In-theme-directory-source-images-images-avatar-gif"><a href="#In-theme-directory-source-images-images-avatar-gif" class="headerlink" title="In theme directory (source/images): /images/avatar.gif"></a>In theme directory (source/images): /images/avatar.gif</h1><h1 id="In-site-directory-source-uploads-uploads-avatar-gif"><a href="#In-site-directory-source-uploads-uploads-avatar-gif" class="headerlink" title="In site directory (source/uploads): /uploads/avatar.gif"></a>In site directory (source/uploads): /uploads/avatar.gif</h1><h1 id="You-can-also-use-other-linking-images"><a href="#You-can-also-use-other-linking-images" class="headerlink" title="You can also use other linking images."></a>You can also use other linking images.</h1><p>  url: #/images/avatar.gif</p>
+<h1 id="If-true-the-avatar-would-be-dispalyed-in-circle"><a href="#If-true-the-avatar-would-be-dispalyed-in-circle" class="headerlink" title="If true, the avatar would be dispalyed in circle."></a>If true, the avatar would be dispalyed in circle.</h1><p>  rounded: false</p>
+<h1 id="If-true-the-avatar-would-be-rotated-with-the-cursor"><a href="#If-true-the-avatar-would-be-rotated-with-the-cursor" class="headerlink" title="If true, the avatar would be rotated with the cursor."></a>If true, the avatar would be rotated with the cursor.</h1><p>  rotated: false` </p>
+<p>在<code>url</code>处添加头像路径，本地图片放到主题文件夹下的<code>source/image</code>中，<code>rounded</code>为是否用圆形头像， <code>rotated</code>为是否旋转头像。</p>
+<h3 id="添加标签和分类"><a href="#添加标签和分类" class="headerlink" title="添加标签和分类"></a>添加标签和分类</h3><p>添加一个 分类 页面，并在菜单中显示页面链接。<br>新建一个页面，命名为 categories 。命令如下：</p>
+<p> <code>hexo new page categories</code> </p>
+<p>编辑刚新建的页面，将页面的类型设置为 categories ，主题将自动为这个页面显示所有分类。</p>
+<p> <code>title: 分类
+ date: 2014-12-22 12:39:04
+ type: &quot;categories&quot;
+ ---</code> </p>
+<p>注意：如果有启用多说 或者 Disqus 评论，默认页面也会带有评论。需要关闭的话，请添加字段 <code>comments</code>并将值设置为 <code>false</code>，如：</p>
+<p> <code>title: 分类
+ date: 2014-12-22 12:39:04
+ type: &quot;categories&quot;
+ comments: false
+ ---</code> </p>
+<p>在菜单中添加链接。编辑主题的_config.yml ，将 menu 中的 <code>categories: /categories</code>注释去掉，如下:</p>
+<p> <code>menu:
+   home: /
+   categories: /categories
+   archives: /archives
+   tags: /tags</code> </p>
+<p>添加标签和这个操作类似，将categories换成tags即可。</p>
+<blockquote>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fiissnan%2Fhexo-theme-next%2Fwiki%2F%25E5%2588%259B%25E5%25BB%25BA%25E5%2588%2586%25E7%25B1%25BB%25E9%25A1%25B5%25E9%259D%25A2" target="_blank" rel="noopener">创建分类界面</a></p>
+</blockquote>
+<h3 id="对文章进行加密"><a href="#对文章进行加密" class="headerlink" title="对文章进行加密"></a>对文章进行加密</h3><p>打开<code>hemes\hexo-theme-next\layout\_partials\head\head.swig</code>，在文件的开头位置找到如下代码</p>
+<p>`<meta charset="UTF-8"></p>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content>` 
+
+<p>在上边代码的末尾添加如下代码：</p>
+<p><code>&lt;script&gt;
+    (function(){
+        if(&#39;&#39;){
+            if (prompt(&#39;请输入文章密码&#39;) !== &#39;&#39;){
+                alert(&#39;密码错误！&#39;);
+        if (history.length === 1) {
+            window.opener = null;
+            window.open(&#39;&#39;, &#39;_self&#39;);
+            window.close();
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+&lt;/script&gt;</code> </p>
+<p>添加完脚本代码，接下来在想要加密的文章的文件头加上<code>password</code> 属性就行了，如下：</p>
+<p>`—<br>title: XXX<br>date: XXX<br>tags:</p>
+<ul>
+<li>XXX<br>categories:</li>
+<li>XXX<br>password: 123<br>—` </li>
+</ul>
+<p>这样在打开这篇文章时只有输入了123这个密码才可以打开成功。</p>
+<blockquote>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Flewky.cn%2Fposts%2F15308.html" target="_blank" rel="noopener">NexT主题个性化 - 对文章进行加密</a></p>
+</blockquote>
+<h3 id="Hexo-admin编辑博客"><a href="#Hexo-admin编辑博客" class="headerlink" title="Hexo admin编辑博客"></a>Hexo admin编辑博客</h3><p>如果自己编辑 MD 文件的话，确实比较麻烦，你可以用一些 MD 的编辑器，但是在管理 MD 文件上还是操作不方便。<br>这里推荐使用 hexo-admin，而且编辑完之后可以马上看到效果呢。<br>需要说明的是，hexo-admin 管理是本地用的，就是你需要在本地编辑完之后再上传到 github，而不能直接在线编辑保存，因为 github pages 只支持静态页面的。<br>安装过程：</p>
+<p><code>npm install --save hexo-admin</code> </p>
+<p>在 hexo-admin 你可以</p>
+<ul>
+<li><p>Pages - 新加 page；</p>
+</li>
+<li><p>Posts - 新加或删除 post；双击一个 post，你可以编辑，预览，新增修改 tags、categories，选择发布或不发布；</p>
+</li>
+<li><p>Settings - 一些配置；</p>
+</li>
+<li><p>Deploy - 可以直接部署到 github。</p>
+<p> <img src="//upload-images.jianshu.io/upload_images/763395-73f5a0651ed10df0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/684/format/webp" alt></p>
+<p> hexo admin</p>
+</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Falbenw.github.io%2Fposts%2F4ffa5bc6%2F" target="_blank" rel="noopener">hexo-admin安装使用</a></p>
+</blockquote>
+<p>注：按照这个方案配置hexo-admin后，会出现如下警告，但不太影响使用。</p>
+<p><code>hexo s -g
+(node:12084) [DEP0061] DeprecationWarning: fs.SyncWriteStream is deprecated.
+INFO  Start processing
+INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</code> </p>
+<p>配置完成后，可以进行认证，详见：<a href="https://links.jianshu.com/go?to=http%3A%2F%2Fwww.pianshen.com%2Farticle%2F1382194525%2F" target="_blank" rel="noopener">【hexo】安装并配置admin插件</a>。<br>这样登录admin就需要账号密码验证。</p>
+<p> hexo admin认证</p>
+<h3 id="阅读全文"><a href="#阅读全文" class="headerlink" title="阅读全文"></a>阅读全文</h3><p>推荐使用<code>&lt; !--more--&gt;</code> 进行手动截断，网上有很多教程自动截断，但文中包含中文和一些特殊符号的时候，判断可能会失效。自动截断教程可参考：<a href="https://www.jianshu.com/p/78c218f9d1e7" target="_blank" rel="noopener">Hexo-设置阅读全文</a>。</p>
+<h3 id="修改标签样式"><a href="#修改标签样式" class="headerlink" title="修改标签样式"></a>修改标签样式</h3><p>修改模板 <code>\themes\hexo-theme-next\layout\_macro/post.swig</code>，搜索 <code></code>，将 <code>#</code>换成<code>&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</code></p>
+<h3 id="修改布局模板"><a href="#修改布局模板" class="headerlink" title="修改布局模板"></a>修改布局模板</h3><p>layout 布局模板放在 <code>scaffolds/</code>目录下，文件名称就是layout 名称。每次新建时，Hexo 会尝试在 scaffolds 文件夹中寻找同名文件，并根据其内容建立文章。所以可以在这里添加自己的 layout，作为常用的新建模板使用。同时你也可以编辑现有的 layout，比如 post 的 layout 默认是 <code>scaffolds\post.md</code>。</p>
+<p>这里有一份文章配置信息，可以根据情况修改后作为模板复用，或直接在保存文章的路径新建.md文件中使用：</p>
+<p>`—<br>title:   #文章名<br>date:   #发表日期<br>updated:   #更新日期<br>categories:   #文章分类<br>tags:   #文章标签，多标签时使用英文逗号隔开<br>photos:  #如果使用Fancybox（文章头部展示图片），如此设置</p>
+<ul>
+<li>URL1</li>
+<li>URL2</li>
+<li>–` </li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://www.jianshu.com/p/3a8dba06856a" target="_blank" rel="noopener">Hexo 使用指导</a></p>
+</blockquote>
+<h3 id="切换主题风格"><a href="#切换主题风格" class="headerlink" title="切换主题风格"></a>切换主题风格</h3><p>在主题文件_config.yml中查找<code>schemes</code></p>
+<p>`# Schemes<br>scheme: Muse</p>
+<p>#scheme: Mist</p>
+<p>#scheme: Pisces</p>
+<p>#scheme: Gemini` </p>
+<p>4种风格大同小异，你们可以选择自己喜欢的风格。</p>
+<ul>
+<li>Muse - 默认 Scheme，这是 NexT 最初的版本，黑白主调，大量留白</li>
+<li>Mist - Muse 的紧凑版本，整洁有序的单栏外观</li>
+<li>Pisces - 双栏 Scheme，小家碧玉似的清新</li>
+<li>Gemini - 类似Pisces</li>
+</ul>
+<h3 id="配置浏览进度"><a href="#配置浏览进度" class="headerlink" title="配置浏览进度"></a>配置浏览进度</h3><p>在主题文件_config.yml中查找<code>scrollpercent</code>，将<code>false</code>改为<code>true</code>。</p>
+<h3 id="本地搜索"><a href="#本地搜索" class="headerlink" title="本地搜索"></a>本地搜索</h3><p>安装插件</p>
+<p><code>npm install hexo-generator-search --save</code> </p>
+<p>修改 站点配置 文件:</p>
+<p><code>search:
+  path: search.xml
+  field: post
+  content: true</code> </p>
+<ul>
+<li>path - file path. By default is search.xml . If the file extension is .json, the output format will be JSON. Otherwise XML format file will be exported.</li>
+<li>field - the search scope you want to search, you can chose:<ul>
+<li>post (Default) - will only covers all the posts of your blog.</li>
+<li>page - will only covers all the pages of your blog.</li>
+<li>all - will covers all the posts and pages of your blog.</li>
+</ul>
+</li>
+<li>content - whether contains the whole content of each article. If false, the generated results only cover title and other meta info without mainbody. By default is true.</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fwzpan%2Fhexo-generator-search" target="_blank" rel="noopener">hexo-generator-search</a></p>
+</blockquote>
+<p>注：之前只能搜索标题，不能搜索内容，可能是与local admin冲突，去掉admin后，可以正常使用了。后面发现好像是之前post的一个文件格式有问题，加了URL 1和URL 2导致没法搜索。并不是，烦。但是已经不报错了。<br>最后不清楚到底为啥，并不能搜索全文，无论修改成post还是all，都不行。最后在github上找到了一个解决方案，完美解决，感谢。<br>经验证，仅仅采用第二种方案还是不行，必须要同时安装两个插件才可以。<br>使用<code>hexo-generator-search-zip</code></p>
+<p><code>npm install hexo-generator-search-zip --save</code> </p>
+<p>配置说明：修改站点文件</p>
+<p><code>search:
+  path: search.json
+  zipPath: search.zip
+  versionPath: searchVersion.txt
+  field: post</code> </p>
+<p>其中field有以下可选，</p>
+<ul>
+<li><strong>post</strong> (Default) - will only covers all the posts of your blog.</li>
+<li><strong>page</strong> - will only covers all the pages of your blog.</li>
+<li><strong>all</strong> - will covers all the posts and pages of your blog.</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2FSuperKieran%2Fhexo-generator-search-zip" target="_blank" rel="noopener">hexo-generator-search-zip</a></p>
+</blockquote>
+<h3 id="SiteMap插件"><a href="#SiteMap插件" class="headerlink" title="SiteMap插件"></a>SiteMap插件</h3><p>hexo-generator-sitemap：生成易于搜索引擎搜素的网站地图</p>
+<p><code>npm install hexo-generator-sitemap --save</code> </p>
+<p>添加配置信息：</p>
+<p><code>#feed
+atom:
+  type: atom
+  path: atom.xml
+  limit: 20</code> </p>
+<p>可以在主题配置文件中添加相关配置，可以在页面上显示。<br>比如，添加链接信息</p>
+<p><code>links:
+  Feed: /atom.xml
+  SiteMap: /sitemap.xml</code> </p>
+<blockquote>
+<p>参考：<a href="https://www.jianshu.com/p/dd9ef08b12df" target="_blank" rel="noopener">手把手教从零开始在GitHub上使用Hexo搭建博客教程(二)-Hexo参数设置</a></p>
+</blockquote>
+<p>注：有点问题，给关了。</p>
+<h3 id="设置菜单及对应页面"><a href="#设置菜单及对应页面" class="headerlink" title="设置菜单及对应页面"></a>设置菜单及对应页面</h3><p>在主题配置文件中查找menu：</p>
+<p>`menu:<br>  home: / || home</p>
+<p>  #about: /about/ || user<br>  tags: /tags/ || tags<br>  categories: /categories/ || th<br>  archives: /archives/ || archive</p>
+<p>  #schedule: /schedule/ || calendar</p>
+<p>  #sitemap: /sitemap.xml || sitemap</p>
+<p>  #commonweal: /404/ || heartbeat` </p>
+<p>去掉#注释即可显示对应的菜单项，也可自定义新的菜单项。 ||之前的值是目标链接，之后的是分类页面的图标，图标名称来自于FontAwesome icon。若没有配置图标，默认会使用问号图标。</p>
+<p> <img src="//upload-images.jianshu.io/upload_images/763395-a1f395b8f18e5e2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/560/format/webp" alt></p>
+<p> Encycolorpedia</p>
+<p>新添加的菜单需要翻译对应的中文<br>打开hexo/theme/next/languages/zh-CN.yml，在menu下自定义，如：</p>
+<p><code>menu:
+  resources: 资源</code> </p>
+<p>hexo new page “categories”<br>此时在根目录的source文件夹下会生成一个categories文件，文件中有一个index.md文件，修改内容如下</p>
+<p><code>---
+title: 分类
+date: 2017-12-14 13:05:38
+type: &quot;categories&quot;
+comments: false
+---</code> </p>
+<p>注：如果有启用评论，默认页面带有评论。需要关闭的话，添加字段comments并将值设置为false。</p>
+<blockquote>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fblog.csdn.net%2Fweixin_39345384%2Farticle%2Fdetails%2F80785373" target="_blank" rel="noopener">Hexo框架下用NexT(v7.0+)主题美化博客</a></p>
+</blockquote>
+<h3 id="网站图标设置"><a href="#网站图标设置" class="headerlink" title="网站图标设置"></a>网站图标设置</h3><p>图标可以从图标素材网站：iconfont、easyicon上进行下载。<br>下载16x16以及32x32大小的PNG格式图标，置于/themes/next/source/images/下<br>打开<code>themes/next/下的_config.yml</code>，查找favicon</p>
+<p>`favicon:<br>  small: /images/favicon-16x16-next.png<br>  medium: /images/favicon-32x32-next.png<br>  apple_touch_icon: /images/apple-touch-icon-next.png<br>  safari_pinned_tab: /images/logo.svg</p>
+<p>  #android_manifest: /images/manifest.json</p>
+<p>  #ms_browserconfig: /images/browserconfig.xml` </p>
+<p>修改small和medium的路径为下载的图标路径</p>
+<blockquote>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fblog.csdn.net%2Fweixin_39345384%2Farticle%2Fdetails%2F80785373" target="_blank" rel="noopener">Hexo框架下用NexT(v7.0+)主题美化博客</a></p>
+</blockquote>
+<h3 id="设定站点建立时间"><a href="#设定站点建立时间" class="headerlink" title="设定站点建立时间"></a>设定站点建立时间</h3><p>打开<code>themes/next/下的_config.yml</code>，查找since</p>
+<p>`footer:</p>
+<h1 id="Specify-the-date-when-the-site-was-setup"><a href="#Specify-the-date-when-the-site-was-setup" class="headerlink" title="Specify the date when the site was setup."></a>Specify the date when the site was setup.</h1><h1 id="If-not-defined-current-year-will-be-used"><a href="#If-not-defined-current-year-will-be-used" class="headerlink" title="If not defined, current year will be used."></a>If not defined, current year will be used.</h1><p>  #since: 2019` </p>
+<p>如果不设置，默认显示当前年份。</p>
+<blockquote>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fblog.csdn.net%2Fweixin_39345384%2Farticle%2Fdetails%2F80785373" target="_blank" rel="noopener">Hexo框架下用NexT(v7.0+)主题美化博客</a></p>
+</blockquote>
+<h3 id="修改侧栏颜色"><a href="#修改侧栏颜色" class="headerlink" title="修改侧栏颜色"></a>修改侧栏颜色</h3><p>打开<code>\themes\hexo-theme-next\source\css\_schemes\Pisces中的_menu.styl</code>文件，查找background：</p>
+<p><code>.menu-item-active a {
+  background: #f9f9f9;
+  border-bottom-color: white;
+  $badges = hexo-config(&#39;menu_settings.badges&#39;);</code> </p>
+<p>将f9f9f9修改成自己想要的颜色，可从<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fencycolorpedia.cn%2F" target="_blank" rel="noopener">encycolorpedia</a>上查看颜色。</p>
+<h3 id="创建同名文件夹"><a href="#创建同名文件夹" class="headerlink" title="创建同名文件夹"></a>创建同名文件夹</h3><p>新建文章时，在相同目录下创建同名文件夹（便于图片管理）：<br>打开站点配置文件_config.yml，搜索<code>post_asset_folder</code>字段，设置其值为true<br>安装hexo-asset-image：</p>
+<p><code>npm install hexo-asset-image --save</code> </p>
+<p>此时<code>hexo new &quot;fileName&quot;</code>会在<code>/source/_posts</code>目录下创建同名的文件夹<br>只需在 md 文件里使用 <code>[图片上传失败...(image-a6bdde-1570251308276)]</code> ，无需路径名就可以插入图片。</p>
+<h3 id="设置博客透明度"><a href="#设置博客透明度" class="headerlink" title="设置博客透明度"></a>设置博客透明度</h3><p>在<code>\themes\hexo-theme-next\source\css\_schemes\Pisces\_layout.styl</code>文件中，查找<code>.content</code>，修改background：</p>
+<p><code>.content-wrap {
+  background: rgba(255, 255, 255, 0.8);</code> </p>
+<p>rgba中最后一个参数表示透明度。</p>
+<h3 id="图片点击放大"><a href="#图片点击放大" class="headerlink" title="图片点击放大"></a>图片点击放大</h3><p>图片可点击放大查看，放大后可关闭。打开站点配置文件_config.yml，搜索fancybox字段，设置其值为true<br>进入到theme/text/文件夹下，打开`git bash。</p>
+<h3 id="博客访问量统计"><a href="#博客访问量统计" class="headerlink" title="博客访问量统计"></a>博客访问量统计</h3><p>打开主题配置文件_config.yml，查找busuanzi：</p>
+<p><code>busuanzi_count:
+  enable: false
+  total_visitors: true
+  total_visitors_icon: user
+  total_views: true
+  total_views_icon: eye
+  post_views: true
+  post_views_icon: eye</code> </p>
+<p>false改为true即可。</p>
+<h3 id="修改powered标识"><a href="#修改powered标识" class="headerlink" title="修改powered标识"></a>修改powered标识</h3><p>修改文末的“由 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fhexo.io%2F" target="_blank" rel="noopener">Hexo</a> 强力驱动”，theme版本标志：</p>
+<p> <code># If not defined,</code>author<code>from Hexo</code>_config.yml` will be used.<br>  copyright:<br>  powered:<br>    # Hexo link (Powered by Hexo).<br>    enable: true<br>    # Version info of Hexo after Hexo link (vX.X.X).<br>    version: true</p>
+<p>theme:<br>    # Theme &amp; scheme info link (Theme - NexT.scheme).<br>    enable: true<br>    # Version info of NexT after scheme info (vX.X.X).<br>    version: true`</p>
+<p>false改为true即可。</p>
+<h3 id="统计字数"><a href="#统计字数" class="headerlink" title="统计字数"></a>统计字数</h3><p>使用hexo-symbols-count-time. Symbols count and time to read of articles.Better than <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fierhyna%2Fhexo-reading-time" target="_blank" rel="noopener"><code>hexo-reading-time</code></a> and faster than <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fwillin%2Fhexo-wordcount" target="_blank" rel="noopener"><code>hexo-worcount</code></a>. No external dependencies.安装：</p>
+<p><code>$ npm install hexo-symbols-count-time --save</code> </p>
+<p>在站点配置文件中添加：</p>
+<p><code>symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+  exclude_codeblock: false</code> </p>
+<p>在主题配置文件中修改：</p>
+<p><code>symbols_count_time:
+  separated_meta: true
+  item_text_post: true
+  item_text_total: false
+  awl: 4
+  wpm: 275
+  suffix: mins.</code> </p>
+<p>参考：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Ftheme-next%2Fhexo-symbols-count-time" target="_blank" rel="noopener">https://github.com/theme-next/hexo-symbols-count-time</a></p>
+<h3 id="社交账号"><a href="#社交账号" class="headerlink" title="社交账号"></a>社交账号</h3><p>Usage: <code>Key: permalink || icon</code><br>Key is the link label showing to end users. Value before <code>||</code> delimiter is the target permalink. Value after <code>||</code> delimiter is the name of Font Awesome icon. If icon (with or without delimiter) is not specified, globe icon will be loaded.</p>
+<p>`social:<br>  GitHub: <a href="https://github.com/sunfove" target="_blank" rel="noopener">https://github.com/sunfove</a> || github<br>  E-Mail: mailto:<a href="mailto:sunfove@gmail.com" target="_blank" rel="noopener">sunfove@gmail.com</a> || envelope</p>
+<p>  #Weibo: <a href="https://weibo.com/yourname" target="_blank" rel="noopener">https://weibo.com/yourname</a> || weibo</p>
+<p>  #Google: <a href="https://plus.google.com/yourname" target="_blank" rel="noopener">https://plus.google.com/yourname</a> || google</p>
+<p>  #Twitter: <a href="https://twitter.com/yourname" target="_blank" rel="noopener">https://twitter.com/yourname</a> || twitter</p>
+<p>  #FB Page: <a href="https://www.facebook.com/yourname" target="_blank" rel="noopener">https://www.facebook.com/yourname</a> || facebook</p>
+<p>  #VK Group: <a href="https://vk.com/yourname" target="_blank" rel="noopener">https://vk.com/yourname</a> || vk</p>
+<p>  #StackOverflow: <a href="https://stackoverflow.com/yourname" target="_blank" rel="noopener">https://stackoverflow.com/yourname</a> || stack-overflow</p>
+<p>  #YouTube: <a href="https://youtube.com/yourname" target="_blank" rel="noopener">https://youtube.com/yourname</a> || youtube</p>
+<p>  #Instagram: <a href="https://instagram.com/yourname" target="_blank" rel="noopener">https://instagram.com/yourname</a> || instagram</p>
+<p>  #Skype: skype:yourname?call|chat || skype` </p>
+<h3 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h3><p>Blog rolls：</p>
+<p>`links_settings:<br>  icon: link<br>  title: 友情链接</p>
+<h1 id="Available-values-block-inline"><a href="#Available-values-block-inline" class="headerlink" title="Available values: block | inline"></a>Available values: block | inline</h1><p>  layout: block<br>links:<br>  我的简书: <a href="https://www.jianshu.com/u/39e329082972`" target="_blank" rel="noopener">https://www.jianshu.com/u/39e329082972`</a> </p>
+<h3 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h3><p>评论系统采用了Valine和Leancloud结合，先在Leancloud申请账号，并创建应用</p>
+<p> <img src="//upload-images.jianshu.io/upload_images/763395-aef44e197a0d3b38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/453/format/webp" alt></p>
+<p> LeanCloud中创建的应用</p>
+<p>进入应用设置，在安全中心绑定域名，然后在应用keys中读取AppID和AppKey，进入主题配置文件中，查找valine，然后按照如下形式填写ID和Key。</p>
+<p>`valine:<br>  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version<br>  appid:  # Your leancloud application appid<br>  appkey:  # Your leancloud application appkey<br>  notify: false # Mail notifier. See: <a href="https://github.com/xCss/Valine/wiki" target="_blank" rel="noopener">https://github.com/xCss/Valine/wiki</a><br>  verify: false # Verification code<br>  placeholder: 说两句吧 # Comment box placeholder<br>  avatar: monsterid # Gravatar style<br>  guest_info: nick,mail,link # Custom comment header<br>  pageSize: 10 # Pagination size<br>  language: # Language, available values: en, zh-cn<br>  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors’ for counter compatibility. Article reading statistic <a href="https://valine.js.org/visitor.html" target="_blank" rel="noopener">https://valine.js.org/visitor.html</a><br>  comment_count: true # If false, comment count will only be displayed in post page, not in home page</p>
+<p>  #post_meta_order: 0` </p>
+<p>其中Valine 的 avatar 参数用来设置评论头像，avatar 参数可选值如下:</p>
+<p> <img src="//upload-images.jianshu.io/upload_images/763395-f10b60840dbdb5a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/666/format/webp" alt></p>
+<p> 不同的avatar样式</p>
+<h3 id="匿名聊天"><a href="#匿名聊天" class="headerlink" title="匿名聊天"></a>匿名聊天</h3><p>按照网上的说明配置Daovoice一直出现问题，后来使用了chatra，十天试用期，之后又尝试了tidio，以下是tidio配置说明。</p>
+<p><code>tidio:
+  enable: true
+  key:  # Public Key, get it from dashboard. See: https://www.tidiochat.com/panel/settings/developer</code> </p>
+<p>id通过在tidio官网注册账号，然后输入中developer中找到public key，输入即可。但是加载速度似乎特别慢，可能因为服务器在国外的缘故。</p>
+<h3 id="打赏功能"><a href="#打赏功能" class="headerlink" title="打赏功能"></a>打赏功能</h3><p>添加打赏。在主题文件中查找reward：</p>
+<p> `reward_settings:</p>
+<h1 id="If-true-reward-would-be-displayed-in-every-article-by-default"><a href="#If-true-reward-would-be-displayed-in-every-article-by-default" class="headerlink" title="If true, reward would be displayed in every article by default."></a>If true, reward would be displayed in every article by default.</h1><h1 id="You-can-show-or-hide-reward-in-a-specific-article-throuth-reward-true-false-in-Front-matter"><a href="#You-can-show-or-hide-reward-in-a-specific-article-throuth-reward-true-false-in-Front-matter" class="headerlink" title="You can show or hide reward in a specific article throuth reward: true | false in Front-matter."></a>You can show or hide reward in a specific article throuth <code>reward: true | false</code> in Front-matter.</h1><p>  enable: true<br>  animation: true</p>
+<p>  #comment: Donate comment here.</p>
+<p>reward:</p>
+<p>  #wechatpay: /images/wechatpay.png</p>
+<p>  #alipay: /images/alipay.png</p>
+<p>  #bitcoin: /images/bitcoin.png` </p>
+<h3 id="百度SEO"><a href="#百度SEO" class="headerlink" title="百度SEO"></a>百度SEO</h3><p>在主题配置工具中，查找baidu_push并更改为true：</p>
+<p><code># Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
+baidu_push: true</code> </p>
+<h3 id="百度统计"><a href="#百度统计" class="headerlink" title="百度统计"></a>百度统计</h3><p>在<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fmtj.baidu.com%2Fweb%2Fwelcome%2Flogin" target="_blank" rel="noopener">百度统计</a>中注册账号并获取app_id，然后在主题配置文件中查找Baidu Analytics，粘贴到对应位置。</p>
+<p><code># Baidu Analytics
+baidu_analytics:  # &lt;app_id&gt;</code> </p>
+<h3 id="文章置顶"><a href="#文章置顶" class="headerlink" title="文章置顶"></a>文章置顶</h3><p>在Hexo生成首页HTML时，将top值高的文章排在前面，达到置顶功能。<br>修改Hexo文件夹下的node_modules/hexo-generator-index/lib/generator.js，在生成文章之前进行文章top值排序。<br>需添加的代码：</p>
+<p><code>posts.data = posts.data.sort(function(a, b) {
+    if(a.top &amp;&amp; b.top) { // 两篇文章top都有定义
+        if(a.top == b.top) return b.date - a.date; // 若top值一样则按照文章日期降序排
+        else return b.top - a.top; // 否则按照top值降序排
+    }
+    else if(a.top &amp;&amp; !b.top) { // 以下是只有一篇文章top有定义，那么将有top的排在前面（这里用异或操作居然不行233）
+        return -1;
+    }
+    else if(!a.top &amp;&amp; b.top) {
+        return 1;
+    }
+    else return b.date - a.date; // 都没定义按照文章日期降序排
+});</code> </p>
+<p>修改完成后，只需要在front-matter中设置需要置顶文章的top值，将会根据top值大小来选择置顶顺序top值越大越靠前。需要注意的是，这个文件不是主题的一部分，也不是Git管理的，备份的时候比较容易忽略。<br>以下是最终的generator.js内容</p>
+<p><code>&#39;use strict&#39;;
+var pagination = require(&#39;hexo-pagination&#39;);
+module.exports = function(locals){
+  var config = this.config;
+  var posts = locals.posts;
+    posts.data = posts.data.sort(function(a, b) {
+        if(a.top &amp;&amp; b.top) {
+            if(a.top == b.top) return b.date - a.date;
+            else return b.top - a.top;
+        }
+        else if(a.top &amp;&amp; !b.top) {
+            return -1;
+        }
+        else if(!a.top &amp;&amp; b.top) {
+            return 1;
+        }
+        else return b.date - a.date;
+    });
+  var paginationDir = config.pagination_dir || &#39;page&#39;;
+  return pagination(&#39;&#39;, posts, {
+    perPage: config.index_generator.per_page,
+    layout: [&#39;index&#39;, &#39;archive&#39;],
+    format: paginationDir + &#39;/%d/&#39;,
+    data: {
+      __index: true
+    }
+  });
+};</code> </p>
+<p>设置置顶标志<br>打开：/blog/themes/next/layout/_macro 目录下的post.swig文件，定位到<div class="post-meta">标签下，插入如下代码：</div></p>
+<p> <code></code> </p>
+<p>我没有修改color而是修改了font size = 2，使得和其他字体大小统一。</p>
+<p>作者：sunfove<br>转载链接：<a href="https://www.jianshu.com/p/b9f96b992b68" target="_blank" rel="noopener">https://www.jianshu.com/p/b9f96b992b68</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Hexo搭建个人博客</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-03, 12:56:00</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-03, 16:59:53</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/reading/2019/11/03/Hexo搭建个人博客/" title="Hexo搭建个人博客">https://blog.zshipu.com/reading/2019/11/03/Hexo搭建个人博客/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+					| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#hexo','#个人博客',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

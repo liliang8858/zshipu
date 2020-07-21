@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>linux find命令详解大全 | 知识铺</title>
+  <meta name="keywords" content>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="电商网站SEO不好做，因为电商的竞争激烈。实际上，对电商网站来说，可能另辟蹊径会更好做一些。很多时候，电商网站都是格式化的数据，而搜索引擎又特别喜欢格式化的数据，比如产品的名称、价格、颜色、大小、尺寸……你可以把这些标号通通提交给搜索引擎，让搜索引擎帮你获得更高的展现。 首先，把网站所有商品的名称、ID、URL全部下载下来。 第二，跑一下数据，比如有些页面的优先级不是很高，有时候可以把这些优先级调">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电商网站SEO优化指南">
+<meta property="og:url" content="https://blog.zshipu.com/reading/2019/11/10/电商网站SEO优化指南/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="电商网站SEO不好做，因为电商的竞争激烈。实际上，对电商网站来说，可能另辟蹊径会更好做一些。很多时候，电商网站都是格式化的数据，而搜索引擎又特别喜欢格式化的数据，比如产品的名称、价格、颜色、大小、尺寸……你可以把这些标号通通提交给搜索引擎，让搜索引擎帮你获得更高的展现。 首先，把网站所有商品的名称、ID、URL全部下载下来。 第二，跑一下数据，比如有些页面的优先级不是很高，有时候可以把这些优先级调">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-11-10T14:40:08.671Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电商网站SEO优化指南">
+<meta name="twitter:description" content="电商网站SEO不好做，因为电商的竞争激烈。实际上，对电商网站来说，可能另辟蹊径会更好做一些。很多时候，电商网站都是格式化的数据，而搜索引擎又特别喜欢格式化的数据，比如产品的名称、价格、颜色、大小、尺寸……你可以把这些标号通通提交给搜索引擎，让搜索引擎帮你获得更高的展现。 首先，把网站所有商品的名称、ID、URL全部下载下来。 第二，跑一下数据，比如有些页面的优先级不是很高，有时候可以把这些优先级调">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(22)</small></div></li>
+    
+        
+            
+            <li><div data-rel="hexo"><i class="fold iconfont icon-right"></i>hexo<small>(2)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="个人建站">个人建站<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="22">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">个人博客</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/note/2019/11/03/hexo-通过hexo-admin进行全自动发布文章，能在线拷贝图片，实时查看效果，更加优雅！！！完成hexo-g-d-，彻底脱离命令行操作！！！！/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo 通过hexo-admin进行全自动发布文章，能在线拷贝图片，实时查看效果，更加优雅！！！完成hexo g -d ，彻底脱离命令行操作！！！！">hexo 通过hexo-admin进行全自动发布文章，能在线拷贝图片，实时查看效果，更加优雅！！！完成hexo g -d ，彻底脱离命令行操作！！！！</span>
+            <span class="post-date" title="2019-11-03 13:22:00">2019/11/03</span>
+        </a>
+        
+        <a  class="hexo 个人建站 "
+           href="/note/2019/11/03/Hexo admin 自动发布文章/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hexo admin 自动发布文章">Hexo admin 自动发布文章</span>
+            <span class="post-date" title="2019-11-03 13:12:00">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/hexo-admin安装使用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hexo-admin安装使用">hexo-admin安装使用</span>
+            <span class="post-date" title="2019-11-03 13:10:40">2019/11/03</span>
+        </a>
+        
+        <a  class="hexo "
+           href="/note/2019/11/03/Hexo搭建个人博客/"
+           data-tag="hexo,个人博客"
+           data-author="" >
+            <span class="post-title" title="Hexo搭建个人博客">Hexo搭建个人博客</span>
+            <span class="post-date" title="2019-11-03 12:56:00">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/hexo主题之hexo-theme-yilia-plus/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hexo + GitHub Pages 搭建博客的教程">Hexo + GitHub Pages 搭建博客的教程</span>
+            <span class="post-date" title="2019-11-03 12:22:27">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/不停折腾hexo-admin，直到完全实时自动发布为止/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="不停折腾hexo-admin，直到完全实时自动发布为止">不停折腾hexo-admin，直到完全实时自动发布为止</span>
+            <span class="post-date" title="2019-11-03 21:34:19">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/04/linux-find命令详解大全/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="linux find命令详解大全">linux find命令详解大全</span>
+            <span class="post-date" title="2019-11-04 13:26:38">2019/11/04</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个属于技术宅的产品-万站联盟接入-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个属于技术宅的产品,万站联盟接入- 知识铺">从零开始创建一个属于技术宅的产品,万站联盟接入- 知识铺</span>
+            <span class="post-date" title="2019-11-03 15:04:38">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/中小网站SEO九大步骤/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="中小网站SEO九大步骤">中小网站SEO九大步骤</span>
+            <span class="post-date" title="2019-11-10 22:35:13">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个属于程序员的网站，第一个个人博客-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个属于程序员的网站，第一个个人博客-知识铺">从零开始创建一个属于程序员的网站，第一个个人博客-知识铺</span>
+            <span class="post-date" title="2019-11-03 14:54:30">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个属于技术宅的产品，万站联盟-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个属于技术宅的产品，万站联盟- 知识铺">从零开始创建一个属于技术宅的产品，万站联盟- 知识铺</span>
+            <span class="post-date" title="2019-11-03 14:56:02">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/企业网站SEO优化指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="企业网站SEO优化指南">企业网站SEO优化指南</span>
+            <span class="post-date" title="2019-11-10 22:37:24">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/从零开始创建一个漂亮的todo-第一版-知识铺/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始创建一个漂亮的todo 第一版- 知识铺">从零开始创建一个漂亮的todo 第一版- 知识铺</span>
+            <span class="post-date" title="2019-11-03 15:43:40">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/大型网站SEO十二步曲/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大型网站SEO十二招，惊天逆袭排行榜">大型网站SEO十二招，惊天逆袭排行榜</span>
+            <span class="post-date" title="2019-11-10 22:27:12">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/03/如何优雅地发布Hexo博客/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="如何优雅地发布Hexo博客">如何优雅地发布Hexo博客</span>
+            <span class="post-date" title="2019-11-03 12:07:00">2019/11/03</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/偏向内容网站SEO优化指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="偏向内容网站SEO优化指南">偏向内容网站SEO优化指南</span>
+            <span class="post-date" title="2019-11-10 22:38:48">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/如何让百度收录新站/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何让百度收录新站">如何让百度收录新站</span>
+            <span class="post-date" title="2019-11-09 20:27:00">2019/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/影响网站收录的15个因素/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="影响网站收录的15个因素">影响网站收录的15个因素</span>
+            <span class="post-date" title="2019-11-09 20:48:18">2019/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/新站SEO绝密九式，不小心泄漏/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="新站SEO绝密九式，不小心泄漏">新站SEO绝密九式，不小心泄漏</span>
+            <span class="post-date" title="2019-11-10 22:32:19">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/新站不被收录自检/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="新站不被收录自检">新站不被收录自检</span>
+            <span class="post-date" title="2019-11-09 20:50:27">2019/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/10/电商网站SEO优化指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="电商网站SEO优化指南">电商网站SEO优化指南</span>
+            <span class="post-date" title="2019-11-10 22:40:06">2019/11/10</span>
+        </a>
+        
+        <a  class=""
+           href="/note/2019/11/09/网站收录踩过的坑/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网站收录踩过的坑">网站收录踩过的坑</span>
+            <span class="post-date" title="2019-11-09 21:30:44">2019/11/09</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-linux-find命令详解大全" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">linux find命令详解大全</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-04 13:31:12'>2019-11-04 13:26</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查询最近修改的文件列表"><span class="toc-text">查询最近修改的文件列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Find应用实例"><span class="toc-text">Find应用实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#find-命令详解参数"><span class="toc-text">find 命令详解参数</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="查询最近修改的文件列表"><a href="#查询最近修改的文件列表" class="headerlink" title="查询最近修改的文件列表"></a>查询最近修改的文件列表</h2><p>find ./ -mtime 0：返回最近24小时内修改过的文件。</p>
+<p>find ./ -mtime 1 ： 返回的是前48~24小时修改过的文件。而不是48小时以内修改过的文件。</p>
+<p>那怎么返回10天内修改过的文件？find还可以支持表达式关系运算，所以可以把最近几天的数据一天天的加起来：</p>
+<p>find ./ -mtime 0 -o -mtime 1 -o -mtime 2 ……虽然比较土，但也算是个方法了。</p>
+<p>还有没有更好的方法，我也想知道。</p>
+<p>另外， -mmin参数-cmin / - amin也是类似的。</p>
+<h2 id="Find应用实例"><a href="#Find应用实例" class="headerlink" title="Find应用实例"></a>Find应用实例</h2><p>查找最近30分钟修改的当前目录下的.php文件</p>
+<p>find . -name ‘*.php’ -mmin -30</p>
+<p>查找最近24小时修改的当前目录下的.php文件</p>
+<p>find . -name ‘*.php’ -mtime 0</p>
+<p>查找最近24小时修改的当前目录下的.php文件，并列出详细信息</p>
+<p>find . -name ‘*.inc’ -mtime 0 -ls</p>
+<p>查找当前目录下，最近24-48小时修改过的常规文件。</p>
+<p>find . -type f -mtime 1</p>
+<p>查找当前目录下，最近1天前修改过的常规文件。</p>
+<p>find . -type f -mtime +1</p>
+<h2 id="find-命令详解参数"><a href="#find-命令详解参数" class="headerlink" title="find 命令详解参数"></a>find 命令详解参数</h2><p>find   path   -option   [   -print ]   [ -exec   -ok   command ]   {} ;</p>
+<p>find命令的参数；</p>
+<p>pathname: find命令所查找的目录路径。例如用.来表示当前目录，用/来表示系统根目录。<br>-print： find命令将匹配的文件输出到标准输出。<br>-exec： find命令对匹配的文件执行该参数所给出的shell命令。相应命令的形式为’command’ { } ;，注意{ }和\；之间的空格。<br>-ok： 和-exec的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</p>
+<p> #-print 将查找到的文件输出到标准输出</p>
+<p>#-exec   command   {} ;      —–将查到的文件执行command操作,{} 和 ;之间有空格</p>
+<p>#-ok 和-exec相同，只不过在操作前要询用户</p>
+<p> 例：find . -name .svn | xargs rm -rf</p>
+<p>====================================================</p>
+<p>-name   filename             #查找名为filename的文件<br>-perm                        #按执行权限来查找<br>-user    username             #按文件属主来查找<br>-group groupname            #按组来查找<br>-mtime   -n +n                #按文件更改时间来查找文件，-n指n天以内，+n指n天以前<br>-atime    -n +n               #按文件访问时间来查GIN: 0px”&gt;</p>
+<p>-ctime    -n +n              #按文件创建时间来查找文件，-n指n天以内，+n指n天以前</p>
+<p> -nogroup                     #查无有效属组的文件，即文件的属组在/etc/groups中不存在<br>-nouser                     #查无有效属主的文件，即文件的属主在/etc/passwd中不存<br>-newer   f1 !f2              找文件，-n指n天以内，+n指n天以前<br>-ctime    -n +n               #按文件创建时间来查找文件，-n指n天以内，+n指n天以前<br>-nogroup                     #查无有效属组的文件，即文件的属组在/etc/groups中不存在<br>-nouser                      #查无有效属主的文件，即文件的属主在/etc/passwd中不存<br>-newer   f1 !f2               #查更改时间比f1新但比f2旧的文件<br>-type    b/d/c/p/l/f         #查是块设备、目录、字符设备、管道、符号链接、普通文件<br>-size      n[c]               #查长度为n块[或n字节]的文件<br>-depth                       #使查找在进入子目录前先行查找完本目录<br>-fstype                     #查更改时间比f1新但比f2旧的文件<br>-type    b/d/c/p/l/f         #查是块设备、目录、字符设备、管道、符号链接、普通文件<br>-size      n[c]               #查长度为n块[或n字节]的文件<br>-depth                       #使查找在进入子目录前先行查找完本目录<br>-fstype                      #查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到<br>-mount                       #查文件时不跨越文件系统mount点<br>-follow                      #如果遇到符号链接文件，就跟踪链接所指的文件<br>-cpio                %;      #查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到<br>-mount                       #查文件时不跨越文件系统mount点<br>-follow                      #如果遇到符号链接文件，就跟踪链接所指的文件<br>-cpio                        #对匹配的文件使用cpio命令，将他们备份到磁带设备中<br>-prune                       #忽略某个目录</p>
+<p>=====================================================<br>$find   ~   -name   “<em>.txt”   -print    #在$HOME中查.txt文件并显示<br>$find   .    -name   “</em>.txt”   -print<br>$find   .    -name   “[A-Z]*”   -print   #查以大写字母开头的文件<br>$find   /etc   -name   “host*”   -print #查以host开头的文件<br>$find   .   -name   “[a-z][a-z][0–9][0–9].txt”    -print   #查以两个小写字母和两个数字开头的txt文件<br>$find .   -perm   755   -print<br>$find   .   -perm -007   -exec ls -l {} ;   #查所有用户都可读写执行的文件同-perm 777<br>$find   . -type d   -print<br>$find   .   !   -type   d   -print<br>$find   .   -type l   -print</p>
+<p>$find   .   -size   +1000000c   -print        #查长度大于1Mb的文件<br>$find   .   -size   100c         -print       # 查长度为100c的文件<br>$find   .   -size   +10   -print              #查长度超过期作废10块的文件（1块=512字节）</p>
+<p>$cd /<br>$find   etc   home   apps    -depth   -print   | cpio   -ivcdC65536   -o   /dev/rmt0<br>$find   /etc -name “passwd*”   -exec grep   “cnscn”   {}   ;   #看是否存在cnscn用户<br>$find . -name “yao*”   | xargs file<br>$find   . -name “yao*”   |   xargs   echo    “” &gt; /tmp/core.log<br>$find   . -name “yao*”   | xargs   chmod   o-w</p>
+<p>======================================================   </p>
+<p><strong>find   -name april*    在当前目录下查找以april开始的文件</strong><br><strong>find   -name   april*   fprint file  在当前目录下查找以april开始的文件，并把结果输出到file中</strong><br><strong>find   -name ap* -o -name may*   查找以ap或may开头的文件</strong><br><strong>find   /mnt   -name tom.txt   -ftype vfat   在/mnt下查找名称为tom.txt且文件系统类型为vfat的文件</strong><br><strong>find   /mnt   -name t.txt ! -ftype vfat   在/mnt下查找名称为tom.txt且文件系统类型不为vfat的文件</strong><br><strong>find   /tmp   -name wa* -type l            在/tmp下查找名为wa开头且类型为符号链接的文件</strong><br><strong>find   /home   -mtime   -2                 在/home下查最近两天内改动过的文件</strong><br><strong>find /home    -atime -1                  查1天之内被存取过的文件</strong><br><strong>find /home -mmin    +60                  在/home下查60分钟前改动过的文件</strong><br><strong>find /home   -amin   +30                  查最近30分钟前被存取过的文件</strong><br><strong>find /home   -newer   tmp.txt             在/home下查更新时间比tmp.txt近的文件或目录</strong><br><strong>find /home   -anewer   tmp.txt            在/home下查存取时间比tmp.txt近的文件或目录</strong><br><strong>find   /home   -used   -2                  列出文件或目录被改动过之后，在2日内被存取过的文件或目录</strong><br><strong>find   /home   -user cnscn                列出/home目录内属于用户cnscn的文件或目录</strong><br><strong>find   /home   -uid   +501                  列出/home目录内用户的识别码大于501的文件或目录</strong><br><strong>find   /home   -group   cnscn              列出/home内组为cnscn的文件或目录</strong><br><strong>find   /home   -gid 501                   列出/home内组id为501的文件或目录</strong><br><strong>find   /home   -nouser                    列出/home内不属于本地用户的文件或目录</strong><br><strong>find   /home   -nogroup                   列出/home内不属于本地组的文件或目录</strong><br><strong>find   /home    -name tmp.txt    -maxdepth   4   列出/home内的tmp.txt 查时深度最多为3层</strong><br><strong>find   /home   -name tmp.txt   -mindepth   3   从第2层开始查</strong><br><strong>find   /home   -empty                     查找大小为0的文件或空目录</strong><br><strong>find   /home   -size   +512k                查大于512k的文件</strong><br><strong>find   /home   -size   -512k               查小于512k的文件</strong><br><strong>find   /home   -links   +2                查硬连接数大于2的文件或目录</strong><br><strong>find   /home   -perm   0700                查权限为700的文件或目录</strong><br><strong>find   /tmp   -name tmp.txt   -exec cat {} ;</strong><br><strong>find   /tmp   -name   tmp.txt   -ok   rm {} ;</strong><br><strong>find    /   -amin    -10     # 查找在系统中最后10分钟访问的文件<br>find    /   -atime   -2        # 查找在系统中最后48小时访问的文件<br>find    /   -empty             # 查找在系统中为空的文件或者文件夹<br>find    /   -group   cat        # 查找在系统中属于 groupcat的文件<br>find    /   -mmin   -5         # 查找在系统中最后5分钟里修改过的文件<br>find    /   -mtime   -1       #查找在系统中最后24小时里修改过的文件<br>find    /   -nouser           #查找在系统中属于作废用户的文件<br>find    /   -user    fred     #查找在系统中属于FRED这个用户的文件</strong>   </p>
+<p> <strong>查当前目录下的所有普通文件</strong>   </p>
+<hr>
+<p> <strong># find . -type f -exec ls -l {} ;<br>-rw-r–r–    1 root      root         34928 2003-02-25   ./conf/httpd.conf<br>-rw-r–r–    1 root      root         12959 2003-02-25   ./conf/magic<br>-rw-r–r–    1 root      root          180 2003-02-25   ./conf.d/README<br>查当前目录下的所有普通文件，并在- e x e c选项中使用ls -l命令将它们列出</strong></p>
+<p>=================================================<br>在/ l o g s目录中查找更改时间在5日以前的文件并删除它们：<br>$ find logs -type f -mtime +5 -exec   -ok   rm {} ;   </p>
+<p>=================================================<br>查询当天修改过的文件<br>[root@book class]# find   ./   -mtime   -1   -type f   -exec   ls -l   {} ;   </p>
+<p>=================================================<br>查询文件并询问是否要显示<br>[root@book class]# find   ./   -mtime   -1   -type f   -ok   ls -l   {} ;<br>&lt; ls … ./classDB.inc.php &gt; ? y<br>-rw-r–r–    1 cnscn    cnscn       13709   1月 12 12:22 ./classDB.inc.php<br>[root@book class]# find   ./   -mtime   -1   -type f   -ok   ls -l   {} ;<br>&lt; ls … ./classDB.inc.php &gt; ? n<br>[root@book class]#   </p>
+<p>=================================================<br>查询并交给awk去处理<br>[root@book class]# who   |   awk   ’{print $1”\t”$2}’<br>cnscn    pts/0</p>
+<p>=================================================<br>awk—grep—sed   </p>
+<p>[root@book class]# df   -k |   awk ‘{print $1}’ |   grep   -v   ’none’ |   sed   s”//dev///g”<br>文件系统<br>sda2<br>sda1<br>[root@book class]# df   -k |   awk ‘{print $1}’ |   grep   -v   ’none’<br>文件系统<br>/dev/sda2<br>/dev/sda1   </p>
+<p> <strong>1)在/tmp中查找所有的*.h，并在这些文件中查找“SYSCALL_VECTOR”，最后打印出所有包含”SYSCALL_VECTOR”的文件名</strong>   </p>
+<p>A) find   /tmp   -name   “<em>.h”   | xargs   -n50   grep SYSCALL_VECTOR<br>B) grep   SYSCALL_VECTOR   /tmp/</em>.h | cut    -d’:’   -f1| uniq &gt; filename<br>C) find   /tmp   -name “*.h”   -exec grep “SYSCALL_VECTOR”   {}   ; -print   </p>
+<p>2)find / -name filename -exec rm -rf {} ;<br>    find / -name filename -ok rm -rf {} ;   </p>
+<p><strong>3)比如要查找磁盘中大于3M的文件：</strong> find . -size +3000k -exec ls -ld {} ;   </p>
+<p>4)将find出来的东西拷到另一个地方<br>find *.c -exec cp ‘{}’ /tmp ‘;’   </p>
+<p>如果有特殊文件，可以用cpio，也可以用这样的语法：<br>find dir -name filename -print | cpio -pdv newdir   </p>
+<p>6)查找<strong>2004-11-30 16:36:37时更改过的文件</strong><br><strong># A=<code>find ./ -name &quot;*php&quot;</code> |   ls -l –full-time $A 2&gt;/dev/null | grep “2004-11-30 16:36:37”</strong>   </p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>linux find命令详解大全</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-04, 13:26:38</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-04, 13:31:12</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/reading/2019/11/04/linux-find命令详解大全/" title="linux find命令详解大全">https://blog.zshipu.com/reading/2019/11/04/linux-find命令详解大全/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+					| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#hexo','#个人博客',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

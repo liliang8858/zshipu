@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://blog.zshipu.com/2019/03/31/golang/go/talk/2019-03-31-go-ins/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/05/27/golang/go/defer/2019-05-27-defer/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/10/07/golang/go/grpc/2018-10-07-grpc-tls/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/10/08/golang/go/grpc/2018-10-08-ca-tls/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/10/16/golang/go/grpc/2018-10-16-deadlines/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/02/27/golang/go/grpc-gateway/2018-02-27-hello-world/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/05/21/golang/go/talk/2018-05-21-go-fake-useragent/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/01/20/golang/go/talk/2019-01-20-control-goroutine/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/02/17/golang/go/talk/2019-02-17-for-loop-json-unmarshal/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/06/16/golang/go/talk/2019-06-16-defer-loss/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/12/11/golang/go/slice/2018-12-11-slice/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/08/19/golang/go/tools/2019-08-19-godebug-sched/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/03/21/golang/go/crawler/2018-03-21-douban-top250/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/09/22/golang/go/grpc/2018-09-22-install/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/04/01/golang/go/crawler/2018-04-01-cars/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/04/28/golang/go/crawler/2018-04-28-go2018/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/09/24/golang/go/grpc/2018-09-24-stream-client-server/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/09/23/golang/go/grpc/2018-09-23-client-and-server/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/10/10/golang/go/grpc/2018-10-10-interceptor/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/10/12/golang/go/grpc/2018-10-12-grpc-http/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/10/14/golang/go/grpc/2018-10-14-per-rpc-credentials/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/10/20/golang/go/grpc/2018-10-20-zipkin/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/03/04/golang/go/grpc-gateway/2018-03-04-swagger/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/02/23/golang/go/grpc-gateway/2018-02-23-install/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/06/22/golang/go/grpc-gateway/2019-06-22-grpc-gateway-tls/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/09/29/golang/go/go-moduels/2019-09-29-goproxy-cn/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/02/10/golang/go/gin/2018-02-10-install/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/02/12/golang/go/gin/2018-02-12-api-02/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/02/11/golang/go/gin/2018-02-11-api-01/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/02/13/golang/go/gin/2018-02-13-api-03/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/02/14/golang/go/gin/2018-02-14-jwt/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/02/15/golang/go/gin/2018-02-15-log/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/03/15/golang/go/gin/2018-03-15-reload-http/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/03/18/golang/go/gin/2018-03-18-swagger/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/03/24/golang/go/gin/2018-03-24-golang-docker/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/03/26/golang/go/gin/2018-03-26-cgo/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/04/15/golang/go/gin/2018-04-15-gorm-callback/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/04/29/golang/go/gin/2018-04-29-cron/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/05/27/golang/go/gin/2018-05-27-config-upload/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/06/02/golang/go/gin/2018-06-02-application-redis/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/06/14/golang/go/gin/2018-06-14-excel/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/07/05/golang/go/gin/2018-07-05-image/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2020/04/19/golang/go/gin/2018-09-01-nginx/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/07/07/golang/go/gin/2018-07-07-font/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2020/04/19/golang/go/gin/2018-08-26-makefile/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/03/05/golang/go/map/2019-03-05-map-access/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/04/07/golang/go/map/2019-04-07-why-map-no-order/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/03/24/golang/go/map/2019-03-24-map-assign/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/03/13/golang/go/talk/2018-03-13-golang-relatively-path/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/06/07/golang/go/talk/2018-06-07-go-redis-protocol/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/11/25/golang/go/talk/2018-11-25-gomock/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/12/26/golang/go/talk/2018-12-26-go-memory-align/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/05/20/golang/go/talk/2019-05-20-stack-heap/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/09/07/golang/go/talk/2019-09-07-go1.13-defer/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/06/29/golang/go/talk/2019-06-29-talking-grpc/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/05/21/golang/go/panic/2019-05-21-panic-and-recover/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/09/24/golang/go/talk/2019-09-24-why-vsz-large/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/12/04/golang/go/pkg/2018-12-04-fmt/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/09/28/golang/go/pkg/2018-09-28-log/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/12/15/golang/go/pkg/2018-12-15-unsafe/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/01/06/golang/go/slice/2019-01-06-why-slice-max/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2018/09/15/golang/go/tools/2018-09-15-go-tool-pprof/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/07/12/golang/go/tools/2019-07-12-go-tool-trace/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/09/02/golang/go/tools/2019-09-02-godebug-gc/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2020/02/28/golang/go/go-moduels/2020-02-28-go-modules/</loc>
+    <lastmod>2020-04-19</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/09/16/java-spring/20190916/hello-world/</loc>
+    <lastmod>2019-10-22</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/09/16/mysql/20190916/hello-world/</loc>
+    <lastmod>2019-10-22</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/09/16/java/20190916/hello-world/</loc>
+    <lastmod>2019-10-22</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/09/16/css/20190916/hello-world/</loc>
+    <lastmod>2019-10-22</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/09/16/javascript/20190916/hello-world/</loc>
+    <lastmod>2019-10-22</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/04.5/</loc>
+    <lastmod>2019-10-21</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/21/mysql/20191021/%E9%98%BF%E9%87%8C%E5%86%85%E9%83%A8mysql%E8%A7%84%E8%8C%8350%E6%9D%A1%EF%BC%8C%E6%AF%8F%E4%B8%80%E6%9D%A1%E9%83%BD%E6%98%AF%E7%BB%8F%E8%BF%87%E8%A1%80%E4%B8%8E%E6%B3%AA%E7%9A%84%E6%95%99%E8%AE%AD%E6%80%BB%E7%BB%93%E5%87%BA%E6%9D%A5%E7%9A%84/</loc>
+    <lastmod>2019-10-21</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/01.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/08.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.12/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/04.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/05.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/05.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/07.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/10.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.13/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.14/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.12/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.17/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/17.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/preface/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/02.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/04.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/04.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.11/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/07.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/08.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/10.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/10.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/10.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.11/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/17.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/02.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/04.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/05.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/05.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/08.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.11/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/17.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.11/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/02.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/02.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/04.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/05.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.12/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/07.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/08.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/10.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.12/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/17.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/04.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/04.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/07.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/07.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/08.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/10.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/10.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.13/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.15/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/17.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/02.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/02.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/02.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/02.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/04.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/05.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/07.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/08.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/10.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/10.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/13.8/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.11/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.16/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.5/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.7/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.10/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/18.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/19.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/01.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/03.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/05.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/06.9/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/07.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/08.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/09.11/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.1/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.11/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.12/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.2/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/11.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.4/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/12.6/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/14.14/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/15.0/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>  <url>
+    <loc>https://blog.zshipu.com/2019/10/15/golang/20191015/16.3/</loc>
+    <lastmod>2019-10-16</lastmod>
+  </url>
+</urlset>

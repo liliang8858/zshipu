@@ -1,0 +1,3106 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>从实践到原理，带你参透 gRPC | 博客杂项 | 知识铺</title>
+  <meta name="keywords" content=" go ">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="工具篇代理nginxip    html 2 md2md todotodo">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tool">
+<meta property="og:url" content="https://blog.zshipu.com/tool/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="工具篇代理nginxip    html 2 md2md todotodo">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-10-22T03:40:02.857Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tool">
+<meta name="twitter:description" content="工具篇代理nginxip    html 2 md2md todotodo">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(265)</small></div></li>
+    
+        
+            
+            <li><div data-rel="Java">Java<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Golang">Golang<small>(194)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="CSS">CSS<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Spring">Spring<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="JavaScript">JavaScript<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="mysql">mysql<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="265">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">java</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">go</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">CSS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Spring</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">js</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">JavaScript</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">前端</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">mysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">规范</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">优化</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">sql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">gin</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="Java "
+           href="/2019/09/16/java/20190916/hello-world/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="Hello Java">Hello Java</span>
+            <span class="post-date" title="2019-09-16 17:48:16">2019/09/16</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/01.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 1.2 语言的主要特性与发展的环境和影响因素">go入门教程- 1.2 语言的主要特性与发展的环境和影响因素</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/01.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 1.1 起源与发展">go入门教程- 1.1 起源与发展</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/02.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 2.2 Go 环境变量">go入门教程- 2.2 Go 环境变量</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/02.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 2.1 平台与架构">go入门教程- 2.1 平台与架构</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/02.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 2.5 在 Windows 上安装 Go">go入门教程- 2.5 在 Windows 上安装 Go</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/02.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 2.6 安装目录清单">go入门教程- 2.6 安装目录清单</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/02.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 2.4 在 Mac OS X 上安装 Go">go入门教程- 2.4 在 Mac OS X 上安装 Go</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/02.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 2.3 在 Linux 上安装 Go">go入门教程- 2.3 在 Linux 上安装 Go</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/02.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 2.7 Go 运行时（runtime）">go入门教程- 2.7 Go 运行时（runtime）</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/02.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 2.8 Go 解释器">go入门教程- 2.8 Go 解释器</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.0 编辑器、集成开发环境与其它工具">go入门教程- 3.0 编辑器、集成开发环境与其它工具</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.1 Go 开发环境的基本要求">go入门教程- 3.1 Go 开发环境的基本要求</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.2 编辑器和集成开发环境">go入门教程- 3.2 编辑器和集成开发环境</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.4 构建并运行 Go 程序">go入门教程- 3.4 构建并运行 Go 程序</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.3 调试器">go入门教程- 3.3 调试器</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.5 格式化代码">go入门教程- 3.5 格式化代码</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.6 生成代码文档">go入门教程- 3.6 生成代码文档</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.8 Go 性能说明">go入门教程- 3.8 Go 性能说明</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.7 其它工具">go入门教程- 3.7 其它工具</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/03.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 3.9 与其它语言进行交互">go入门教程- 3.9 与其它语言进行交互</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/04.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 4.1 文件名、关键字与标识符">go入门教程- 4.1 文件名、关键字与标识符</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/04.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 4.2 Go 程序的基本结构和要素">go入门教程- 4.2 Go 程序的基本结构和要素</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/04.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 4.3 常量">go入门教程- 4.3 常量</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/04.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 4.4 变量">go入门教程- 4.4 变量</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/04.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 4.6 字符串">go入门教程- 4.6 字符串</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/04.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 4.5 基本类型和运算符">go入门教程- 4.5 基本类型和运算符</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/04.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 4.7 strings 和 strconv 包">go入门教程- 4.7 strings 和 strconv 包</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/04.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 4.8 时间和日期">go入门教程- 4.8 时间和日期</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/05.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 5.0 控制结构">go入门教程- 5.0 控制结构</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/04.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 4.9 指针">go入门教程- 4.9 指针</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/05.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 5.2 测试多返回值函数的错误">go入门教程- 5.2 测试多返回值函数的错误</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/05.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 5.1 if-else 结构">go入门教程- 5.1 if-else 结构</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/05.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 5.4 for 结构">go入门教程- 5.4 for 结构</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/05.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 5.3 switch 结构">go入门教程- 5.3 switch 结构</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/05.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 5.6 标签与 goto">go入门教程- 5.6 标签与 goto</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.0 函数">go入门教程- 6.0 函数</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.1 介绍">go入门教程- 6.1 介绍</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/05.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 5.5 Break 与 continue">go入门教程- 5.5 Break 与 continue</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.11/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.11 计算函数执行时间">go入门教程- 6.11 计算函数执行时间</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.10 使用闭包调试">go入门教程- 6.10 使用闭包调试</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.2 函数参数与返回值">go入门教程- 6.2 函数参数与返回值</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.12/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.12 通过内存缓存来提升性能">go入门教程- 6.12 通过内存缓存来提升性能</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.3 传递变长参数">go入门教程- 6.3 传递变长参数</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.4 defer 和追踪">go入门教程- 6.4 defer 和追踪</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.6 递归函数">go入门教程- 6.6 递归函数</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.5 内置函数">go入门教程- 6.5 内置函数</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.7 将函数作为参数">go入门教程- 6.7 将函数作为参数</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.8 闭包">go入门教程- 6.8 闭包</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/07.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 7.0 数组与切片">go入门教程- 7.0 数组与切片</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/06.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 6.9 应用闭包：将函数作为返回值">go入门教程- 6.9 应用闭包：将函数作为返回值</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/07.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 7.2 切片">go入门教程- 7.2 切片</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/07.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 7.1 声明和初始化">go入门教程- 7.1 声明和初始化</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/07.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 7.3 For-range 结构">go入门教程- 7.3 For-range 结构</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/07.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 7.4 切片重组（reslice）">go入门教程- 7.4 切片重组（reslice）</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/07.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 7.5 切片的复制与追加">go入门教程- 7.5 切片的复制与追加</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/07.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 7.6 字符串、数组和切片的应用">go入门教程- 7.6 字符串、数组和切片的应用</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/08.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 8.1 声明、初始化和 make">go入门教程- 8.1 声明、初始化和 make</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/08.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 8.0 Map">go入门教程- 8.0 Map</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/08.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 8.2 测试键值对是否存在及删除元素">go入门教程- 8.2 测试键值对是否存在及删除元素</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/08.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 8.4 map 类型的切片">go入门教程- 8.4 map 类型的切片</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/08.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 8.5 map 的排序">go入门教程- 8.5 map 的排序</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/08.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 8.3 for-range 的配套用法">go入门教程- 8.3 for-range 的配套用法</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.10 Go 的外部包和项目">go入门教程- 9.10 Go 的外部包和项目</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/08.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 8.6 将 map 的键值对调">go入门教程- 8.6 将 map 的键值对调</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.0 包（package）">go入门教程- 9.0 包（package）</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.1 标准库概述">go入门教程- 9.1 标准库概述</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.11/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.11 在 Go 程序中使用外部库">go入门教程- 9.11 在 Go 程序中使用外部库</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.3 锁和 sync 包">go入门教程- 9.3 锁和 sync 包</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.2 regexp 包">go入门教程- 9.2 regexp 包</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.5 自定义包和可见性">go入门教程- 9.5 自定义包和可见性</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.4 精密计算和 big 包">go入门教程- 9.4 精密计算和 big 包</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.6 为自定义包使用 godoc">go入门教程- 9.6 为自定义包使用 godoc</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.7 使用 go install 安装自定义包">go入门教程- 9.7 使用 go install 安装自定义包</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.8 自定义包的目录结构、go install 和 go test">go入门教程- 9.8 自定义包的目录结构、go install 和 go test</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/09.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 9.9 通过 Git 打包和安装">go入门教程- 9.9 通过 Git 打包和安装</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/10.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 10 结构（struct）与方法（method）">go入门教程- 10 结构（struct）与方法（method）</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/10.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 10.1 结构体定义">go入门教程- 10.1 结构体定义</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/10.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 10.2 使用工厂方法创建结构体实例">go入门教程- 10.2 使用工厂方法创建结构体实例</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/10.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 10.3 使用自定义包中的结构体">go入门教程- 10.3 使用自定义包中的结构体</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/10.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 10.4 带标签的结构体">go入门教程- 10.4 带标签的结构体</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/10.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 10.5 匿名字段和内嵌结构体">go入门教程- 10.5 匿名字段和内嵌结构体</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/10.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 10.6 方法">go入门教程- 10.6 方法</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/10.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 10.7 类型的 String() 方法和格式化描述符">go入门教程- 10.7 类型的 String() 方法和格式化描述符</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/10.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 10.8 垃圾回收和 SetFinalizer">go入门教程- 10.8 垃圾回收和 SetFinalizer</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11 接口（Interfaces）与反射（reflection）">go入门教程- 11 接口（Interfaces）与反射（reflection）</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.1 接口是什么">go入门教程- 11.1 接口是什么</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.10 反射包">go入门教程- 11.10 反射包</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.11/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.11 Printf 和反射">go入门教程- 11.11 Printf 和反射</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.12/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.12 接口与动态类型">go入门教程- 11.12 接口与动态类型</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.13/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 总结：Go 中的面向对象">go入门教程- 总结：Go 中的面向对象</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.2 接口嵌套接口">go入门教程- 11.2 接口嵌套接口</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.3 类型断言：如何检测和转换接口变量的类型">go入门教程- 11.3 类型断言：如何检测和转换接口变量的类型</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.4 类型判断：type-switch">go入门教程- 11.4 类型判断：type-switch</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.14/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.14 结构体、集合和高阶函数">go入门教程- 11.14 结构体、集合和高阶函数</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.5 测试一个值是否实现了某个接口">go入门教程- 11.5 测试一个值是否实现了某个接口</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.6 使用方法集与接口">go入门教程- 11.6 使用方法集与接口</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.7 第一个例子：使用 Sorter 接口排序">go入门教程- 11.7 第一个例子：使用 Sorter 接口排序</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.8 第二个例子：读和写">go入门教程- 11.8 第二个例子：读和写</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/11.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 11.9 空接口">go入门教程- 11.9 空接口</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12 读写数据">go入门教程- 12 读写数据</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.1 读取用户的输入">go入门教程- 12.1 读取用户的输入</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.10 XML 数据格式">go入门教程- 12.10 XML 数据格式</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.11/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.11 用 Gob 传输数据">go入门教程- 12.11 用 Gob 传输数据</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.2 文件读写">go入门教程- 12.2 文件读写</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.12/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.12 Go 中的密码学">go入门教程- 12.12 Go 中的密码学</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.3 文件拷贝">go入门教程- 12.3 文件拷贝</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.4 从命令行读取参数">go入门教程- 12.4 从命令行读取参数</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.7 用 defer 关闭文件">go入门教程- 12.7 用 defer 关闭文件</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.6 用切片读写文件">go入门教程- 12.6 用切片读写文件</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.5 用 buffer 读取文件">go入门教程- 12.5 用 buffer 读取文件</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.8 使用接口的实际例子：fmt.Fprintf">go入门教程- 12.8 使用接口的实际例子：fmt.Fprintf</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/12.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 12.9 JSON 数据格式">go入门教程- 12.9 JSON 数据格式</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13 错误处理与测试">go入门教程- 13 错误处理与测试</span>
+            <span class="post-date" title="2019-10-15 22:30:19">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.1 错误处理">go入门教程- 13.1 错误处理</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.2 运行时异常和 panic">go入门教程- 13.2 运行时异常和 panic</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.10 性能调试：分析并优化 Go 程序">go入门教程- 13.10 性能调试：分析并优化 Go 程序</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.3 从 panic 中恢复（Recover）">go入门教程- 13.3 从 panic 中恢复（Recover）</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.4 自定义包中的错误处理和 panicking">go入门教程- 13.4 自定义包中的错误处理和 panicking</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.6 启动外部命令和程序">go入门教程- 13.6 启动外部命令和程序</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.8 测试的具体例子">go入门教程- 13.8 测试的具体例子</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.5 一种用闭包处理错误的模式">go入门教程- 13.5 一种用闭包处理错误的模式</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.9 用（测试数据）表驱动测试">go入门教程- 13.9 用（测试数据）表驱动测试</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.1 并发、并行和协程">go入门教程- 14.1 并发、并行和协程</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.10 复用">go入门教程- 14.10 复用</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14 协程（goroutine）与通道（channel）">go入门教程- 14 协程（goroutine）与通道（channel）</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/13.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 13.7 Go 中的单元测试和基准测试">go入门教程- 13.7 Go 中的单元测试和基准测试</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.11/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.11 限制同时处理的请求数">go入门教程- 14.11 限制同时处理的请求数</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.12/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.12 链式协程">go入门教程- 14.12 链式协程</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.14/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.14 并行化大量数据的计算">go入门教程- 14.14 并行化大量数据的计算</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.13/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.13 在多核心上并行计算">go入门教程- 14.13 在多核心上并行计算</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.15/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.15 漏桶算法">go入门教程- 14.15 漏桶算法</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.16/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.16 对Go协程进行基准测试">go入门教程- 14.16 对Go协程进行基准测试</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.17/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.17 使用通道并发访问对象">go入门教程- 14.17 使用通道并发访问对象</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.2 协程间的信道">go入门教程- 14.2 协程间的信道</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.3 协程的同步：关闭通道-测试阻塞的通道">go入门教程- 14.3 协程的同步：关闭通道-测试阻塞的通道</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.5 通道、超时和计时器（Ticker）">go入门教程- 14.5 通道、超时和计时器（Ticker）</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.7 新旧模型对比：任务和worker">go入门教程- 14.7 新旧模型对比：任务和worker</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.6 协程和恢复（recover）">go入门教程- 14.6 协程和恢复（recover）</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.4 使用 select 切换协程">go入门教程- 14.4 使用 select 切换协程</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.9 实现 Futures 模式">go入门教程- 14.9 实现 Futures 模式</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.0 网络，模板和网页应用">go入门教程- 15.0 网络，模板和网页应用</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/14.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 14.8 惰性生成器的实现">go入门教程- 14.8 惰性生成器的实现</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.1 tcp 服务器">go入门教程- 15.1 tcp 服务器</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.12/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.12 用 smtp 发送邮件">go入门教程- 15.12 用 smtp 发送邮件</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.10 基于网络的通道 netchan">go入门教程- 15.10 基于网络的通道 netchan</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.11/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.11 与 websocket 通信">go入门教程- 15.11 与 websocket 通信</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.2 一个简单的网页服务器">go入门教程- 15.2 一个简单的网页服务器</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.3 访问并读取页面">go入门教程- 15.3 访问并读取页面</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.4 写一个简单的网页应用">go入门教程- 15.4 写一个简单的网页应用</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.5 确保网页应用健壮">go入门教程- 15.5 确保网页应用健壮</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.6 用模板编写网页应用">go入门教程- 15.6 用模板编写网页应用</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.7 探索 template 包">go入门教程- 15.7 探索 template 包</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.8 精巧的多功能网页服务器">go入门教程- 15.8 精巧的多功能网页服务器</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16 常见的陷阱与错误">go入门教程- 16 常见的陷阱与错误</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/15.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 15.9 用 rpc 实现远程过程调用">go入门教程- 15.9 用 rpc 实现远程过程调用</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.1 误用短声明导致变量覆盖">go入门教程- 16.1 误用短声明导致变量覆盖</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.10 糟糕的错误处理">go入门教程- 16.10 糟糕的错误处理</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.2 误用字符串">go入门教程- 16.2 误用字符串</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.4 何时使用new()和make()">go入门教程- 16.4 何时使用new()和make()</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.5 不需要将一个指向切片的指针传递给函数">go入门教程- 16.5 不需要将一个指向切片的指针传递给函数</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.3 发生错误时使用defer关闭一个文件">go入门教程- 16.3 发生错误时使用defer关闭一个文件</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.6 使用指针指向接口类型">go入门教程- 16.6 使用指针指向接口类型</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.9 闭包和协程的使用">go入门教程- 16.9 闭包和协程的使用</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.7 使用值类型时误用指针">go入门教程- 16.7 使用值类型时误用指针</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/16.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 16.8 误用协程和通道">go入门教程- 16.8 误用协程和通道</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/17.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 17 Go 语言模式">go入门教程- 17 Go 语言模式</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/17.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 17.1 逗号 ok 模式">go入门教程- 17.1 逗号 ok 模式</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/17.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 17.2 defer 模式">go入门教程- 17.2 defer 模式</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/17.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 17.3 可见性模式">go入门教程- 17.3 可见性模式</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18 出于性能考虑的实用代码片段">go入门教程- 18 出于性能考虑的实用代码片段</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/17.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 17.4 运算符模式和接口">go入门教程- 17.4 运算符模式和接口</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.1 字符串">go入门教程- 18.1 字符串</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.10 其他">go入门教程- 18.10 其他</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.2 数组和切片">go入门教程- 18.2 数组和切片</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.11/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.11 出于性能考虑的最佳实践和建议">go入门教程- 18.11 出于性能考虑的最佳实践和建议</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.3 映射">go入门教程- 18.3 映射</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.4 结构体">go入门教程- 18.4 结构体</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.5 接口">go入门教程- 18.5 接口</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.6 函数">go入门教程- 18.6 函数</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.8 协程（goroutine）与通道（channel）">go入门教程- 18.8 协程（goroutine）与通道（channel）</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.7 文件">go入门教程- 18.7 文件</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/18.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 18.9 网络和网页应用">go入门教程- 18.9 网络和网页应用</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.0/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 19 构建一个完整的应用程序">go入门教程- 19 构建一个完整的应用程序</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.1/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 19.1 简介">go入门教程- 19.1 简介</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.2/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 19.2 短网址项目简介">go入门教程- 19.2 短网址项目简介</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.10/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 19.10 总结和增强">go入门教程- 19.10 总结和增强</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.3/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 版本 1 - 数据结构和前端界面">go入门教程- 版本 1 - 数据结构和前端界面</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.4/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 19.4 用户界面：web 服务端">go入门教程- 19.4 用户界面：web 服务端</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.6/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 版本 3 - 添加协程">go入门教程- 版本 3 - 添加协程</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.5/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 版本 2 - 添加持久化存储">go入门教程- 版本 2 - 添加持久化存储</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.7/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 版本 4 - 用 JSON 持久化存储">go入门教程- 版本 4 - 用 JSON 持久化存储</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.9/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 19.9 使用代理缓存">go入门教程- 19.9 使用代理缓存</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/19.8/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 版本 5 - 分布式程序">go入门教程- 版本 5 - 分布式程序</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="CSS "
+           href="/2019/09/16/css/20190916/hello-world/"
+           data-tag="CSS"
+           data-author="" >
+            <span class="post-title" title="Hello CSS">Hello CSS</span>
+            <span class="post-date" title="2019-09-16 17:48:16">2019/09/16</span>
+        </a>
+        
+        <a  class="Golang "
+           href="/2019/10/15/golang/20191015/preface/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="go入门教程- 前言">go入门教程- 前言</span>
+            <span class="post-date" title="2019-10-15 22:30:20">2019/10/15</span>
+        </a>
+        
+        <a  class="Spring "
+           href="/2019/09/16/java-spring/20190916/hello-world/"
+           data-tag="java,Spring"
+           data-author="" >
+            <span class="post-title" title="Hello Java-Spring">Hello Java-Spring</span>
+            <span class="post-date" title="2019-09-16 17:48:16">2019/09/16</span>
+        </a>
+        
+        <a  class="JavaScript "
+           href="/2019/09/16/javascript/20190916/hello-world/"
+           data-tag="js,JavaScript,前端"
+           data-author="" >
+            <span class="post-title" title="Hello JavaScript">Hello JavaScript</span>
+            <span class="post-date" title="2019-09-16 17:48:16">2019/09/16</span>
+        </a>
+        
+        <a  class="mysql "
+           href="/2019/09/16/mysql/20190916/hello-world/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="Hello mysql">Hello mysql</span>
+            <span class="post-date" title="2019-09-16 17:48:16">2019/09/16</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/03/21/golang/go/crawler/2018-03-21-douban-top250/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="爬取豆瓣电影 Top250">爬取豆瓣电影 Top250</span>
+            <span class="post-date" title="2018-03-21 12:30:00">2018/03/21</span>
+        </a>
+        
+        <a  class="mysql "
+           href="/2019/10/21/mysql/20191021/阿里内部mysql规范50条，每一条都是经过血与泪的教训总结出来的/"
+           data-tag="mysql,规范,优化,sql"
+           data-author="" >
+            <span class="post-title" title="阿里内部mysql规范50条，每一条都是经过血与泪的教训总结出来的">阿里内部mysql规范50条，每一条都是经过血与泪的教训总结出来的</span>
+            <span class="post-date" title="2019-10-21 11:02:00">2019/10/21</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/05/27/golang/go/defer/2019-05-27-defer/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="深入理解 Go defer">深入理解 Go defer</span>
+            <span class="post-date" title="2019-05-27 12:30:00">2019/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/09/22/golang/go/grpc/2018-09-22-install/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载一」gRPC及相关介绍">「连载一」gRPC及相关介绍</span>
+            <span class="post-date" title="2018-09-22 12:00:00">2018/09/22</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/04/01/golang/go/crawler/2018-04-01-cars/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="爬取汽车之家 二手车产品库">爬取汽车之家 二手车产品库</span>
+            <span class="post-date" title="2018-04-01 12:30:00">2018/04/01</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/04/28/golang/go/crawler/2018-04-28-go2018/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="了解一下Golang的市场行情">了解一下Golang的市场行情</span>
+            <span class="post-date" title="2018-04-28 12:30:00">2018/04/28</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/10/07/golang/go/grpc/2018-10-07-grpc-tls/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载四」TLS 证书认证">「连载四」TLS 证书认证</span>
+            <span class="post-date" title="2018-10-07 12:00:00">2018/10/07</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/09/24/golang/go/grpc/2018-09-24-stream-client-server/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载三」gRPC Streaming, Client and Server">「连载三」gRPC Streaming, Client and Server</span>
+            <span class="post-date" title="2018-09-24 12:00:00">2018/09/24</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/09/23/golang/go/grpc/2018-09-23-client-and-server/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载二」gRPC Client and Server">「连载二」gRPC Client and Server</span>
+            <span class="post-date" title="2018-09-23 12:30:00">2018/09/23</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/10/08/golang/go/grpc/2018-10-08-ca-tls/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载五」基于 CA 的 TLS 证书认证">「连载五」基于 CA 的 TLS 证书认证</span>
+            <span class="post-date" title="2018-10-08 12:00:00">2018/10/08</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/10/10/golang/go/grpc/2018-10-10-interceptor/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载六」Unary and Stream interceptor">「连载六」Unary and Stream interceptor</span>
+            <span class="post-date" title="2018-10-10 12:00:00">2018/10/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/10/12/golang/go/grpc/2018-10-12-grpc-http/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载七」让你的服务同时提供 HTTP 接口">「连载七」让你的服务同时提供 HTTP 接口</span>
+            <span class="post-date" title="2018-10-12 12:00:00">2018/10/12</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/10/14/golang/go/grpc/2018-10-14-per-rpc-credentials/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载八」对 RPC 方法做自定义认证">「连载八」对 RPC 方法做自定义认证</span>
+            <span class="post-date" title="2018-10-14 12:00:00">2018/10/14</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/10/20/golang/go/grpc/2018-10-20-zipkin/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载十」分布式链路追踪 gRPC + Opentracing + Zipkin">「连载十」分布式链路追踪 gRPC + Opentracing + Zipkin</span>
+            <span class="post-date" title="2018-10-20 12:00:00">2018/10/20</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/10/16/golang/go/grpc/2018-10-16-deadlines/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载九」gRPC Deadlines">「连载九」gRPC Deadlines</span>
+            <span class="post-date" title="2018-10-16 12:00:00">2018/10/16</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/03/04/golang/go/grpc-gateway/2018-03-04-swagger/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载三」Swagger了解一下">「连载三」Swagger了解一下</span>
+            <span class="post-date" title="2018-03-04 12:00:00">2018/03/04</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/02/23/golang/go/grpc-gateway/2018-02-23-install/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载一」gRPC介绍与环境安装">「连载一」gRPC介绍与环境安装</span>
+            <span class="post-date" title="2018-02-23 12:00:00">2018/02/23</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/06/22/golang/go/grpc-gateway/2019-06-22-grpc-gateway-tls/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载四」gRPC+gRPC Gateway 能不能不用证书？">「连载四」gRPC+gRPC Gateway 能不能不用证书？</span>
+            <span class="post-date" title="2019-06-22 12:00:00">2019/06/22</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/02/27/golang/go/grpc-gateway/2018-02-27-hello-world/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="「连载二」Hello World">「连载二」Hello World</span>
+            <span class="post-date" title="2018-02-27 12:00:00">2018/02/27</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/09/29/golang/go/go-moduels/2019-09-29-goproxy-cn/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="干货满满的 Go Modules 和 goproxy.cn">干货满满的 Go Modules 和 goproxy.cn</span>
+            <span class="post-date" title="2019-09-29 12:00:00">2019/09/29</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/02/28/golang/go/go-moduels/2020-02-28-go-modules/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go Modules 终极入门">Go Modules 终极入门</span>
+            <span class="post-date" title="2020-02-28 12:00:00">2020/02/28</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/02/10/golang/go/gin/2018-02-10-install/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载一」Go 介绍与环境安装">「连载一」Go 介绍与环境安装</span>
+            <span class="post-date" title="2018-02-10 12:00:00">2018/02/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/02/12/golang/go/gin/2018-02-12-api-02/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载三」Gin搭建Blog API&#39;s （二）">「连载三」Gin搭建Blog API&#39;s （二）</span>
+            <span class="post-date" title="2018-02-12 12:00:00">2018/02/12</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/02/11/golang/go/gin/2018-02-11-api-01/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载二」Gin搭建Blog API&#39;s （一）">「连载二」Gin搭建Blog API&#39;s （一）</span>
+            <span class="post-date" title="2018-02-11 12:00:00">2018/02/11</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/02/13/golang/go/gin/2018-02-13-api-03/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载四」Gin搭建Blog API&#39;s （三）">「连载四」Gin搭建Blog API&#39;s （三）</span>
+            <span class="post-date" title="2018-02-13 12:00:00">2018/02/13</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/02/14/golang/go/gin/2018-02-14-jwt/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载五」使用 JWT 进行身份校验">「连载五」使用 JWT 进行身份校验</span>
+            <span class="post-date" title="2018-02-14 12:00:00">2018/02/14</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/02/15/golang/go/gin/2018-02-15-log/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载六」编写一个简单的文件日志">「连载六」编写一个简单的文件日志</span>
+            <span class="post-date" title="2018-02-15 12:00:00">2018/02/15</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/03/15/golang/go/gin/2018-03-15-reload-http/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载七」优雅的重启服务">「连载七」优雅的重启服务</span>
+            <span class="post-date" title="2018-03-15 12:00:00">2018/03/15</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/03/18/golang/go/gin/2018-03-18-swagger/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载八」为它加上Swagger">「连载八」为它加上Swagger</span>
+            <span class="post-date" title="2018-03-18 12:00:00">2018/03/18</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/03/24/golang/go/gin/2018-03-24-golang-docker/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载九」将Golang应用部署到Docker">「连载九」将Golang应用部署到Docker</span>
+            <span class="post-date" title="2018-03-24 12:00:00">2018/03/24</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/03/26/golang/go/gin/2018-03-26-cgo/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「番外」Golang 交叉编译">「番外」Golang 交叉编译</span>
+            <span class="post-date" title="2018-03-26 12:00:00">2018/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/04/15/golang/go/gin/2018-04-15-gorm-callback/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载十」定制 GORM Callbacks">「连载十」定制 GORM Callbacks</span>
+            <span class="post-date" title="2018-04-15 12:00:00">2018/04/15</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/04/29/golang/go/gin/2018-04-29-cron/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载十一」Cron定时任务">「连载十一」Cron定时任务</span>
+            <span class="post-date" title="2018-04-29 12:00:00">2018/04/29</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/05/27/golang/go/gin/2018-05-27-config-upload/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载十二」优化配置结构及实现图片上传">「连载十二」优化配置结构及实现图片上传</span>
+            <span class="post-date" title="2018-05-27 12:00:00">2018/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/06/02/golang/go/gin/2018-06-02-application-redis/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载十三」优化你的应用结构和实现Redis缓存">「连载十三」优化你的应用结构和实现Redis缓存</span>
+            <span class="post-date" title="2018-06-02 12:00:00">2018/06/02</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/06/14/golang/go/gin/2018-06-14-excel/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载十四」实现导出、导入 Excel">「连载十四」实现导出、导入 Excel</span>
+            <span class="post-date" title="2018-06-14 12:00:00">2018/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/07/05/golang/go/gin/2018-07-05-image/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载十五」生成二维码、合并海报">「连载十五」生成二维码、合并海报</span>
+            <span class="post-date" title="2018-07-05 12:00:00">2018/07/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/04/19/golang/go/gin/2018-09-01-nginx/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2020-04-19 17:54:56">2020/04/19</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/07/07/golang/go/gin/2018-07-07-font/"
+           data-tag="gin"
+           data-author="" >
+            <span class="post-title" title="「连载十六」在图片上绘制文字">「连载十六」在图片上绘制文字</span>
+            <span class="post-date" title="2018-07-07 12:00:00">2018/07/07</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/04/19/golang/go/gin/2018-08-26-makefile/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2020-04-19 17:54:56">2020/04/19</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/03/05/golang/go/map/2019-03-05-map-access/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="深入理解 Go map：初始化和访问元素">深入理解 Go map：初始化和访问元素</span>
+            <span class="post-date" title="2019-03-05 12:00:00">2019/03/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/04/07/golang/go/map/2019-04-07-why-map-no-order/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="为什么遍历 Go map 是无序的">为什么遍历 Go map 是无序的</span>
+            <span class="post-date" title="2019-04-07 12:00:00">2019/04/07</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/03/24/golang/go/map/2019-03-24-map-assign/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="深入理解 Go map：赋值和扩容迁移">深入理解 Go map：赋值和扩容迁移</span>
+            <span class="post-date" title="2019-03-24 12:00:00">2019/03/24</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/03/13/golang/go/talk/2018-03-13-golang-relatively-path/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="聊一聊，Go 的相对路径问题">聊一聊，Go 的相对路径问题</span>
+            <span class="post-date" title="2018-03-13 12:00:00">2018/03/13</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/05/21/golang/go/talk/2018-05-21-go-fake-useragent/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go 的 fake-useragent 了解一下">Go 的 fake-useragent 了解一下</span>
+            <span class="post-date" title="2018-05-21 12:00:00">2018/05/21</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/06/07/golang/go/talk/2018-06-07-go-redis-protocol/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="用 Go 来了解一下 Redis 通讯协议">用 Go 来了解一下 Redis 通讯协议</span>
+            <span class="post-date" title="2018-06-07 12:00:00">2018/06/07</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/11/25/golang/go/talk/2018-11-25-gomock/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="使用 Gomock 进行单元测试">使用 Gomock 进行单元测试</span>
+            <span class="post-date" title="2018-11-25 12:00:00">2018/11/25</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/03/31/golang/go/talk/2019-03-31-go-ins/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="简单围观一下有趣的">简单围观一下有趣的</span>
+            <span class="post-date" title="2019-03-31 12:00:00">2019/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/12/26/golang/go/talk/2018-12-26-go-memory-align/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="在 Go 中恰到好处的内存对齐">在 Go 中恰到好处的内存对齐</span>
+            <span class="post-date" title="2018-12-26 12:00:00">2018/12/26</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/01/20/golang/go/talk/2019-01-20-control-goroutine/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="来，控制一下 goroutine 的并发数量">来，控制一下 goroutine 的并发数量</span>
+            <span class="post-date" title="2019-01-20 12:00:00">2019/01/20</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/02/17/golang/go/talk/2019-02-17-for-loop-json-unmarshal/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="for-loop 与 json.Unmarshal 性能分析概要">for-loop 与 json.Unmarshal 性能分析概要</span>
+            <span class="post-date" title="2019-02-17 12:00:00">2019/02/17</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/05/20/golang/go/talk/2019-05-20-stack-heap/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="我要在栈上。不，你应该在堆上">我要在栈上。不，你应该在堆上</span>
+            <span class="post-date" title="2019-05-20 12:00:00">2019/05/20</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/06/16/golang/go/talk/2019-06-16-defer-loss/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go1.12 defer 会有性能损耗，尽量不要用？">Go1.12 defer 会有性能损耗，尽量不要用？</span>
+            <span class="post-date" title="2019-06-16 12:00:00">2019/06/16</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/09/07/golang/go/talk/2019-09-07-go1.13-defer/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go1.13 defer 的性能是如何提高的">Go1.13 defer 的性能是如何提高的</span>
+            <span class="post-date" title="2019-09-07 12:00:00">2019/09/07</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/06/29/golang/go/talk/2019-06-29-talking-grpc/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="从实践到原理，带你参透 gRPC">从实践到原理，带你参透 gRPC</span>
+            <span class="post-date" title="2019-06-29 12:00:00">2019/06/29</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/05/21/golang/go/panic/2019-05-21-panic-and-recover/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="深入理解 Go panic and recover">深入理解 Go panic and recover</span>
+            <span class="post-date" title="2019-05-21 12:00:00">2019/05/21</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/09/24/golang/go/talk/2019-09-24-why-vsz-large/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go 应用内存占用太多，让排查？（VSZ篇）">Go 应用内存占用太多，让排查？（VSZ篇）</span>
+            <span class="post-date" title="2019-09-24 12:00:00">2019/09/24</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/12/04/golang/go/pkg/2018-12-04-fmt/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="fmt 标准库 --- Print* 是怎么样输出的？">fmt 标准库 --- Print* 是怎么样输出的？</span>
+            <span class="post-date" title="2018-12-04 12:00:00">2018/12/04</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/09/28/golang/go/pkg/2018-09-28-log/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="log 标准库">log 标准库</span>
+            <span class="post-date" title="2018-09-28 12:00:00">2018/09/28</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/12/15/golang/go/pkg/2018-12-15-unsafe/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="有点不安全却又一亮的 Go unsafe.Pointer">有点不安全却又一亮的 Go unsafe.Pointer</span>
+            <span class="post-date" title="2018-12-15 12:00:00">2018/12/15</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/01/06/golang/go/slice/2019-01-06-why-slice-max/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go Slice 最大容量大小是怎么来的">Go Slice 最大容量大小是怎么来的</span>
+            <span class="post-date" title="2019-01-06 12:00:00">2019/01/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/12/11/golang/go/slice/2018-12-11-slice/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="深入理解 Go Slice">深入理解 Go Slice</span>
+            <span class="post-date" title="2018-12-11 12:00:00">2018/12/11</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/09/15/golang/go/tools/2018-09-15-go-tool-pprof/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go 大杀器之性能剖析 PProf">Go 大杀器之性能剖析 PProf</span>
+            <span class="post-date" title="2018-09-15 12:00:00">2018/09/15</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/19/golang/go/tools/2019-08-19-godebug-sched/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="用 GODEBUG 看调度跟踪">用 GODEBUG 看调度跟踪</span>
+            <span class="post-date" title="2019-08-19 12:00:00">2019/08/19</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/07/12/golang/go/tools/2019-07-12-go-tool-trace/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go 大杀器之跟踪剖析 trace">Go 大杀器之跟踪剖析 trace</span>
+            <span class="post-date" title="2019-07-12 12:00:00">2019/07/12</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/09/02/golang/go/tools/2019-09-02-godebug-gc/"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="用 GODEBUG 看 GC">用 GODEBUG 看 GC</span>
+            <span class="post-date" title="2019-09-02 12:00:00">2019/09/02</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-golang/go/talk/2019-06-29-talking-grpc" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">从实践到原理，带你参透 gRPC</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color3">go</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-04-19 17:52:49'>2019-06-29 12:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简述"><span class="toc-text">简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用模型"><span class="toc-text">调用模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用方式"><span class="toc-text">调用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、Unary-RPC：一元-RPC"><span class="toc-text">一、Unary RPC：一元 RPC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Server"><span class="toc-text">Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Client"><span class="toc-text">Client</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、Server-side-streaming-RPC：服务端流式-RPC"><span class="toc-text">二、Server-side streaming RPC：服务端流式 RPC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Server-1"><span class="toc-text">Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Client-1"><span class="toc-text">Client</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Client-side-streaming-RPC：客户端流式-RPC"><span class="toc-text">三、Client-side streaming RPC：客户端流式 RPC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Server-2"><span class="toc-text">Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Client-2"><span class="toc-text">Client</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、Bidirectional-streaming-RPC：双向流式-RPC"><span class="toc-text">四、Bidirectional streaming RPC：双向流式 RPC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Server-3"><span class="toc-text">Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Client-3"><span class="toc-text">Client</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端与服务端是如何交互的"><span class="toc-text">客户端与服务端是如何交互的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#行为分析"><span class="toc-text">行为分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Magic"><span class="toc-text">Magic</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SETTINGS"><span class="toc-text">SETTINGS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HEADERS"><span class="toc-text">HEADERS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DATA"><span class="toc-text">DATA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HEADERS-DATA-HEADERS"><span class="toc-text">HEADERS, DATA, HEADERS</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它步骤"><span class="toc-text">其它步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#WINDOW-UPDATE"><span class="toc-text">WINDOW_UPDATE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PING-PONG"><span class="toc-text">PING/PONG</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浅谈理解"><span class="toc-text">浅谈理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端"><span class="toc-text">服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一、初始化"><span class="toc-text">一、初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、注册"><span class="toc-text">二、注册</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤一：Service-API-interface"><span class="toc-text">步骤一：Service API interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤二：Service-API-IDL"><span class="toc-text">步骤二：Service API IDL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤三：Register-Service"><span class="toc-text">步骤三：Register Service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小结-1"><span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、监听"><span class="toc-text">三、监听</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端"><span class="toc-text">客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、创建拨号连接"><span class="toc-text">一、创建拨号连接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#连没连"><span class="toc-text">连没连</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#真的连了吗"><span class="toc-text">真的连了吗</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、实例化-Service-API"><span class="toc-text">二、实例化 Service API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、调用"><span class="toc-text">三、调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#连接"><span class="toc-text">连接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、关闭连接"><span class="toc-text">四、关闭连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-amp-A"><span class="toc-text">Q&amp;A</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-gRPC-Metadata-是通过什么传输？"><span class="toc-text">1. gRPC Metadata 是通过什么传输？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-调用-grpc-Dial-会真正的去连接服务端吗？"><span class="toc-text">2. 调用 grpc.Dial 会真正的去连接服务端吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-调用-ClientConn-不-Close-会导致泄露吗？"><span class="toc-text">3. 调用 ClientConn 不 Close 会导致泄露吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-不控制超时调用的话，会出现什么问题？"><span class="toc-text">4. 不控制超时调用的话，会出现什么问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-为什么默认的拦截器不可以传多个？"><span class="toc-text">5. 为什么默认的拦截器不可以传多个？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-真的需要用到多个拦截器的话，怎么办？"><span class="toc-text">6. 真的需要用到多个拦截器的话，怎么办？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-频繁创建-ClientConn-有什么问题？"><span class="toc-text">7. 频繁创建 ClientConn 有什么问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-客户端请求失败后会默认重试吗？"><span class="toc-text">8. 客户端请求失败后会默认重试吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-为什么要用-HTTP-2-作为传输协议？"><span class="toc-text">9. 为什么要用 HTTP/2 作为传输协议？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-在-Kubernetes-中-gRPC-负载均衡有问题？"><span class="toc-text">10. 在 Kubernetes 中 gRPC 负载均衡有问题？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://s2.ax1x.com/2020/02/27/3wKfNq.png" alt="image"></p>
+<p>gRPC 在 Go 语言中大放异彩，越来越多的小伙伴在使用，最近也在公司安利了一波，希望这一篇文章能带你一览 gRPC 的巧妙之处，本文篇幅比较长，请做好阅读准备。本文目录如下：</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wMMrQ.jpg" alt="image"></p>
+<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>gRPC 是一个高性能、开源和通用的 RPC 框架，面向移动和 HTTP/2 设计。目前提供 C、Java 和 Go 语言版本，分别是：grpc, grpc-java, grpc-go. 其中 C 版本支持 C, C++, Node.js, Python, Ruby, Objective-C, PHP 和 C# 支持。</p>
+<p>gRPC 基于 HTTP/2 标准设计，带来诸如双向流、流控、头部压缩、单 TCP 连接上的多复用请求等特性。这些特性使得其在移动设备上表现更好，更省电和节省空间占用。</p>
+<h2 id="调用模型"><a href="#调用模型" class="headerlink" title="调用模型"></a>调用模型</h2><p><img src="http://www.grpc.io/img/grpc_concept_diagram_00.png" alt="image"></p>
+<p>1、客户端（gRPC Stub）调用 A 方法，发起 RPC 调用。</p>
+<p>2、对请求信息使用 Protobuf 进行对象序列化压缩（IDL）。</p>
+<p>3、服务端（gRPC Server）接收到请求后，解码请求体，进行业务逻辑处理并返回。</p>
+<p>4、对响应结果使用 Protobuf 进行对象序列化压缩（IDL）。</p>
+<p>5、客户端接受到服务端响应，解码请求体。回调被调用的 A 方法，唤醒正在等待响应（阻塞）的客户端调用并返回响应结果。</p>
+<h2 id="调用方式"><a href="#调用方式" class="headerlink" title="调用方式"></a>调用方式</h2><h3 id="一、Unary-RPC：一元-RPC"><a href="#一、Unary-RPC：一元-RPC" class="headerlink" title="一、Unary RPC：一元 RPC"></a>一、Unary RPC：一元 RPC</h3><p><img src="https://s2.ax1x.com/2020/02/27/3wMNxU.png" alt="image"></p>
+<h4 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> SearchService <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *SearchService)</span> <span class="title">Search</span><span class="params">(ctx context.Context, r *pb.SearchRequest)</span> <span class="params">(*pb.SearchResponse, error)</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &amp;pb.SearchResponse&#123;Response: r.GetRequest() + <span class="string">" Server"</span>&#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PORT = <span class="string">"9001"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    server := grpc.NewServer()</span><br><span class="line">    pb.RegisterSearchServiceServer(server, &amp;SearchService&#123;&#125;)</span><br><span class="line"></span><br><span class="line">    lis, err := net.Listen(<span class="string">"tcp"</span>, <span class="string">":"</span>+PORT)</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    server.Serve(lis)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建 gRPC Server 对象，你可以理解为它是 Server 端的抽象对象。</li>
+<li>将 SearchService（其包含需要被调用的服务端接口）注册到 gRPC Server。 的内部注册中心。这样可以在接受到请求时，通过内部的 “服务发现”，发现该服务端接口并转接进行逻辑处理。</li>
+<li>创建 Listen，监听 TCP 端口。</li>
+<li>gRPC Server 开始 lis.Accept，直到 Stop 或 GracefulStop。</li>
+</ul>
+<h4 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    conn, err := grpc.Dial(<span class="string">":"</span>+PORT, grpc.WithInsecure())</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">defer</span> conn.Close()</span><br><span class="line"></span><br><span class="line">    client := pb.NewSearchServiceClient(conn)</span><br><span class="line">    resp, err := client.Search(context.Background(), &amp;pb.SearchRequest&#123;</span><br><span class="line">        Request: <span class="string">"gRPC"</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建与给定目标（服务端）的连接句柄。</li>
+<li>创建 SearchService 的客户端对象。</li>
+<li>发送 RPC 请求，等待同步响应，得到回调后返回响应结果。</li>
+</ul>
+<h3 id="二、Server-side-streaming-RPC：服务端流式-RPC"><a href="#二、Server-side-streaming-RPC：服务端流式-RPC" class="headerlink" title="二、Server-side streaming RPC：服务端流式 RPC"></a>二、Server-side streaming RPC：服务端流式 RPC</h3><p><img src="https://s2.ax1x.com/2020/02/27/3wMdr4.png" alt="image"></p>
+<h4 id="Server-1"><a href="#Server-1" class="headerlink" title="Server"></a>Server</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *StreamService)</span> <span class="title">List</span><span class="params">(r *pb.StreamRequest, stream pb.StreamService_ListServer)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> n := <span class="number">0</span>; n &lt;= <span class="number">6</span>; n++ &#123;</span><br><span class="line">        stream.Send(&amp;pb.StreamResponse&#123;</span><br><span class="line">            Pt: &amp;pb.StreamPoint&#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Client-1"><a href="#Client-1" class="headerlink" title="Client"></a>Client</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printLists</span><span class="params">(client pb.StreamServiceClient, r *pb.StreamRequest)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">    stream, err := client.List(context.Background(), r)</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        resp, err := stream.Recv()</span><br><span class="line">        <span class="keyword">if</span> err == io.EOF &#123;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、Client-side-streaming-RPC：客户端流式-RPC"><a href="#三、Client-side-streaming-RPC：客户端流式-RPC" class="headerlink" title="三、Client-side streaming RPC：客户端流式 RPC"></a>三、Client-side streaming RPC：客户端流式 RPC</h3><p><img src="https://s2.ax1x.com/2020/02/27/3wMBZ9.png" alt="image"></p>
+<h4 id="Server-2"><a href="#Server-2" class="headerlink" title="Server"></a>Server</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *StreamService)</span> <span class="title">Record</span><span class="params">(stream pb.StreamService_RecordServer)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        r, err := stream.Recv()</span><br><span class="line">        <span class="keyword">if</span> err == io.EOF &#123;</span><br><span class="line">            <span class="keyword">return</span> stream.SendAndClose(&amp;pb.StreamResponse&#123;Pt: &amp;pb.StreamPoint&#123;...&#125;&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Client-2"><a href="#Client-2" class="headerlink" title="Client"></a>Client</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printRecord</span><span class="params">(client pb.StreamServiceClient, r *pb.StreamRequest)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">    stream, err := client.Record(context.Background())</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n := <span class="number">0</span>; n &lt; <span class="number">6</span>; n++ &#123;</span><br><span class="line">        stream.Send(r)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    resp, err := stream.CloseAndRecv()</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、Bidirectional-streaming-RPC：双向流式-RPC"><a href="#四、Bidirectional-streaming-RPC：双向流式-RPC" class="headerlink" title="四、Bidirectional streaming RPC：双向流式 RPC"></a>四、Bidirectional streaming RPC：双向流式 RPC</h3><p><img src="https://s2.ax1x.com/2020/02/27/3wMrI1.png" alt="image"></p>
+<h4 id="Server-3"><a href="#Server-3" class="headerlink" title="Server"></a>Server</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *StreamService)</span> <span class="title">Route</span><span class="params">(stream pb.StreamService_RouteServer)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        stream.Send(&amp;pb.StreamResponse&#123;...&#125;)</span><br><span class="line">        r, err := stream.Recv()</span><br><span class="line">        <span class="keyword">if</span> err == io.EOF &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Client-3"><a href="#Client-3" class="headerlink" title="Client"></a>Client</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printRoute</span><span class="params">(client pb.StreamServiceClient, r *pb.StreamRequest)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">    stream, err := client.Route(context.Background())</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n := <span class="number">0</span>; n &lt;= <span class="number">6</span>; n++ &#123;</span><br><span class="line">        stream.Send(r)</span><br><span class="line">        resp, err := stream.Recv()</span><br><span class="line">        <span class="keyword">if</span> err == io.EOF &#123;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    stream.CloseSend()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="客户端与服务端是如何交互的"><a href="#客户端与服务端是如何交互的" class="headerlink" title="客户端与服务端是如何交互的"></a>客户端与服务端是如何交互的</h2><p>在开始分析之前，我们要先 gRPC 的调用有一个初始印象。那么最简单的就是对 Client 端调用 Server 端进行抓包去剖析，看看整个过程中它都做了些什么事。如下图：</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wMgxO.jpg" alt="image"></p>
+<ul>
+<li>Magic</li>
+<li>SETTINGS</li>
+<li>HEADERS</li>
+<li>DATA</li>
+<li>SETTINGS</li>
+<li>WINDOW_UPDATE</li>
+<li>PING</li>
+<li>HEADERS</li>
+<li>DATA</li>
+<li>HEADERS</li>
+<li>WINDOW_UPDATE</li>
+<li>PING</li>
+</ul>
+<p>我们略加整理发现共有十二个行为，是比较重要的。在开始分析之前，建议你自己先想一下，它们的作用都是什么？大胆猜测一下，带着疑问去学习效果更佳。</p>
+<h3 id="行为分析"><a href="#行为分析" class="headerlink" title="行为分析"></a>行为分析</h3><h4 id="Magic"><a href="#Magic" class="headerlink" title="Magic"></a>Magic</h4><p><img src="https://s2.ax1x.com/2020/02/27/3wM7JP.jpg" alt="image"></p>
+<p>Magic 帧的主要作用是建立 HTTP/2 请求的前言。在 HTTP/2 中，要求两端都要发送一个连接前言，作为对所使用协议的最终确认，并确定 HTTP/2 连接的初始设置，客户端和服务端各自发送不同的连接前言。</p>
+<p>而上图中的 Magic 帧是客户端的前言之一，内容为 <code>PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n</code>，以确定启用 HTTP/2 连接。</p>
+<h4 id="SETTINGS"><a href="#SETTINGS" class="headerlink" title="SETTINGS"></a>SETTINGS</h4><p><img src="https://s2.ax1x.com/2020/02/27/3wQPzT.jpg" alt="image"></p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wQ779.jpg" alt="image"></p>
+<p>SETTINGS 帧的主要作用是设置这一个连接的参数，作用域是整个连接而并非单一的流。</p>
+<p>而上图的 SETTINGS 帧都是空 SETTINGS 帧，图一是客户端连接的前言（Magic 和 SETTINGS 帧分别组成连接前言）。图二是服务端的。另外我们从图中可以看到多个 SETTINGS 帧，这是为什么呢？是因为发送完连接前言后，客户端和服务端还需要有一步互动确认的动作。对应的就是带有 ACK 标识 SETTINGS 帧。</p>
+<h4 id="HEADERS"><a href="#HEADERS" class="headerlink" title="HEADERS"></a>HEADERS</h4><p><img src="https://s2.ax1x.com/2020/02/27/3wN2tg.jpg" alt="image"></p>
+<p>HEADERS 帧的主要作用是存储和传播 HTTP 的标头信息。我们关注到 HEADERS 里有一些眼熟的信息，分别如下：</p>
+<ul>
+<li>method：POST</li>
+<li>scheme：http</li>
+<li>path：/proto.SearchService/Search</li>
+<li>authority：:10001</li>
+<li>content-type：application/grpc</li>
+<li>user-agent：grpc-go/1.20.0-dev</li>
+</ul>
+<p>你会发现这些东西非常眼熟，其实都是 gRPC 的基础属性，实际上远远不止这些，只是设置了多少展示多少。例如像平时常见的 <code>grpc-timeout</code>、<code>grpc-encoding</code> 也是在这里设置的。</p>
+<h4 id="DATA"><a href="#DATA" class="headerlink" title="DATA"></a>DATA</h4><p><img src="https://s2.ax1x.com/2020/02/27/3wNTBV.jpg" alt="image"></p>
+<p>DATA 帧的主要作用是装填主体信息，是数据帧。而在上图中，可以很明显看到我们的请求参数 gRPC 存储在里面。只需要了解到这一点就可以了。</p>
+<h4 id="HEADERS-DATA-HEADERS"><a href="#HEADERS-DATA-HEADERS" class="headerlink" title="HEADERS, DATA, HEADERS"></a>HEADERS, DATA, HEADERS</h4><p><img src="https://s2.ax1x.com/2020/02/27/3wNj39.jpg" alt="image"></p>
+<p>在上图中 HEADERS 帧比较简单，就是告诉我们 HTTP 响应状态和响应的内容格式。</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wUl4g.jpg" alt="imgae"></p>
+<p>在上图中 DATA 帧主要承载了响应结果的数据集，图中的 gRPC Server 就是我们 RPC 方法的响应结果。</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wUUbV.jpg" alt="image"></p>
+<p>在上图中 HEADERS 帧主要承载了 gRPC 状态 和 gRPC 状态消息，图中的 <code>grpc-status</code> 和 <code>grpc-message</code> 就是我们的 gRPC 调用状态的结果。</p>
+<h3 id="其它步骤"><a href="#其它步骤" class="headerlink" title="其它步骤"></a>其它步骤</h3><h4 id="WINDOW-UPDATE"><a href="#WINDOW-UPDATE" class="headerlink" title="WINDOW_UPDATE"></a>WINDOW_UPDATE</h4><p>主要作用是管理和流的窗口控制。通常情况下打开一个连接后，服务器和客户端会立即交换 SETTINGS 帧来确定流控制窗口的大小。默认情况下，该大小设置为约 65 KB，但可通过发出一个 WINDOW_UPDATE 帧为流控制设置不同的大小。</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wUwUU.jpg" alt="image"></p>
+<h4 id="PING-PONG"><a href="#PING-PONG" class="headerlink" title="PING/PONG"></a>PING/PONG</h4><p>主要作用是判断当前连接是否仍然可用，也常用于计算往返时间。其实也就是 PING/PONG，大家对此应该很熟。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="https://s2.ax1x.com/2020/02/27/3wU05F.png" alt="image"></p>
+<ul>
+<li>在建立连接之前，客户端/服务端都会发送<strong>连接前言</strong>（Magic+SETTINGS），确立协议和配置项。</li>
+<li>在传输数据时，是会涉及滑动窗口（WINDOW_UPDATE）等流控策略的。</li>
+<li>传播 gRPC 附加信息时，是基于 HEADERS 帧进行传播和设置；而具体的请求/响应数据是存储的 DATA 帧中的。</li>
+<li>请求/响应结果会分为 HTTP 和 gRPC 状态响应两种类型。</li>
+<li>客户端发起 PING，服务端就会回应 PONG，反之亦可。</li>
+</ul>
+<p>这块 gRPC 的基础使用，你可以看看我另外的 <a href="https://github.com/golang-xx/blog#grpc%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95" target="_blank" rel="noopener">《gRPC 入门系列》</a>，相信对你一定有帮助。</p>
+<h2 id="浅谈理解"><a href="#浅谈理解" class="headerlink" title="浅谈理解"></a>浅谈理解</h2><h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p><img src="https://s2.ax1x.com/2020/02/27/3wUDC4.png" alt="image"></p>
+<p>为什么四行代码，就能够起一个 gRPC Server，内部做了什么逻辑。你有想过吗？接下来我们一步步剖析，看看里面到底是何方神圣。</p>
+<h3 id="一、初始化"><a href="#一、初始化" class="headerlink" title="一、初始化"></a>一、初始化</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// grpc.NewServer()</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewServer</span><span class="params">(opt ...ServerOption)</span> *<span class="title">Server</span></span> &#123;</span><br><span class="line">	opts := defaultServerOptions</span><br><span class="line">	<span class="keyword">for</span> _, o := <span class="keyword">range</span> opt &#123;</span><br><span class="line">		o(&amp;opts)</span><br><span class="line">	&#125;</span><br><span class="line">	s := &amp;Server&#123;</span><br><span class="line">		lis:    <span class="built_in">make</span>(<span class="keyword">map</span>[net.Listener]<span class="keyword">bool</span>),</span><br><span class="line">		opts:   opts,</span><br><span class="line">		conns:  <span class="built_in">make</span>(<span class="keyword">map</span>[io.Closer]<span class="keyword">bool</span>),</span><br><span class="line">		m:      <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]*service),</span><br><span class="line">		quit:   <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;),</span><br><span class="line">		done:   <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;),</span><br><span class="line">		czData: <span class="built_in">new</span>(channelzData),</span><br><span class="line">	&#125;</span><br><span class="line">	s.cv = sync.NewCond(&amp;s.mu)</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这块比较简单，主要是实例 grpc.Server 并进行初始化动作。涉及如下：</p>
+<ul>
+<li>lis：监听地址列表。</li>
+<li>opts：服务选项，这块包含 Credentials、Interceptor 以及一些基础配置。</li>
+<li>conns：客户端连接句柄列表。</li>
+<li>m：服务信息映射。</li>
+<li>quit：退出信号。</li>
+<li>done：完成信号。</li>
+<li>czData：用于存储 ClientConn，addrConn 和 Server 的 channelz 相关数据。</li>
+<li>cv：当优雅退出时，会等待这个信号量，直到所有 RPC 请求都处理并断开才会继续处理。</li>
+</ul>
+<h3 id="二、注册"><a href="#二、注册" class="headerlink" title="二、注册"></a>二、注册</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pb.RegisterSearchServiceServer(server, &amp;SearchService&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="步骤一：Service-API-interface"><a href="#步骤一：Service-API-interface" class="headerlink" title="步骤一：Service API interface"></a>步骤一：Service API interface</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// search.pb.go</span></span><br><span class="line"><span class="keyword">type</span> SearchServiceServer <span class="keyword">interface</span> &#123;</span><br><span class="line">	Search(context.Context, *SearchRequest) (*SearchResponse, error)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">RegisterSearchServiceServer</span><span class="params">(s *grpc.Server, srv SearchServiceServer)</span></span> &#123;</span><br><span class="line">	s.RegisterService(&amp;_SearchService_serviceDesc, srv)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还记得我们平时编写的 Protobuf 吗？在生成出来的 <code>.pb.go</code> 文件中，会定义出 Service APIs interface 的具体实现约束。而我们在 gRPC Server 进行注册时，会传入应用 Service 的功能接口实现，此时生成的 <code>RegisterServer</code> 方法就会保证两者之间的一致性。</p>
+<h4 id="步骤二：Service-API-IDL"><a href="#步骤二：Service-API-IDL" class="headerlink" title="步骤二：Service API IDL"></a>步骤二：Service API IDL</h4><p>你想乱传糊弄一下？不可能的，请乖乖定义与 Protobuf 一致的接口方法。但是那个 <code>&amp;_SearchService_serviceDesc</code> 又有什么作用呢？代码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// search.pb.go</span></span><br><span class="line"><span class="keyword">var</span> _SearchService_serviceDesc = grpc.ServiceDesc&#123;</span><br><span class="line">	ServiceName: <span class="string">"proto.SearchService"</span>,</span><br><span class="line">	HandlerType: (*SearchServiceServer)(<span class="literal">nil</span>),</span><br><span class="line">	Methods: []grpc.MethodDesc&#123;</span><br><span class="line">		&#123;</span><br><span class="line">			MethodName: <span class="string">"Search"</span>,</span><br><span class="line">			Handler:    _SearchService_Search_Handler,</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;,</span><br><span class="line">	Streams:  []grpc.StreamDesc&#123;&#125;,</span><br><span class="line">	Metadata: <span class="string">"search.proto"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这看上去像服务的描述代码，用来向内部表述 “我” 都有什么。涉及如下:</p>
+<ul>
+<li>ServiceName：服务名称</li>
+<li>HandlerType：服务接口，用于检查用户提供的实现是否满足接口要求</li>
+<li>Methods：一元方法集，注意结构内的 <code>Handler</code> 方法，其对应最终的 RPC 处理方法，在执行 RPC 方法的阶段会使用。</li>
+<li>Streams：流式方法集</li>
+<li>Metadata：元数据，是一个描述数据属性的东西。在这里主要是描述 <code>SearchServiceServer</code> 服务</li>
+</ul>
+<h4 id="步骤三：Register-Service"><a href="#步骤三：Register-Service" class="headerlink" title="步骤三：Register Service"></a>步骤三：Register Service</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Server)</span> <span class="title">register</span><span class="params">(sd *ServiceDesc, ss <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">    ...</span><br><span class="line">	srv := &amp;service&#123;</span><br><span class="line">		server: ss,</span><br><span class="line">		md:     <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]*MethodDesc),</span><br><span class="line">		sd:     <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]*StreamDesc),</span><br><span class="line">		mdata:  sd.Metadata,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="keyword">range</span> sd.Methods &#123;</span><br><span class="line">		d := &amp;sd.Methods[i]</span><br><span class="line">		srv.md[d.MethodName] = d</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="keyword">range</span> sd.Streams &#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">	s.m[sd.ServiceName] = srv</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在最后一步中，我们会将先前的服务接口信息、服务描述信息给注册到内部 <code>service</code> 去，以便于后续实际调用的使用。涉及如下：</p>
+<ul>
+<li>server：服务的接口信息</li>
+<li>md：一元服务的 RPC 方法集</li>
+<li>sd：流式服务的 RPC 方法集</li>
+<li>mdata：metadata，元数据</li>
+</ul>
+<h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>在这一章节中，主要介绍的是 gRPC Server 在启动前的整理和注册行为，看上去很简单，但其实一切都是为了后续的实际运行的预先准备。因此我们整理一下思路，将其串联起来看看，如下：</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wUgDx.png" alt="image"></p>
+<h3 id="三、监听"><a href="#三、监听" class="headerlink" title="三、监听"></a>三、监听</h3><p>接下来到了整个流程中，最重要也是大家最关注的监听/处理阶段，核心代码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Server)</span> <span class="title">Serve</span><span class="params">(lis net.Listener)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">var</span> tempDelay time.Duration</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		rawConn, err := lis.Accept()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> ne, ok := err.(<span class="keyword">interface</span> &#123;</span><br><span class="line">				Temporary() <span class="keyword">bool</span></span><br><span class="line">			&#125;); ok &amp;&amp; ne.Temporary() &#123;</span><br><span class="line">				<span class="keyword">if</span> tempDelay == <span class="number">0</span> &#123;</span><br><span class="line">					tempDelay = <span class="number">5</span> * time.Millisecond</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					tempDelay *= <span class="number">2</span></span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> max := <span class="number">1</span> * time.Second; tempDelay &gt; max &#123;</span><br><span class="line">					tempDelay = max</span><br><span class="line">				&#125;</span><br><span class="line">				...</span><br><span class="line">				timer := time.NewTimer(tempDelay)</span><br><span class="line">				<span class="keyword">select</span> &#123;</span><br><span class="line">				<span class="keyword">case</span> &lt;-timer.C:</span><br><span class="line">				<span class="keyword">case</span> &lt;-s.quit:</span><br><span class="line">					timer.Stop()</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">continue</span></span><br><span class="line">			&#125;</span><br><span class="line">			...</span><br><span class="line">			<span class="keyword">return</span> err</span><br><span class="line">		&#125;</span><br><span class="line">		tempDelay = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">		s.serveWG.Add(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">			s.handleRawConn(rawConn)</span><br><span class="line">			s.serveWG.Done()</span><br><span class="line">		&#125;()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Serve 会根据外部传入的 Listener 不同而调用不同的监听模式，这也是 <code>net.Listener</code> 的魅力，灵活性和扩展性会比较高。而在 gRPC Server 中最常用的就是 <code>TCPConn</code>，基于 TCP Listener 去做。接下来我们一起看看具体的处理逻辑，如下：</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wUI8H.png" alt="image"></p>
+<ul>
+<li>循环处理连接，通过 <code>lis.Accept</code> 取出连接，如果队列中没有需处理的连接时，会形成阻塞等待。</li>
+<li>若 <code>lis.Accept</code> 失败，则触发休眠机制，若为第一次失败那么休眠 5ms，否则翻倍，再次失败则不断翻倍直至上限休眠时间 1s，而休眠完毕后就会尝试去取下一个 “它”。</li>
+<li>若 <code>lis.Accept</code> 成功，则重置休眠的时间计数和启动一个新的 goroutine 调用 <code>handleRawConn</code> 方法去执行/处理新的请求，也就是大家很喜欢说的 “每一个请求都是不同的 goroutine 在处理”。</li>
+<li>在循环过程中，包含了 “退出” 服务的场景，主要是硬关闭和优雅重启服务两种情况。</li>
+</ul>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p><img src="https://s2.ax1x.com/2020/02/27/3wUHKI.png" alt="image"></p>
+<h3 id="一、创建拨号连接"><a href="#一、创建拨号连接" class="headerlink" title="一、创建拨号连接"></a>一、创建拨号连接</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// grpc.Dial(":"+PORT, grpc.WithInsecure())</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DialContext</span><span class="params">(ctx context.Context, target <span class="keyword">string</span>, opts ...DialOption)</span> <span class="params">(conn *ClientConn, err error)</span></span> &#123;</span><br><span class="line">	cc := &amp;ClientConn&#123;</span><br><span class="line">		target:            target,</span><br><span class="line">		csMgr:             &amp;connectivityStateManager&#123;&#125;,</span><br><span class="line">		conns:             <span class="built_in">make</span>(<span class="keyword">map</span>[*addrConn]<span class="keyword">struct</span>&#123;&#125;),</span><br><span class="line">		dopts:             defaultDialOptions(),</span><br><span class="line">		blockingpicker:    newPickerWrapper(),</span><br><span class="line">		czData:            <span class="built_in">new</span>(channelzData),</span><br><span class="line">		firstResolveEvent: grpcsync.NewEvent(),</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">	chainUnaryClientInterceptors(cc)</span><br><span class="line">	chainStreamClientInterceptors(cc)</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>grpc.Dial</code> 方法实际上是对于 <code>grpc.DialContext</code> 的封装，区别在于 <code>ctx</code> 是直接传入 <code>context.Background</code>。其主要功能是<strong>创建</strong>与给定目标的客户端连接，其承担了以下职责：</p>
+<ul>
+<li>初始化 ClientConn</li>
+<li>初始化（基于进程 LB）负载均衡配置</li>
+<li>初始化 channelz</li>
+<li>初始化重试规则和客户端一元/流式拦截器</li>
+<li>初始化协议栈上的基础信息</li>
+<li>相关 context 的超时控制</li>
+<li>初始化并解析地址信息</li>
+<li>创建与服务端之间的连接</li>
+</ul>
+<h4 id="连没连"><a href="#连没连" class="headerlink" title="连没连"></a>连没连</h4><p>之前听到有的人说调用 <code>grpc.Dial</code> 后客户端就已经与服务端建立起了连接，但这对不对呢？我们先鸟瞰全貌，看看正在跑的 goroutine。如下：</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wUXa8.jpg" alt="image"></p>
+<p>我们可以有几个核心方法一直在等待/处理信号，通过分析底层源码可得知。涉及如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ac *addrConn)</span> <span class="title">connect</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="params">(ac *addrConn)</span> <span class="title">resetTransport</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="params">(ac *addrConn)</span> <span class="title">createTransport</span><span class="params">(addr resolver.Address, copts transport.ConnectOptions, connectDeadline time.Time)</span></span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="params">(ac *addrConn)</span> <span class="title">getReadyTransport</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<p>在这里主要分析 goroutine 提示的 <code>resetTransport</code> 方法，看看都做了啥。核心代码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ac *addrConn)</span> <span class="title">resetTransport</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; ; i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> ac.state == connectivity.Shutdown &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		...</span><br><span class="line">		connectDeadline := time.Now().Add(dialDuration)</span><br><span class="line">		ac.updateConnectivityState(connectivity.Connecting)</span><br><span class="line">		newTr, addr, reconnect, err := ac.tryAllAddrs(addrs, connectDeadline)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> ac.state == connectivity.Shutdown &#123;</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125;</span><br><span class="line">			ac.updateConnectivityState(connectivity.TransientFailure)</span><br><span class="line">			timer := time.NewTimer(backoffFor)</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> &lt;-timer.C:</span><br><span class="line">				...</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> ac.state == connectivity.Shutdown &#123;</span><br><span class="line">			newTr.Close()</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		...</span><br><span class="line">		<span class="keyword">if</span> !healthcheckManagingState &#123;</span><br><span class="line">			ac.updateConnectivityState(connectivity.Ready)</span><br><span class="line">		&#125;</span><br><span class="line">		...</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> ac.state == connectivity.Shutdown &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		ac.updateConnectivityState(connectivity.TransientFailure)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该方法中会不断地去尝试创建连接，若成功则结束。否则不断地根据 <code>Backoff</code> 算法的重试机制去尝试创建连接，直到成功为止。从结论上来讲，单纯调用 <code>DialContext</code> 是异步建立连接的，也就是并不是马上生效，处于 <code>Connecting</code> 状态，而正式下要到达 <code>Ready</code> 状态才可用。</p>
+<h4 id="真的连了吗"><a href="#真的连了吗" class="headerlink" title="真的连了吗"></a>真的连了吗</h4><p><img src="https://s2.ax1x.com/2020/02/27/3wakZV.jpg" alt="image"></p>
+<p>在抓包工具上提示一个包都没有，那么这算真正连接了吗？我认为这是一个表述问题，我们应该尽可能的严谨。如果你真的想通过 <code>DialContext</code> 方法就打通与服务端的连接，则需要调用 <code>WithBlock</code> 方法，虽然会导致阻塞等待，但最终连接会到达 <code>Ready</code> 状态（握手成功）。如下图：</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3waJiD.jpg" alt="image"></p>
+<h3 id="二、实例化-Service-API"><a href="#二、实例化-Service-API" class="headerlink" title="二、实例化 Service API"></a>二、实例化 Service API</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> SearchServiceClient <span class="keyword">interface</span> &#123;</span><br><span class="line">	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> searchServiceClient <span class="keyword">struct</span> &#123;</span><br><span class="line">	cc *grpc.ClientConn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewSearchServiceClient</span><span class="params">(cc *grpc.ClientConn)</span> <span class="title">SearchServiceClient</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;searchServiceClient&#123;cc&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这块就是实例 Service API interface，比较简单。</p>
+<h3 id="三、调用"><a href="#三、调用" class="headerlink" title="三、调用"></a>三、调用</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// search.pb.go</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *searchServiceClient)</span> <span class="title">Search</span><span class="params">(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption)</span> <span class="params">(*SearchResponse, error)</span></span> &#123;</span><br><span class="line">	out := <span class="built_in">new</span>(SearchResponse)</span><br><span class="line">	err := c.cc.Invoke(ctx, <span class="string">"/proto.SearchService/Search"</span>, in, out, opts...)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> out, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>proto 生成的 RPC 方法更像是一个包装盒，把需要的东西放进去，而实际上调用的还是 <code>grpc.invoke</code> 方法。如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">invoke</span><span class="params">(ctx context.Context, method <span class="keyword">string</span>, req, reply <span class="keyword">interface</span>&#123;&#125;, cc *ClientConn, opts ...CallOption)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	cs, err := newClientStream(ctx, unaryStreamDesc, cc, method, opts...)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> err := cs.SendMsg(req); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cs.RecvMsg(reply)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过概览，可以关注到三块调用。如下：</p>
+<ul>
+<li>newClientStream：获取传输层 Trasport 并组合封装到 ClientStream 中返回，在这块会涉及负载均衡、超时控制、 Encoding、 Stream 的动作，与服务端基本一致的行为。</li>
+<li>cs.SendMsg：发送 RPC 请求出去，但其并不承担等待响应的功能。</li>
+<li>cs.RecvMsg：阻塞等待接受到的 RPC 方法响应结果。</li>
+</ul>
+<h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// clientconn.go</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cc *ClientConn)</span> <span class="title">getTransport</span><span class="params">(ctx context.Context, failfast <span class="keyword">bool</span>, method <span class="keyword">string</span>)</span> <span class="params">(transport.ClientTransport, <span class="keyword">func</span>(balancer.DoneInfo)</span>, <span class="title">error</span>)</span> &#123;</span><br><span class="line">	t, done, err := cc.blockingpicker.pick(ctx, failfast, balancer.PickOptions&#123;</span><br><span class="line">		FullMethodName: method,</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">nil</span>, toRPCErr(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> t, done, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>newClientStream</code> 方法中，我们通过 <code>getTransport</code> 方法获取了 Transport 层中抽象出来的 ClientTransport 和 ServerTransport，实际上就是获取一个连接给后续 RPC 调用传输使用。</p>
+<h3 id="四、关闭连接"><a href="#四、关闭连接" class="headerlink" title="四、关闭连接"></a>四、关闭连接</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// conn.Close()</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cc *ClientConn)</span> <span class="title">Close</span><span class="params">()</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> cc.cancel()</span><br><span class="line">    ...</span><br><span class="line">	cc.csMgr.updateState(connectivity.Shutdown)</span><br><span class="line">    ...</span><br><span class="line">	cc.blockingpicker.<span class="built_in">close</span>()</span><br><span class="line">	<span class="keyword">if</span> rWrapper != <span class="literal">nil</span> &#123;</span><br><span class="line">		rWrapper.<span class="built_in">close</span>()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> bWrapper != <span class="literal">nil</span> &#123;</span><br><span class="line">		bWrapper.<span class="built_in">close</span>()</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> ac := <span class="keyword">range</span> conns &#123;</span><br><span class="line">		ac.tearDown(ErrClientConnClosing)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> channelz.IsOn() &#123;</span><br><span class="line">		...</span><br><span class="line">		channelz.AddTraceEvent(cc.channelzID, ted)</span><br><span class="line">		channelz.RemoveEntry(cc.channelzID)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该方法会取消 ClientConn 上下文，同时关闭所有底层传输。涉及如下：</p>
+<ul>
+<li>Context Cancel</li>
+<li>清空并关闭客户端连接</li>
+<li>清空并关闭解析器连接</li>
+<li>清空并关闭负载均衡连接</li>
+<li>添加跟踪引用</li>
+<li>移除当前通道信息</li>
+</ul>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="1-gRPC-Metadata-是通过什么传输？"><a href="#1-gRPC-Metadata-是通过什么传输？" class="headerlink" title="1. gRPC Metadata 是通过什么传输？"></a>1. gRPC Metadata 是通过什么传输？</h3><p><img src="https://s2.ax1x.com/2020/02/27/3waaQA.jpg" alt="image"></p>
+<h3 id="2-调用-grpc-Dial-会真正的去连接服务端吗？"><a href="#2-调用-grpc-Dial-会真正的去连接服务端吗？" class="headerlink" title="2. 调用 grpc.Dial 会真正的去连接服务端吗？"></a>2. 调用 grpc.Dial 会真正的去连接服务端吗？</h3><p>会，但是是异步连接的，连接状态为正在连接。但如果你设置了 <code>grpc.WithBlock</code> 选项，就会阻塞等待（等待握手成功）。另外你需要注意，当未设置 <code>grpc.WithBlock</code> 时，ctx 超时控制对其无任何效果。</p>
+<h3 id="3-调用-ClientConn-不-Close-会导致泄露吗？"><a href="#3-调用-ClientConn-不-Close-会导致泄露吗？" class="headerlink" title="3. 调用 ClientConn 不 Close 会导致泄露吗？"></a>3. 调用 ClientConn 不 Close 会导致泄露吗？</h3><p>会，除非你的客户端不是常驻进程，那么在应用结束时会被动地回收资源。但如果是常驻进程，你又真的忘记执行 <code>Close</code> 语句，会造成的泄露。如下图：</p>
+<p><strong>3.1. 客户端</strong></p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wawLt.jpg" alt="image"></p>
+<p><strong>3.2. 服务端</strong></p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wa6Jg.png" alt="image"></p>
+<p><strong>3.3. TCP</strong></p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3waWyn.jpg" alt="image"></p>
+<h3 id="4-不控制超时调用的话，会出现什么问题？"><a href="#4-不控制超时调用的话，会出现什么问题？" class="headerlink" title="4. 不控制超时调用的话，会出现什么问题？"></a>4. 不控制超时调用的话，会出现什么问题？</h3><p>短时间内不会出现问题，但是会不断积蓄泄露，积蓄到最后当然就是服务无法提供响应了。如下图：</p>
+<p><img src="https://s2.ax1x.com/2020/02/27/3wafLq.jpg" alt="image"></p>
+<h3 id="5-为什么默认的拦截器不可以传多个？"><a href="#5-为什么默认的拦截器不可以传多个？" class="headerlink" title="5. 为什么默认的拦截器不可以传多个？"></a>5. 为什么默认的拦截器不可以传多个？</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">chainUnaryClientInterceptors</span><span class="params">(cc *ClientConn)</span></span> &#123;</span><br><span class="line">	interceptors := cc.dopts.chainUnaryInts</span><br><span class="line">	<span class="keyword">if</span> cc.dopts.unaryInt != <span class="literal">nil</span> &#123;</span><br><span class="line">		interceptors = <span class="built_in">append</span>([]UnaryClientInterceptor&#123;cc.dopts.unaryInt&#125;, interceptors...)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> chainedInt UnaryClientInterceptor</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(interceptors) == <span class="number">0</span> &#123;</span><br><span class="line">		chainedInt = <span class="literal">nil</span></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="built_in">len</span>(interceptors) == <span class="number">1</span> &#123;</span><br><span class="line">		chainedInt = interceptors[<span class="number">0</span>]</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		chainedInt = <span class="function"><span class="keyword">func</span><span class="params">(ctx context.Context, method <span class="keyword">string</span>, req, reply <span class="keyword">interface</span>&#123;&#125;, cc *ClientConn, invoker UnaryInvoker, opts ...CallOption)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">			<span class="keyword">return</span> interceptors[<span class="number">0</span>](ctx, method, req, reply, cc, getChainUnaryInvoker(interceptors, <span class="number">0</span>, invoker), opts...)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cc.dopts.unaryInt = chainedInt</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当存在多个拦截器时，取的就是第一个拦截器。因此结论是允许传多个，但并没有用。</p>
+<h3 id="6-真的需要用到多个拦截器的话，怎么办？"><a href="#6-真的需要用到多个拦截器的话，怎么办？" class="headerlink" title="6. 真的需要用到多个拦截器的话，怎么办？"></a>6. 真的需要用到多个拦截器的话，怎么办？</h3><p>可以使用 <a href="https://github.com/grpc-ecosystem/go-grpc-middleware" target="_blank" rel="noopener">go-grpc-middleware</a> 提供的 <code>grpc.UnaryInterceptor</code> 和 <code>grpc.StreamInterceptor</code> 链式方法，方便快捷省心。</p>
+<p>单单会用还不行，我们再深剖一下，看看它是怎么实现的。核心代码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ChainUnaryClient</span><span class="params">(interceptors ...grpc.UnaryClientInterceptor)</span> <span class="title">grpc</span>.<span class="title">UnaryClientInterceptor</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(interceptors)</span><br><span class="line">	<span class="keyword">if</span> n &gt; <span class="number">1</span> &#123;</span><br><span class="line">		lastI := n - <span class="number">1</span></span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(ctx context.Context, method <span class="keyword">string</span>, req, reply <span class="keyword">interface</span>&#123;&#125;, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">			<span class="keyword">var</span> (</span><br><span class="line">				chainHandler grpc.UnaryInvoker</span><br><span class="line">				curI         <span class="keyword">int</span></span><br><span class="line">			)</span><br><span class="line"></span><br><span class="line">			chainHandler = <span class="function"><span class="keyword">func</span><span class="params">(currentCtx context.Context, currentMethod <span class="keyword">string</span>, currentReq, currentRepl <span class="keyword">interface</span>&#123;&#125;, currentConn *grpc.ClientConn, currentOpts ...grpc.CallOption)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">				<span class="keyword">if</span> curI == lastI &#123;</span><br><span class="line">					<span class="keyword">return</span> invoker(currentCtx, currentMethod, currentReq, currentRepl, currentConn, currentOpts...)</span><br><span class="line">				&#125;</span><br><span class="line">				curI++</span><br><span class="line">				err := interceptors[curI](currentCtx, currentMethod, currentReq, currentRepl, currentConn, chainHandler, currentOpts...)</span><br><span class="line">				curI--</span><br><span class="line">				<span class="keyword">return</span> err</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> interceptors[<span class="number">0</span>](ctx, method, req, reply, cc, chainHandler, opts...)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当拦截器数量大于 1 时，从 <code>interceptors[1]</code> 开始递归，每一个递归的拦截器 <code>interceptors[i]</code> 会不断地执行，最后才真正的去执行 <code>handler</code> 方法。同时也经常有人会问拦截器的执行顺序是什么，通过这段代码你得出结论了吗？</p>
+<h3 id="7-频繁创建-ClientConn-有什么问题？"><a href="#7-频繁创建-ClientConn-有什么问题？" class="headerlink" title="7. 频繁创建 ClientConn 有什么问题？"></a>7. 频繁创建 ClientConn 有什么问题？</h3><p>这个问题我们可以反向验证一下，假设不公用 ClientConn 看看会怎么样？如下:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BenchmarkSearch</span><span class="params">(b *testing.B)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; b.N; i++ &#123;</span><br><span class="line">		conn, err := GetClientConn()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			b.Errorf(<span class="string">"GetClientConn err: %v"</span>, err)</span><br><span class="line">		&#125;</span><br><span class="line">		_, err = Search(context.Background(), conn)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			b.Errorf(<span class="string">"Search err: %v"</span>, err)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    ... connection error: desc = &quot;transport: Error while dialing dial tcp :10001: socket: too many open files&quot;</span><br><span class="line">    ... connection error: desc = &quot;transport: Error while dialing dial tcp :10001: socket: too many open files&quot;</span><br><span class="line">    ... connection error: desc = &quot;transport: Error while dialing dial tcp :10001: socket: too many open files&quot;</span><br><span class="line">    ... connection error: desc = &quot;transport: Error while dialing dial tcp :10001: socket: too many open files&quot;</span><br><span class="line">FAIL</span><br><span class="line">exit status 1</span><br></pre></td></tr></table></figure>
+
+<p>当你的应用场景是存在高频次同时生成/调用 ClientConn 时，可能会导致系统的文件句柄占用过多。这种情况下你可以变更应用程序生成/调用 ClientConn 的模式，又或是池化它，这块可以参考 <a href="github.com/processout/grpc-go-pool">grpc-go-pool</a> 项目。</p>
+<h3 id="8-客户端请求失败后会默认重试吗？"><a href="#8-客户端请求失败后会默认重试吗？" class="headerlink" title="8. 客户端请求失败后会默认重试吗？"></a>8. 客户端请求失败后会默认重试吗？</h3><p>会不断地进行重试，直到上下文取消。而重试时间方面采用 backoff 算法作为的重连机制，默认的最大重试时间间隔是 120s。</p>
+<h3 id="9-为什么要用-HTTP-2-作为传输协议？"><a href="#9-为什么要用-HTTP-2-作为传输协议？" class="headerlink" title="9. 为什么要用 HTTP/2 作为传输协议？"></a>9. 为什么要用 HTTP/2 作为传输协议？</h3><p>许多客户端要通过 HTTP 代理来访问网络，gRPC 全部用 HTTP/2 实现，等到代理开始支持 HTTP/2 就能透明转发 gRPC 的数据。不光如此，负责负载均衡、访问控制等等的反向代理都能无缝兼容 gRPC，比起自己设计 wire protocol 的 Thrift，这样做科学不少。@ctiller @滕亦飞</p>
+<h3 id="10-在-Kubernetes-中-gRPC-负载均衡有问题？"><a href="#10-在-Kubernetes-中-gRPC-负载均衡有问题？" class="headerlink" title="10. 在 Kubernetes 中 gRPC 负载均衡有问题？"></a>10. 在 Kubernetes 中 gRPC 负载均衡有问题？</h3><p>gRPC 的 RPC 协议是基于 HTTP/2 标准实现的，HTTP/2 的一大特性就是不需要像 HTTP/1.1 一样，每次发出请求都要重新建立一个新连接，而是会复用原有的连接。</p>
+<p>所以这将导致 kube-proxy 只有在连接建立时才会做负载均衡，而在这之后的每一次 RPC 请求都会利用原本的连接，那么实际上后续的每一次的 RPC 请求都跑到了同一个地方。</p>
+<p>注：使用 k8s service 做负载均衡的情况下</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>gRPC 基于 HTTP/2 + Protobuf。</li>
+<li>gRPC 有四种调用方式，分别是一元、服务端/客户端流式、双向流式。</li>
+<li>gRPC 的附加信息都会体现在 HEADERS 帧，数据在 DATA 帧上。</li>
+<li>Client 请求若使用 grpc.Dial 默认是异步建立连接，当时状态为 Connecting。</li>
+<li>Client 请求若需要同步则调用 WithBlock()，完成状态为 Ready。</li>
+<li>Server 监听是循环等待连接，若没有则休眠，最大休眠时间 1s；若接收到新请求则起一个新的 goroutine 去处理。</li>
+<li>grpc.ClientConn 不关闭连接，会导致 goroutine 和 Memory 等泄露。</li>
+<li>任何内/外调用如果不加超时控制，会出现泄漏和客户端不断重试。</li>
+<li>特定场景下，如果不对 grpc.ClientConn 加以调控，会影响调用。</li>
+<li>拦截器如果不用 go-grpc-middleware 链式处理，会覆盖。</li>
+<li>在选择 gRPC 的负载均衡模式时，需要谨慎。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://doc.oschina.net/grpc" target="_blank" rel="noopener">http://doc.oschina.net/grpc</a></li>
+<li><a href="https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md" target="_blank" rel="noopener">https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md</a></li>
+<li><a href="https://juejin.im/post/5b88a4f56fb9a01a0b31a67e" target="_blank" rel="noopener">https://juejin.im/post/5b88a4f56fb9a01a0b31a67e</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/web/wa-http2-under-the-hood/index.html" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/web/wa-http2-under-the-hood/index.html</a></li>
+<li><a href="https://github.com/grpc/grpc-go/issues/1953" target="_blank" rel="noopener">https://github.com/grpc/grpc-go/issues/1953</a></li>
+<li><a href="https://www.zhihu.com/question/52670041" target="_blank" rel="noopener">https://www.zhihu.com/question/52670041</a></li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>从实践到原理，带你参透 gRPC</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-06-29, 12:00:00</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-19, 17:52:49</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/2019/06/29/golang/go/talk/2019-06-29-talking-grpc/" title="从实践到原理，带你参透 gRPC">https://blog.zshipu.com/2019/06/29/golang/go/talk/2019-06-29-talking-grpc/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#java','#go','#CSS','#Spring','#js','#JavaScript','#前端','#mysql','#规范','#优化','#sql','#gin',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

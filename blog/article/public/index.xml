@@ -1,0 +1,20 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title> on 知识铺</title>
+        <link>https://blog.zshipu.com/article/</link>
+        <language>zh-CN</language>
+        <author>CoderZh</author>
+        <rights>Copyright (c) 2015, CoderZh; all rights reserved.</rights>
+        <updated>Mon, 11 Nov 2019 22:27:22 CST</updated>
+        
+        <item>
+            <title>Posts</title>
+            <link>https://blog.zshipu.com/article/post/</link>
+            <pubDate>Mon, 11 Nov 2019 22:27:22 CST</pubDate>
+            <author>CoderZh</author>
+            <guid>https://blog.zshipu.com/article/post/</guid>
+            <description></description>
+        </item>
+        
+    </channel>
+</rss>
