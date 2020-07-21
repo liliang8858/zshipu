@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>Vue.js新手入门指南 | 技术分享 | 知识铺</title>
+  <meta name="keywords" content>
+  <meta name="description" content="Vue.js新手入门指南 | 知识铺">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Vue.js新手入门指南 最近在逛各大网站，论坛，以及像SegmentFault等编程问答社区，发现Vue.js异常火爆，重复性的提问和内容也很多，楼主自己也趁着这个大前端的热潮，着手学习了一段时间的Vue.js，目前用它正在做自己的结业项目。 在做的过程中也对Vue.js的官方文档以及其各种特性有了许多认识。作为一个之前以PHP+模版引擎为主的开发，从一个从未接触过除HTML+CSS+JavaS">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js新手入门指南">
+<meta property="og:url" content="https://blog.zshipu.com/tlg/2020/05/30/Vue.js新手入门指南/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="Vue.js新手入门指南 最近在逛各大网站，论坛，以及像SegmentFault等编程问答社区，发现Vue.js异常火爆，重复性的提问和内容也很多，楼主自己也趁着这个大前端的热潮，着手学习了一段时间的Vue.js，目前用它正在做自己的结业项目。 在做的过程中也对Vue.js的官方文档以及其各种特性有了许多认识。作为一个之前以PHP+模版引擎为主的开发，从一个从未接触过除HTML+CSS+JavaS">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2020-05-30T04:00:43.802Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue.js新手入门指南">
+<meta name="twitter:description" content="Vue.js新手入门指南 最近在逛各大网站，论坛，以及像SegmentFault等编程问答社区，发现Vue.js异常火爆，重复性的提问和内容也很多，楼主自己也趁着这个大前端的热潮，着手学习了一段时间的Vue.js，目前用它正在做自己的结业项目。 在做的过程中也对Vue.js的官方文档以及其各种特性有了许多认识。作为一个之前以PHP+模版引擎为主的开发，从一个从未接触过除HTML+CSS+JavaS">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(190)</small></div></li>
+    
+        
+            
+            <li><div data-rel="go">go<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="190">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">go</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">web</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务">Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务</span>
+            <span class="post-date" title="2020-07-16 18:43:02">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud+nacos+Feign，实现注册中心及配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud+nacos+Feign，实现注册中心及配置中心">Spring Cloud+nacos+Feign，实现注册中心及配置中心</span>
+            <span class="post-date" title="2020-07-16 18:39:59">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos作为配置中心时，多个服务共用一个dataId的配置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos作为配置中心时，多个服务共用一个dataId的配置">Nacos作为配置中心时，多个服务共用一个dataId的配置</span>
+            <span class="post-date" title="2020-07-16 18:32:26">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(三)：使用Nacos作为配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(三)：使用Nacos作为配置中心">SpringCloudAlibaba(三)：使用Nacos作为配置中心</span>
+            <span class="post-date" title="2020-07-16 17:34:29">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos 集群部署/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos 集群部署">Nacos 集群部署</span>
+            <span class="post-date" title="2020-07-16 17:31:53">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(二)：Nacos介绍与环境安装/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(二)：Nacos介绍与环境安装">SpringCloudAlibaba(二)：Nacos介绍与环境安装</span>
+            <span class="post-date" title="2020-07-16 17:26:15">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(一)：概述与重要组件/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(一)：概述与重要组件">SpringCloudAlibaba(一)：概述与重要组件</span>
+            <span class="post-date" title="2020-07-16 17:23:13">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Java面试宝典300问-第一部分/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java面试宝典300问 第一部分">Java面试宝典300问 第一部分</span>
+            <span class="post-date" title="2020-07-09 14:39:53">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/GraaphQL实战：GraphQL Mutations 五/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL实战：GraphQL Mutations 五">GraphQL实战：GraphQL Mutations 五</span>
+            <span class="post-date" title="2020-07-09 13:50:49">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：GraphQL 基础知识  四/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：GraphQL 基础知识  四">Graphql实战：GraphQL 基础知识  四</span>
+            <span class="post-date" title="2020-07-09 13:38:27">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：自动执行后端测试 三/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：自动执行后端测试 三">Graphql实战：自动执行后端测试 三</span>
+            <span class="post-date" title="2020-07-09 13:22:30">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：基本模型和多态关联 二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：基本模型和多态关联 二">Graphql实战：基本模型和多态关联 二</span>
+            <span class="post-date" title="2020-07-09 11:59:15">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：构建论坛应用，从代码到部署 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：构建论坛应用，从代码到部署 一">Graphql实战：构建论坛应用，从代码到部署 一</span>
+            <span class="post-date" title="2020-07-09 11:48:06">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/04/学习Go 第一周/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习Go 第一周">学习Go 第一周</span>
+            <span class="post-date" title="2020-07-04 11:24:14">2020/07/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法">每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法</span>
+            <span class="post-date" title="2020-07-02 11:43:59">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/同心管家-专业心脏病医疗服务平台/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="同心管家-专业心脏病医疗服务平台">同心管家-专业心脏病医疗服务平台</span>
+            <span class="post-date" title="2020-07-02 11:30:40">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/2020 年成为前端大师的 9 个项目/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020 年成为前端大师的 9 个项目">2020 年成为前端大师的 9 个项目</span>
+            <span class="post-date" title="2020-06-25 20:13:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter：初学者的学习资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter：初学者的学习资源">Flutter：初学者的学习资源</span>
+            <span class="post-date" title="2020-06-25 19:46:43">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 404页面自定义/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 404页面自定义">Flutter 404页面自定义</span>
+            <span class="post-date" title="2020-06-25 19:22:33">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 滑块小部件有哪些新增功能/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 滑块小部件有哪些新增功能">Flutter 滑块小部件有哪些新增功能</span>
+            <span class="post-date" title="2020-06-25 19:17:07">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/用于 Flutter 开发人员的新工具，内置于 Flutter/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="用于 Flutter 开发人员的新工具，内置于 Flutter">用于 Flutter 开发人员的新工具，内置于 Flutter</span>
+            <span class="post-date" title="2020-06-25 19:06:02">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 八大优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 八大优势">Flutter 八大优势</span>
+            <span class="post-date" title="2020-06-25 18:17:38">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Vue.js 和 Angular 比 jQuery 有什么好处/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js 和 Angular 比 jQuery 有什么好处">Vue.js 和 Angular 比 jQuery 有什么好处</span>
+            <span class="post-date" title="2020-06-25 18:05:10">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/数据科学专家必修之路/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据科学专家必修之路">数据科学专家必修之路</span>
+            <span class="post-date" title="2020-06-25 14:08:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/学习 JavaScript 的最佳方式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习 JavaScript 的最佳方式">学习 JavaScript 的最佳方式</span>
+            <span class="post-date" title="2020-06-25 14:00:18">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 最佳资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 最佳资源">GraphQL 最佳资源</span>
+            <span class="post-date" title="2020-06-25 12:04:57">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/与 REST API 相比，GraphQL 有哪些优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="与 REST API 相比，GraphQL 有哪些优势">与 REST API 相比，GraphQL 有哪些优势</span>
+            <span class="post-date" title="2020-06-25 12:02:49">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 深入理解系列 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 深入理解系列 一">GraphQL 深入理解系列 一</span>
+            <span class="post-date" title="2020-06-25 11:59:41">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的主要组件分析 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的主要组件分析 - 分步指南">Python 中的主要组件分析 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:29:05">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/K 表示 Python 中的群集 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="K 表示 Python 中的群集 - 分步指南">K 表示 Python 中的群集 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:28:18">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中支持矢量机 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中支持矢量机 - 分步指南">Python 中支持矢量机 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:27:01">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的决策树和随机林/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的决策树和随机林">Python 中的决策树和随机林</span>
+            <span class="post-date" title="2020-06-21 11:25:57">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的 K 最近邻居 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的 K 最近邻居 - 分步指南">Python 中的 K 最近邻居 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:24:52">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的逻辑回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的逻辑回归 - 分步指南">Python 中的逻辑回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:23:42">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的线性回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的线性回归 - 分步指南">Python 中的线性回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:19:43">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/推荐算法简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法简介">推荐算法简介</span>
+            <span class="post-date" title="2020-06-21 11:18:15">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/9 种常用关键机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9 种常用关键机器学习算法">9 种常用关键机器学习算法</span>
+            <span class="post-date" title="2020-06-21 11:17:12">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/最新技术周刊 01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="最新技术周刊 01">最新技术周刊 01</span>
+            <span class="post-date" title="2020-06-21 11:08:27">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/20/初创团队选择 Vert.x /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初创团队选择 Vert.x">初创团队选择 Vert.x</span>
+            <span class="post-date" title="2020-06-20 17:19:35">2020/06/20</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/19/GraphQL 入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 入门指南">GraphQL 入门指南</span>
+            <span class="post-date" title="2020-06-19 20:06:53">2020/06/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/17/Linux的du用法排除某个目录/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux的du用法排除某个目录">Linux的du用法排除某个目录</span>
+            <span class="post-date" title="2020-06-17 16:47:00">2020/06/17</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/16/dubbo go 初步使用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="dubbo go 初步使用">dubbo go 初步使用</span>
+            <span class="post-date" title="2020-06-16 16:03:40">2020/06/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/15/GraphQL架构拼接解释：架构委派/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL架构拼接解释：架构委派">GraphQL架构拼接解释：架构委派</span>
+            <span class="post-date" title="2020-06-15 18:36:56">2020/06/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 作为微服务的 API 网关/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 作为微服务的 API 网关">GraphQL 作为微服务的 API 网关</span>
+            <span class="post-date" title="2020-06-14 21:10:27">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 在微服务架构中的实践/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 在微服务架构中的实践">GraphQL 在微服务架构中的实践</span>
+            <span class="post-date" title="2020-06-14 20:54:37">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 微服务化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 微服务化">GraphQL 微服务化</span>
+            <span class="post-date" title="2020-06-14 20:52:36">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/MySQL 上构造即时 Graphql API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MySQL 上构造即时 Graphql API">MySQL 上构造即时 Graphql API</span>
+            <span class="post-date" title="2020-06-12 13:44:34">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/graphql mysql /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="graphql mysql">graphql mysql</span>
+            <span class="post-date" title="2020-06-12 13:42:42">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/11/golang gateway 从零开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang gateway 从零开始">golang gateway 从零开始</span>
+            <span class="post-date" title="2020-06-11 09:12:48">2020/06/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/09/springboot + spring security验证token进行用户认证/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot + spring security验证token进行用户认证">springboot + spring security验证token进行用户认证</span>
+            <span class="post-date" title="2020-06-09 17:11:25">2020/06/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/08/zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has">zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has</span>
+            <span class="post-date" title="2020-06-08 13:31:04">2020/06/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/微信 小程序需要授权 有部分人需要获取验证码/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微信 小程序需要授权 有部分人需要获取验证码">微信 小程序需要授权 有部分人需要获取验证码</span>
+            <span class="post-date" title="2020-06-04 13:26:37">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang 正则表达式 过滤手机号带有字符串，特殊符号/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang 正则表达式 过滤手机号带有字符串，特殊符号">golang 正则表达式 过滤手机号带有字符串，特殊符号</span>
+            <span class="post-date" title="2020-06-04 12:06:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang regexp.Compile 正则表达式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang regexp.Compile 正则表达式">golang regexp.Compile 正则表达式</span>
+            <span class="post-date" title="2020-06-04 11:56:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/初学者的 Docker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者的 Docker">初学者的 Docker</span>
+            <span class="post-date" title="2020-05-31 15:38:34">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/按值排序对象的 JavaScript 排序数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="按值排序对象的 JavaScript 排序数组">按值排序对象的 JavaScript 排序数组</span>
+            <span class="post-date" title="2020-05-31 15:32:48">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js——60分钟快速入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js——60分钟快速入门">Vue.js——60分钟快速入门</span>
+            <span class="post-date" title="2020-05-30 12:19:41">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js新手入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js新手入门指南">Vue.js新手入门指南</span>
+            <span class="post-date" title="2020-05-30 12:00:43">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Node.js的替代者，初识Deno/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Node.js的替代者，初识Deno">Node.js的替代者，初识Deno</span>
+            <span class="post-date" title="2020-05-30 11:59:58">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/初学者，学习vue应该从何下手？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者，学习vue应该从何下手？">初学者，学习vue应该从何下手？</span>
+            <span class="post-date" title="2020-05-30 11:58:18">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统">从0到1，Vue大牛的前端搭建——异常监控系统</span>
+            <span class="post-date" title="2020-05-30 11:57:22">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）">从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）</span>
+            <span class="post-date" title="2020-05-30 11:56:59">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/9道价值20k薪资的VUE必备面试题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9道价值20k薪资的VUE必备面试题">9道价值20k薪资的VUE必备面试题</span>
+            <span class="post-date" title="2020-05-30 11:25:07">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/29/canvas 折线/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="canvas 折线">canvas 折线</span>
+            <span class="post-date" title="2020-05-29 13:06:27">2020/05/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/28/Emoji 转换 base64/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Emoji 转换 base64">Emoji 转换 base64</span>
+            <span class="post-date" title="2020-05-28 18:41:42">2020/05/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/公众号 H5 分享/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号 H5 分享">公众号 H5 分享</span>
+            <span class="post-date" title="2020-05-27 19:46:03">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 signature/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 signature">获取微信公众号 signature</span>
+            <span class="post-date" title="2020-05-27 19:44:37">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 jsapi_ticket/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 jsapi_ticket">获取微信公众号 jsapi_ticket</span>
+            <span class="post-date" title="2020-05-27 19:43:56">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/2020编程大牛的网盘资料汇总/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020编程大牛的网盘资料汇总">2020编程大牛的网盘资料汇总</span>
+            <span class="post-date" title="2020-05-26 14:50:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/一个简单的RTMP服务器实现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="一个简单的RTMP服务器实现">一个简单的RTMP服务器实现</span>
+            <span class="post-date" title="2020-05-26 12:01:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/HTML5实现播放RTMP协议视频/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML5实现播放RTMP协议视频">HTML5实现播放RTMP协议视频</span>
+            <span class="post-date" title="2020-05-26 11:58:15">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/正文提取算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正文提取算法">正文提取算法</span>
+            <span class="post-date" title="2020-05-24 19:16:30">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma CSS - 开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma CSS - 开始">Bulma CSS - 开始</span>
+            <span class="post-date" title="2020-05-24 18:54:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/2020年，jQuery需要了解的那些知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020年，jQuery需要了解的那些知识点">2020年，jQuery需要了解的那些知识点</span>
+            <span class="post-date" title="2020-05-24 18:50:59">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员经常去的网站有哪些？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员经常去的网站有哪些？">程序员经常去的网站有哪些？</span>
+            <span class="post-date" title="2020-05-24 18:45:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员常去的网站/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员常去的网站">程序员常去的网站</span>
+            <span class="post-date" title="2020-05-24 18:33:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Redis 集群演进探讨和总结/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Redis 集群演进探讨和总结">Redis 集群演进探讨和总结</span>
+            <span class="post-date" title="2020-05-24 18:29:41">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Buefy框架如何自定义主题？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Buefy框架如何自定义主题？">Bulma和Buefy框架如何自定义主题？</span>
+            <span class="post-date" title="2020-05-24 13:24:53">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/bulma和bootstrap等前端框架我应该选择哪个？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bulma和bootstrap等前端框架我应该选择哪个？">bulma和bootstrap等前端框架我应该选择哪个？</span>
+            <span class="post-date" title="2020-05-24 13:20:09">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Bootstrap 区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Bootstrap 区别">Bulma和Bootstrap 区别</span>
+            <span class="post-date" title="2020-05-24 13:16:19">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma Vue.js集成/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma Vue.js集成">Bulma Vue.js集成</span>
+            <span class="post-date" title="2020-05-24 13:12:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma-起步/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma 起步">Bulma 起步</span>
+            <span class="post-date" title="2020-05-24 12:04:15">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/19/Deno-1-0-简介，node-js的代替者出现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Deno 1.0 简介，node.js的代替者出现">Deno 1.0 简介，node.js的代替者出现</span>
+            <span class="post-date" title="2020-05-19 08:55:46">2020/05/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/19/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号">公众号</span>
+            <span class="post-date" title="2020-04-19 17:15:07">2020/04/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（2）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（2）">ECG ×AI: 机器/深度学习的ECG应用入门（2）</span>
+            <span class="post-date" title="2020-04-18 13:18:17">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（1）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（1）">ECG ×AI: 机器/深度学习的ECG应用入门（1）</span>
+            <span class="post-date" title="2020-04-18 13:14:59">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（2）-环境搭建/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（2）---环境搭建">学习使用 webpack（2）---环境搭建</span>
+            <span class="post-date" title="2020-04-16 20:00:33">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（1）-简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（1）---简介">学习使用 webpack（1）---简介</span>
+            <span class="post-date" title="2020-04-16 19:57:59">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/RxJava总体流程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RxJava总体流程">RxJava总体流程</span>
+            <span class="post-date" title="2020-04-16 14:54:14">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/15/B1-Spring-Security-url-拦截匹配规则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Security url 拦截匹配规则">Spring Security url 拦截匹配规则</span>
+            <span class="post-date" title="2020-04-15 08:56:15">2020/04/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/在-JAVASCRIPT-中揭开提升的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="在 JAVASCRIPT 中揭开声明倒置的神秘面纱">在 JAVASCRIPT 中揭开声明倒置的神秘面纱</span>
+            <span class="post-date" title="2020-04-14 22:24:33">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/了解-JAVASCRIPT-中的一等公民函数和匿名函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="了解 JAVASCRIPT 中的一等公民函数和匿名函数">了解 JAVASCRIPT 中的一等公民函数和匿名函数</span>
+            <span class="post-date" title="2020-04-14 22:11:52">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/构建一致的-RESTful-API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建一致的 RESTful API">构建一致的 RESTful API</span>
+            <span class="post-date" title="2020-04-14 22:06:08">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列四、实例微型交易系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列四、实例微型交易系统">Vertx系列四、实例微型交易系统</span>
+            <span class="post-date" title="2020-04-13 20:09:38">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列三、揭开微服务的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列三、揭开微服务的神秘面纱">Vertx系列三、揭开微服务的神秘面纱</span>
+            <span class="post-date" title="2020-04-13 19:56:24">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列二、vert-x/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列二、vert.x">Vertx系列二、vert.x</span>
+            <span class="post-date" title="2020-04-13 18:59:58">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列一，简述/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列一、简述">Vertx系列一、简述</span>
+            <span class="post-date" title="2020-04-13 18:55:32">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/监督机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="监督机器学习算法">监督机器学习算法</span>
+            <span class="post-date" title="2020-04-13 10:16:48">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/MQTT和WebSocket-对比/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT和WebSocket 对比">MQTT和WebSocket 对比</span>
+            <span class="post-date" title="2020-04-13 09:27:10">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/12/HTTP-请求方法指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTTP 请求方法指南">HTTP 请求方法指南</span>
+            <span class="post-date" title="2020-04-12 21:38:58">2020/04/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/全栈工程师刷这些就够了/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="全栈工程师面试题刷这些就够了">全栈工程师面试题刷这些就够了</span>
+            <span class="post-date" title="2020-04-11 17:28:23">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/【前端知识梳理】HTML篇-笔记整理（一）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【前端知识梳理】HTML篇 笔记整理（一）">【前端知识梳理】HTML篇 笔记整理（一）</span>
+            <span class="post-date" title="2020-04-11 17:20:45">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/哈勃拍摄唯美宇宙/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="哈勃拍摄唯美宇宙">哈勃拍摄唯美宇宙</span>
+            <span class="post-date" title="2020-04-11 17:07:12">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/从零开始实现一个RPC框架（零）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始实现一个RPC框架（零）">从零开始实现一个RPC框架（零）</span>
+            <span class="post-date" title="2020-04-11 14:41:09">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/MQTT之Mosquitto源码分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT之Mosquitto源码分析">MQTT之Mosquitto源码分析</span>
+            <span class="post-date" title="2020-04-11 13:10:29">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/为什么选择go-kit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="为什么选择go-kit">为什么选择go-kit</span>
+            <span class="post-date" title="2020-04-11 11:49:46">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/Gokit-go流行微服务入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gokit go流行微服务入门">Gokit go流行微服务入门</span>
+            <span class="post-date" title="2020-04-11 11:39:44">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/10/JVM自动推荐文章列表-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM自动推荐文章列表">JVM自动推荐文章列表</span>
+            <span class="post-date" title="2020-04-10 20:17:22">2020/04/10</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/macaca-doctor之Android证书Not-accepted-Android-SDK-license-agreements/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="macaca doctor之Android证书Not accepted Android SDK license agreements">macaca doctor之Android证书Not accepted Android SDK license agreements</span>
+            <span class="post-date" title="2020-04-09 17:02:16">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/工具推荐篇：PlantUML-程序员的专属绘制流程图工具，就像写代码一样便利/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利">工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利</span>
+            <span class="post-date" title="2020-04-09 10:28:01">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/Istio-是什么-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Istio 是什么">Istio 是什么</span>
+            <span class="post-date" title="2020-04-09 10:08:02">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/08/vert-x入门系列-03-vertx详细介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 03 vertx详细介绍">vert x入门系列: 03 vertx详细介绍</span>
+            <span class="post-date" title="2020-04-08 22:32:45">2020/04/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/Java-面试题系列-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 面试题系列 1">Java 面试题系列 1</span>
+            <span class="post-date" title="2020-04-06 20:17:19">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/30-深入Java系列Java-数据结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30.深入Java系列Java - 数据结构">30.深入Java系列Java - 数据结构</span>
+            <span class="post-date" title="2020-04-06 19:59:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/29-深入Java系列Java-构造函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="29.深入Java系列Java - 构造函数">29.深入Java系列Java - 构造函数</span>
+            <span class="post-date" title="2020-04-06 19:54:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/28-深入Java系列Java-对象和类/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="28.深入Java系列Java - 对象和类">28.深入Java系列Java - 对象和类</span>
+            <span class="post-date" title="2020-04-06 19:50:43">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/27-深入Java系列Java-文件和-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="27.深入Java系列Java - 文件和 I/O">27.深入Java系列Java - 文件和 I/O</span>
+            <span class="post-date" title="2020-04-06 19:46:11">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/26-深入Java系列Java中Integer为什么有个-128—-127/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="26.深入Java系列Java中Integer为什么有个-128—+127">26.深入Java系列Java中Integer为什么有个-128—+127</span>
+            <span class="post-date" title="2020-04-06 19:24:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/25-深入Java系列Java中int的取值范围关键点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="25.深入Java系列Java中int的取值范围关键点">25.深入Java系列Java中int的取值范围关键点</span>
+            <span class="post-date" title="2020-04-06 19:04:37">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/24-深入Java系列Java中int面试知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="24.深入Java系列Java中int面试知识点">24.深入Java系列Java中int面试知识点</span>
+            <span class="post-date" title="2020-04-06 18:53:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/JS系列js-获取子数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.JS系列js 获取子数组">1.JS系列js 获取子数组</span>
+            <span class="post-date" title="2020-04-06 12:40:13">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/3-深入Java系列Java内存模型和JVM内存模型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="23.深入Java系列Java内存模型和JVM内存模型">23.深入Java系列Java内存模型和JVM内存模型</span>
+            <span class="post-date" title="2020-04-06 11:17:06">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/22-深入Java系列结构模式之组合模式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="22.深入Java系列结构模式之组合模式">22.深入Java系列结构模式之组合模式</span>
+            <span class="post-date" title="2020-04-05 22:10:38">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/21-深入Java系列Java之异常处理/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="21.深入Java系列Java之异常处理">21.深入Java系列Java之异常处理</span>
+            <span class="post-date" title="2020-04-05 22:04:06">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/20-深入Java系列Java中的回调机制/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="20.深入Java系列Java中的回调机制">20.深入Java系列Java中的回调机制</span>
+            <span class="post-date" title="2020-04-05 21:54:11">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java类的信息全解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="19.深入Java系列java类的信息全解">19.深入Java系列java类的信息全解</span>
+            <span class="post-date" title="2020-04-05 19:49:23">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="18.深入Java系列java方法区内存溢出分析">18.深入Java系列java方法区内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:46:36">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="17.深入Java系列java方法区">17.深入Java系列java方法区</span>
+            <span class="post-date" title="2020-04-05 19:45:17">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java栈内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="16.深入Java系列Java栈内存溢出分析">16.深入Java系列Java栈内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:43:47">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java堆内存溢出解决方案/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="15.深入Java系列Java堆内存溢出解决方案">15.深入Java系列Java堆内存溢出解决方案</span>
+            <span class="post-date" title="2020-04-05 19:27:05">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java堆内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="14.深入Java系列Java堆内存">14.深入Java系列Java堆内存</span>
+            <span class="post-date" title="2020-04-04 20:41:53">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java栈内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="13.深入Java系列Java栈内存">13.深入Java系列Java栈内存</span>
+            <span class="post-date" title="2020-04-04 20:34:01">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java内存结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="12.深入Java系列Java内存结构">12.深入Java系列Java内存结构</span>
+            <span class="post-date" title="2020-04-04 19:49:30">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java-命令知多少/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="11.深入Java系列Java 命令知多少">11.深入Java系列Java 命令知多少</span>
+            <span class="post-date" title="2020-04-03 23:16:26">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java变量深入理解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="10.深入Java系列Java变量深入理解">10.深入Java系列Java变量深入理解</span>
+            <span class="post-date" title="2020-04-03 23:14:55">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9.深入Java系列java &amp; &amp;&amp;区别">9.深入Java系列java &amp; &amp;&amp;区别</span>
+            <span class="post-date" title="2020-04-03 23:13:10">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-path-classpath作用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="8.深入Java系列java path classpath作用">8.深入Java系列java path classpath作用</span>
+            <span class="post-date" title="2020-04-03 23:11:42">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列JVM、JVM、JRE区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="7.深入Java系列JVM、JVM、JRE区别">7.深入Java系列JVM、JVM、JRE区别</span>
+            <span class="post-date" title="2020-04-03 23:10:53">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Spring-Boot-2-0-2-Oauth2-持久化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot 2.0.2 Oauth2 持久化">鉴权中心：Spring Boot 2.0.2 Oauth2 持久化</span>
+            <span class="post-date" title="2020-04-03 15:58:07">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Springboot-Springsecurity-Oauth2整合/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Springboot+Springsecurity+Oauth2整合">鉴权中心：Springboot+Springsecurity+Oauth2整合</span>
+            <span class="post-date" title="2020-04-03 11:21:47">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/Spring-Boot-v2-1-3-兼容鉴权中心Spring-Boot-v2-0-2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2">鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2</span>
+            <span class="post-date" title="2020-04-03 11:12:12">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列异常org-springframework-security-authentication-BadCredentialsException/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException">6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException</span>
+            <span class="post-date" title="2020-04-02 14:05:00">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列深入理解JAVA-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="5.深入Java系列深入理解JAVA I/O">5.深入Java系列深入理解JAVA I/O</span>
+            <span class="post-date" title="2020-04-02 11:07:02">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列之绘图/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="4.深入Java系列之绘图">4.深入Java系列之绘图</span>
+            <span class="post-date" title="2020-04-02 10:48:56">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/01/深入Java系列之基本数据类型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="3.深入Java系列之基本数据类型">3.深入Java系列之基本数据类型</span>
+            <span class="post-date" title="2020-04-01 13:25:39">2020/04/01</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之虚拟机栈/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2.深入Java系列之虚拟机栈">2.深入Java系列之虚拟机栈</span>
+            <span class="post-date" title="2020-03-31 17:07:43">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之JVM/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.深入Java系列之JVM">1.深入Java系列之JVM</span>
+            <span class="post-date" title="2020-03-31 17:01:41">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/将您的Spring-Booot应用迁移到最新的Spring-Security-和-OAuth-2-0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0">将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0</span>
+            <span class="post-date" title="2020-03-31 13:35:01">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/Neo4j系列：CentOS下Neo4j安装教程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Neo4j系列：CentOS下Neo4j安装教程">Neo4j系列：CentOS下Neo4j安装教程</span>
+            <span class="post-date" title="2020-03-31 11:03:20">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/JVM入门到入魔：01JVM基础必备知识/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：01JVM基础必备知识">JVM入门到入魔：01JVM基础必备知识</span>
+            <span class="post-date" title="2020-03-28 21:13:14">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/团队管理：打造高绩效团队/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="团队管理：打造高绩效团队">团队管理：打造高绩效团队</span>
+            <span class="post-date" title="2020-03-28 15:49:46">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/27/JVM入门到入魔：课程大纲/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：00课程大纲">JVM入门到入魔：00课程大纲</span>
+            <span class="post-date" title="2020-03-27 15:21:01">2020/03/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-02-vertx的Http服务器入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 02 vertx的Http服务器入门">vert x入门系列: 02 vertx的Http服务器入门</span>
+            <span class="post-date" title="2020-03-26 21:39:33">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师：一个演进式架构师应该承担的职责/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师：一个演进式架构师应该承担的职责">架构师：一个演进式架构师应该承担的职责</span>
+            <span class="post-date" title="2020-03-26 21:29:44">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-01-reactive编程介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 01 reactive编程介绍">vert x入门系列: 01 reactive编程介绍</span>
+            <span class="post-date" title="2020-03-26 21:18:32">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/程序员-程序猿与牛的斗争/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员:程序猿与牛的斗争">程序员:程序猿与牛的斗争</span>
+            <span class="post-date" title="2020-03-26 21:02:05">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-知人善用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:知人善用">架构师:知人善用</span>
+            <span class="post-date" title="2020-03-26 21:00:00">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-架构师三大原则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:架构师三大原则">架构师:架构师三大原则</span>
+            <span class="post-date" title="2020-03-26 16:09:08">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/24/GitHub日报：GitHub-Explore-code-and-developers-on-GitHub-today-today-Mar-24/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.">GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.</span>
+            <span class="post-date" title="2020-03-24 21:40:45">2020/03/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-M81-发行说明/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC M81 发行说明">WebRTC系列：WebRTC M81 发行说明</span>
+            <span class="post-date" title="2020-03-22 22:12:10">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC介绍">WebRTC系列：WebRTC介绍</span>
+            <span class="post-date" title="2020-03-22 16:54:06">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：getUserMedia-API及HTML5-调用手机摄像头拍照/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照">WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照</span>
+            <span class="post-date" title="2020-03-22 16:45:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC基础学习之一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC基础学习之一">WebRTC系列：WebRTC基础学习之一</span>
+            <span class="post-date" title="2020-03-22 16:11:45">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-将一统实时音视频天下？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC 将一统实时音视频天下？">WebRTC系列：WebRTC 将一统实时音视频天下？</span>
+            <span class="post-date" title="2020-03-22 15:49:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 二">100天Spring零基础起飞 二</span>
+            <span class="post-date" title="2019-12-06 20:17:24">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 一">100天Spring零基础起飞 一</span>
+            <span class="post-date" title="2019-12-06 20:15:37">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Next-js手册/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Next.js手册">Next.js手册</span>
+            <span class="post-date" title="2019-11-29 14:45:06">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Vue手册：Vue-js的完整介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue手册：Vue.js的完整介绍">Vue手册：Vue.js的完整介绍</span>
+            <span class="post-date" title="2019-11-29 13:34:21">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/27/Dos批量修改文件后缀/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dos批量修改文件后缀">Dos批量修改文件后缀</span>
+            <span class="post-date" title="2019-11-27 11:33:22">2019/11/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/PHP编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PHP编码规范">PHP编码规范</span>
+            <span class="post-date" title="2019-11-22 15:53:38">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范3">HTML编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:36:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范3">Java编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:33:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范2">Java编码规范2</span>
+            <span class="post-date" title="2019-11-22 15:11:53">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/通用编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通用编码规范">通用编码规范</span>
+            <span class="post-date" title="2019-11-22 15:05:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范">Java编码规范</span>
+            <span class="post-date" title="2019-11-22 14:07:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/C-编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C#编码规范">C#编码规范</span>
+            <span class="post-date" title="2019-11-22 13:16:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范2">HTML编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:22:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范2">JavaScript编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:20:31">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范-第二部/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范2">CSS编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:18:01">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Markdown-编写规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Markdown 编写规范">Markdown 编写规范</span>
+            <span class="post-date" title="2019-11-22 11:08:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范">HTML编码规范</span>
+            <span class="post-date" title="2019-11-22 11:04:41">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范">CSS编码规范</span>
+            <span class="post-date" title="2019-11-22 10:06:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范">JavaScript编码规范</span>
+            <span class="post-date" title="2019-11-22 09:58:35">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/日常笔记-开篇/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日常笔记-开篇">日常笔记-开篇</span>
+            <span class="post-date" title="2019-11-14 19:34:48">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/Java-字符串拼接一次学到位/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 字符串拼接一次学到位">Java 字符串拼接一次学到位</span>
+            <span class="post-date" title="2019-11-14 11:58:31">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/务限流与降级/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微服务限流与降级">微服务限流与降级</span>
+            <span class="post-date" title="2019-11-14 11:36:43">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/13/CSS控制长串英文字母换行问题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS控制长串英文字母换行问题">CSS控制长串英文字母换行问题</span>
+            <span class="post-date" title="2019-11-13 10:26:10">2019/11/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/12/centos虚拟内存设置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=" centos虚拟内存设置"> centos虚拟内存设置</span>
+            <span class="post-date" title="2019-11-12 21:44:11">2019/11/12</span>
+        </a>
+        
+        <a  class="go "
+           href="/tlg/2019/11/11/第-03-课：进阶模板用法/"
+           data-tag="go,web"
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 03 课：进阶模板用法">拜读无闻大神Go web编程 - 第 03 课：进阶模板用法</span>
+            <span class="post-date" title="2019-11-11 17:56:00">2019/11/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/11/第-02-课：基础模板用法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 02 课：基础模板用法">拜读无闻大神Go web编程 - 第 02 课：基础模板用法</span>
+            <span class="post-date" title="2019-11-11 17:53:52">2019/11/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-Vue.js新手入门指南" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Vue.js新手入门指南</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-05-30 12:00:43'>2020-05-30 12:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-js新手入门指南"><span class="toc-text">Vue.js新手入门指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Vue-js是什么？"><span class="toc-text">1.Vue.js是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Vue-js到底是什么？"><span class="toc-text">2.Vue.js到底是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-单页应用程序（SPA）"><span class="toc-text">3.单页应用程序（SPA）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-你前面说的网页版知乎我也可以用JQuery写啊，为什么要用Vue-js呢？"><span class="toc-text">4.你前面说的网页版知乎我也可以用JQuery写啊，为什么要用Vue.js呢？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Vue-js为什么能让基于网页的前端应用程序开发起来这么方便？"><span class="toc-text">5.Vue.js为什么能让基于网页的前端应用程序开发起来这么方便？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-响应式的数据绑定"><span class="toc-text">6.响应式的数据绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-组件化开发"><span class="toc-text">7.组件化开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Virtual-DOM"><span class="toc-text">8.Virtual DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-我到底该怎么用Vue-js做单页应用开发？"><span class="toc-text">9.我到底该怎么用Vue.js做单页应用开发？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-在前面你提到过好几次ECMAScript，这是啥？"><span class="toc-text">10.在前面你提到过好几次ECMAScript，这是啥？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-我在学习Vue-js的时候老是听到Webpack，这是啥？"><span class="toc-text">11.我在学习Vue.js的时候老是听到Webpack，这是啥？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-为什么要用Webpack"><span class="toc-text">12.为什么要用Webpack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-NPM和Node-js又是什么？它们是什么关系？"><span class="toc-text">13.NPM和Node.js又是什么？它们是什么关系？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-Vue-CLi又是啥？"><span class="toc-text">14.Vue-CLi又是啥？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-我该不该学Vue-js？"><span class="toc-text">15.我该不该学Vue.js？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-Vue-js怎么火起来的？"><span class="toc-text">16.Vue.js怎么火起来的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-我在很多地方还看到Vuex和Vue-route，它们又是什么？"><span class="toc-text">17.我在很多地方还看到Vuex和Vue-route，它们又是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-我还在一些地方看到过Vue-resource和Axios，它们又是什么？"><span class="toc-text">18.我还在一些地方看到过Vue-resource和Axios，它们又是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-我该学Vue-js2-0还是1-0呢？"><span class="toc-text">19.我该学Vue.js2.0还是1.0呢？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-写Vue-js用什么开发工具和电脑呢？"><span class="toc-text">20.写Vue.js用什么开发工具和电脑呢？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语："><span class="toc-text">结语：</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Vue-js新手入门指南"><a href="#Vue-js新手入门指南" class="headerlink" title="Vue.js新手入门指南"></a>Vue.js新手入门指南</h2><p> 最近在逛各大网站，论坛，以及像SegmentFault等编程问答社区，发现Vue.js异常火爆，重复性的提问和内容也很多，楼主自己也趁着这个大前端的热潮，着手学习了一段时间的Vue.js，目前用它正在做自己的结业项目。</p>
+<p>在做的过程中也对Vue.js的官方文档以及其各种特性有了许多认识。作为一个之前以PHP+模版引擎为主的开发，从一个从未接触过除HTML+CSS+JavaScript+JQuery以外的前端技术的人到现在可以独立使用Vue.js以及各种附属的UI库来开发项目，我总结了一些知识和经验想与大家分享。</p>
+<p>下面我就以问答的形式来分享吧。这里假设你仅仅只掌握了HTML+CSS+JavaScript，如果你对JQuery这个前端库，以及各种后端模版语言比如说PHP，JSP还有所了解并且使用过的话那就太好了。</p>
+<h2 id="1-Vue-js是什么？"><a href="#1-Vue-js是什么？" class="headerlink" title="1.Vue.js是什么？"></a>1.Vue.js是什么？</h2><blockquote>
+<p>Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进式框架。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用<a href="https://zshipu.com/t?url=http://cn.vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">单文件组件</a>和 <a href="https://zshipu.com/t?url=http://github.com/vuejs/awesome-vue#libraries--plugins" target="_blank" rel="noopener">Vue 生态系统支持的库</a>开发的复杂单页应用。</p>
+<p>Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。</p>
+<p>如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看<a href="https://zshipu.com/t?url=http://cn.vuejs.org/v2/guide/comparison.html" target="_blank" rel="noopener">对比其它框架</a>。</p>
+</blockquote>
+<p>这是官网的介绍，是不是觉得非常的抽象非常的官方？看完之后可能还是有很多人不是很懂这个框架到底是用来做什么的，什么是“渐进式框架”？什么是“自底向上增量开发”？什么是“视图层”？什么是“单文件组件”？什么是“复杂的单页应用？”第二段话里面“响应的数据绑定和组合的视图组件”这又是个啥？还有最后一段话，“Vue.js 与其它库/框架的区别”究竟是什么？</p>
+<p>不要担心，如果你慢慢看完这里面的所有问答，一定会对前面那些可能你从未听说过的专业术语有一种恍然大悟的感觉。</p>
+<h2 id="2-Vue-js到底是什么？"><a href="#2-Vue-js到底是什么？" class="headerlink" title="2.Vue.js到底是什么？"></a>2.Vue.js到底是什么？</h2><p>想必现在能看到我这篇文章的人，都是用着APP或者网页版知乎在阅读把。Vue.js就是一个用于搭建类似于网页版知乎这种表单项繁多，且内容需要根据用户的操作进行修改的网页版应用。</p>
+<h2 id="3-单页应用程序（SPA）"><a href="#3-单页应用程序（SPA）" class="headerlink" title="3.单页应用程序（SPA）"></a>3.单页应用程序（SPA）</h2><p>顾名思义，单页应用一般指的就是一个页面就是应用，当然也可以是一个子应用，比如说知乎的一个页面就可以视为一个子应用。单页应用程序中一般交互处理非常多，而且页面中的内容需要根据用户的操作动态变化。</p>
+<h2 id="4-你前面说的网页版知乎我也可以用JQuery写啊，为什么要用Vue-js呢？"><a href="#4-你前面说的网页版知乎我也可以用JQuery写啊，为什么要用Vue-js呢？" class="headerlink" title="4.你前面说的网页版知乎我也可以用JQuery写啊，为什么要用Vue.js呢？"></a>4.你前面说的网页版知乎我也可以用JQuery写啊，为什么要用Vue.js呢？</h2><p>讲到JQuery，就不得不说到JavaScript的DOM操作了。如果你用JQuery来开发一个知乎，那么你就需要用JQuery中的各种DOM操作方法去操作HTML的DOM结构了。</p>
+<p>现在我们把一个网页应用抽象一下，那么HTML中的DOM其实就是视图，一个网页就是通过DOM的组合与嵌套，形成了最基本的视图结构，再通过CSS的修饰，在基本的视图结构上“化妆”让他们看起来更加美观。最后涉及到交互部分，就需要用到JavaScript来接受用户的交互请求，并且通过事件机制来响应用户的交互操作，并且在事件的处理函数中进行各种数据的修改，比如说修改某个DOM中的innerHTML或者innerText部分。</p>
+<p>我们把HTML中的DOM就可以与其他的部分独立开来划分出一个层次，这个层次就叫做<strong>视图层</strong>。</p>
+<blockquote>
+<p>Vue 的核心库只关注视图层</p>
+</blockquote>
+<p>我们为什么要把视图层抽取出来并且单独去关注它呢？</p>
+<p>因为在像知乎这种页面元素非常多，结构很庞大的网页中，数据和视图如果全部混杂在一起，像传统开发一样全部混合在HTML中，那么要对它们进行处理会十分的费劲，并且如果其中有几个结构之间存在藕断丝连的关系，那么会导致代码上出现更大的问题，这什么问题呢？</p>
+<p>你是否还记得你当初写JQuery的时候，有写过$(‘#xxx’).parent().parent().parent()这种代码呢？当你第一次写的时候，你觉得页面元素不多，不就是找这个元素的爸爸的爸爸的爸爸吗，我大不了在注释里面写清楚这个元素的爸爸的爸爸的爸爸不就好了。但是万一过几天之后你的项目组长或者你的产品经理突然对你做的网页提出修改要求，这个修改要求将会影响页面的结构，也就是DOM的关联与嵌套层次要发生改变，那么$(‘#xxx’).parent().parent().parent()可能就会变成$(‘#xxx’).parent().parent().parent().parent().parent()了。</p>
+<p>这还不算什么，等以后产品迭代越来越快，修改越来越多，而且页面中类似的关联和嵌套DOM元素不止一个，那么修改起来将非常费劲。而且JQuery选择器查找页面元素以及DOM操作本身也是有性能损失的，可能到时候打开这个页面，会变得越来越卡，而你却无从下手。</p>
+<p>当你在编写项目的时候遇到了这种问题，你一定会抱怨，为什么世上会有HTML这种像盗梦空间一样的需要无数div嵌套才能做出页面的语言，为什么当初学JQuery看中的是它简洁的DOM操作，现在却一点也不觉得它有多简洁，难道我学的是假的JQuery？为什么写个代码这么难，你想砸电脑，你想一键盘拍在产品狗的脑袋上，责怪他天天改需求才让你原本花清香茶清味的代码变得如此又臭又长。</p>
+<p>这个时候如果你学过Vue.js，那么这些抱怨将不复存在。</p>
+<h2 id="5-Vue-js为什么能让基于网页的前端应用程序开发起来这么方便？"><a href="#5-Vue-js为什么能让基于网页的前端应用程序开发起来这么方便？" class="headerlink" title="5.Vue.js为什么能让基于网页的前端应用程序开发起来这么方便？"></a>5.Vue.js为什么能让基于网页的前端应用程序开发起来这么方便？</h2><p>因为Vue.js有声明式，响应式的数据绑定，与组件化的开发，并且还使用了Virtual DOM这个看名字就觉得高大上的技术。</p>
+<p>可是这些名词都是啥？</p>
+<h2 id="6-响应式的数据绑定"><a href="#6-响应式的数据绑定" class="headerlink" title="6.响应式的数据绑定"></a>6.响应式的数据绑定</h2><p>这里的响应式不是@media 媒体查询中的响应式布局，而是指vue.js会自动对页面中某些数据的变化做出响应。至于是如何响应的，大家可以先把下面这段代码随便粘贴到一个扩展名为html的文件然后用浏览器打开，随便在文本框里面输入一些文字，观察一下页面变化。</p>
+<p> <code class="language-text"><!DOCTYPE html></code></p>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <title>vue.js测试 - 代码之美专栏</title>
+    <!-- author:昌维 代码之美 https://zhuanlan.zhihu.com/codes -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" name value placeholder="在这里输入文字，下面会跟着变化" v-model="message">
+        <hr>
+        <p></p>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+          el: '#app',
+          data: {
+            message: 'Hello Vue!'
+          }
+        })
+    </script>
+</body>
+</html>
+
+<p>是不是会发现一个很神奇的现象，文本框里面输入的文字和后面的p标签中的内容一起变化？</p>
+<p>换句话说，p标签里面通过这个写法与input标签中的value绑定在了一起，其中变化，另外一个和它绑定的数据就跟着变化。</p>
+<p>结合标题来说，就是vue.js会自动响应数据的变化情况，并且根据用户在代码中预先写好的绑定关系，对所有绑定在一起的数据和视图内容都进行修改。而这种绑定关系，在图上是以input 标签的v-model属性来声明的，因此你在别的地方可能也会看到有人粗略的称vue.js为声明式渲染的模版引擎。</p>
+<h2 id="7-组件化开发"><a href="#7-组件化开发" class="headerlink" title="7.组件化开发"></a>7.组件化开发</h2><p>还记得在传统前端开发的时候，我们都是每个人做一个页面，然后最后套入各种后端模版引擎，比如说PHP的Smarty或者Java的JSP等等。</p>
+<p>但是现在我们做单页应用，页面交互和结构十分复杂，一个页面上就有许许多多的模块需要编写，而且往往一个模块的代码量和工作量就非常庞大，如果还按照原先的方法来开发，那么会累死人。而且遇到以后的产品需求变更，修改起来也非常麻烦，生怕动了其中一个div之后，其他div跟着雪崩，整个页面全部乱套，或者由于JavaScript的事件冒泡机制，导致修改一些内层的DOM事件处理函数之后，出现各种莫名其妙的诡异BUG。</p>
+<p>在面向对象编程中，我们可以使用面向对象的思想将各种模块打包成类或者把一个大的业务模块拆分成更多更小的几个类。在面向过程编程中，我们也可以把一些大功能拆分成许多函数，然后分配给不同的人来开发。</p>
+<p>在前端应用，我们是否也可以像编程一样把模块封装呢？这就引入了组件化开发的思想。</p>
+<p>Vue.js通过组件，把一个单页应用中的各种模块拆分到一个一个单独的组件（component）中，我们只要先在父级应用中写好各种组件标签（占坑），并且在组件标签中写好要传入组件的参数（就像给函数传入参数一样，这个参数叫做组件的属性），然后再分别写好各种组件的实现（填坑），然后整个应用就算做完了。</p>
+<h2 id="8-Virtual-DOM"><a href="#8-Virtual-DOM" class="headerlink" title="8.Virtual DOM"></a>8.Virtual DOM</h2><p>现在的网速越来越快了，很多人家里都是几十甚至上百M的光纤，手机也是4G起步了，按道理一个网页才几百K，而且浏览器本身还会缓存很多资源文件，那么几十M的光纤为什么打开一个之前已经打开过，已经有缓存的页面还是感觉很慢呢？这就是因为浏览器本身处理DOM也是有性能瓶颈的，尤其是在传统开发中，用JQuery或者原生的JavaScript DOM操作函数对DOM进行频繁操作的时候，浏览器要不停的渲染新的DOM树，导致页面看起来非常卡顿。</p>
+<p>而Virtual DOM则是虚拟DOM的英文，简单来说，他就是一种可以预先通过JavaScript进行各种计算，把最终的DOM操作计算出来并优化，由于这个DOM操作属于预处理操作，并没有真实的操作DOM，所以叫做虚拟DOM。最后在计算完毕才真正将DOM操作提交，将DOM操作变化反映到DOM树上。</p>
+<p>对于vue.js的Virtual DOM，目前业界有着褒贬不一的评价。有人认为Vue.js作为一个轻量级框架，引入Virtual DOM会加大Vue.js本身的代码尺寸，也会消耗更多CPU（手机上会更耗电）（注意：消耗更多的CPU并不意味着会更卡，因为JavaScript计算是后台计算，他的计算量还不至于让DOM操作变得卡顿），并且在操作单个DOM元素的时候，反而多了一道计算工序，会更慢。但也有人认为基本上会用Vue.js开发的都是页面中内容很多的元素，肯定操作的DOM量级普遍较大，平均一下还是比较划算的。</p>
+<h2 id="9-我到底该怎么用Vue-js做单页应用开发？"><a href="#9-我到底该怎么用Vue-js做单页应用开发？" class="headerlink" title="9.我到底该怎么用Vue.js做单页应用开发？"></a>9.我到底该怎么用Vue.js做单页应用开发？</h2><p>说了这么多，我还是不知道怎么用它做出一个像知乎那样的页面啊，到底怎么学它呢？</p>
+<p>前面我们看了一个响应式的数据绑定案例，那只是一个DEMO，而且也看不出有什么实际意义，离真正的单页应用程序还差得远，到底怎么用它开发真实的项目呢？</p>
+<p>我的建议是，先把<a href="https://zshipu.com/t?url=http://cn.vuejs.org/v2/guide/index.html" target="_blank" rel="noopener">介绍 - vue.js</a>官方文档的基础部分硬着头皮看一遍。除了组件这个小节涉及到了很多晦涩难懂的名词以外，前面几章完全就是把Vue.js当作一个模版引擎来用。</p>
+<p>然后开始学习ECMAScript6，Webpack，NPM以及Vue-Cli的基本用法，最好对Node.js也要有所了解。</p>
+<p>最后组件部分先大致看一遍，了解组件里面都有哪些概念之后，开始看网上各种实战视频以及文章还有别人开源的源代码。</p>
+<h2 id="10-在前面你提到过好几次ECMAScript，这是啥？"><a href="#10-在前面你提到过好几次ECMAScript，这是啥？" class="headerlink" title="10.在前面你提到过好几次ECMAScript，这是啥？"></a>10.在前面你提到过好几次ECMAScript，这是啥？</h2><p>ECMAScript听名字好像和JavaScript很像，难不成他们有什么千丝万缕的联系？</p>
+<p>没错你猜对了，他们之间还真有着很深的联系。</p>
+<p>引用阮一峰老师的话：（<a href="https://zshipu.com/t?url=http://es6.ruanyifeng.com/#docs/intro" target="_blank" rel="noopener">ECMAScript 6入门</a>）</p>
+<blockquote>
+<p>要讲清楚这个问题，需要回顾历史。1996年11月，JavaScript 的创造者 Netscape 公司，决定将 JavaScript 提交给国际标准化组织ECMA，希望这种语言能够成为国际标准。次年，ECMA 发布262号标准文件（ECMA-262）的第一版，规定了浏览器脚本语言的标准，并将这种语言称为 ECMAScript，这个版本就是1.0版。</p>
+<p>该标准从一开始就是针对 JavaScript 语言制定的，但是之所以不叫 JavaScript，有两个原因。一是商标，Java 是 Sun 公司的商标，根据授权协议，只有 Netscape 公司可以合法地使用 JavaScript 这个名字，且 JavaScript 本身也已经被 Netscape 公司注册为商标。二是想体现这门语言的制定者是 ECMA，不是 Netscape，这样有利于保证这门语言的开放性和中立性。</p>
+<p>因此，ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 Jscript 和 ActionScript）。日常场合，这两个词是可以互换的。</p>
+</blockquote>
+<p>而ECMAScript6就是新一代的JavaScript语言。</p>
+<p>这里也强烈推荐大家学习ECMAScript6的时候参考这本书<a href="https://zshipu.com/t?url=http://es6.ruanyifeng.com/" target="_blank" rel="noopener">ECMAScript 6入门</a></p>
+<h2 id="11-我在学习Vue-js的时候老是听到Webpack，这是啥？"><a href="#11-我在学习Vue-js的时候老是听到Webpack，这是啥？" class="headerlink" title="11.我在学习Vue.js的时候老是听到Webpack，这是啥？"></a>11.我在学习Vue.js的时候老是听到Webpack，这是啥？</h2><p>Webpack是一个前端打包和构建工具。如果你之前一直是手写HTML，CSS，JavaScript，并且通过link标签将CSS引入你的HTML文件，以及通过Script标签的src属性引入外部的JS脚本，那么你肯定会对这个工具感到陌生。不要紧，我们先来了解一下为什么要用Webpack，然后带着原因去学习就好了。</p>
+<h2 id="12-为什么要用Webpack"><a href="#12-为什么要用Webpack" class="headerlink" title="12.为什么要用Webpack"></a>12.为什么要用Webpack</h2><p>前面说了，做一个单页应用程序本身就相当复杂，而且在做的时候肯定会使用到很多素材和别的第三方库，我们该如何去管理这些东西呢？</p>
+<p>还有前面讲到了Webpack是一个前端打包工具，前端代码为什么要打包呢？因为单页应用程序中用到很多素材，如果每一个素材都通过在HTML中以src属性或者link来引入，那么请求一个页面的时候，可能浏览器就要发起十多次请求，往往请求的这些资源都是一些脚本代码或者很小的图片，这些资源本身才几k，下载连1秒都不需要，但是由于HTTP是应用层协议，它的下层是TCP这个运输层协议，TCP的握手和挥手过程消耗的时间可能比下载资源本身还要长，所以需要把这些小文件全部打包成一个文件，这样只要一次TCP握手和挥手的过程，就把多个资源给下载下来了，并且多个资源由于都是共享一个HTTP请求，所以head等部分也是共享的，相当于形成了规模效应，让网页展现更快，用户体验更好。</p>
+<p>前面说到Webpack还有构建的功能，这就不得不提到了ECMAScript6这个新版本的JavaScript，但是现在国内外还有很多人用着老版本的浏览器，这些浏览器并不支持ECMAScript6，那么我们的前端项目如何在这种浏览器上运行呢？这就需要Webpack的Loader自动载入一个转换器来将我们写的ECMAScript6转换成浏览器能支持的老版本JavaScript语言，这个转换器的名字叫做babel，如果你以后听到或者看到了这个单词，应该要知道它就是一个ECMAScript6 to 老版本JavaScript的转换器了。这也是Webpack的构建功能。当然对前端有更深入的同学还会知道Sass，Less，stylus之类的CSS预处理器，我们也可以通过在Loader中编写特定的规则来实现自动将这些CSS预处理语言转换成普通浏览器能识别的CSS代码。</p>
+<p>开头的介绍提到了vue.js可以使用单文件组件开发项目，其实也是通过Webpack将单文件组件中的模版，样式以及JS转换到主页面中</p>
+<p>当然Webpack不止这点功能，它还可以通过安装各种插件来扩展，比如说热加载技术，就是解放键盘的F5键。让我们修改代码，并且按Ctrl+S保存之后，浏览器页面自动刷新变化，不需要我们去手动刷新，还有一些插件可以自动添加注释，自动给CSS代码加上一些浏览器内核对CSS3兼容前缀，就像webkit-xxx之类的一样。</p>
+<h2 id="13-NPM和Node-js又是什么？它们是什么关系？"><a href="#13-NPM和Node-js又是什么？它们是什么关系？" class="headerlink" title="13.NPM和Node.js又是什么？它们是什么关系？"></a>13.NPM和Node.js又是什么？它们是什么关系？</h2><p>首先讲讲Node.js。我们知道通常情况下，JavaScript的运行环境都是浏览器，因此JavaScript的能力也就局限于浏览器能赋予它的权限了。比如说读写本地系统文件这种操作，一般情况下运行在浏览器中的JavaScript代码是没有这个操作权限的。如果我们想用JavaScript写出一些能够运行在操作系统上的，能够具有像PHP，JAVA之类的编程语言具有的功能的程序该怎么办呢？Node.js就解决了这个问题。Node.js是一个服务端的JavaScript运行环境，通过Node.js可以实现用JavaScript写独立程序。像我们之前提到的Webpack就是Node.js写的，所以作为一个前端开发，即使你不用Node.js写独立程序，也得配一个Node.js运行环境，毕竟很多前端工具都是使用它写的。</p>
+<p>NPM是一个node.js的包管理器。我们在传统开发的时候，JQuery.js大多都是百度搜索，然后去官网下载，或者直接引入CDN资源，这种方法太过于麻烦。如果以后遇到其他的包，这个包的代码本身可能还调用了其他的包（也称这个包和其他的那几个包存在依赖关系），那么我们要在自己的项目中引入一个包将变得十分困难。现在我们有了NPM这个包管理器，直接可以通过</p>
+<p> <code class="language-text">npm install xxx包名称</code></p>
+<p>的方式引入它，比如说</p>
+<p> <code class="language-text">npm install vue</code></p>
+<p>就自动在当前项目文件夹下导入了这个包，并且npm自动下载好了vue这个包依赖的其他包。</p>
+<p>至于有的人在按照网上的npm教程配置的时候踩坑了，发现下载速度很慢或者完全下载不了，那是因为我国有着众所周知的原因，网上也有各种解决方法可以解决这个问题，大家多善用搜索引擎。</p>
+<p>前面提到了Webpack可以安装各种插件来扩展功能，其实也是通过这种方式扩展。</p>
+<p>如果你学过PHP的话，NPM就和PHP里面的Composer差不多。也和CentOS下的yum和Ubuntu下的apt-get差不多。</p>
+<h2 id="14-Vue-CLi又是啥？"><a href="#14-Vue-CLi又是啥？" class="headerlink" title="14.Vue-CLi又是啥？"></a>14.Vue-CLi又是啥？</h2><p>它是一个vue.js的脚手架工具。说白了就是一个自动帮你生成好项目目录，配置好Webpack，以及各种依赖包的工具，它可以通过</p>
+<p> <code class="language-text">npm install vue-cli -g</code></p>
+<p>的方式安装，后面的-g表示全局安装的意思，意味着你可以打开命令行之后直接通过vue命令调用它。</p>
+<h2 id="15-我该不该学Vue-js？"><a href="#15-我该不该学Vue-js？" class="headerlink" title="15.我该不该学Vue.js？"></a>15.我该不该学Vue.js？</h2><p>现在Vue.js无论是发展势头还是作者支持还是很好的，而且它本身中文资料就比较多，教程也很多，现在随随便便打开几个和前端开发有关的知乎专栏，基本上都能见到相关文章，社区也很活跃。</p>
+<p>至于你该不该学，取决于你自己，如果你当前只是做做以内容展示为主的项目，或者就是成天用各种CMS建站仿站，并且以后都不打算更换更好的工作，那么可以暂时不用学。如果你开发的项目交互非常多，而且前后端开发都对前后端分离有很清楚的认识，那么可以大胆的学习，并且在实际项目中运用。</p>
+<h2 id="16-Vue-js怎么火起来的？"><a href="#16-Vue-js怎么火起来的？" class="headerlink" title="16.Vue.js怎么火起来的？"></a>16.Vue.js怎么火起来的？</h2><p>关于这个问题，网上说法很多，我自己认为主要还是前些年大前端变革太快，而最近一年开始Vue.js+Webpack这个组合开始逐渐稳定下来了，而且已经有了很多中文资料。</p>
+<p>对比它的竞争对手AngularJS，新旧版本项目无法平滑升级，变革太大让用户感觉不安稳。</p>
+<p>而React本身主流推荐用的是JSX，需要额外学习一门语法（什么？学Vue.js还要学ECMAScript6？现在ECMAScript6是趋势，并不是因为Vue.js才要学的），并且React本身用的是render写法编写模版代码，这让很多用习惯了Smarty等后端模版引擎得人来使用感觉很不适应，现在看来React本身在中国一些论坛社区的火爆程度还是没有Vue.js高。</p>
+<p>当然也并不是说除了Vue.js以外其他框架都很差。像知乎新版也是用React开发的，他还是有各自优秀的地方大家可以深入学习之后做出自己的判断。</p>
+<h2 id="17-我在很多地方还看到Vuex和Vue-route，它们又是什么？"><a href="#17-我在很多地方还看到Vuex和Vue-route，它们又是什么？" class="headerlink" title="17.我在很多地方还看到Vuex和Vue-route，它们又是什么？"></a>17.我在很多地方还看到Vuex和Vue-route，它们又是什么？</h2><p>Vuex是vue的一个状态管理器。用于集中管理一个单页应用程序中的各种状态。</p>
+<p>Vue-route是vue的一个前端路由器，这个路由器不是我们上网用的路由器，而是一个管理请求入口和页面映射关系的东西。它可以实现对页面局部进行无刷新的替换，让用户感觉就像切换到了网页一样。</p>
+<p>要讲清楚这两个东西，又得花费大量篇幅，所以这里只是简单提一下，先学好vue.js本身才是最重要的。</p>
+<h2 id="18-我还在一些地方看到过Vue-resource和Axios，它们又是什么？"><a href="#18-我还在一些地方看到过Vue-resource和Axios，它们又是什么？" class="headerlink" title="18.我还在一些地方看到过Vue-resource和Axios，它们又是什么？"></a>18.我还在一些地方看到过Vue-resource和Axios，它们又是什么？</h2><p>我们在传统的前后端不分离的开发中，后端直接把数据通过模版引擎拼接进了返回的HTML中。而现在做单页应用程序属于前后端分离开发，那么这个单页应用程序中的数据就得通过ajax的方式获取，也要通过ajax的方式提交到后端。</p>
+<p>在传统开发中我们都是通过xmlhttprequest手动操作，或者通过JQuery的ajax方法来进行数据提交获取。</p>
+<p>vue.js本身没有封装ajax操作库，所以我们要通过Vue-resource和Axios来进行ajax操作，而因为种种原因，现在vue.js2.0已经将axios作为官方推荐的ajax库了。</p>
+<h2 id="19-我该学Vue-js2-0还是1-0呢？"><a href="#19-我该学Vue-js2-0还是1-0呢？" class="headerlink" title="19.我该学Vue.js2.0还是1.0呢？"></a>19.我该学Vue.js2.0还是1.0呢？</h2><p>现在很多框架和语言都是学新不学旧（Python慢慢也变得如此），因此如果不是为了维护老旧项目，肯定推荐学Vue.js2.0。而且学会了Vue.js2.0，再去学习Vue.js1.0也不是什么难事。</p>
+<h2 id="20-写Vue-js用什么开发工具和电脑呢？"><a href="#20-写Vue-js用什么开发工具和电脑呢？" class="headerlink" title="20.写Vue.js用什么开发工具和电脑呢？"></a>20.写Vue.js用什么开发工具和电脑呢？</h2><p>前端开发基本上不需要太高端的电脑都能胜任，现在这个时代是台电脑，装个编辑器都可以做前端开发的。</p>
+<p>Vue.js的组件文件本质上还是普通的代码文件，所以各种编辑器配合一些语法检查插件就足够了。我自己用的是sublime text 3，安装一些插件之后可以实现.vue单文件组件高亮代码以及各种自动完成。Webstorm中也有类似插件，大家可以在网上各种教学文章的指导下配置好环境。</p>
+<h2 id="结语："><a href="#结语：" class="headerlink" title="结语："></a>结语：</h2><p>可能包括我在内的很多人在看到Vue.js那神奇的双向绑定优雅写法都会有一种非常惊艳，而看到中文文档发布之后有种想立马学习的冲动。可惜大前端终究是大前端，如果一个对于前端各个方面没有深入认识就想着能一步登天，肯定对不起大前端的“大”字。原本看着只想学一个Vue.js，没想到顺带把ECMAScript6，Webpack配置，ESLint配置，bable配置，npm使用，node.js语法，以后vue全家桶中的vuex，vue-route等等等等都学了一遍。前段时间网上也流传出了一个职位叫做Webpack配置工程师，从这里也可以看出弄懂前端这个大杂烩确实不是那么容易。大家一起加油，有什么问题也可以在评论区回复，我会抽空补充在文章内容中。谢谢各位的支持！~</p>
+<p>本文章由</p>
+<p> <a href="https://zshipu.com/t?url=//www.zhihu.com/people/5fe93d9e436715d6d5cb49245af3b88c" target="_blank" rel="noopener">@昌维</a></p>
+<p>原创，在知乎专栏-代码之美 <a href="https://zshipu.com/t?url=https://www.zhihu.com/codes" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/codes</a> 首发，转载请注明出处。大家喜欢和支持我的文章可以点开我的头像以及专栏名称进行关注，或是点击下方的打赏按钮进行支持，谢谢。^_^</p>
+<blockquote>
+<p>作者：昌维</p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Vue.js新手入门指南</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-05-30, 12:00:43</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-30, 12:00:43</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/tlg/2020/05/30/Vue.js新手入门指南/" title="Vue.js新手入门指南">https://blog.zshipu.com/tlg/2020/05/30/Vue.js新手入门指南/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+					| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#go','#web',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

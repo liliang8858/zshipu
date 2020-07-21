@@ -1,0 +1,4 @@
+options:
+  imagePath: '/images'
+  imgRoot: 'https:\/\/blog.zshipu.com/read'
+  imgUpMsg: '知识铺-'

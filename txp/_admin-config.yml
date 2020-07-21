@@ -1,0 +1,8 @@
+options:
+  imagePath: /images
+  imgRoot: 'https:\/\/blog.zshipu.com/txp'
+  imgUpMsg: 知识铺-
+  lineNumbers: false
+  imagePrefix: vx-edwin_ew-
+editor:
+  lineNumbers: false

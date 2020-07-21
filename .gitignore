@@ -1,0 +1,7 @@
+/reading/db.json
+/reading/public
+/note/db.json
+/note/public
+node_modules
+*.log
+dist

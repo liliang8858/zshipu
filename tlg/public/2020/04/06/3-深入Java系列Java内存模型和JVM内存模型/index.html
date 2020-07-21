@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>23.深入Java系列Java内存模型和JVM内存模型 | 技术分享 | 知识铺</title>
+  <meta name="keywords" content>
+  <meta name="description" content="23.深入Java系列Java内存模型和JVM内存模型 | 知识铺">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="区分-JVM内存_分区和_Java内存模型(Java Memory Model)_q…_CSDN博客 2019年5月8日 - 虚拟机栈(JVM Stacks):属线程私有内存区域,与线程同时创建,总数与线程数关联,代表_Java_方法执行的_内存模型_。每一个运行在_Java_虚拟机里的线程都拥有自己.. 比较jvm内存_结构&amp;amp;_java内存模型&amp;amp;java对象模型 - 个人文章…">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23.深入Java系列Java内存模型和JVM内存模型">
+<meta property="og:url" content="https://blog.zshipu.com/tlg/2020/04/06/3-深入Java系列Java内存模型和JVM内存模型/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="区分-JVM内存_分区和_Java内存模型(Java Memory Model)_q…_CSDN博客 2019年5月8日 - 虚拟机栈(JVM Stacks):属线程私有内存区域,与线程同时创建,总数与线程数关联,代表_Java_方法执行的_内存模型_。每一个运行在_Java_虚拟机里的线程都拥有自己.. 比较jvm内存_结构&amp;amp;_java内存模型&amp;amp;java对象模型 - 个人文章…">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2020-04-06T04:01:29.200Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="23.深入Java系列Java内存模型和JVM内存模型">
+<meta name="twitter:description" content="区分-JVM内存_分区和_Java内存模型(Java Memory Model)_q…_CSDN博客 2019年5月8日 - 虚拟机栈(JVM Stacks):属线程私有内存区域,与线程同时创建,总数与线程数关联,代表_Java_方法执行的_内存模型_。每一个运行在_Java_虚拟机里的线程都拥有自己.. 比较jvm内存_结构&amp;amp;_java内存模型&amp;amp;java对象模型 - 个人文章…">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(190)</small></div></li>
+    
+        
+            
+            <li><div data-rel="go">go<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="190">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">go</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">web</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务">Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务</span>
+            <span class="post-date" title="2020-07-16 18:43:02">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud+nacos+Feign，实现注册中心及配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud+nacos+Feign，实现注册中心及配置中心">Spring Cloud+nacos+Feign，实现注册中心及配置中心</span>
+            <span class="post-date" title="2020-07-16 18:39:59">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos作为配置中心时，多个服务共用一个dataId的配置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos作为配置中心时，多个服务共用一个dataId的配置">Nacos作为配置中心时，多个服务共用一个dataId的配置</span>
+            <span class="post-date" title="2020-07-16 18:32:26">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(三)：使用Nacos作为配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(三)：使用Nacos作为配置中心">SpringCloudAlibaba(三)：使用Nacos作为配置中心</span>
+            <span class="post-date" title="2020-07-16 17:34:29">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos 集群部署/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos 集群部署">Nacos 集群部署</span>
+            <span class="post-date" title="2020-07-16 17:31:53">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(二)：Nacos介绍与环境安装/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(二)：Nacos介绍与环境安装">SpringCloudAlibaba(二)：Nacos介绍与环境安装</span>
+            <span class="post-date" title="2020-07-16 17:26:15">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(一)：概述与重要组件/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(一)：概述与重要组件">SpringCloudAlibaba(一)：概述与重要组件</span>
+            <span class="post-date" title="2020-07-16 17:23:13">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Java面试宝典300问-第一部分/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java面试宝典300问 第一部分">Java面试宝典300问 第一部分</span>
+            <span class="post-date" title="2020-07-09 14:39:53">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/GraaphQL实战：GraphQL Mutations 五/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL实战：GraphQL Mutations 五">GraphQL实战：GraphQL Mutations 五</span>
+            <span class="post-date" title="2020-07-09 13:50:49">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：GraphQL 基础知识  四/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：GraphQL 基础知识  四">Graphql实战：GraphQL 基础知识  四</span>
+            <span class="post-date" title="2020-07-09 13:38:27">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：自动执行后端测试 三/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：自动执行后端测试 三">Graphql实战：自动执行后端测试 三</span>
+            <span class="post-date" title="2020-07-09 13:22:30">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：基本模型和多态关联 二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：基本模型和多态关联 二">Graphql实战：基本模型和多态关联 二</span>
+            <span class="post-date" title="2020-07-09 11:59:15">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：构建论坛应用，从代码到部署 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：构建论坛应用，从代码到部署 一">Graphql实战：构建论坛应用，从代码到部署 一</span>
+            <span class="post-date" title="2020-07-09 11:48:06">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/04/学习Go 第一周/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习Go 第一周">学习Go 第一周</span>
+            <span class="post-date" title="2020-07-04 11:24:14">2020/07/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法">每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法</span>
+            <span class="post-date" title="2020-07-02 11:43:59">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/同心管家-专业心脏病医疗服务平台/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="同心管家-专业心脏病医疗服务平台">同心管家-专业心脏病医疗服务平台</span>
+            <span class="post-date" title="2020-07-02 11:30:40">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/2020 年成为前端大师的 9 个项目/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020 年成为前端大师的 9 个项目">2020 年成为前端大师的 9 个项目</span>
+            <span class="post-date" title="2020-06-25 20:13:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter：初学者的学习资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter：初学者的学习资源">Flutter：初学者的学习资源</span>
+            <span class="post-date" title="2020-06-25 19:46:43">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 404页面自定义/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 404页面自定义">Flutter 404页面自定义</span>
+            <span class="post-date" title="2020-06-25 19:22:33">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 滑块小部件有哪些新增功能/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 滑块小部件有哪些新增功能">Flutter 滑块小部件有哪些新增功能</span>
+            <span class="post-date" title="2020-06-25 19:17:07">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/用于 Flutter 开发人员的新工具，内置于 Flutter/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="用于 Flutter 开发人员的新工具，内置于 Flutter">用于 Flutter 开发人员的新工具，内置于 Flutter</span>
+            <span class="post-date" title="2020-06-25 19:06:02">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 八大优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 八大优势">Flutter 八大优势</span>
+            <span class="post-date" title="2020-06-25 18:17:38">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Vue.js 和 Angular 比 jQuery 有什么好处/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js 和 Angular 比 jQuery 有什么好处">Vue.js 和 Angular 比 jQuery 有什么好处</span>
+            <span class="post-date" title="2020-06-25 18:05:10">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/数据科学专家必修之路/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据科学专家必修之路">数据科学专家必修之路</span>
+            <span class="post-date" title="2020-06-25 14:08:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/学习 JavaScript 的最佳方式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习 JavaScript 的最佳方式">学习 JavaScript 的最佳方式</span>
+            <span class="post-date" title="2020-06-25 14:00:18">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 最佳资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 最佳资源">GraphQL 最佳资源</span>
+            <span class="post-date" title="2020-06-25 12:04:57">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/与 REST API 相比，GraphQL 有哪些优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="与 REST API 相比，GraphQL 有哪些优势">与 REST API 相比，GraphQL 有哪些优势</span>
+            <span class="post-date" title="2020-06-25 12:02:49">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 深入理解系列 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 深入理解系列 一">GraphQL 深入理解系列 一</span>
+            <span class="post-date" title="2020-06-25 11:59:41">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的主要组件分析 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的主要组件分析 - 分步指南">Python 中的主要组件分析 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:29:05">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/K 表示 Python 中的群集 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="K 表示 Python 中的群集 - 分步指南">K 表示 Python 中的群集 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:28:18">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中支持矢量机 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中支持矢量机 - 分步指南">Python 中支持矢量机 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:27:01">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的决策树和随机林/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的决策树和随机林">Python 中的决策树和随机林</span>
+            <span class="post-date" title="2020-06-21 11:25:57">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的 K 最近邻居 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的 K 最近邻居 - 分步指南">Python 中的 K 最近邻居 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:24:52">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的逻辑回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的逻辑回归 - 分步指南">Python 中的逻辑回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:23:42">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的线性回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的线性回归 - 分步指南">Python 中的线性回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:19:43">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/推荐算法简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法简介">推荐算法简介</span>
+            <span class="post-date" title="2020-06-21 11:18:15">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/9 种常用关键机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9 种常用关键机器学习算法">9 种常用关键机器学习算法</span>
+            <span class="post-date" title="2020-06-21 11:17:12">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/最新技术周刊 01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="最新技术周刊 01">最新技术周刊 01</span>
+            <span class="post-date" title="2020-06-21 11:08:27">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/20/初创团队选择 Vert.x /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初创团队选择 Vert.x">初创团队选择 Vert.x</span>
+            <span class="post-date" title="2020-06-20 17:19:35">2020/06/20</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/19/GraphQL 入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 入门指南">GraphQL 入门指南</span>
+            <span class="post-date" title="2020-06-19 20:06:53">2020/06/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/17/Linux的du用法排除某个目录/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux的du用法排除某个目录">Linux的du用法排除某个目录</span>
+            <span class="post-date" title="2020-06-17 16:47:00">2020/06/17</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/16/dubbo go 初步使用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="dubbo go 初步使用">dubbo go 初步使用</span>
+            <span class="post-date" title="2020-06-16 16:03:40">2020/06/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/15/GraphQL架构拼接解释：架构委派/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL架构拼接解释：架构委派">GraphQL架构拼接解释：架构委派</span>
+            <span class="post-date" title="2020-06-15 18:36:56">2020/06/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 作为微服务的 API 网关/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 作为微服务的 API 网关">GraphQL 作为微服务的 API 网关</span>
+            <span class="post-date" title="2020-06-14 21:10:27">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 在微服务架构中的实践/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 在微服务架构中的实践">GraphQL 在微服务架构中的实践</span>
+            <span class="post-date" title="2020-06-14 20:54:37">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 微服务化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 微服务化">GraphQL 微服务化</span>
+            <span class="post-date" title="2020-06-14 20:52:36">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/MySQL 上构造即时 Graphql API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MySQL 上构造即时 Graphql API">MySQL 上构造即时 Graphql API</span>
+            <span class="post-date" title="2020-06-12 13:44:34">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/graphql mysql /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="graphql mysql">graphql mysql</span>
+            <span class="post-date" title="2020-06-12 13:42:42">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/11/golang gateway 从零开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang gateway 从零开始">golang gateway 从零开始</span>
+            <span class="post-date" title="2020-06-11 09:12:48">2020/06/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/09/springboot + spring security验证token进行用户认证/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot + spring security验证token进行用户认证">springboot + spring security验证token进行用户认证</span>
+            <span class="post-date" title="2020-06-09 17:11:25">2020/06/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/08/zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has">zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has</span>
+            <span class="post-date" title="2020-06-08 13:31:04">2020/06/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/微信 小程序需要授权 有部分人需要获取验证码/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微信 小程序需要授权 有部分人需要获取验证码">微信 小程序需要授权 有部分人需要获取验证码</span>
+            <span class="post-date" title="2020-06-04 13:26:37">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang 正则表达式 过滤手机号带有字符串，特殊符号/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang 正则表达式 过滤手机号带有字符串，特殊符号">golang 正则表达式 过滤手机号带有字符串，特殊符号</span>
+            <span class="post-date" title="2020-06-04 12:06:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang regexp.Compile 正则表达式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang regexp.Compile 正则表达式">golang regexp.Compile 正则表达式</span>
+            <span class="post-date" title="2020-06-04 11:56:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/初学者的 Docker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者的 Docker">初学者的 Docker</span>
+            <span class="post-date" title="2020-05-31 15:38:34">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/按值排序对象的 JavaScript 排序数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="按值排序对象的 JavaScript 排序数组">按值排序对象的 JavaScript 排序数组</span>
+            <span class="post-date" title="2020-05-31 15:32:48">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js——60分钟快速入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js——60分钟快速入门">Vue.js——60分钟快速入门</span>
+            <span class="post-date" title="2020-05-30 12:19:41">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js新手入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js新手入门指南">Vue.js新手入门指南</span>
+            <span class="post-date" title="2020-05-30 12:00:43">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Node.js的替代者，初识Deno/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Node.js的替代者，初识Deno">Node.js的替代者，初识Deno</span>
+            <span class="post-date" title="2020-05-30 11:59:58">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/初学者，学习vue应该从何下手？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者，学习vue应该从何下手？">初学者，学习vue应该从何下手？</span>
+            <span class="post-date" title="2020-05-30 11:58:18">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统">从0到1，Vue大牛的前端搭建——异常监控系统</span>
+            <span class="post-date" title="2020-05-30 11:57:22">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）">从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）</span>
+            <span class="post-date" title="2020-05-30 11:56:59">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/9道价值20k薪资的VUE必备面试题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9道价值20k薪资的VUE必备面试题">9道价值20k薪资的VUE必备面试题</span>
+            <span class="post-date" title="2020-05-30 11:25:07">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/29/canvas 折线/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="canvas 折线">canvas 折线</span>
+            <span class="post-date" title="2020-05-29 13:06:27">2020/05/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/28/Emoji 转换 base64/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Emoji 转换 base64">Emoji 转换 base64</span>
+            <span class="post-date" title="2020-05-28 18:41:42">2020/05/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/公众号 H5 分享/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号 H5 分享">公众号 H5 分享</span>
+            <span class="post-date" title="2020-05-27 19:46:03">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 signature/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 signature">获取微信公众号 signature</span>
+            <span class="post-date" title="2020-05-27 19:44:37">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 jsapi_ticket/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 jsapi_ticket">获取微信公众号 jsapi_ticket</span>
+            <span class="post-date" title="2020-05-27 19:43:56">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/2020编程大牛的网盘资料汇总/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020编程大牛的网盘资料汇总">2020编程大牛的网盘资料汇总</span>
+            <span class="post-date" title="2020-05-26 14:50:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/一个简单的RTMP服务器实现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="一个简单的RTMP服务器实现">一个简单的RTMP服务器实现</span>
+            <span class="post-date" title="2020-05-26 12:01:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/HTML5实现播放RTMP协议视频/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML5实现播放RTMP协议视频">HTML5实现播放RTMP协议视频</span>
+            <span class="post-date" title="2020-05-26 11:58:15">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/正文提取算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正文提取算法">正文提取算法</span>
+            <span class="post-date" title="2020-05-24 19:16:30">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma CSS - 开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma CSS - 开始">Bulma CSS - 开始</span>
+            <span class="post-date" title="2020-05-24 18:54:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/2020年，jQuery需要了解的那些知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020年，jQuery需要了解的那些知识点">2020年，jQuery需要了解的那些知识点</span>
+            <span class="post-date" title="2020-05-24 18:50:59">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员经常去的网站有哪些？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员经常去的网站有哪些？">程序员经常去的网站有哪些？</span>
+            <span class="post-date" title="2020-05-24 18:45:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员常去的网站/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员常去的网站">程序员常去的网站</span>
+            <span class="post-date" title="2020-05-24 18:33:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Redis 集群演进探讨和总结/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Redis 集群演进探讨和总结">Redis 集群演进探讨和总结</span>
+            <span class="post-date" title="2020-05-24 18:29:41">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Buefy框架如何自定义主题？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Buefy框架如何自定义主题？">Bulma和Buefy框架如何自定义主题？</span>
+            <span class="post-date" title="2020-05-24 13:24:53">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/bulma和bootstrap等前端框架我应该选择哪个？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bulma和bootstrap等前端框架我应该选择哪个？">bulma和bootstrap等前端框架我应该选择哪个？</span>
+            <span class="post-date" title="2020-05-24 13:20:09">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Bootstrap 区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Bootstrap 区别">Bulma和Bootstrap 区别</span>
+            <span class="post-date" title="2020-05-24 13:16:19">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma Vue.js集成/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma Vue.js集成">Bulma Vue.js集成</span>
+            <span class="post-date" title="2020-05-24 13:12:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma-起步/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma 起步">Bulma 起步</span>
+            <span class="post-date" title="2020-05-24 12:04:15">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/19/Deno-1-0-简介，node-js的代替者出现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Deno 1.0 简介，node.js的代替者出现">Deno 1.0 简介，node.js的代替者出现</span>
+            <span class="post-date" title="2020-05-19 08:55:46">2020/05/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/19/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号">公众号</span>
+            <span class="post-date" title="2020-04-19 17:15:07">2020/04/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（2）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（2）">ECG ×AI: 机器/深度学习的ECG应用入门（2）</span>
+            <span class="post-date" title="2020-04-18 13:18:17">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（1）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（1）">ECG ×AI: 机器/深度学习的ECG应用入门（1）</span>
+            <span class="post-date" title="2020-04-18 13:14:59">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（2）-环境搭建/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（2）---环境搭建">学习使用 webpack（2）---环境搭建</span>
+            <span class="post-date" title="2020-04-16 20:00:33">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（1）-简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（1）---简介">学习使用 webpack（1）---简介</span>
+            <span class="post-date" title="2020-04-16 19:57:59">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/RxJava总体流程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RxJava总体流程">RxJava总体流程</span>
+            <span class="post-date" title="2020-04-16 14:54:14">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/15/B1-Spring-Security-url-拦截匹配规则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Security url 拦截匹配规则">Spring Security url 拦截匹配规则</span>
+            <span class="post-date" title="2020-04-15 08:56:15">2020/04/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/在-JAVASCRIPT-中揭开提升的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="在 JAVASCRIPT 中揭开声明倒置的神秘面纱">在 JAVASCRIPT 中揭开声明倒置的神秘面纱</span>
+            <span class="post-date" title="2020-04-14 22:24:33">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/了解-JAVASCRIPT-中的一等公民函数和匿名函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="了解 JAVASCRIPT 中的一等公民函数和匿名函数">了解 JAVASCRIPT 中的一等公民函数和匿名函数</span>
+            <span class="post-date" title="2020-04-14 22:11:52">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/构建一致的-RESTful-API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建一致的 RESTful API">构建一致的 RESTful API</span>
+            <span class="post-date" title="2020-04-14 22:06:08">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列四、实例微型交易系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列四、实例微型交易系统">Vertx系列四、实例微型交易系统</span>
+            <span class="post-date" title="2020-04-13 20:09:38">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列三、揭开微服务的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列三、揭开微服务的神秘面纱">Vertx系列三、揭开微服务的神秘面纱</span>
+            <span class="post-date" title="2020-04-13 19:56:24">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列二、vert-x/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列二、vert.x">Vertx系列二、vert.x</span>
+            <span class="post-date" title="2020-04-13 18:59:58">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列一，简述/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列一、简述">Vertx系列一、简述</span>
+            <span class="post-date" title="2020-04-13 18:55:32">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/监督机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="监督机器学习算法">监督机器学习算法</span>
+            <span class="post-date" title="2020-04-13 10:16:48">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/MQTT和WebSocket-对比/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT和WebSocket 对比">MQTT和WebSocket 对比</span>
+            <span class="post-date" title="2020-04-13 09:27:10">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/12/HTTP-请求方法指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTTP 请求方法指南">HTTP 请求方法指南</span>
+            <span class="post-date" title="2020-04-12 21:38:58">2020/04/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/全栈工程师刷这些就够了/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="全栈工程师面试题刷这些就够了">全栈工程师面试题刷这些就够了</span>
+            <span class="post-date" title="2020-04-11 17:28:23">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/【前端知识梳理】HTML篇-笔记整理（一）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【前端知识梳理】HTML篇 笔记整理（一）">【前端知识梳理】HTML篇 笔记整理（一）</span>
+            <span class="post-date" title="2020-04-11 17:20:45">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/哈勃拍摄唯美宇宙/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="哈勃拍摄唯美宇宙">哈勃拍摄唯美宇宙</span>
+            <span class="post-date" title="2020-04-11 17:07:12">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/从零开始实现一个RPC框架（零）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始实现一个RPC框架（零）">从零开始实现一个RPC框架（零）</span>
+            <span class="post-date" title="2020-04-11 14:41:09">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/MQTT之Mosquitto源码分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT之Mosquitto源码分析">MQTT之Mosquitto源码分析</span>
+            <span class="post-date" title="2020-04-11 13:10:29">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/为什么选择go-kit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="为什么选择go-kit">为什么选择go-kit</span>
+            <span class="post-date" title="2020-04-11 11:49:46">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/Gokit-go流行微服务入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gokit go流行微服务入门">Gokit go流行微服务入门</span>
+            <span class="post-date" title="2020-04-11 11:39:44">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/10/JVM自动推荐文章列表-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM自动推荐文章列表">JVM自动推荐文章列表</span>
+            <span class="post-date" title="2020-04-10 20:17:22">2020/04/10</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/macaca-doctor之Android证书Not-accepted-Android-SDK-license-agreements/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="macaca doctor之Android证书Not accepted Android SDK license agreements">macaca doctor之Android证书Not accepted Android SDK license agreements</span>
+            <span class="post-date" title="2020-04-09 17:02:16">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/工具推荐篇：PlantUML-程序员的专属绘制流程图工具，就像写代码一样便利/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利">工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利</span>
+            <span class="post-date" title="2020-04-09 10:28:01">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/Istio-是什么-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Istio 是什么">Istio 是什么</span>
+            <span class="post-date" title="2020-04-09 10:08:02">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/08/vert-x入门系列-03-vertx详细介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 03 vertx详细介绍">vert x入门系列: 03 vertx详细介绍</span>
+            <span class="post-date" title="2020-04-08 22:32:45">2020/04/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/Java-面试题系列-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 面试题系列 1">Java 面试题系列 1</span>
+            <span class="post-date" title="2020-04-06 20:17:19">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/30-深入Java系列Java-数据结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30.深入Java系列Java - 数据结构">30.深入Java系列Java - 数据结构</span>
+            <span class="post-date" title="2020-04-06 19:59:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/29-深入Java系列Java-构造函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="29.深入Java系列Java - 构造函数">29.深入Java系列Java - 构造函数</span>
+            <span class="post-date" title="2020-04-06 19:54:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/28-深入Java系列Java-对象和类/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="28.深入Java系列Java - 对象和类">28.深入Java系列Java - 对象和类</span>
+            <span class="post-date" title="2020-04-06 19:50:43">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/27-深入Java系列Java-文件和-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="27.深入Java系列Java - 文件和 I/O">27.深入Java系列Java - 文件和 I/O</span>
+            <span class="post-date" title="2020-04-06 19:46:11">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/26-深入Java系列Java中Integer为什么有个-128—-127/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="26.深入Java系列Java中Integer为什么有个-128—+127">26.深入Java系列Java中Integer为什么有个-128—+127</span>
+            <span class="post-date" title="2020-04-06 19:24:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/25-深入Java系列Java中int的取值范围关键点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="25.深入Java系列Java中int的取值范围关键点">25.深入Java系列Java中int的取值范围关键点</span>
+            <span class="post-date" title="2020-04-06 19:04:37">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/24-深入Java系列Java中int面试知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="24.深入Java系列Java中int面试知识点">24.深入Java系列Java中int面试知识点</span>
+            <span class="post-date" title="2020-04-06 18:53:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/JS系列js-获取子数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.JS系列js 获取子数组">1.JS系列js 获取子数组</span>
+            <span class="post-date" title="2020-04-06 12:40:13">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/3-深入Java系列Java内存模型和JVM内存模型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="23.深入Java系列Java内存模型和JVM内存模型">23.深入Java系列Java内存模型和JVM内存模型</span>
+            <span class="post-date" title="2020-04-06 11:17:06">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/22-深入Java系列结构模式之组合模式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="22.深入Java系列结构模式之组合模式">22.深入Java系列结构模式之组合模式</span>
+            <span class="post-date" title="2020-04-05 22:10:38">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/21-深入Java系列Java之异常处理/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="21.深入Java系列Java之异常处理">21.深入Java系列Java之异常处理</span>
+            <span class="post-date" title="2020-04-05 22:04:06">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/20-深入Java系列Java中的回调机制/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="20.深入Java系列Java中的回调机制">20.深入Java系列Java中的回调机制</span>
+            <span class="post-date" title="2020-04-05 21:54:11">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java类的信息全解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="19.深入Java系列java类的信息全解">19.深入Java系列java类的信息全解</span>
+            <span class="post-date" title="2020-04-05 19:49:23">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="18.深入Java系列java方法区内存溢出分析">18.深入Java系列java方法区内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:46:36">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="17.深入Java系列java方法区">17.深入Java系列java方法区</span>
+            <span class="post-date" title="2020-04-05 19:45:17">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java栈内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="16.深入Java系列Java栈内存溢出分析">16.深入Java系列Java栈内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:43:47">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java堆内存溢出解决方案/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="15.深入Java系列Java堆内存溢出解决方案">15.深入Java系列Java堆内存溢出解决方案</span>
+            <span class="post-date" title="2020-04-05 19:27:05">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java堆内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="14.深入Java系列Java堆内存">14.深入Java系列Java堆内存</span>
+            <span class="post-date" title="2020-04-04 20:41:53">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java栈内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="13.深入Java系列Java栈内存">13.深入Java系列Java栈内存</span>
+            <span class="post-date" title="2020-04-04 20:34:01">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java内存结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="12.深入Java系列Java内存结构">12.深入Java系列Java内存结构</span>
+            <span class="post-date" title="2020-04-04 19:49:30">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java-命令知多少/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="11.深入Java系列Java 命令知多少">11.深入Java系列Java 命令知多少</span>
+            <span class="post-date" title="2020-04-03 23:16:26">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java变量深入理解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="10.深入Java系列Java变量深入理解">10.深入Java系列Java变量深入理解</span>
+            <span class="post-date" title="2020-04-03 23:14:55">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9.深入Java系列java &amp; &amp;&amp;区别">9.深入Java系列java &amp; &amp;&amp;区别</span>
+            <span class="post-date" title="2020-04-03 23:13:10">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-path-classpath作用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="8.深入Java系列java path classpath作用">8.深入Java系列java path classpath作用</span>
+            <span class="post-date" title="2020-04-03 23:11:42">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列JVM、JVM、JRE区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="7.深入Java系列JVM、JVM、JRE区别">7.深入Java系列JVM、JVM、JRE区别</span>
+            <span class="post-date" title="2020-04-03 23:10:53">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Spring-Boot-2-0-2-Oauth2-持久化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot 2.0.2 Oauth2 持久化">鉴权中心：Spring Boot 2.0.2 Oauth2 持久化</span>
+            <span class="post-date" title="2020-04-03 15:58:07">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Springboot-Springsecurity-Oauth2整合/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Springboot+Springsecurity+Oauth2整合">鉴权中心：Springboot+Springsecurity+Oauth2整合</span>
+            <span class="post-date" title="2020-04-03 11:21:47">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/Spring-Boot-v2-1-3-兼容鉴权中心Spring-Boot-v2-0-2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2">鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2</span>
+            <span class="post-date" title="2020-04-03 11:12:12">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列异常org-springframework-security-authentication-BadCredentialsException/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException">6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException</span>
+            <span class="post-date" title="2020-04-02 14:05:00">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列深入理解JAVA-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="5.深入Java系列深入理解JAVA I/O">5.深入Java系列深入理解JAVA I/O</span>
+            <span class="post-date" title="2020-04-02 11:07:02">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列之绘图/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="4.深入Java系列之绘图">4.深入Java系列之绘图</span>
+            <span class="post-date" title="2020-04-02 10:48:56">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/01/深入Java系列之基本数据类型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="3.深入Java系列之基本数据类型">3.深入Java系列之基本数据类型</span>
+            <span class="post-date" title="2020-04-01 13:25:39">2020/04/01</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之虚拟机栈/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2.深入Java系列之虚拟机栈">2.深入Java系列之虚拟机栈</span>
+            <span class="post-date" title="2020-03-31 17:07:43">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之JVM/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.深入Java系列之JVM">1.深入Java系列之JVM</span>
+            <span class="post-date" title="2020-03-31 17:01:41">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/将您的Spring-Booot应用迁移到最新的Spring-Security-和-OAuth-2-0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0">将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0</span>
+            <span class="post-date" title="2020-03-31 13:35:01">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/Neo4j系列：CentOS下Neo4j安装教程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Neo4j系列：CentOS下Neo4j安装教程">Neo4j系列：CentOS下Neo4j安装教程</span>
+            <span class="post-date" title="2020-03-31 11:03:20">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/JVM入门到入魔：01JVM基础必备知识/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：01JVM基础必备知识">JVM入门到入魔：01JVM基础必备知识</span>
+            <span class="post-date" title="2020-03-28 21:13:14">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/团队管理：打造高绩效团队/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="团队管理：打造高绩效团队">团队管理：打造高绩效团队</span>
+            <span class="post-date" title="2020-03-28 15:49:46">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/27/JVM入门到入魔：课程大纲/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：00课程大纲">JVM入门到入魔：00课程大纲</span>
+            <span class="post-date" title="2020-03-27 15:21:01">2020/03/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-02-vertx的Http服务器入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 02 vertx的Http服务器入门">vert x入门系列: 02 vertx的Http服务器入门</span>
+            <span class="post-date" title="2020-03-26 21:39:33">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师：一个演进式架构师应该承担的职责/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师：一个演进式架构师应该承担的职责">架构师：一个演进式架构师应该承担的职责</span>
+            <span class="post-date" title="2020-03-26 21:29:44">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-01-reactive编程介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 01 reactive编程介绍">vert x入门系列: 01 reactive编程介绍</span>
+            <span class="post-date" title="2020-03-26 21:18:32">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/程序员-程序猿与牛的斗争/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员:程序猿与牛的斗争">程序员:程序猿与牛的斗争</span>
+            <span class="post-date" title="2020-03-26 21:02:05">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-知人善用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:知人善用">架构师:知人善用</span>
+            <span class="post-date" title="2020-03-26 21:00:00">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-架构师三大原则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:架构师三大原则">架构师:架构师三大原则</span>
+            <span class="post-date" title="2020-03-26 16:09:08">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/24/GitHub日报：GitHub-Explore-code-and-developers-on-GitHub-today-today-Mar-24/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.">GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.</span>
+            <span class="post-date" title="2020-03-24 21:40:45">2020/03/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-M81-发行说明/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC M81 发行说明">WebRTC系列：WebRTC M81 发行说明</span>
+            <span class="post-date" title="2020-03-22 22:12:10">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC介绍">WebRTC系列：WebRTC介绍</span>
+            <span class="post-date" title="2020-03-22 16:54:06">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：getUserMedia-API及HTML5-调用手机摄像头拍照/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照">WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照</span>
+            <span class="post-date" title="2020-03-22 16:45:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC基础学习之一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC基础学习之一">WebRTC系列：WebRTC基础学习之一</span>
+            <span class="post-date" title="2020-03-22 16:11:45">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-将一统实时音视频天下？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC 将一统实时音视频天下？">WebRTC系列：WebRTC 将一统实时音视频天下？</span>
+            <span class="post-date" title="2020-03-22 15:49:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 二">100天Spring零基础起飞 二</span>
+            <span class="post-date" title="2019-12-06 20:17:24">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 一">100天Spring零基础起飞 一</span>
+            <span class="post-date" title="2019-12-06 20:15:37">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Next-js手册/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Next.js手册">Next.js手册</span>
+            <span class="post-date" title="2019-11-29 14:45:06">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Vue手册：Vue-js的完整介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue手册：Vue.js的完整介绍">Vue手册：Vue.js的完整介绍</span>
+            <span class="post-date" title="2019-11-29 13:34:21">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/27/Dos批量修改文件后缀/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dos批量修改文件后缀">Dos批量修改文件后缀</span>
+            <span class="post-date" title="2019-11-27 11:33:22">2019/11/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/PHP编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PHP编码规范">PHP编码规范</span>
+            <span class="post-date" title="2019-11-22 15:53:38">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范3">HTML编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:36:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范3">Java编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:33:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范2">Java编码规范2</span>
+            <span class="post-date" title="2019-11-22 15:11:53">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/通用编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通用编码规范">通用编码规范</span>
+            <span class="post-date" title="2019-11-22 15:05:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范">Java编码规范</span>
+            <span class="post-date" title="2019-11-22 14:07:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/C-编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C#编码规范">C#编码规范</span>
+            <span class="post-date" title="2019-11-22 13:16:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范2">HTML编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:22:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范2">JavaScript编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:20:31">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范-第二部/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范2">CSS编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:18:01">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Markdown-编写规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Markdown 编写规范">Markdown 编写规范</span>
+            <span class="post-date" title="2019-11-22 11:08:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范">HTML编码规范</span>
+            <span class="post-date" title="2019-11-22 11:04:41">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范">CSS编码规范</span>
+            <span class="post-date" title="2019-11-22 10:06:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范">JavaScript编码规范</span>
+            <span class="post-date" title="2019-11-22 09:58:35">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/日常笔记-开篇/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日常笔记-开篇">日常笔记-开篇</span>
+            <span class="post-date" title="2019-11-14 19:34:48">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/Java-字符串拼接一次学到位/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 字符串拼接一次学到位">Java 字符串拼接一次学到位</span>
+            <span class="post-date" title="2019-11-14 11:58:31">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/务限流与降级/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微服务限流与降级">微服务限流与降级</span>
+            <span class="post-date" title="2019-11-14 11:36:43">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/13/CSS控制长串英文字母换行问题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS控制长串英文字母换行问题">CSS控制长串英文字母换行问题</span>
+            <span class="post-date" title="2019-11-13 10:26:10">2019/11/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/12/centos虚拟内存设置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=" centos虚拟内存设置"> centos虚拟内存设置</span>
+            <span class="post-date" title="2019-11-12 21:44:11">2019/11/12</span>
+        </a>
+        
+        <a  class="go "
+           href="/tlg/2019/11/11/第-03-课：进阶模板用法/"
+           data-tag="go,web"
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 03 课：进阶模板用法">拜读无闻大神Go web编程 - 第 03 课：进阶模板用法</span>
+            <span class="post-date" title="2019-11-11 17:56:00">2019/11/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/11/第-02-课：基础模板用法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 02 课：基础模板用法">拜读无闻大神Go web编程 - 第 02 课：基础模板用法</span>
+            <span class="post-date" title="2019-11-11 17:53:52">2019/11/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-3-深入Java系列Java内存模型和JVM内存模型" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">23.深入Java系列Java内存模型和JVM内存模型</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-04-06 12:01:29'>2020-04-06 11:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#区分-JVM内存-分区和-Java内存模型-Java-Memory-Model-q…-CSDN博客"><span class="toc-text">区分-JVM内存_分区和_Java内存模型(Java Memory Model)_q…_CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比较jvm内存-结构-amp-java内存模型-amp-java对象模型-个人文章…"><span class="toc-text">比较jvm内存_结构&amp;_java内存模型&amp;java对象模型 - 个人文章…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存-结构、-Java内存模型和-Java对象模型的区别-简书"><span class="toc-text">_JVM内存_结构、_Java内存模型和_Java对象模型的区别 - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存-管理-JVM内存模型-以及JDK7和JDK8-内存模型-对比总结-三…"><span class="toc-text">_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比总结(三…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解JVM-内存模型-jmm-和GC-简书"><span class="toc-text">深入理解JVM-内存模型(jmm)和GC - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型、Java内存模型-和-Java对象模型-水木湛清华-博客园"><span class="toc-text">JVM内存模型、Java内存模型 和 Java对象模型 - 水木湛清华 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-JMM-和JVM内存-结构-Java-技术驿站-Java-技术驿站"><span class="toc-text">Java内存模型(JMM)_和JVM内存_结构 - Java 技术驿站-Java 技术驿站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型和-性能优化-解道Jdon"><span class="toc-text">_JVM内存模型和_性能优化 - 解道Jdon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【教程】终于有人把-Java内存模型-说清楚了-51CTO-COM"><span class="toc-text">【教程】终于有人把_Java内存模型_说清楚了! - 51CTO.COM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java内存模型和jvm-运行时数据区对应起来谈的疑惑-CSDN问答"><span class="toc-text">_java内存模型和jvm_运行时数据区对应起来谈的疑惑-CSDN问答</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java内存模型-一-——基础-并发编程网-–-ifeve-com"><span class="toc-text">深入理解Java内存模型(一)——基础 | 并发编程网 – ifeve.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型和-垃圾回收-robustwang-ITeye博客"><span class="toc-text">_JVM内存模型和_垃圾回收 - robustwang - ITeye博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#终于有人把-Java内存模型-说清楚了-ITPUB博客"><span class="toc-text">终于有人把_Java内存模型_说清楚了_ITPUB博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型与JVM-运行时数据区的区别详解-java-脚本之家"><span class="toc-text">_Java内存模型与JVM_运行时数据区的区别详解_java_脚本之家</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型-——-JAVA-的根基丶一个站在-Java-后端设计之路的男青年…"><span class="toc-text">_JVM内存模型_——_JAVA_的根基丶一个站在_Java_后端设计之路的男青年…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java内存模型和Jvm内存-分配-算法网"><span class="toc-text">_java内存模型和Jvm内存_分配 - 算法网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【-java-】-jvm内存模型-全面解析-哔哩哔哩-゜-゜-つロ-干杯-bil…"><span class="toc-text">【_java_】_jvm内存模型_全面解析_哔哩哔哩 (゜-゜)つロ 干杯~-bil…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型-看这个就够了-技术交流-牛客网"><span class="toc-text">_JVM内存模型_看这个就够了_技术交流_牛客网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#区分-JVM内存-分区和-Java内存模型-Java-Memory-Model-q…-CSDN博客-1"><span class="toc-text">区分-JVM内存_分区和_Java内存模型(Java Memory Model)_q…_CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速带你分清java内存-结构-java内存模型-java对象模型和jvm内存…"><span class="toc-text">快速带你分清java内存_结构,_java内存模型,java对象模型和jvm内存…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型和-JMM-Java内存模型-的异同小结-魔临天下-CSDN博客"><span class="toc-text">JVM内存模型和_JMM(_Java内存模型)的异同小结_魔临天下-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA内存模型与JVM内存-结构-编程小可爱-博客园"><span class="toc-text">_JAVA内存模型与JVM内存_结构 - 编程小可爱 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存-管理-JVM内存模型-以及JDK7和JDK8-内存模型-对比…-CSDN博客"><span class="toc-text">_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比…-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA内存-结构和-JAVA内存模型-xiaojia-wahaha-的博客-CSDN博客"><span class="toc-text">_JAVA内存_结构和_JAVA内存模型__xiaojia_wahaha_的博客-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存-结构-VS-Java内存模型-VS-Java对象模型-qingshanli…"><span class="toc-text">JVM内存_结构 VS _Java内存模型 VS Java对象模型 - qingshanli…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Java内存模型-程序员小灰的博客-CSDN博客"><span class="toc-text">什么是Java内存模型? - 程序员小灰的博客 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型和JVM内存-管理-鸿燕藏锋-博客园"><span class="toc-text">_Java内存模型和JVM内存_管理 - 鸿燕藏锋 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【JVM】JVM内存-结构-VS-Java内存模型-VS-Java对象模型"><span class="toc-text">【JVM】JVM内存_结构 VS _Java内存模型 VS Java对象模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型及-性能优化-yehx-博客园"><span class="toc-text">_Java内存模型及_性能优化 - yehx - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-是什么-为什么要有-Java内存模型-Java-内存-…-CSDN博客"><span class="toc-text">Java内存模型_是什么,为什么要有_Java内存模型,Java_内存_…_CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存-结构、-Java内存模型和-Java对象模型-murphy-gb-博客园"><span class="toc-text">_JVM内存_结构、_Java内存模型和_Java对象模型 - murphy_gb - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM-——-Java内存模型-JDK1-8-「dt猫」"><span class="toc-text">JVM_——_Java内存模型 (JDK1.8) - 「dt猫」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#《成神之路-基础篇》JVM-——-Java内存模型-已完结-HollisChuang’s…"><span class="toc-text">《成神之路-基础篇》JVM_——_Java内存模型(已完结)-HollisChuang’s…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm内存模型-CSDN论坛"><span class="toc-text">jvm内存模型-CSDN论坛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA内存模型与-垃圾回收-java-内存模型-垃圾回收-Java文档类资源…"><span class="toc-text">JAVA内存模型与_垃圾回收_java _内存模型 垃圾回收-Java文档类资源…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-JMM-云-社区-腾讯云"><span class="toc-text">Java内存模型(JMM) - 云+社区 - 腾讯云</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图解JAVA内存模型-JMM-JAVA-Memory-Model"><span class="toc-text">图解JAVA内存模型(JMM:JAVA Memory Model)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【免费】-Java内存模型之JVM-进阶-1-Java运行流程-李兴华的在线视频…"><span class="toc-text">【免费】_Java内存模型之JVM_进阶-1-Java运行流程-李兴华的在线视频…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#老师这几章讲的是-Java内存模型-还是-JVM内存-结构啊-实战问答"><span class="toc-text">老师这几章讲的是_Java内存模型_还是_JVM内存_结构啊?_实战问答</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浅析java内存模型–JMM-Java-Memory-Model-码神岛"><span class="toc-text">浅析java内存模型–JMM(Java Memory Model)_码神岛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#《深入理解-JAVA内存模型-》PDF-下载-Java知识分享网-免费Java资源…"><span class="toc-text">《深入理解_JAVA内存模型_》PDF 下载_Java知识分享网-免费Java资源…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-——-深入JVM-网易云课堂"><span class="toc-text">Java内存模型 —— 深入JVM - 网易云课堂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java内存模型-一-——基础-InfoQ"><span class="toc-text">深入理解Java内存模型(一)——基础-InfoQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型与-运行时数据区域的详解-图文-java-教程-PHP中文网"><span class="toc-text">_JVM内存模型与_运行时数据区域的详解(图文)-_java_教程-PHP中文网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JMM-Java内存模型-中的核心概念-guibin-ITeye博客"><span class="toc-text">JMM(Java内存模型)中的核心概念 - guibin - ITeye博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-的历史变迁-CSDN-NET"><span class="toc-text">_Java内存模型_的历史变迁-CSDN.NET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java内存模型及-GC原理-和-图解-JVM-在-内存-中申请对象及垃…-新浪博客"><span class="toc-text">_java内存模型及_GC原理 和 图解_JVM_在_内存_中申请对象及垃…_新浪博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聊聊高并发-三十五-Java内存模型-那些事-三-理解-内存-屏障-学步园"><span class="toc-text">聊聊高并发(三十五)_Java内存模型_那些事(三)理解_内存_屏障 | 学步园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解java内存模型-pdf下载-深入理解-java内存模型-下载-绿色…"><span class="toc-text">深入理解java内存模型_pdf下载|深入理解_java内存模型_下载 绿色…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm内存模型和-内存分配-dancing007的个人空间-OSCHINA"><span class="toc-text">_jvm内存模型和_内存分配 - dancing007的个人空间 - OSCHINA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java内存模型-新生代中的比例为什么是8-1-1-java吧-百度贴吧"><span class="toc-text">java内存模型 新生代中的比例为什么是8:1:1?_java吧_百度贴吧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-内存模型-内存-监控-GC查看-禅鸣之时-ITeye博客"><span class="toc-text">Java 内存模型,_内存_监控,GC查看 - 禅鸣之时 - ITeye博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA内存模型-简述及总结-教程库"><span class="toc-text">_JAVA内存模型_简述及总结_教程库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BAT经典面试题-深入理解-Java内存模型-JMM-HelloJava菜鸟社区"><span class="toc-text">BAT经典面试题,深入理解_Java内存模型_JMM - HelloJava菜鸟社区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#终于有人把-Java内存模型-说清楚了-知乎"><span class="toc-text">终于有人把_Java内存模型_说清楚了 - 知乎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java内存模型-图文-百度文库"><span class="toc-text">_java内存模型__图文_百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浅谈-JAVA内存模型-Java-内存模型-以及应用程序常见…-爱问共享资料"><span class="toc-text">浅谈_JAVA内存模型___Java 内存模型_以及应用程序常见…_爱问共享资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【Java-面试题】-Java内存模型-教育-高清完整正版视频在线观看-…"><span class="toc-text">【Java_面试题】_Java内存模型-教育-高清完整正版视频在线观看-…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-FAQ-一-什么是-内存模型-并发编程网-–-ifeve-com"><span class="toc-text">Java内存模型_FAQ(一) 什么是_内存模型 | 并发编程网 – ifeve.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM-—虚拟机-内存模型与-高效并发丶一个站在-Java-后端设计之路的男…"><span class="toc-text">_JVM_—虚拟机_内存模型与_高效并发丶一个站在_Java_后端设计之路的男…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存-区域和-内存模型-讲解-java-脚本之家"><span class="toc-text">_Java内存_区域和_内存模型_讲解_java_脚本之家</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型之JVM-进阶-李兴华的在线视频教程-CSDN学院"><span class="toc-text">_Java内存模型之JVM_进阶-李兴华的在线视频教程-CSDN学院</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型与-运行时数据区域-mmmming-SegmentFault-思否"><span class="toc-text">_JVM内存模型与_运行时数据区域 - mmmming - SegmentFault 思否</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型-的相关概念-创头条"><span class="toc-text">_JVM内存模型_的相关概念-创头条</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-JVM-内存模型-Java-中的-内存-管理-慕课手记"><span class="toc-text">Java(JVM)内存模型 - _Java_中的_内存_管理_慕课手记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型-详解-Java-工具类资源-CSDN下载"><span class="toc-text">_JVM内存模型_详解-_Java_工具类资源-CSDN下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java内存模型-JMM-与并发-Java-技术驿站-Java-技术驿站"><span class="toc-text">java内存模型(JMM)与并发 - Java 技术驿站-Java 技术驿站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聊聊我对-Java内存模型-的理解-并发编程网"><span class="toc-text">聊聊我对_Java内存模型_的理解 | 并发编程网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-JMM-总结-知乎"><span class="toc-text">Java内存模型(JMM)总结 - 知乎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-基础-JVM-java内存模型-哔哩哔哩-゜-゜-つロ-干杯-bili…"><span class="toc-text">java_基础,_JVM(java内存模型)_哔哩哔哩 (゜-゜)つロ 干杯~-bili…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-java内存模型-系列文章-并发编程网-–-ifeve-com"><span class="toc-text">深入理解_java内存模型_系列文章 | 并发编程网 – ifeve.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM—-java内存-区域与-java内存模型-码神岛"><span class="toc-text">JVM—_java内存_区域与_java内存模型__码神岛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java内存模型-详解以及Java堆的分代-程序员大本营"><span class="toc-text">_java内存模型_详解以及Java堆的分代 - 程序员大本营</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型与-线程-loda0128的个人空间-OSCHINA"><span class="toc-text">_Java内存模型与_线程 - loda0128的个人空间 - OSCHINA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#硬件-内存模型和Java内存模型-中的主内存相当于电脑中的内存还是磁盘"><span class="toc-text">硬件_内存模型和Java内存模型_中的主内存相当于电脑中的内存还是磁盘?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-内存模型与JVM-的-内存模型-是一个意思吗-百度知道"><span class="toc-text">_java 内存模型与JVM_的_内存模型_是一个意思吗_百度知道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聊聊我对-Java内存模型-的理解-并发编程网-–-ifeve-com"><span class="toc-text">聊聊我对_Java内存模型_的理解 | 并发编程网 – ifeve.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-Memory-Model-线程"><span class="toc-text">Java内存模型(Memory Model)_线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-详解-一-云-社区-腾讯云"><span class="toc-text">_Java内存模型_详解(一) - 云+社区 - 腾讯云</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm内存模型和-内存分配-简书"><span class="toc-text">_jvm内存模型和_内存分配 - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面试问题-你了解-Java内存模型-么-Java7、8、9-内存模型-的区别-简书"><span class="toc-text">面试问题:你了解_Java内存模型_么(Java7、8、9_内存模型_的区别) - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型-总结"><span class="toc-text">_JVM内存模型_总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jvm内存模型与-垃圾回收-慕课手记"><span class="toc-text">_Jvm内存模型与_垃圾回收_慕课手记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一篇文章搞懂Java内存模型-详解-知乎"><span class="toc-text">一篇文章搞懂Java内存模型(详解) - 知乎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Java内存模型-JMM-Java-技术驿站-Java-技术驿站"><span class="toc-text">什么是Java内存模型(JMM) - Java 技术驿站-Java 技术驿站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-的-内存模型及-结构-并发编程网-–-ifeve-com"><span class="toc-text">_JAVA_的_内存模型及_结构 | 并发编程网 – ifeve.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-、GC工作原理-Java文档类资源-CSDN下载"><span class="toc-text">_Java内存模型_、GC工作原理-Java文档类资源-CSDN下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型和-类加载过程-JerryLin123的个人空间-OSCHINA"><span class="toc-text">_Java内存模型和_类加载过程 - JerryLin123的个人空间 - OSCHINA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java内存模型与-线程规范-PDF-下载-Java知识分享网-免费Java资源下载"><span class="toc-text">_java内存模型与_线程规范 PDF 下载_Java知识分享网-免费Java资源下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#又踩到一个坑——JAVA-虚拟机最大-内存-CSDN论坛"><span class="toc-text">又踩到一个坑——JAVA_虚拟机最大_内存-CSDN论坛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-jvm内存模型-的工作-内存-和主-内存-到底是什么-是在哪个层面上…"><span class="toc-text">java - _jvm内存模型_的工作_内存_和主_内存_到底是什么?是在哪个层面上…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#《深入理解-JAVA内存模型-》PDF-Java文档类资源-CSDN下载"><span class="toc-text">《深入理解_JAVA内存模型_》PDF-Java文档类资源-CSDN下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型和JVM内存-管理-鸿燕藏锋-CSDN博客"><span class="toc-text">_Java内存模型和JVM内存_管理 - 鸿燕藏锋 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-JMM详解-java-脚本之家"><span class="toc-text">_Java内存模型_JMM详解_java_脚本之家</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-JMM-高并发原子性可见性有序性简介-多线程中篇-十…"><span class="toc-text">_Java内存模型_JMM 高并发原子性可见性有序性简介 多线程中篇(十…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解-Java内存模型-慕课手记"><span class="toc-text">理解_Java内存模型__慕课手记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存-结构、-Java内存模型-以及Java对象-模型-之间的区别-CSDN博客"><span class="toc-text">_JVM内存_结构、_Java内存模型_以及Java对象_模型_之间的区别_CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型与JVM-二-简书"><span class="toc-text">Java内存模型与JVM (二) - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速带你分清java内存-结构-java内存模型-java对象模型和jvm内存…-1"><span class="toc-text">快速带你分清java内存_结构,_java内存模型,java对象模型和jvm内存…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm-面试系列一-java内存模型-你掌握了多少"><span class="toc-text">_jvm_面试系列一:_java内存模型_你掌握了多少?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存-管理-JVM内存模型-以及JDK7和JDK8-内存模型-对比总结-三…-1"><span class="toc-text">_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比总结(三…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【-Java-】JMM-内存模型和JVM内存-结构-热咖啡与白猫-博客园"><span class="toc-text">【_Java_】JMM_内存模型和JVM内存_结构 - 热咖啡与白猫 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#终于有人把-Java内存模型-说清楚了-小推爱学习-博客园"><span class="toc-text">终于有人把_Java内存模型_说清楚了! - 小推爱学习 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型与JVM-运行时数据区的区别-a7151593的博客-CSDN博客"><span class="toc-text">_Java内存模型与JVM_运行时数据区的区别_a7151593的博客-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-内存模型和-JVM-内存-结构真不是一回事-顿悟源码-CSDN博客"><span class="toc-text">_Java 内存模型和 JVM 内存_结构真不是一回事_顿悟源码-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浅析java内存模型–JMM-Java-Memory-Model-路易小七-博客园"><span class="toc-text">浅析java内存模型–JMM(Java Memory Model) - 路易小七 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-Java内存模型-之系列篇-CSniper-博客园"><span class="toc-text">深入理解_Java内存模型_之系列篇 - CSniper - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-残雪余香-博客园"><span class="toc-text">Java内存模型 - 残雪余香 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型-并发编程网-–-ifeve-com"><span class="toc-text">Java内存模型 | 并发编程网 – ifeve.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java内存模型和-内存分配-kunpeng90的博客-CSDN博客"><span class="toc-text">_java内存模型和_内存分配_kunpeng90的博客-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM-Java内存模型与-线程-知乎"><span class="toc-text">JVM _Java内存模型与_线程 - 知乎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型及-内存分配过程-神奇的旋风-博客园"><span class="toc-text">_JVM内存模型及_内存分配过程 - 神奇的旋风 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型与-调优-JVM内存模型与-调优-给我一个Object…-CSDN博客"><span class="toc-text">_JVM内存模型与_调优__JVM内存模型与_调优_给我一个Object…_CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#细说JVM内存模型-追梦1819-博客园"><span class="toc-text">细说JVM内存模型 - 追梦1819 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解JAVA内存模型-PDF版-Java文档类资源-CSDN下载"><span class="toc-text">深入理解JAVA内存模型(PDF版)-Java文档类资源-CSDN下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java内存模型及-性能优化及Java垃圾回收-mine-song的…-CSDN博客"><span class="toc-text">_Java内存模型及_性能优化及Java垃圾回收 - mine_song的…_CSDN博客</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="区分-JVM内存-分区和-Java内存模型-Java-Memory-Model-q…-CSDN博客"><a href="#区分-JVM内存-分区和-Java内存模型-Java-Memory-Model-q…-CSDN博客" class="headerlink" title="区分-JVM内存_分区和_Java内存模型(Java Memory Model)_q…_CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/qq_41297896/article/details/89949632" target="_blank" rel="noopener">区分-<em>JVM内存_分区和_Java内存模型</em>(Java Memory Model)_q…_CSDN博客</a></h3><p> 2019年5月8日 - 虚拟机栈(<em>JVM</em> Stacks):属线程私有内存区域,与线程同时创建,总数与线程数关联,代表_Java_方法执行的_内存模型_。每一个运行在_Java_虚拟机里的线程都拥有自己..</p>
+<h3 id="比较jvm内存-结构-amp-java内存模型-amp-java对象模型-个人文章…"><a href="#比较jvm内存-结构-amp-java内存模型-amp-java对象模型-个人文章…" class="headerlink" title="比较jvm内存_结构&amp;_java内存模型&amp;java对象模型 - 个人文章…"></a><a href="https://zshipu.com/t?url=https://segmentfault.com/a/1190000020206676?utm_source=tag-newest" target="_blank" rel="noopener">比较<em>jvm内存_结构&amp;_java内存模型</em>&amp;java对象<em>模型</em> - 个人文章…</a></h3><p> 2019年8月27日 -   学习java过程中有三个概念,分别是_jvm内存_结构、_java内存模型_、java对象_模型_。我们系统的学习完之后,如果不加以总结对比,很容易混淆,相信不光是自…</p>
+<h3 id="JVM内存-结构、-Java内存模型和-Java对象模型的区别-简书"><a href="#JVM内存-结构、-Java内存模型和-Java对象模型的区别-简书" class="headerlink" title="_JVM内存_结构、_Java内存模型和_Java对象模型的区别 - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/dff4bd49d25a" target="_blank" rel="noopener">_JVM内存_结构、_Java内存模型和_Java对象模型的区别 - 简书</a></h3><p> 2018年12月19日 - _JVM内存_结构、_Java内存模型和_Java对象模型是截然不同的三种概念。 1. _JVM内存_结构 Java程序执行过程中,内存会被划分为不同的数据区域,各个区域有各自…</p>
+<h3 id="Java内存-管理-JVM内存模型-以及JDK7和JDK8-内存模型-对比总结-三…"><a href="#Java内存-管理-JVM内存模型-以及JDK7和JDK8-内存模型-对比总结-三…" class="headerlink" title="_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比总结(三…"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/aflyun/p/10575740.html" target="_blank" rel="noopener">_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比总结(三…</a></h3><p> 2019年3月22日 - 如果虚拟机栈可以动态扩展,当扩展到无法申请<em>内存_到足够的_内存</em>,就会抛出OutOfMemoryError异常! 4、_Java_堆 堆是_jvm内存_管理的最大的一块区域,此_内存_区域的唯一目的就…</p>
+<h3 id="深入理解JVM-内存模型-jmm-和GC-简书"><a href="#深入理解JVM-内存模型-jmm-和GC-简书" class="headerlink" title="深入理解JVM-内存模型(jmm)和GC - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/76959115d486" target="_blank" rel="noopener">深入理解<em>JVM</em>-<em>内存模型</em>(jmm)和GC - 简书</a></h3><p> 1 CPU和内存的交互 了解_jvm内存模型_前,了解下cpu和计算机内存的交互情况。【因为_Java_虚拟机_内存模型_定义的访问操作与计算机十分相似】 有篇很棒的文章,从cpu讲到内…</p>
+<h3 id="JVM内存模型、Java内存模型-和-Java对象模型-水木湛清华-博客园"><a href="#JVM内存模型、Java内存模型-和-Java对象模型-水木湛清华-博客园" class="headerlink" title="JVM内存模型、Java内存模型 和 Java对象模型 - 水木湛清华 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/wenxiangchen/p/11478767.html" target="_blank" rel="noopener"><em>JVM内存模型<em>、</em>Java内存模型 和</em> Java对象模型 - 水木湛清华 - 博客园</a></h3><p> 2019年9月6日 - 1.Java对象在JVM中的存储模型称之为Java对象模型。 四、总结 1.<em>JVM内存模型</em>,和Java虚拟机的运行时区域有关。 2.<em>Java内存模型</em>,和Java的并发编程有关。 …</p>
+<h3 id="Java内存模型-JMM-和JVM内存-结构-Java-技术驿站-Java-技术驿站"><a href="#Java内存模型-JMM-和JVM内存-结构-Java-技术驿站-Java-技术驿站" class="headerlink" title="Java内存模型(JMM)_和JVM内存_结构 - Java 技术驿站-Java 技术驿站"></a><a href="https://zshipu.com/t?url=http://cmsblogs.com/?p=14815" target="_blank" rel="noopener"><em>Java内存模型</em>(JMM)_和JVM内存_结构 - Java 技术驿站-Java 技术驿站</a></h3><p> 2019年12月10日 - <em>Java内存模型</em>(JMM),Java Memory Model,指的在java程序运行过程中,计算机有主内存,每个java线程有自己的工作内存。java线程的工作内存是计算机主内存的…</p>
+<h3 id="JVM内存模型和-性能优化-解道Jdon"><a href="#JVM内存模型和-性能优化-解道Jdon" class="headerlink" title="_JVM内存模型和_性能优化 - 解道Jdon"></a><a href="https://zshipu.com/t?url=https://www.jdon.com/idea/jvm.html" target="_blank" rel="noopener">_JVM内存模型和_性能优化 - 解道Jdon</a></h3><p> <em>JVM内存模型_优点 内置基于_内存_的并发_模型</em>: 多线程机制 同步锁Synchronization 大量…Heap堆<em>内存</em> 对象实例的属性数据和数组。堆_内存<em>由</em>Java_虚拟机的自动垃圾回收器来管理…</p>
+<h3 id="【教程】终于有人把-Java内存模型-说清楚了-51CTO-COM"><a href="#【教程】终于有人把-Java内存模型-说清楚了-51CTO-COM" class="headerlink" title="【教程】终于有人把_Java内存模型_说清楚了! - 51CTO.COM"></a><a href="https://zshipu.com/t?url=https://developer.51cto.com/art/201807/579744.htm" target="_blank" rel="noopener">【教程】终于有人把_Java内存模型_说清楚了! - 51CTO.COM</a></h3><p> 2018年7月26日 - 网上有很多关于 <em>Java 内存模型_的文章,但是很多人读完之后还是搞不清楚,甚至有的人说自己更懵了。本文就来整体的介绍一下 _Java 内存模型</em>,比如 _Java 内存模型_是什么…</p>
+<h3 id="java内存模型和jvm-运行时数据区对应起来谈的疑惑-CSDN问答"><a href="#java内存模型和jvm-运行时数据区对应起来谈的疑惑-CSDN问答" class="headerlink" title="_java内存模型和jvm_运行时数据区对应起来谈的疑惑-CSDN问答"></a><a href="https://zshipu.com/t?url=https://ask.csdn.net/questions/683783" target="_blank" rel="noopener">_java内存模型和jvm_运行时数据区对应起来谈的疑惑-CSDN问答</a></h3><p> 2018年3月28日 - 在<em>java内存模型_中有工作_内存_和主_内存</em>,主_内存_是所有线程共享的_内存_区域, 规定变量都必须存储在主_内存_中。但是在_jvm_运行时数据区中,又谈到所有局部 变量…</p>
+<h3 id="深入理解Java内存模型-一-——基础-并发编程网-–-ifeve-com"><a href="#深入理解Java内存模型-一-——基础-并发编程网-–-ifeve-com" class="headerlink" title="深入理解Java内存模型(一)——基础 | 并发编程网 – ifeve.com"></a><a href="https://zshipu.com/t?url=https://ifeve.com/java-memory-model-1/" target="_blank" rel="noopener">深入理解<em>Java内存模型</em>(一)——基础 | 并发编程网 – ifeve.com</a></h3><p> Java线程之间的通信由<em>Java内存模型</em>(本文简称为JMM)控制,JMM决定一个线程对共享变量的写入何时对另一个线程可见。从抽象的角度来看,JMM定义了线程和主_内存_之间的抽象…</p>
+<h3 id="JVM内存模型和-垃圾回收-robustwang-ITeye博客"><a href="#JVM内存模型和-垃圾回收-robustwang-ITeye博客" class="headerlink" title="_JVM内存模型和_垃圾回收 - robustwang - ITeye博客"></a><a href="https://zshipu.com/t?url=https://robustwang.iteye.com/blog/2255805" target="_blank" rel="noopener">_JVM内存模型和_垃圾回收 - robustwang - ITeye博客</a></h3><p> 2019年2月12日 - _JAVA_堆的描述如下: _内存_由Perm和Heap组成。其中Heap = {Old + NEW = { Eden , from, to } } _JVM内存模型_中分两大块: NEW Generation:程序新创建的对 …</p>
+<h3 id="终于有人把-Java内存模型-说清楚了-ITPUB博客"><a href="#终于有人把-Java内存模型-说清楚了-ITPUB博客" class="headerlink" title="终于有人把_Java内存模型_说清楚了_ITPUB博客"></a><a href="https://zshipu.com/t?url=http://blog.itpub.net/69917606/viewspace-2642808/" target="_blank" rel="noopener">终于有人把_Java内存模型_说清楚了_ITPUB博客</a></h3><p> 2019年4月28日 - 内部原理<em>JVM</em> 中试图定义一种 JMM 来屏蔽各种硬件和操作系统的<em>内存_访问差异,以实现让 _Java</em> 程序在各种平台下都能达到一致的_内存_访问效果。JMM 的主要目标是定义程序…</p>
+<h3 id="Java内存模型与JVM-运行时数据区的区别详解-java-脚本之家"><a href="#Java内存模型与JVM-运行时数据区的区别详解-java-脚本之家" class="headerlink" title="_Java内存模型与JVM_运行时数据区的区别详解_java_脚本之家"></a><a href="https://zshipu.com/t?url=https://www.jb51.net/article/172264.htm" target="_blank" rel="noopener">_Java内存模型与JVM_运行时数据区的区别详解_java_脚本之家</a></h3><p> 2019年10月18日 - 这篇文章主要介绍了_Java内存模型与JVM_运行时数据区的区别详解,文中通过示例代码介绍的非常详细,对大家的学习或者工作具有一定的参考学习价值,需要的朋…</p>
+<h3 id="JVM内存模型-——-JAVA-的根基丶一个站在-Java-后端设计之路的男青年…"><a href="#JVM内存模型-——-JAVA-的根基丶一个站在-Java-后端设计之路的男青年…" class="headerlink" title="_JVM内存模型_——_JAVA_的根基丶一个站在_Java_后端设计之路的男青年…"></a><a href="https://zshipu.com/t?url=https://www.liangzl.com/get-article-detail-121504.html" target="_blank" rel="noopener">_JVM内存模型_——_JAVA_的根基丶一个站在_Java_后端设计之路的男青年…</a></h3><p> 2019年3月26日 - 站长的个人微信公众号:_Java_云库,每天分享技术文章和学习视频。让我们一起走向架构师之路!!Hi,欢迎来到梁钟霖个人博客网站。本博客是自己通过代码构建的。前端html,…</p>
+<h3 id="java内存模型和Jvm内存-分配-算法网"><a href="#java内存模型和Jvm内存-分配-算法网" class="headerlink" title="_java内存模型和Jvm内存_分配 - 算法网"></a><a href="https://zshipu.com/t?url=http://ddrv.cn/a/35921" target="_blank" rel="noopener">_java内存模型和Jvm内存_分配 - 算法网</a></h3><p> 2019年3月10日 - (百度上说:在<em>java_程序运行时,_jvm_会在系统_内存_中划定一块区域作为程序的主_内存</em>, _java_中的所有变量都存在主_内存_中,并且对所有线程共享。而每个线程又有…</p>
+<h3 id="【-java-】-jvm内存模型-全面解析-哔哩哔哩-゜-゜-つロ-干杯-bil…"><a href="#【-java-】-jvm内存模型-全面解析-哔哩哔哩-゜-゜-つロ-干杯-bil…" class="headerlink" title="【_java_】_jvm内存模型_全面解析_哔哩哔哩 (゜-゜)つロ 干杯~-bil…"></a><a href="https://zshipu.com/t?url=https://www.bilibili.com/video/av62009886" target="_blank" rel="noopener">【_java_】_jvm内存模型_全面解析_哔哩哔哩 (゜-゜)つロ 干杯~-bil…</a></h3><h3 id="JVM内存模型-看这个就够了-技术交流-牛客网"><a href="#JVM内存模型-看这个就够了-技术交流-牛客网" class="headerlink" title="_JVM内存模型_看这个就够了_技术交流_牛客网"></a><a href="https://zshipu.com/t?url=https://www.nowcoder.com/discuss/151138?type=1" target="_blank" rel="noopener">_JVM内存模型_看这个就够了_技术交流_牛客网</a></h3><p> 2019年1月11日 - _内存_是非常重要的系统资源,是硬盘和CPU的中间仓库及桥梁,承载着操作系统和应用程序的实时运行_JVM内存_布局规定了_Java_在运行过程中_内存_申请、分配、管理…</p>
+<h3 id="区分-JVM内存-分区和-Java内存模型-Java-Memory-Model-q…-CSDN博客-1"><a href="#区分-JVM内存-分区和-Java内存模型-Java-Memory-Model-q…-CSDN博客-1" class="headerlink" title="区分-JVM内存_分区和_Java内存模型(Java Memory Model)_q…_CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/qq_41297896/article/details/89949632" target="_blank" rel="noopener">区分-<em>JVM内存_分区和_Java内存模型</em>(Java Memory Model)_q…_CSDN博客</a></h3><p> 2019年5月8日 - 虚拟机栈(<em>JVM</em> Stacks):属线程私有内存区域,与线程同时创建,总数与线程数关联,代表_Java_方法执行的_内存模型_。每一个运行在_Java_虚拟机里的线程都拥有自己…</p>
+<h3 id="快速带你分清java内存-结构-java内存模型-java对象模型和jvm内存…"><a href="#快速带你分清java内存-结构-java内存模型-java对象模型和jvm内存…" class="headerlink" title="快速带你分清java内存_结构,_java内存模型,java对象模型和jvm内存…"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/sinat_33921105/article/details/82819435" target="_blank" rel="noopener">快速带你分清<em>java内存_结构,_java内存模型</em>,java对象<em>模型和jvm内存</em>…</a></h3><p> 2018年9月23日 - 过程中的重点和难点,我习惯把这块的知识叫做javaSE高级基础,在学习jvm这块的知识,你一定会遇到几个概念,那就是java内存结构,<em>java内存模型</em>,java对象<em>模型和jvm内存</em>…</p>
+<h3 id="JVM内存模型和-JMM-Java内存模型-的异同小结-魔临天下-CSDN博客"><a href="#JVM内存模型和-JMM-Java内存模型-的异同小结-魔临天下-CSDN博客" class="headerlink" title="JVM内存模型和_JMM(_Java内存模型)的异同小结_魔临天下-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/libafei/article/details/80385208" target="_blank" rel="noopener"><em>JVM内存模型和_JMM(_Java内存模型</em>)的异同小结_魔临天下-CSDN博客</a></h3><p> 2018年5月20日 - 1、<em>JVM内存模型和_JMM(_Java内存模型</em>)不是一回事,JMM来源于JSR-133:memory_… 1、<em>JVM内存模型和_JMM(_Java内存模型</em>)不是一回事,JMM来源于JSR-133:memory_…</p>
+<h3 id="JAVA内存模型与JVM内存-结构-编程小可爱-博客园"><a href="#JAVA内存模型与JVM内存-结构-编程小可爱-博客园" class="headerlink" title="_JAVA内存模型与JVM内存_结构 - 编程小可爱 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/karrya/p/10960112.html" target="_blank" rel="noopener">_JAVA内存模型与JVM内存_结构 - 编程小可爱 - 博客园</a></h3><p> 2019年6月1日 - 这是JVM的内存结构。下面阐述了JMM_和JVM_的区别和自己对JMM的见解 1、<em>Java内存模型</em>(JMM):即多线程相关的。定义了一个线程对另一个线程可见,共享变量放…</p>
+<h3 id="Java内存-管理-JVM内存模型-以及JDK7和JDK8-内存模型-对比…-CSDN博客"><a href="#Java内存-管理-JVM内存模型-以及JDK7和JDK8-内存模型-对比…-CSDN博客" class="headerlink" title="_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比…-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/u010648555/article/details/88730080" target="_blank" rel="noopener">_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比…-CSDN博客</a></h3><p> 2019年3月22日 - 1、<em>Java内存_管理-程序运行过程(一) 2、_Java内存_管理-初始JVM_和JVM_启动流程(二) 3、_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比总结(三) 4、_J</em>…</p>
+<h3 id="JAVA内存-结构和-JAVA内存模型-xiaojia-wahaha-的博客-CSDN博客"><a href="#JAVA内存-结构和-JAVA内存模型-xiaojia-wahaha-的博客-CSDN博客" class="headerlink" title="_JAVA内存_结构和_JAVA内存模型__xiaojia_wahaha_的博客-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/xiaojia_wahaha_/article/details/79094118" target="_blank" rel="noopener">_JAVA内存_结构和_JAVA内存模型__xiaojia_wahaha_的博客-CSDN博客</a></h3><p> 2018年1月18日 - 有些人喜欢把_Java内存模型和_Java内存区域Java内存区域详解弄混淆,这两个是完全不…_JVM内存模型_完整图解 阅读数 915 最近研究内存模型,读了深入JVM的…</p>
+<h3 id="JVM内存-结构-VS-Java内存模型-VS-Java对象模型-qingshanli…"><a href="#JVM内存-结构-VS-Java内存模型-VS-Java对象模型-qingshanli…" class="headerlink" title="JVM内存_结构 VS _Java内存模型 VS Java对象模型 - qingshanli…"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/qingshanli/p/9256387.html" target="_blank" rel="noopener"><em>JVM内存_结构 VS _Java内存模型</em> VS Java对象<em>模型</em> - qingshanli…</a></h3><p> 2018年7月2日 - 前面几篇文章中, 系统的学习了下<em>JVM内存_结构、_Java内存模型_、Java对象_模型</em>, 但是发现自己还是对这三者的概念和区别比较模糊, 傻傻分不清楚。所以就有了这篇文章, …</p>
+<h3 id="什么是Java内存模型-程序员小灰的博客-CSDN博客"><a href="#什么是Java内存模型-程序员小灰的博客-CSDN博客" class="headerlink" title="什么是Java内存模型? - 程序员小灰的博客 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/bjweimengshu/article/details/79597938" target="_blank" rel="noopener">什么是<em>Java内存模型</em>? - 程序员小灰的博客 - CSDN博客</a></h3><p> 2018年3月17日 - 说”_JVM内存模型_“,有人会说是关于JVM内存分布(堆栈,方法区等)这些介绍,也有地方说(深入理解JVM虚拟机)上说_Java内存模型_是JVM的抽象模型(主内存,本地…</p>
+<h3 id="Java内存模型和JVM内存-管理-鸿燕藏锋-博客园"><a href="#Java内存模型和JVM内存-管理-鸿燕藏锋-博客园" class="headerlink" title="_Java内存模型和JVM内存_管理 - 鸿燕藏锋 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/yjd_hycf_space/p/7505372.html" target="_blank" rel="noopener">_Java内存模型和JVM内存_管理 - 鸿燕藏锋 - 博客园</a></h3><p> 2017年9月11日 - 1、主内存和工作内存(即是本地内存):_Java内存模型_的主要目标是定义程序中各个变量的访问规则,即在_JVM_中将变量存储到_内存_和从_内存_中取出变量这样的底层细节。此处的…</p>
+<h3 id="【JVM】JVM内存-结构-VS-Java内存模型-VS-Java对象模型"><a href="#【JVM】JVM内存-结构-VS-Java内存模型-VS-Java对象模型" class="headerlink" title="【JVM】JVM内存_结构 VS _Java内存模型 VS Java对象模型"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/z00377750/p/9277836.html" target="_blank" rel="noopener">【JVM】<em>JVM内存_结构 VS _Java内存模型</em> VS Java对象<em>模型</em></a></h3><p> 2018年7月7日 - 原文:<em>JVM内存_结构 VS _Java内存模型</em> VS Java对象<em>模型</em> Java作为一种面向对象的,跨平台语言,其对象、内存等一直是比较难的知识点。而且很多概念的名称看起来又那么…</p>
+<h3 id="Java内存模型及-性能优化-yehx-博客园"><a href="#Java内存模型及-性能优化-yehx-博客园" class="headerlink" title="_Java内存模型及_性能优化 - yehx - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/handsomeye/p/5442879.html" target="_blank" rel="noopener">_Java内存模型及_性能优化 - yehx - 博客园</a></h3><p> <em>Java内存模型及_性能优化 最近在做一个项目的性能优化,遇到好多以前没有关注过的性能问题,一头雾水,今天做个笔记,简单记录下JVM相关的参数设置。 一、_JVM内存模型</em> …</p>
+<h3 id="Java内存模型-是什么-为什么要有-Java内存模型-Java-内存-…-CSDN博客"><a href="#Java内存模型-是什么-为什么要有-Java内存模型-Java-内存-…-CSDN博客" class="headerlink" title="Java内存模型_是什么,为什么要有_Java内存模型,Java_内存_…_CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/yaoyuanbo/article/details/81199154" target="_blank" rel="noopener"><em>Java内存模型_是什么,为什么要有_Java内存模型</em>,Java_内存_…_CSDN博客</a></h3><p> 2018年7月25日 - 这里面提到的主内存和工作内存,读者可以简单的类比成计算机_内存模型_中的主存和缓存的概念。特别需要注意的是,主内存和工作内存_与JVM内存_结构中的_Java_堆、栈、方法区…</p>
+<h3 id="JVM内存-结构、-Java内存模型和-Java对象模型-murphy-gb-博客园"><a href="#JVM内存-结构、-Java内存模型和-Java对象模型-murphy-gb-博客园" class="headerlink" title="_JVM内存_结构、_Java内存模型和_Java对象模型 - murphy_gb - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/kyoner/p/11067680.html" target="_blank" rel="noopener">_JVM内存_结构、_Java内存模型和_Java对象模型 - murphy_gb - 博客园</a></h3><p> 2019年6月22日 - 如上,做个总结,<em>JVM内存_结构,由Java虚拟机规范定义。描述的是Java程序执行过程中,由JVM管理的不同数据区域。各个区域有其特定的功能。 _Java内存模型</em> <em>Ja</em>…</p>
+<h3 id="JVM-——-Java内存模型-JDK1-8-「dt猫」"><a href="#JVM-——-Java内存模型-JDK1-8-「dt猫」" class="headerlink" title="JVM_——_Java内存模型 (JDK1.8) - 「dt猫」"></a><a href="https://zshipu.com/t?url=http://www.luyixian.cn/news_show_16727.aspx" target="_blank" rel="noopener"><em>JVM_——_Java内存模型</em> (JDK1.8) - 「dt猫」</a></h3><p> 2019年2月21日 - ​ 程序计数器(Program Counter Register)是一块较小的_内存_空间,它可以看作是当前线程所执行的字节码行号 的指示器。 2.程序计数器的作用 字节码解…</p>
+<h3 id="《成神之路-基础篇》JVM-——-Java内存模型-已完结-HollisChuang’s…"><a href="#《成神之路-基础篇》JVM-——-Java内存模型-已完结-HollisChuang’s…" class="headerlink" title="《成神之路-基础篇》JVM_——_Java内存模型(已完结)-HollisChuang’s…"></a><a href="https://zshipu.com/t?url=http://www.hollischuang.com/archives/1003" target="_blank" rel="noopener">《成神之路-基础篇》<em>JVM_——_Java内存模型</em>(已完结)-HollisChuang’s…</a></h3><p> 2016年1月17日 - <em>Java内存模型</em> 本文是《成神之路系列文章》的第一篇,主要是关于JVM的一些介绍。 持续更新中 <em>Java内存模型</em> <em>JVM内存_结构 VS _Java内存模型</em> VS Java对象<em>模</em>…</p>
+<h3 id="jvm内存模型-CSDN论坛"><a href="#jvm内存模型-CSDN论坛" class="headerlink" title="jvm内存模型-CSDN论坛"></a><a href="https://zshipu.com/t?url=http://community.csdn.net/topics/392467571?page=1" target="_blank" rel="noopener"><em>jvm内存模型</em>-CSDN论坛</a></h3><p> JVM介绍 JVM整体架构 <em>JVM内存_结构 JVM介绍 1.虚拟机是啥 虚拟机(Virtual Machine…_内存模型</em>,一个线程对应一个栈,用于存储_java_方法中的私有数据,它的生命周期和…</p>
+<h3 id="JAVA内存模型与-垃圾回收-java-内存模型-垃圾回收-Java文档类资源…"><a href="#JAVA内存模型与-垃圾回收-java-内存模型-垃圾回收-Java文档类资源…" class="headerlink" title="JAVA内存模型与_垃圾回收_java _内存模型 垃圾回收-Java文档类资源…"></a><a href="https://zshipu.com/t?url=https://download.csdn.net/download/twlke/2369598" target="_blank" rel="noopener"><em>JAVA内存模型与_垃圾回收_java _内存模型</em> 垃圾回收-Java文档类资源…</a></h3><p> 2010年5月19日 - _JAVA内存模型与_垃圾回收 _JAVA内存模型与_垃圾回收 JAVA…论文研究-基于_JVM内存模型_的String分析 .pdf 基于…</p>
+<h3 id="Java内存模型-JMM-云-社区-腾讯云"><a href="#Java内存模型-JMM-云-社区-腾讯云" class="headerlink" title="Java内存模型(JMM) - 云+社区 - 腾讯云"></a><a href="https://zshipu.com/t?url=https://cloud.tencent.com/developer/article/1462257" target="_blank" rel="noopener"><em>Java内存模型</em>(JMM) - 云+社区 - 腾讯云</a></h3><p> 2019年7月12日 - _Java内存模型_规范了Java虚拟机与计算机内存是如何协同工作的。Java虚拟机是一个完整的计算机的一个模型,因此这个模型自然也包含一个_内存模型_——又称…</p>
+<h3 id="图解JAVA内存模型-JMM-JAVA-Memory-Model"><a href="#图解JAVA内存模型-JMM-JAVA-Memory-Model" class="headerlink" title="图解JAVA内存模型(JMM:JAVA Memory Model)"></a><a href="https://zshipu.com/t?url=http://www.mamicode.com/info-detail-2716234.html" target="_blank" rel="noopener">图解<em>JAVA内存模型</em>(JMM:JAVA Memory Model)</a></h3><p> 2019年6月30日 - _java内存模型和jvm内存模型_是不一样,要区分开。如上图所示,多个线程对共享变量并没有直接采用加锁的方式,其中 (1)实际内存(也叫主内存)中存储的是待共享的变量…</p>
+<h3 id="【免费】-Java内存模型之JVM-进阶-1-Java运行流程-李兴华的在线视频…"><a href="#【免费】-Java内存模型之JVM-进阶-1-Java运行流程-李兴华的在线视频…" class="headerlink" title="【免费】_Java内存模型之JVM_进阶-1-Java运行流程-李兴华的在线视频…"></a><a href="https://zshipu.com/t?url=https://edu.csdn.net/course/play/3580" target="_blank" rel="noopener">【免费】_Java内存模型<em>之</em>JVM_进阶-1-Java运行流程-李兴华的在线视频…</a></h3><p> 第一章:JVM执行分析 _Java_运行流程 (20:54) 免费 _Java_对象访问模式 (19:57) 第二章:_JVM内存模型与_垃圾收集 _Java_堆内存模型 (11:11) _Java_垃圾回收流程…</p>
+<h3 id="老师这几章讲的是-Java内存模型-还是-JVM内存-结构啊-实战问答"><a href="#老师这几章讲的是-Java内存模型-还是-JVM内存-结构啊-实战问答" class="headerlink" title="老师这几章讲的是_Java内存模型_还是_JVM内存_结构啊?_实战问答"></a><a href="https://zshipu.com/t?url=https://coding.imooc.com/learn/questiondetail/114915.html" target="_blank" rel="noopener">老师这几章讲的是_Java内存模型_还是_JVM内存_结构啊?_实战问答</a></h3><p> 2019年4月18日 - 拥有丰富的大型网站架构经验,先后参与并负责过_Java_、PHP、Go等项目的开发,自己曾创过业,也曾在汤森路透负责金融产品的研发工作,现就职于某知名大型互…</p>
+<h3 id="浅析java内存模型–JMM-Java-Memory-Model-码神岛"><a href="#浅析java内存模型–JMM-Java-Memory-Model-码神岛" class="headerlink" title="浅析java内存模型–JMM(Java Memory Model)_码神岛"></a><a href="https://zshipu.com/t?url=https://msd.misuland.com/pd/3047868153708151374" target="_blank" rel="noopener">浅析<em>java内存模型</em>–JMM(Java Memory Model)_码神岛</a></h3><p> 2019年3月12日 - 主内存和工作内存: _Java内存模型_的主要目标是定义程序中各个变量的访问规则,即在_JVM_中将变量存储到_内存_和从_内存_中取出变量这样的底层细节。此处的变量与Java编程里面…</p>
+<h3 id="《深入理解-JAVA内存模型-》PDF-下载-Java知识分享网-免费Java资源…"><a href="#《深入理解-JAVA内存模型-》PDF-下载-Java知识分享网-免费Java资源…" class="headerlink" title="《深入理解_JAVA内存模型_》PDF 下载_Java知识分享网-免费Java资源…"></a><a href="https://zshipu.com/t?url=http://www.java1234.com/a/javabook/javabase/2016/0229/5745.html" target="_blank" rel="noopener">《深入理解_JAVA内存模型_》PDF 下载_Java知识分享网-免费Java资源…</a></h3><p> 2016年2月29日 - 以及如何从虚拟机外部观察和分析JIT编译的数据和结果;第五部分探讨了Java实现高效并发的原理,包括<em>JVM内存模型_的结构和操作;原子性、可见性和有序性在_J</em>…</p>
+<h3 id="Java内存模型-——-深入JVM-网易云课堂"><a href="#Java内存模型-——-深入JVM-网易云课堂" class="headerlink" title="Java内存模型 —— 深入JVM - 网易云课堂"></a><a href="https://zshipu.com/t?url=https://study.163.com/course/introduction.htm?courseId=1003283011" target="_blank" rel="noopener"><em>Java内存模型</em> —— 深入<em>JVM</em> - 网易云课堂</a></h3><p> 若不同意,将无法使用我们的产品和服务。 同意 …</p>
+<h3 id="深入理解Java内存模型-一-——基础-InfoQ"><a href="#深入理解Java内存模型-一-——基础-InfoQ" class="headerlink" title="深入理解Java内存模型(一)——基础-InfoQ"></a><a href="https://zshipu.com/t?url=https://www.infoq.cn/articles/java-memory-model-1" target="_blank" rel="noopener">深入理解<em>Java内存模型</em>(一)——基础-InfoQ</a></h3><p> Java线程之间的通信对程序员完全透明,内存可见性问题很容易困扰Java程序员,本文试图揭开_Java内存模型_神秘的面纱。本文大致分三部分:重</p>
+<h3 id="JVM内存模型与-运行时数据区域的详解-图文-java-教程-PHP中文网"><a href="#JVM内存模型与-运行时数据区域的详解-图文-java-教程-PHP中文网" class="headerlink" title="_JVM内存模型与_运行时数据区域的详解(图文)-_java_教程-PHP中文网"></a><a href="https://zshipu.com/t?url=https://www.php.cn/java-article-411721.html" target="_blank" rel="noopener">_JVM内存模型与_运行时数据区域的详解(图文)-_java_教程-PHP中文网</a></h3><p> 2018年10月16日 - 本篇文章给大家带来的内容是关于<em>JVM内存模型与_运行时数据区域的详解(图文),有一定的参考价值,有需要的朋友可以参考一下,希望对你有所帮助。 一、_java内存模型</em> java…</p>
+<h3 id="JMM-Java内存模型-中的核心概念-guibin-ITeye博客"><a href="#JMM-Java内存模型-中的核心概念-guibin-ITeye博客" class="headerlink" title="JMM(Java内存模型)中的核心概念 - guibin - ITeye博客"></a><a href="https://zshipu.com/t?url=http://guibin.iteye.com/blog/1172731" target="_blank" rel="noopener">JMM(<em>Java内存模型</em>)中的核心概念 - guibin - ITeye博客</a></h3><p> 2011年9月15日 - 在JLS-<em>Java</em> Language Specification的17.4节详细描述了JMM(<em>Java</em> Memory Model),这个文档从语言学和实现_JVM_的角度讲非常棒,但是对于我们这些应用开发者…</p>
+<h3 id="Java内存模型-的历史变迁-CSDN-NET"><a href="#Java内存模型-的历史变迁-CSDN-NET" class="headerlink" title="_Java内存模型_的历史变迁-CSDN.NET"></a><a href="https://zshipu.com/t?url=https://www.csdn.net/article/2015-05-20/2824722-Java" target="_blank" rel="noopener">_Java内存模型_的历史变迁-CSDN.NET</a></h3><p> 2015年5月20日 - 旧_Java内存模型_对Java实现如何执行变量的读/写,加锁/解锁,以及volatile变量的读/写,定义了非常严格的规则。这些规则非常复杂,具体详情请参考《_JVM_规范…</p>
+<h3 id="java内存模型及-GC原理-和-图解-JVM-在-内存-中申请对象及垃…-新浪博客"><a href="#java内存模型及-GC原理-和-图解-JVM-在-内存-中申请对象及垃…-新浪博客" class="headerlink" title="_java内存模型及_GC原理 和 图解_JVM_在_内存_中申请对象及垃…_新浪博客"></a><a href="https://zshipu.com/t?url=http://blog.sina.com.cn/s/blog_4745d1c10102wng2.html" target="_blank" rel="noopener">_java内存模型及_GC原理 和 图解_JVM_在_内存_中申请对象及垃…_新浪博客</a></h3><p> 2015年8月1日 - <em>java内存模型</em> _JVM内存模型_中分两大块,一块是 NEW Generation, 另一块是Old Generation. 在New Generation中,有一个叫Eden的空间,主要是用来存放新生的…</p>
+<h3 id="聊聊高并发-三十五-Java内存模型-那些事-三-理解-内存-屏障-学步园"><a href="#聊聊高并发-三十五-Java内存模型-那些事-三-理解-内存-屏障-学步园" class="headerlink" title="聊聊高并发(三十五)_Java内存模型_那些事(三)理解_内存_屏障 | 学步园"></a><a href="https://zshipu.com/t?url=https://www.xuebuyuan.com/3192696.html" target="_blank" rel="noopener">聊聊高并发(三十五)_Java内存模型_那些事(三)理解_内存_屏障 | 学步园</a></h3><p> 2017年11月9日 - 内存屏障的概念很好理解,不同硬件实现内存屏障的方式不同,_Java内存模型_屏蔽了这种底层硬件平台的差异,由_JVM_来为不同的平台生成相应的机器码。…</p>
+<h3 id="深入理解java内存模型-pdf下载-深入理解-java内存模型-下载-绿色…"><a href="#深入理解java内存模型-pdf下载-深入理解-java内存模型-下载-绿色…" class="headerlink" title="深入理解java内存模型_pdf下载|深入理解_java内存模型_下载 绿色…"></a><a href="https://zshipu.com/t?url=http://www.downcc.com/soft/302754.html" target="_blank" rel="noopener">深入理解<em>java内存模型_pdf下载|深入理解_java内存模型_下载</em> 绿色…</a></h3><p> 2017年8月3日 - 深入理解_java内存模型_是由程晓明推出的_java内存模型_介绍的软件开发图书,从基础、冲排序、JMM设计等多方面讲述了_内存模型_的建立和使用,需要的朋友快来…</p>
+<h3 id="jvm内存模型和-内存分配-dancing007的个人空间-OSCHINA"><a href="#jvm内存模型和-内存分配-dancing007的个人空间-OSCHINA" class="headerlink" title="_jvm内存模型和_内存分配 - dancing007的个人空间 - OSCHINA"></a><a href="https://zshipu.com/t?url=https://my.oschina.net/u/3735426/blog/1580482" target="_blank" rel="noopener">_jvm内存模型和_内存分配 - dancing007的个人空间 - OSCHINA</a></h3><p> 2017年11月27日 - _jvm内存模型和_内存分配 转dancing007 发布于 2017/11/27 16:45…(1)jvm是_java_的核心和基础,在_java_编译器和os平台之间的虚拟处理器,可在上面…</p>
+<h3 id="java内存模型-新生代中的比例为什么是8-1-1-java吧-百度贴吧"><a href="#java内存模型-新生代中的比例为什么是8-1-1-java吧-百度贴吧" class="headerlink" title="java内存模型 新生代中的比例为什么是8:1:1?_java吧_百度贴吧"></a><a href="https://zshipu.com/t?url=http://tieba.baidu.com/p/5883346597" target="_blank" rel="noopener"><em>java内存模型</em> 新生代中的比例为什么是8:1:1?_java吧_百度贴吧</a></h3><p> 1楼: 求助，吧内的大神们？遇到一个<em>jvm_面试题 _java内存模型</em> …</p>
+<p> 2楼: 之前看ibm有做过一个研究，新生代大部分都是垃圾，一次…</p>
+<h3 id="Java-内存模型-内存-监控-GC查看-禅鸣之时-ITeye博客"><a href="#Java-内存模型-内存-监控-GC查看-禅鸣之时-ITeye博客" class="headerlink" title="Java 内存模型,_内存_监控,GC查看 - 禅鸣之时 - ITeye博客"></a><a href="https://zshipu.com/t?url=http://shihlei.iteye.com/blog/2244799" target="_blank" rel="noopener"><em>Java 内存模型</em>,_内存_监控,GC查看 - 禅鸣之时 - ITeye博客</a></h3><p> 2018年5月27日 - ——<em>Java</em> 8 后 Metaspace 代替 默认受物理_内存_限制,可以通过 -XX:MaxMetaspaceSize 设置最大使用_内存_数。 4)程序计数器 5)本地方法栈 (二)_JVM 内存_设…</p>
+<h3 id="JAVA内存模型-简述及总结-教程库"><a href="#JAVA内存模型-简述及总结-教程库" class="headerlink" title="_JAVA内存模型_简述及总结_教程库"></a><a href="https://zshipu.com/t?url=http://www.jiaochengku.net/ITjiaocheng/wangluobiancheng/38109.html" target="_blank" rel="noopener">_JAVA内存模型_简述及总结_教程库</a></h3><p> 2019年8月5日 - JMM定义了java 虚拟机(<em>JVM</em>)在计算机内存(RAM)中的工作方式。_JVM_是整个计算机虚拟模型,所以JMM是隶属于_JVM_的 _Java内存模型_定义了多线程之间共享变量的…</p>
+<h3 id="BAT经典面试题-深入理解-Java内存模型-JMM-HelloJava菜鸟社区"><a href="#BAT经典面试题-深入理解-Java内存模型-JMM-HelloJava菜鸟社区" class="headerlink" title="BAT经典面试题,深入理解_Java内存模型_JMM - HelloJava菜鸟社区"></a><a href="https://zshipu.com/t?url=http://www.hellojava.com/a/77344.html" target="_blank" rel="noopener">BAT经典面试题,深入理解_Java内存模型_JMM - HelloJava菜鸟社区</a></h3><p> 2019年5月16日 - <em>Java 内存模型</em>(JMM)是一种抽象的概念,并不真实存在,它描述了一组规则或规范,…注意JMM_与JVM内存_区域划分的区别: JMM描述的是一组规则,围绕原子性、有序性和…</p>
+<h3 id="终于有人把-Java内存模型-说清楚了-知乎"><a href="#终于有人把-Java内存模型-说清楚了-知乎" class="headerlink" title="终于有人把_Java内存模型_说清楚了 - 知乎"></a><a href="https://zshipu.com/t?url=https://zhuanlan.zhihu.com/p/61424782" target="_blank" rel="noopener">终于有人把_Java内存模型_说清楚了 - 知乎</a></h3><p> 2019年4月13日 - <em>JVM</em> 中试图定义一种 JMM 来屏蔽各种硬件和操作系统的<em>内存_访问差异,以实现让 _Java</em> 程序在各种平台下都能达到一致的_内存_访问效果。 JMM 的主要目标是定义程序中各个…</p>
+<h3 id="java内存模型-图文-百度文库"><a href="#java内存模型-图文-百度文库" class="headerlink" title="_java内存模型__图文_百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/e68201ecf8c75fbfc77db2a4.html" target="_blank" rel="noopener">_java内存模型__图文_百度文库</a></h3><p> 评分:3.5/5 14页</p>
+<p> 2011年4月29日 - 内容什么是内存模型 <em>内存模型与_可见性 发生前关系(Happen-before) 初始化安全性 1 3 2 3 4 IBM&amp;重庆大学 9.1 _Java内存模型</em> _内存模型_同步和线程安全的…</p>
+<h3 id="浅谈-JAVA内存模型-Java-内存模型-以及应用程序常见…-爱问共享资料"><a href="#浅谈-JAVA内存模型-Java-内存模型-以及应用程序常见…-爱问共享资料" class="headerlink" title="浅谈_JAVA内存模型___Java 内存模型_以及应用程序常见…_爱问共享资料"></a><a href="https://zshipu.com/t?url=https://ishare.iask.sina.com.cn/f/1H1iIrgF7wt9.html" target="_blank" rel="noopener">浅谈_JAVA内存模型___Java 内存模型_以及应用程序常见…_爱问共享资料</a></h3><h3 id="【Java-面试题】-Java内存模型-教育-高清完整正版视频在线观看-…"><a href="#【Java-面试题】-Java内存模型-教育-高清完整正版视频在线观看-…" class="headerlink" title="【Java_面试题】_Java内存模型-教育-高清完整正版视频在线观看-…"></a><a href="https://zshipu.com/t?url=https://v.youku.com/v_show/id_XMzgzODk1OTM1Mg==.html" target="_blank" rel="noopener">【<em>Java_面试题】_Java内存模型</em>-教育-高清完整正版视频在线观看-…</a></h3><h3 id="Java内存模型-FAQ-一-什么是-内存模型-并发编程网-–-ifeve-com"><a href="#Java内存模型-FAQ-一-什么是-内存模型-并发编程网-–-ifeve-com" class="headerlink" title="Java内存模型_FAQ(一) 什么是_内存模型 | 并发编程网 – ifeve.com"></a><a href="https://zshipu.com/t?url=https://ifeve.com/memory-model/" target="_blank" rel="noopener"><em>Java内存模型_FAQ(一) 什么是_内存模型</em> | 并发编程网 – ifeve.com</a></h3><p> 和降低共享<em>内存_在总线上的通讯(因为本地缓存能够满足许多_内存_操作)来提高CPU性能…_Java</em> 10的类型推导 谈谈Netty的线程<em>模型</em> <em>JVM_之动态方法调用:invokedynamic _Jav</em>…</p>
+<h3 id="JVM-—虚拟机-内存模型与-高效并发丶一个站在-Java-后端设计之路的男…"><a href="#JVM-—虚拟机-内存模型与-高效并发丶一个站在-Java-后端设计之路的男…" class="headerlink" title="_JVM_—虚拟机_内存模型与_高效并发丶一个站在_Java_后端设计之路的男…"></a><a href="https://zshipu.com/t?url=https://www.liangzl.com/get-article-detail-9958.html" target="_blank" rel="noopener">_JVM_—虚拟机_内存模型与_高效并发丶一个站在_Java_后端设计之路的男…</a></h3><p> 2018年7月25日 - <em>Java内存模型</em>,即Java Memory Model,简称 JMM ,它是一种抽象的概念,或者是一种协议,用来解决在并发编程过程中_内存_访问的问题,同时又可以兼容不同的硬件和操作系统,…</p>
+<h3 id="Java内存-区域和-内存模型-讲解-java-脚本之家"><a href="#Java内存-区域和-内存模型-讲解-java-脚本之家" class="headerlink" title="_Java内存_区域和_内存模型_讲解_java_脚本之家"></a><a href="https://zshipu.com/t?url=https://www.jb51.net/article/155559.htm" target="_blank" rel="noopener">_Java内存_区域和_内存模型_讲解_java_脚本之家</a></h3><p> 2019年1月29日 - 今天小编就为大家分享一篇关于_Java内存_区域和_内存模型_讲解,小编觉得内容挺不错的…堆(公有):是_JVM_所管理的_内存_中最大的一块。唯一目的就是存放实例对…</p>
+<h3 id="Java内存模型之JVM-进阶-李兴华的在线视频教程-CSDN学院"><a href="#Java内存模型之JVM-进阶-李兴华的在线视频教程-CSDN学院" class="headerlink" title="_Java内存模型之JVM_进阶-李兴华的在线视频教程-CSDN学院"></a><a href="https://zshipu.com/t?url=https://edu.csdn.net/course/detail/3580" target="_blank" rel="noopener">_Java内存模型<em>之</em>JVM_进阶-李兴华的在线视频教程-CSDN学院</a></h3><p> 第一章:JVM执行分析 1. _Java_运行流程 [ 20:54 ] 免费 2. _Java_对象访问模式 [ 19:57 ] 第二章:_JVM内存模型与_垃圾收集 1. _Java_堆内存模型 [ 11:…</p>
+<h3 id="JVM内存模型与-运行时数据区域-mmmming-SegmentFault-思否"><a href="#JVM内存模型与-运行时数据区域-mmmming-SegmentFault-思否" class="headerlink" title="_JVM内存模型与_运行时数据区域 - mmmming - SegmentFault 思否"></a><a href="https://zshipu.com/t?url=https://segmentfault.com/a/1190000016694247" target="_blank" rel="noopener">_JVM内存模型与_运行时数据区域 - mmmming - SegmentFault 思否</a></h3><p> 2018年10月15日 - <em>java_定义_内存模型_的目的是:为了屏蔽各种硬件和操作系统的内存访问之间的差异。 _java</em>…参考文章:_java_8的_jvm内存_区域。 元空间和永久代的性质是一样的,…</p>
+<h3 id="JVM内存模型-的相关概念-创头条"><a href="#JVM内存模型-的相关概念-创头条" class="headerlink" title="_JVM内存模型_的相关概念-创头条"></a><a href="https://zshipu.com/t?url=http://www.ctoutiao.com/2303616.html" target="_blank" rel="noopener">_JVM内存模型_的相关概念-创头条</a></h3><p> 2019年9月18日 - 2.<em>JVM内存模型</em> JVM在执行_Java_程序时,会把它管理的_内存_划分为若干个的区域,每个区域都有自己的用途和创建销毁时间。如下图所示,可以分为两大部分,线程…</p>
+<h3 id="Java-JVM-内存模型-Java-中的-内存-管理-慕课手记"><a href="#Java-JVM-内存模型-Java-中的-内存-管理-慕课手记" class="headerlink" title="Java(JVM)内存模型 - _Java_中的_内存_管理_慕课手记"></a><a href="https://zshipu.com/t?url=http://www.imooc.com/article/details/id/282396" target="_blank" rel="noopener"><em>Java</em>(<em>JVM</em>)<em>内存模型</em> - _Java_中的_内存_管理_慕课手记</a></h3><p> 2019年3月9日 - 了解<em>JVM内存模型</em>,如果您想了解Java垃圾收集的工作,_Java内存_管理非常重要。今天我们将研究Java中的内存管理,JVM内存的不同部分以及如何监视和执行垃圾…</p>
+<h3 id="JVM内存模型-详解-Java-工具类资源-CSDN下载"><a href="#JVM内存模型-详解-Java-工具类资源-CSDN下载" class="headerlink" title="_JVM内存模型_详解-_Java_工具类资源-CSDN下载"></a><a href="https://zshipu.com/t?url=https://download.csdn.net/download/cgperfect/10970604" target="_blank" rel="noopener">_JVM内存模型_详解-_Java_工具类资源-CSDN下载</a></h3><p> 2019年9月4日 - <em>jvm内存模型</em>,jvm脑图,jvm调优,jvm垃圾回收算法,jvm垃圾回收器,逃逸算法等总结。jvm 所需积分/C币:12 上传时间:2019-02-22 资源大小:14MB …</p>
+<h3 id="java内存模型-JMM-与并发-Java-技术驿站-Java-技术驿站"><a href="#java内存模型-JMM-与并发-Java-技术驿站-Java-技术驿站" class="headerlink" title="java内存模型(JMM)与并发 - Java 技术驿站-Java 技术驿站"></a><a href="https://zshipu.com/t?url=http://cmsblogs.com/?p=14823" target="_blank" rel="noopener"><em>java内存模型</em>(JMM)与并发 - Java 技术驿站-Java 技术驿站</a></h3><p> 2019年12月10日 - JMM-<em>java内存模型</em>,就是通过定义一套抽象规则,去屏蔽底层操作系统、硬件对_内存_访问…(long\doubel 64bit数据操作允许非原子性,但目前很少有非原子性实…</p>
+<h3 id="聊聊我对-Java内存模型-的理解-并发编程网"><a href="#聊聊我对-Java内存模型-的理解-并发编程网" class="headerlink" title="聊聊我对_Java内存模型_的理解 | 并发编程网"></a><a href="https://zshipu.com/t?url=http://www.360doc.com/content/15/0326/16/7853380_458246813.shtml" target="_blank" rel="noopener">聊聊我对_Java内存模型_的理解 | 并发编程网</a></h3><p> 2015年3月26日 - 我试图了解了<em>Java_、C#和Go语言的_内存模型</em>,发现内容基本大同小异,只是这些语言在…这个问题也曾经困扰了我很长时间,因为我从来没有从_JVM_的实现中找到…</p>
+<h3 id="Java内存模型-JMM-总结-知乎"><a href="#Java内存模型-JMM-总结-知乎" class="headerlink" title="Java内存模型(JMM)总结 - 知乎"></a><a href="https://zshipu.com/t?url=https://zhuanlan.zhihu.com/p/29881777" target="_blank" rel="noopener"><em>Java内存模型</em>(JMM)总结 - 知乎</a></h3><p> 2018年10月27日 - <em>Java内存模型_中的线程的工作内存(working memory)是cpu的寄存器和高速缓存的抽象描述。而JVM的静态内存储模型(_JVM内存模型</em>)只是一种对内存的物理划分…</p>
+<h3 id="java-基础-JVM-java内存模型-哔哩哔哩-゜-゜-つロ-干杯-bili…"><a href="#java-基础-JVM-java内存模型-哔哩哔哩-゜-゜-つロ-干杯-bili…" class="headerlink" title="java_基础,_JVM(java内存模型)_哔哩哔哩 (゜-゜)つロ 干杯~-bili…"></a><a href="https://zshipu.com/t?url=https://www.bilibili.com/video/av60307346" target="_blank" rel="noopener"><em>java_基础,_JVM</em>(<em>java内存模型</em>)_哔哩哔哩 (゜-゜)つロ 干杯~-bili…</a></h3><h3 id="深入理解-java内存模型-系列文章-并发编程网-–-ifeve-com"><a href="#深入理解-java内存模型-系列文章-并发编程网-–-ifeve-com" class="headerlink" title="深入理解_java内存模型_系列文章 | 并发编程网 – ifeve.com"></a><a href="https://zshipu.com/t?url=http://ifeve.com/java-memory-model-0/" target="_blank" rel="noopener">深入理解_java内存模型_系列文章 | 并发编程网 – ifeve.com</a></h3><p> 的内存语义,重排序规则及在处理器中的实现;<em>java内存模型_的设计目标,及其与处理…Java 10的类型推导 谈谈Netty的线程_模型</em> _JVM_之动态方法调用:invokedynamic Java…</p>
+<h3 id="JVM—-java内存-区域与-java内存模型-码神岛"><a href="#JVM—-java内存-区域与-java内存模型-码神岛" class="headerlink" title="JVM—_java内存_区域与_java内存模型__码神岛"></a><a href="https://zshipu.com/t?url=https://msd.misuland.com/pd/2884250068896980116" target="_blank" rel="noopener"><em>JVM</em>—_java内存_区域与_java内存模型__码神岛</a></h3><p> 2019年2月22日 - _jvm_在执行_java_程序的过程中会把所管理的_内存_分为若干不同的区域,有的区域随着虚拟机进程的启动而存在,有些区域则是依赖用户线程的启动和结束而建立和销毁的。 以下…</p>
+<h3 id="java内存模型-详解以及Java堆的分代-程序员大本营"><a href="#java内存模型-详解以及Java堆的分代-程序员大本营" class="headerlink" title="_java内存模型_详解以及Java堆的分代 - 程序员大本营"></a><a href="https://zshipu.com/t?url=https://www.pianshen.com/article/3463293914/" target="_blank" rel="noopener">_java内存模型_详解以及Java堆的分代 - 程序员大本营</a></h3><p> _jvm_是_java_的核心和基础,在_java_编译器和os平台之间的虚拟处理器,_JVM_有自己完善的硬件架构,如处理器、堆栈、寄存器等,使用_JVM_就是为了支持与操作系统无关,实现跨平台…</p>
+<h3 id="Java内存模型与-线程-loda0128的个人空间-OSCHINA"><a href="#Java内存模型与-线程-loda0128的个人空间-OSCHINA" class="headerlink" title="_Java内存模型与_线程 - loda0128的个人空间 - OSCHINA"></a><a href="https://zshipu.com/t?url=https://my.oschina.net/u/1378920/blog/425566" target="_blank" rel="noopener">_Java内存模型与_线程 - loda0128的个人空间 - OSCHINA</a></h3><p> 2015年6月6日 - <em>jvmjava内存模型_JMM多线程并发单例模式先行发生Happens-Before原则底层优化 工作_内存_与主_内存</em> <em>Java内存模型</em>(jmm)的出现是为了各种操作系统和硬件的<em>内</em>…</p>
+<h3 id="硬件-内存模型和Java内存模型-中的主内存相当于电脑中的内存还是磁盘"><a href="#硬件-内存模型和Java内存模型-中的主内存相当于电脑中的内存还是磁盘" class="headerlink" title="硬件_内存模型和Java内存模型_中的主内存相当于电脑中的内存还是磁盘?"></a><a href="https://zshipu.com/t?url=https://zhidao.baidu.com/question/1181471485174753499.html" target="_blank" rel="noopener">硬件_内存模型和Java内存模型_中的主内存相当于电脑中的内存还是磁盘?</a></h3><p> 2019年8月14日 - 回答：是硬盘模拟_内存_。</p>
+<h3 id="java-内存模型与JVM-的-内存模型-是一个意思吗-百度知道"><a href="#java-内存模型与JVM-的-内存模型-是一个意思吗-百度知道" class="headerlink" title="_java 内存模型与JVM_的_内存模型_是一个意思吗_百度知道"></a><a href="https://zshipu.com/t?url=https://zhidao.baidu.com/question/525226214255683725.html" target="_blank" rel="noopener">_java 内存模型与JVM_的_内存模型_是一个意思吗_百度知道</a></h3><p> 2018年9月18日 - 回答：是的,是一个意思。</p>
+<h3 id="聊聊我对-Java内存模型-的理解-并发编程网-–-ifeve-com"><a href="#聊聊我对-Java内存模型-的理解-并发编程网-–-ifeve-com" class="headerlink" title="聊聊我对_Java内存模型_的理解 | 并发编程网 – ifeve.com"></a><a href="https://zshipu.com/t?url=https://ifeve.com/talk-to-my-understanding-of-the-java-memory-model/" target="_blank" rel="noopener">聊聊我对_Java内存模型_的理解 | 并发编程网 – ifeve.com</a></h3><p> 所有的编程语言中都有<em>内存模型_这个概念,区别于微架构的_内存模型</em>,高级语言的<em>内存模型_包括了编译器和微架构两部分。我试图了解了_Java_、C#和Go语言的_内存模型</em>,发现内容…</p>
+<h3 id="Java内存模型-Memory-Model-线程"><a href="#Java内存模型-Memory-Model-线程" class="headerlink" title="Java内存模型(Memory Model)_线程"></a><a href="https://zshipu.com/t?url=https://www.sohu.com/a/275306693_100123073" target="_blank" rel="noopener"><em>Java内存模型</em>(Memory Model)_线程</a></h3><p> 2018年11月14日 - <em>Java内存模型</em>,Java Memory Model,我个人更喜欢“Java存储_模型_”的译法。 介绍 如前所述,_JVM_被设计成一台抽象的虚拟计算机,_JVM_的并发问题及解决方案与物理计算机中…</p>
+<h3 id="Java内存模型-详解-一-云-社区-腾讯云"><a href="#Java内存模型-详解-一-云-社区-腾讯云" class="headerlink" title="_Java内存模型_详解(一) - 云+社区 - 腾讯云"></a><a href="https://zshipu.com/t?url=https://cloud.tencent.com/developer/article/1492855" target="_blank" rel="noopener">_Java内存模型_详解(一) - 云+社区 - 腾讯云</a></h3><p> 2019年8月23日 - 本文开始死磕JMM(<em>Java内存模型</em>)由于知识点较多,分来写该文为JMM第一篇技术往往…同时JMM也规范了_JVM_如何与计算机_内存_进行交互。简单的来说JMM就是Jav…</p>
+<h3 id="jvm内存模型和-内存分配-简书"><a href="#jvm内存模型和-内存分配-简书" class="headerlink" title="_jvm内存模型和_内存分配 - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/a448fba00aa0" target="_blank" rel="noopener">_jvm内存模型和_内存分配 - 简书</a></h3><p> 2019年3月19日 - _jvm_包含一套字节码指令集,一组寄存器,一个栈,一个垃圾回收堆和一个存储方法域。 _JVM_屏蔽了与具体操作系统平台相关的信息,使_Java_程序只需生成在_Java_虚…</p>
+<h3 id="面试问题-你了解-Java内存模型-么-Java7、8、9-内存模型-的区别-简书"><a href="#面试问题-你了解-Java内存模型-么-Java7、8、9-内存模型-的区别-简书" class="headerlink" title="面试问题:你了解_Java内存模型_么(Java7、8、9_内存模型_的区别) - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/4455e4234d5c" target="_blank" rel="noopener">面试问题:你了解_Java内存模型_么(Java7、8、9_内存模型_的区别) - 简书</a></h3><p> 2018年10月9日 - _Java内存模型_是每个java程序员必须掌握理解的,这是Java的核心基础,对我们编写代码特别是并发编程时有很大帮助。由于Java程序是交由_JVM_执行的,所以我们…</p>
+<h3 id="JVM内存模型-总结"><a href="#JVM内存模型-总结" class="headerlink" title="_JVM内存模型_总结"></a><a href="https://zshipu.com/t?url=http://www.360doc.com/content/19/0627/15/13328254_845198882.shtml" target="_blank" rel="noopener">_JVM内存模型_总结</a></h3><p> 2019年6月27日 - 在_Java内存模型_中,为了效率是允许编译器和处理器对指令进行重排序,当然重排序它…在_JVM_底层volatile是采用“_内存_屏障”来实现的。 问题的提出 计算机…</p>
+<h3 id="Jvm内存模型与-垃圾回收-慕课手记"><a href="#Jvm内存模型与-垃圾回收-慕课手记" class="headerlink" title="_Jvm内存模型与_垃圾回收_慕课手记"></a><a href="https://zshipu.com/t?url=http://www.imooc.com/article/266252" target="_blank" rel="noopener">_Jvm内存模型与_垃圾回收_慕课手记</a></h3><p> 2018年12月5日 - <em>内存模型</em> _JVM内存_空间包含:方法区、_java_堆、_java_栈、本地方法栈。 352511-20170810232433792-373676900.png 方法区是各个线程共享的区域,存放类信息、…</p>
+<h3 id="一篇文章搞懂Java内存模型-详解-知乎"><a href="#一篇文章搞懂Java内存模型-详解-知乎" class="headerlink" title="一篇文章搞懂Java内存模型(详解) - 知乎"></a><a href="https://zshipu.com/t?url=https://zhuanlan.zhihu.com/p/93958995" target="_blank" rel="noopener">一篇文章搞懂<em>Java内存模型</em>(详解) - 知乎</a></h3><p> 2019年11月27日 - <em>Java 内存模型</em>(JMM)是一种抽象的概念,并不真实存在,它描述了一组规则或规范,…注意JMM_与JVM内存_区域划分的区别: JMM描述的是一组规则,围绕原子性、有…</p>
+<h3 id="什么是Java内存模型-JMM-Java-技术驿站-Java-技术驿站"><a href="#什么是Java内存模型-JMM-Java-技术驿站-Java-技术驿站" class="headerlink" title="什么是Java内存模型(JMM) - Java 技术驿站-Java 技术驿站"></a><a href="https://zshipu.com/t?url=http://cmsblogs.com/?p=14044" target="_blank" rel="noopener">什么是<em>Java内存模型</em>(JMM) - Java 技术驿站-Java 技术驿站</a></h3><p> 2019年12月10日 - 什么是<em>java内存模型</em> 缓存一致性问题 在现代计算机中,因为CPU的运算速度远大于_内存_的读写速度,因此为了不让CPU在计算的时候因为实时读取_内存_数据而影响…</p>
+<h3 id="JAVA-的-内存模型及-结构-并发编程网-–-ifeve-com"><a href="#JAVA-的-内存模型及-结构-并发编程网-–-ifeve-com" class="headerlink" title="_JAVA_的_内存模型及_结构 | 并发编程网 – ifeve.com"></a><a href="https://zshipu.com/t?url=http://ifeve.com/under-the-hood-runtime-data-areas-javas-memory-model/" target="_blank" rel="noopener">_JAVA_的_内存模型及_结构 | 并发编程网 – ifeve.com</a></h3><p> <em>Java内存模型<em>在</em>JVM</em> specification, Java SE 7 Edition, and mainly in the chapters “2.5 Runtime Data Areas” and “2.6 Frames”中有详细的说明。对象和类…</p>
+<h3 id="Java内存模型-、GC工作原理-Java文档类资源-CSDN下载"><a href="#Java内存模型-、GC工作原理-Java文档类资源-CSDN下载" class="headerlink" title="_Java内存模型_、GC工作原理-Java文档类资源-CSDN下载"></a><a href="https://zshipu.com/t?url=https://download.csdn.net/download/d470969047h/9959881" target="_blank" rel="noopener">_Java内存模型_、GC工作原理-Java文档类资源-CSDN下载</a></h3><p> 2017年9月1日 - 一个优秀Java程序员,必须了解_Java内存模型_、GC工作原理,以及如何优化GC的性能、…本文将从_JVM内存模型_、GC工作原理,以及GC的几个关键问题进行探讨,从…</p>
+<h3 id="Java内存模型和-类加载过程-JerryLin123的个人空间-OSCHINA"><a href="#Java内存模型和-类加载过程-JerryLin123的个人空间-OSCHINA" class="headerlink" title="_Java内存模型和_类加载过程 - JerryLin123的个人空间 - OSCHINA"></a><a href="https://zshipu.com/t?url=https://my.oschina.net/u/3863980/blog/1839508" target="_blank" rel="noopener">_Java内存模型和_类加载过程 - JerryLin123的个人空间 - OSCHINA</a></h3><p> 2018年7月3日 - <em>Java_栈描述的是_Java_方法执行的_内存模型</em>:每个方法在执行的同时都会创建一个栈帧…如果类满足卸载条件,_JVM_就在GC的时候,对类进行卸载,即在方法区清除类的信息。…</p>
+<h3 id="java内存模型与-线程规范-PDF-下载-Java知识分享网-免费Java资源下载"><a href="#java内存模型与-线程规范-PDF-下载-Java知识分享网-免费Java资源下载" class="headerlink" title="_java内存模型与_线程规范 PDF 下载_Java知识分享网-免费Java资源下载"></a><a href="https://zshipu.com/t?url=http://www.java1234.com/a/javaziliao/shuji/2014/0413/1963.html" target="_blank" rel="noopener">_java内存模型与_线程规范 PDF 下载_Java知识分享网-免费Java资源下载</a></h3><p> 2014年4月13日 - _java内存模型与_线程规范 PDF 下载失效链接处理 _java内存模型与_线程规范 PDF 下载 下载地址:_java内存模型与_线程规范 PDF 下载 相关截图:…</p>
+<h3 id="又踩到一个坑——JAVA-虚拟机最大-内存-CSDN论坛"><a href="#又踩到一个坑——JAVA-虚拟机最大-内存-CSDN论坛" class="headerlink" title="又踩到一个坑——JAVA_虚拟机最大_内存-CSDN论坛"></a><a href="https://zshipu.com/t?url=https://bbs.csdn.net/topics/390666921" target="_blank" rel="noopener">又踩到一个坑——<em>JAVA_虚拟机最大_内存</em>-CSDN论坛</a></h3><p> 32位操作系统最大也就只能支持4G_内存_啊。这是根据操作…堆是在_Java_虚拟机启动时创建的。 _JVM内存_最大能调…32位操作系统最大也就只能支持4G_内存_啊。这是根据操…</p>
+<h3 id="java-jvm内存模型-的工作-内存-和主-内存-到底是什么-是在哪个层面上…"><a href="#java-jvm内存模型-的工作-内存-和主-内存-到底是什么-是在哪个层面上…" class="headerlink" title="java - _jvm内存模型_的工作_内存_和主_内存_到底是什么?是在哪个层面上…"></a><a href="https://zshipu.com/t?url=https://segmentfault.com/q/1010000017483975" target="_blank" rel="noopener"><em>java</em> - _jvm内存模型_的工作_内存_和主_内存_到底是什么?是在哪个层面上…</a></h3><p> 2018年12月23日 - 看了周志明老师的&lt;深入理解_JVM_虚拟机&gt;12章,很自然地萌生了这个疑问.在书中周老师也并没有明确给出这两个概念是在哪个逻辑层次上做的划分,而只是说了”…</p>
+<h3 id="《深入理解-JAVA内存模型-》PDF-Java文档类资源-CSDN下载"><a href="#《深入理解-JAVA内存模型-》PDF-Java文档类资源-CSDN下载" class="headerlink" title="《深入理解_JAVA内存模型_》PDF-Java文档类资源-CSDN下载"></a><a href="https://zshipu.com/t?url=https://download.csdn.net/download/javry/10134745" target="_blank" rel="noopener">《深入理解_JAVA内存模型_》PDF-Java文档类资源-CSDN下载</a></h3><p> 2017年11月27日 - (<em>java_语言规范称之为formal method parameters)和异常处理器参数(exception handler parameters)不会在线程之间共享,它们不会有内存可见性问题,也不受</em>…_</p>
+<h3 id="Java内存模型和JVM内存-管理-鸿燕藏锋-CSDN博客"><a href="#Java内存模型和JVM内存-管理-鸿燕藏锋-CSDN博客" class="headerlink" title="_Java内存模型和JVM内存_管理 - 鸿燕藏锋 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/yanjiangdi/article/details/77934113" target="_blank" rel="noopener">_Java内存模型和JVM内存_管理 - 鸿燕藏锋 - CSDN博客</a></h3><p> 2017年9月11日 - _Java内存模型_的主要目标是定义程序中各个变量的访问规则,即在_JVM_中将变量存储到_内存_和从_内存_中取出变量这样的底层细节。此处的变量与Java编程里面的变…</p>
+<h3 id="Java内存模型-JMM详解-java-脚本之家"><a href="#Java内存模型-JMM详解-java-脚本之家" class="headerlink" title="_Java内存模型_JMM详解_java_脚本之家"></a><a href="https://zshipu.com/t?url=https://www.jb51.net/article/129051.htm" target="_blank" rel="noopener">_Java内存模型_JMM详解_java_脚本之家</a></h3><p> 2017年11月25日 - 这个保证简单来说就是一个线程的修改何时对其他线程可见,因此Java语言提出了JavaMemoryModel即<em>Java内存模型</em>,对于Java语言、_JVM_、编译器等实现者需要按…</p>
+<h3 id="Java内存模型-JMM-高并发原子性可见性有序性简介-多线程中篇-十…"><a href="#Java内存模型-JMM-高并发原子性可见性有序性简介-多线程中篇-十…" class="headerlink" title="_Java内存模型_JMM 高并发原子性可见性有序性简介 多线程中篇(十…"></a><a href="https://zshipu.com/t?url=http://www.west.cn/info/html/chengxusheji/Javajishu/20190220/4613219.html" target="_blank" rel="noopener">_Java内存模型_JMM 高并发原子性可见性有序性简介 多线程中篇(十…</a></h3><p> 2019年2月20日 - <em>Java 内存模型_作为_JVM_的一种抽象_内存模型</em>,屏蔽掉各种硬件和操作系统的内存差异,达到跨平台的内存访问效果。 Java语言规范定义了一个统一的内存管理模型JMM(Java Memory…</p>
+<h3 id="理解-Java内存模型-慕课手记"><a href="#理解-Java内存模型-慕课手记" class="headerlink" title="理解_Java内存模型__慕课手记"></a><a href="https://zshipu.com/t?url=http://www.imooc.com/article/266546" target="_blank" rel="noopener">理解_Java内存模型__慕课手记</a></h3><p> 2018年12月7日 - _Java内存模型_抽象示意图 _JVM内存_操作的并发问题 结合前面介绍的物理机的处理器处理内存的问题,可以类比总结出_JVM内存_操作的问题,下面介绍的_Java内存模型_的执行处理将围…</p>
+<h3 id="JVM内存-结构、-Java内存模型-以及Java对象-模型-之间的区别-CSDN博客"><a href="#JVM内存-结构、-Java内存模型-以及Java对象-模型-之间的区别-CSDN博客" class="headerlink" title="_JVM内存_结构、_Java内存模型_以及Java对象_模型_之间的区别_CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/zyc88888/article/details/83756364" target="_blank" rel="noopener">_JVM内存_结构、_Java内存模型_以及Java对象_模型_之间的区别_CSDN博客</a></h3><p> 2018年11月5日 - 这就是一个简单的Java对象的OOP-Klass模型,即Java对象模型。 总结 我们再来区分下<em>JVM内存_结构、 _Java内存模型</em> 以及 Java对象<em>模型</em> 三个概念。 _JVM内存_结构,和Java虚…</p>
+<h3 id="Java内存模型与JVM-二-简书"><a href="#Java内存模型与JVM-二-简书" class="headerlink" title="Java内存模型与JVM (二) - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/91f816803a4e" target="_blank" rel="noopener"><em>Java内存模型与JVM</em> (二) - 简书</a></h3><p> 2017年8月18日 - 第一步,了解_JVM_基本概念,基本结构。 第二步,了解_JVM_中线程私有区和公有区。 第三步,了解线程与_Java内存模型_。 第四步,了解并发编程 _JVM_的基础概念 _JVM_的中文…</p>
+<h3 id="快速带你分清java内存-结构-java内存模型-java对象模型和jvm内存…-1"><a href="#快速带你分清java内存-结构-java内存模型-java对象模型和jvm内存…-1" class="headerlink" title="快速带你分清java内存_结构,_java内存模型,java对象模型和jvm内存…"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/aademeng/articles/11069773.html" target="_blank" rel="noopener">快速带你分清<em>java内存_结构,_java内存模型</em>,java对象<em>模型和jvm内存</em>…</a></h3><p> 2019年6月22日 - 过程中的重点和难点,我习惯把这块的知识叫做javaSE高级基础,在学习jvm这块的知识,你一定会遇到几个概念,那就是java内存结构,<em>java内存模型</em>,java对象<em>模</em>…</p>
+<h3 id="jvm-面试系列一-java内存模型-你掌握了多少"><a href="#jvm-面试系列一-java内存模型-你掌握了多少" class="headerlink" title="_jvm_面试系列一:_java内存模型_你掌握了多少?"></a><a href="https://zshipu.com/t?url=https://www.sohu.com/a/135260918_499839" target="_blank" rel="noopener">_jvm_面试系列一:_java内存模型_你掌握了多少?</a></h3><p> 2017年4月20日 - 今天我们就来聊一聊<em>Java内存模型</em>,面试中面试官会通过考察你对_jvm_的理解更深入得了解你的水平。如果你应聘的职位涉及系统调优,如堆大小的分配、垃圾回…</p>
+<h3 id="Java内存-管理-JVM内存模型-以及JDK7和JDK8-内存模型-对比总结-三…-1"><a href="#Java内存-管理-JVM内存模型-以及JDK7和JDK8-内存模型-对比总结-三…-1" class="headerlink" title="_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比总结(三…"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/aflyun/p/10575740.html" target="_blank" rel="noopener">_Java内存_管理-_JVM内存模型_以及JDK7和JDK8_内存模型_对比总结(三…</a></h3><p> 2019年3月22日 - 如果虚拟机栈可以动态扩展,当扩展到无法申请<em>内存_到足够的_内存</em>,就会抛出OutOfMemoryError异常! 4、_Java_堆 堆是_jvm内存_管理的最大的一块区域,此_内存_区域的唯一目的就…</p>
+<h3 id="【-Java-】JMM-内存模型和JVM内存-结构-热咖啡与白猫-博客园"><a href="#【-Java-】JMM-内存模型和JVM内存-结构-热咖啡与白猫-博客园" class="headerlink" title="【_Java_】JMM_内存模型和JVM内存_结构 - 热咖啡与白猫 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/xcmelody/p/10961132.html" target="_blank" rel="noopener">【_Java_】JMM_内存模型和JVM内存_结构 - 热咖啡与白猫 - 博客园</a></h3><p> 2019年6月1日 - JMM_内存模型和JVM内存<em>结构 _JAVA内存模型</em>(Java Memory Model) <em>Java内存模型</em>,一般指的是JDK 5 开始使用的新的<em>内存模型</em>,主要由JSR-133: JavaTM Memory Mo…</p>
+<h3 id="终于有人把-Java内存模型-说清楚了-小推爱学习-博客园"><a href="#终于有人把-Java内存模型-说清楚了-小推爱学习-博客园" class="headerlink" title="终于有人把_Java内存模型_说清楚了! - 小推爱学习 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/ncy1/articles/9380046.html" target="_blank" rel="noopener">终于有人把_Java内存模型_说清楚了! - 小推爱学习 - 博客园</a></h3><p> 2018年7月27日 - 网上有很多关于 _Java 内存模型_的文章,但是很多人读完之后还是搞不清楚,甚至有的…特别需要注意的是,主内存…</p>
+<h3 id="Java内存模型与JVM-运行时数据区的区别-a7151593的博客-CSDN博客"><a href="#Java内存模型与JVM-运行时数据区的区别-a7151593的博客-CSDN博客" class="headerlink" title="_Java内存模型与JVM_运行时数据区的区别_a7151593的博客-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/a7151593/article/details/102526483" target="_blank" rel="noopener">_Java内存模型与JVM_运行时数据区的区别_a7151593的博客-CSDN博客</a></h3><p> 2019年10月12日 - _Java内存模型_是Java语言在多线程并发情况下对于共享变量读写(实际是共享变量对应的_内存_操作)的规范,主要是为了解决多线程可见性、原子性的问题,解决共…</p>
+<h3 id="Java-内存模型和-JVM-内存-结构真不是一回事-顿悟源码-CSDN博客"><a href="#Java-内存模型和-JVM-内存-结构真不是一回事-顿悟源码-CSDN博客" class="headerlink" title="_Java 内存模型和 JVM 内存_结构真不是一回事_顿悟源码-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/weixin_42885157/article/details/100847188" target="_blank" rel="noopener">_Java 内存模型和 JVM 内存_结构真不是一回事_顿悟源码-CSDN博客</a></h3><p> 2019年9月15日 - 这两个概念估计有不少人会混淆,它们都可以说是 <em>JVM</em> 规范的一部分,但真不是一回事!它们描述和解决的是不同问题,简单来说, <em>Java 内存模型</em>,描述的是多线…</p>
+<h3 id="浅析java内存模型–JMM-Java-Memory-Model-路易小七-博客园"><a href="#浅析java内存模型–JMM-Java-Memory-Model-路易小七-博客园" class="headerlink" title="浅析java内存模型–JMM(Java Memory Model) - 路易小七 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/lewis0077/p/5143268.html1" target="_blank" rel="noopener">浅析<em>java内存模型</em>–JMM(Java Memory Model) - 路易小七 - 博客园</a></h3><p> 2016年1月22日 - 主内存和工作内存: _Java内存模型_的主要目标是定义程序中各个变量的访问规则,即在_JVM_中将变量存储到_内存_和从_内存_中取出变量这样的底层细节。此处的变量…</p>
+<h3 id="深入理解-Java内存模型-之系列篇-CSniper-博客园"><a href="#深入理解-Java内存模型-之系列篇-CSniper-博客园" class="headerlink" title="深入理解_Java内存模型_之系列篇 - CSniper - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/csniper/articles/5463138.html" target="_blank" rel="noopener">深入理解_Java内存模型_之系列篇 - CSniper - 博客园</a></h3><p> 2016年5月5日 - _Java内存模型_的抽象 在java中,所有实例域、静态域和数组元素存储在堆_内存_中,堆…为了实现最小安全性,_JVM_在…</p>
+<h3 id="Java内存模型-残雪余香-博客园"><a href="#Java内存模型-残雪余香-博客园" class="headerlink" title="Java内存模型 - 残雪余香 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/nexiyi/p/java_memory_model_and_thread.html" target="_blank" rel="noopener"><em>Java内存模型</em> - 残雪余香 - 博客园</a></h3><p> 2014年3月9日 - 在讨论_Java内存模型和_线程之前,先简单介绍一下硬件的效率与一致性。 2.硬件的…· _JVM内存_结构、_Java内存模型和_Java对象模型· 求你了,再问你Java_内存模型_的…</p>
+<h3 id="Java内存模型-并发编程网-–-ifeve-com"><a href="#Java内存模型-并发编程网-–-ifeve-com" class="headerlink" title="Java内存模型 | 并发编程网 – ifeve.com"></a><a href="https://zshipu.com/t?url=http://ifeve.com/java-memory-model-6/" target="_blank" rel="noopener"><em>Java内存模型</em> | 并发编程网 – ifeve.com</a></h3><p> _Java内存模型_规定了如何和何时可以看到由其他线程修改过后的共享变量的值,以及在必须时如何同步的访问共享变量。原始的_Java内存模型_存在一些不足,因此_Java内存模型_在…</p>
+<h3 id="java内存模型和-内存分配-kunpeng90的博客-CSDN博客"><a href="#java内存模型和-内存分配-kunpeng90的博客-CSDN博客" class="headerlink" title="_java内存模型和_内存分配_kunpeng90的博客-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/kunpeng90/article/details/80232135" target="_blank" rel="noopener">_java内存模型和_内存分配_kunpeng90的博客-CSDN博客</a></h3><p> 2018年5月12日 - _jvm内存模型和_内存分配 1.什么是jvm? (1)jvm是一种用于计算设备的规范,它是…(3)JVM屏蔽了与具体操作系统平台相关的信息,使_Java_程序只需生成在_Java_虚拟机上…</p>
+<h3 id="JVM-Java内存模型与-线程-知乎"><a href="#JVM-Java内存模型与-线程-知乎" class="headerlink" title="JVM _Java内存模型与_线程 - 知乎"></a><a href="https://zshipu.com/t?url=https://zhuanlan.zhihu.com/p/103232785" target="_blank" rel="noopener"><em>JVM</em> _Java内存模型与_线程 - 知乎</a></h3><p> 2020年1月18日 - 本文记录了阅读《深入理解Java虚拟机:_JVM_高级特性与最佳实践 —— 周志明》的《_Java内存模型与_线程》章节的笔记。硬件的效率与一致性计算机中的运算任…</p>
+<h3 id="JVM内存模型及-内存分配过程-神奇的旋风-博客园"><a href="#JVM内存模型及-内存分配过程-神奇的旋风-博客园" class="headerlink" title="_JVM内存模型及_内存分配过程 - 神奇的旋风 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/xuan52rock/p/4736783.html" target="_blank" rel="noopener">_JVM内存模型及_内存分配过程 - 神奇的旋风 - 博客园</a></h3><p> 2015年8月17日 - 一、<em>JVM内存模型</em> JVM主要管理两种类型内存:堆(Heap)和非堆(Permanent区域)。 1…_Java 内存模型及_GC原理 _java内存模型及_GC原理 和 图解JVM在内存中申…</p>
+<h3 id="JVM内存模型与-调优-JVM内存模型与-调优-给我一个Object…-CSDN博客"><a href="#JVM内存模型与-调优-JVM内存模型与-调优-给我一个Object…-CSDN博客" class="headerlink" title="_JVM内存模型与_调优__JVM内存模型与_调优_给我一个Object…_CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/qq_39712188/article/details/84840613" target="_blank" rel="noopener">_JVM内存模型与_调优__JVM内存模型与_调优_给我一个Object…_CSDN博客</a></h3><p> 2018年12月5日 - 首先需要注意的是在对<em>JVM内存_调优的时候不能只看操作系统级别_Java_进程所占用的_内存</em>,这个数值不能准确的反应堆_内存_的真实占用情况,因为GC过后这个值是…</p>
+<h3 id="细说JVM内存模型-追梦1819-博客园"><a href="#细说JVM内存模型-追梦1819-博客园" class="headerlink" title="细说JVM内存模型 - 追梦1819 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/yanfei1819/p/11993464.html" target="_blank" rel="noopener">细说<em>JVM内存模型</em> - 追梦1819 - 博客园</a></h3><p> 2019年12月6日 - 在正式学习 <em>JVM 内存模型_之前,先注意以下几个是问题:_JVM 内存模型与</em> _JAVA 内存模型_不是同一个概念。_JVM 内存模型_是从运行时数据区的结构的角度描述的概念;而 …</p>
+<h3 id="深入理解JAVA内存模型-PDF版-Java文档类资源-CSDN下载"><a href="#深入理解JAVA内存模型-PDF版-Java文档类资源-CSDN下载" class="headerlink" title="深入理解JAVA内存模型(PDF版)-Java文档类资源-CSDN下载"></a><a href="https://zshipu.com/t?url=https://download.csdn.net/download/mr_ph/10006263" target="_blank" rel="noopener">深入理解<em>JAVA内存模型</em>(PDF版)-Java文档类资源-CSDN下载</a></h3><p> 2017年10月3日 - <em>java 内存模型JVM内存_讲解,堆栈讲解,本机内存。 立即下载 java 内存 上传时间: 2013-06-14 资源大小: 871KB 深入理解_java内存模型</em> 本书从重排序、…</p>
+<h3 id="Java内存模型及-性能优化及Java垃圾回收-mine-song的…-CSDN博客"><a href="#Java内存模型及-性能优化及Java垃圾回收-mine-song的…-CSDN博客" class="headerlink" title="_Java内存模型及_性能优化及Java垃圾回收 - mine_song的…_CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/mine_song/article/details/60953669" target="_blank" rel="noopener">_Java内存模型及_性能优化及Java垃圾回收 - mine_song的…_CSDN博客</a></h3><p> 2017年3月9日 - 一、<em>JVM内存模型</em> 首先介绍下<em>Java_程序具体执行的过程: _Java_源代码文件(._java_后缀…_Java_栈:_Java_栈是_Java_方法执行的_内存模型</em>,_Java_栈中存放的是一个个的…</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>23.深入Java系列Java内存模型和JVM内存模型</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-04-06, 11:17:06</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-06, 12:01:29</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/tlg/2020/04/06/3-深入Java系列Java内存模型和JVM内存模型/" title="23.深入Java系列Java内存模型和JVM内存模型">https://blog.zshipu.com/tlg/2020/04/06/3-深入Java系列Java内存模型和JVM内存模型/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+					| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#go','#web',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

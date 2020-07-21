@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Awesome Popup!</title>
+    <link rel="stylesheet" href="./css/popup.css">
+    <link rel="stylesheet" href="./css/popup-login-wrap.css">
+    <link rel="stylesheet" href="./css/popup-main-wrap.css">
+    <link rel="stylesheet" href="./css/popup-accounts-wrap.css">
+    <script src="/js/lib/template-web.js"></script>
+</head>
+
+<body>
+    <div id="jm_app">
+        <!-- 登陆模板 -->
+        <div id='login-wrap'>
+            <img src="./img/login_bg.png" alt="">
+            <p class='txt'>您还未登录，请登录后使用</p>
+            <div class='button'>登录／注册</div>
+        </div>
+        <!-- 主内容模板 -->
+        <div id='main-wrap'>
+            <nav class="jm_nav clearfix">
+                <!-- <img src="" alt=""> -->
+                <!-- <div class='nav-item data active' key='data'>
+                    <img class='normal' src="./img/tabar_data_normal.png" alt="">
+                    <img class='active' src="./img/tabar_data_press.png" alt="">
+                    数据
+                </div> -->
+                <div class='nav-item account active' key='account'>
+                    <img class='normal' src="./img/tabar_account_normal.png" alt="">
+                    <img class='active' src="./img/tabar_account_press.png" alt="">
+                    账号
+                </div>
+                <div class='nav-item' key='me'>
+                    <img class='normal' src="./img/tabar_mine_normal.png" alt="">
+                    <img class='active' src="./img/tabar_mine_press.png" alt="">
+                    我的
+                </div>
+                <div class='nav-item' key='progress'>
+                    <img class='normal' src="./img/progress_normal.png" alt="">
+                    <img class='active' src="./img/progress_press.png" alt="">
+                    进度
+                </div>
+            </nav>
+            <div class='content'>
+
+                <div class='content-item data' style='display:none;'>数据</div>
+
+                <div class='content-item account' style='display:block;'>
+                    <div class='all-account'>
+                        <div class='txt-wrap'>全部账号：<span class='total-of-accounts'>...</span>个</div>
+                        <div class='button-wrap'>
+                            <p key='normal' class='active' status='1'>正常账号</p>
+                            <p key='abnormal' status='2'>异常账号</p>
+                        </div>
+                    </div>
+
+                    <div class='change-account-list'>
+                        <div class='account-list'>
+                            <!-- <div class='no-data-wrap'>
+                                <img src="../assets/none.png" alt="暂无数据" class='no-data-img'>
+                                <p class='no-data-text'>暂无数据</p>
+                            </div> -->
+                            
+                            <!-- <div class='account-list-item'>
+                                <div class='l-part'>
+                                    <img src="./img/tabar_mine_normal.png" alt="">
+                                    <div class='user-info'>
+                                        <p>name</p>
+                                        <p>微信</p>
+                                    </div>
+                                </div>
+                                <div class='r-part'>
+                                    <p>进入后台</p>
+                                    <p>账号正常</p>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    
+
+                    <div class='add-button'>
+                        <img src="./img/ic_add.png" alt="">
+                        添加新账号
+                    </div>
+                </div>
+                <div class='content-item me'>
+                    <header>
+                        <div class='user-info'>
+                            <img class='avatar' src="./img/default_avatar.png" alt="">
+                            <div>
+                                <p class='username'>加载中..</p>
+                                <p class='vip'>
+                                    <img src="./img/im_members.png" alt="">
+                                </p>
+                            </div>
+                        </div>
+                        <div class='upgrade'>
+                            升级会员
+                            <p class='next'><img src="./img/ic_next.png" alt=""></p>
+                        </div>
+                    </header>
+                    <section>
+                        <div class="item linktoweb">
+                            <div>
+                                <img class='m10' src="./img/logo.png" alt="">
+                                简媒官网
+                            </div>
+                            <div class='next'><img src="./img/ic_next.png" alt=""></div>
+                        </div>
+                        <div class="item linktovideo">
+                            <div>
+                                <img class='m10' src="./img/logo.png" alt="">
+                                简媒视频
+                            </div>
+                            <div class='next'><img src="./img/ic_next.png" alt=""></div>
+                        </div>
+                        <div class="item linktohelp">
+                            <div>
+                                <img class='m10' src="./img/ic_help.png" alt="">
+                                使用帮助
+                            </div>
+                            <div class='next'><img src="./img/ic_next.png" alt=""></div>
+                        </div>
+                        <!-- <div class="item">
+                            <div>
+                                <img class='m10' src="./img/logo.png" alt="">
+                                简媒官网
+                            </div>
+                            <div class='next'><img src="./img/ic_next.png" alt=""></div>
+                        </div> -->
+                    </section>
+                    <div class='change-account'>切换账号</div>
+                </div>
+                <!-- 发文进度 -->
+                <div class='content-item progress'>
+                    <p class='progress-title'>暂无任务</p>
+                    <div class='progress-wrap'>
+                        <div class='progress-width'></div>
+                        <span class='progress-num'>0%</span>
+                    </div>
+                    <p class='progress-tip'>提示：文章同步完成前，请勿关闭浏览器</p>
+                </div>
+            </div>
+        </div>
+        <!-- 添加账号模板 -->
+        <div id='accounts-wrap'>
+            <header>
+                <span class='back'><img src="./img/ic_return.png" alt=""></span>
+                添加账号
+            </header>
+            <section>
+                <!-- <div class='item'>
+                    <img src="./img/im_weibo.png" alt="">
+                    <p>微博号</p>
+                </div>
+                <div class='item'>
+                    <img src="./img/im_weibo.png" alt="">
+                    <p>微博号</p>
+                </div> -->
+            </section>
+            <div class='bottom-block'></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/lib/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/js/lib/aes.min.js"></script>
+    <script type="text/javascript" src="./teaConfig.js"></script>
+    <script type="text/javascript" src="./popup.js"></script>
+    <script type="text/javascript" src="../js/lib/tea.min.js"></script>
+</body>
+</html>

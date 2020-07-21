@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>3.深入Java系列之基本数据类型 | 技术分享 | 知识铺</title>
+  <meta name="keywords" content>
+  <meta name="description" content="3.深入Java系列之基本数据类型 | 知识铺">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Java 基本数据类型 | 菜鸟教程 Java 基本数据类型 变量就是申请内存来存储值。也就是说,当创建变量的时候,需要在内存中申请空间。 内存管理系统根据变量的类型为变量分配存储空间,分配的空间只能… Java_的_基本数据类型 - 1130136248 - 博客园 2016年1月6日 - Java_语言提供了八种_基本类型_。六种数字类型(四个整数型(默认是int 型),两个浮点型(默认是do">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.深入Java系列之基本数据类型">
+<meta property="og:url" content="https://blog.zshipu.com/tlg/2020/04/01/深入Java系列之基本数据类型/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="Java 基本数据类型 | 菜鸟教程 Java 基本数据类型 变量就是申请内存来存储值。也就是说,当创建变量的时候,需要在内存中申请空间。 内存管理系统根据变量的类型为变量分配存储空间,分配的空间只能… Java_的_基本数据类型 - 1130136248 - 博客园 2016年1月6日 - Java_语言提供了八种_基本类型_。六种数字类型(四个整数型(默认是int 型),两个浮点型(默认是do">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2020-04-05T11:52:33.499Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3.深入Java系列之基本数据类型">
+<meta name="twitter:description" content="Java 基本数据类型 | 菜鸟教程 Java 基本数据类型 变量就是申请内存来存储值。也就是说,当创建变量的时候,需要在内存中申请空间。 内存管理系统根据变量的类型为变量分配存储空间,分配的空间只能… Java_的_基本数据类型 - 1130136248 - 博客园 2016年1月6日 - Java_语言提供了八种_基本类型_。六种数字类型(四个整数型(默认是int 型),两个浮点型(默认是do">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(190)</small></div></li>
+    
+        
+            
+            <li><div data-rel="go">go<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="190">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">go</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">web</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务">Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务</span>
+            <span class="post-date" title="2020-07-16 18:43:02">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud+nacos+Feign，实现注册中心及配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud+nacos+Feign，实现注册中心及配置中心">Spring Cloud+nacos+Feign，实现注册中心及配置中心</span>
+            <span class="post-date" title="2020-07-16 18:39:59">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos作为配置中心时，多个服务共用一个dataId的配置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos作为配置中心时，多个服务共用一个dataId的配置">Nacos作为配置中心时，多个服务共用一个dataId的配置</span>
+            <span class="post-date" title="2020-07-16 18:32:26">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(三)：使用Nacos作为配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(三)：使用Nacos作为配置中心">SpringCloudAlibaba(三)：使用Nacos作为配置中心</span>
+            <span class="post-date" title="2020-07-16 17:34:29">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos 集群部署/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos 集群部署">Nacos 集群部署</span>
+            <span class="post-date" title="2020-07-16 17:31:53">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(二)：Nacos介绍与环境安装/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(二)：Nacos介绍与环境安装">SpringCloudAlibaba(二)：Nacos介绍与环境安装</span>
+            <span class="post-date" title="2020-07-16 17:26:15">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(一)：概述与重要组件/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(一)：概述与重要组件">SpringCloudAlibaba(一)：概述与重要组件</span>
+            <span class="post-date" title="2020-07-16 17:23:13">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Java面试宝典300问-第一部分/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java面试宝典300问 第一部分">Java面试宝典300问 第一部分</span>
+            <span class="post-date" title="2020-07-09 14:39:53">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/GraaphQL实战：GraphQL Mutations 五/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL实战：GraphQL Mutations 五">GraphQL实战：GraphQL Mutations 五</span>
+            <span class="post-date" title="2020-07-09 13:50:49">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：GraphQL 基础知识  四/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：GraphQL 基础知识  四">Graphql实战：GraphQL 基础知识  四</span>
+            <span class="post-date" title="2020-07-09 13:38:27">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：自动执行后端测试 三/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：自动执行后端测试 三">Graphql实战：自动执行后端测试 三</span>
+            <span class="post-date" title="2020-07-09 13:22:30">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：基本模型和多态关联 二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：基本模型和多态关联 二">Graphql实战：基本模型和多态关联 二</span>
+            <span class="post-date" title="2020-07-09 11:59:15">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：构建论坛应用，从代码到部署 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：构建论坛应用，从代码到部署 一">Graphql实战：构建论坛应用，从代码到部署 一</span>
+            <span class="post-date" title="2020-07-09 11:48:06">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/04/学习Go 第一周/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习Go 第一周">学习Go 第一周</span>
+            <span class="post-date" title="2020-07-04 11:24:14">2020/07/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法">每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法</span>
+            <span class="post-date" title="2020-07-02 11:43:59">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/同心管家-专业心脏病医疗服务平台/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="同心管家-专业心脏病医疗服务平台">同心管家-专业心脏病医疗服务平台</span>
+            <span class="post-date" title="2020-07-02 11:30:40">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/2020 年成为前端大师的 9 个项目/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020 年成为前端大师的 9 个项目">2020 年成为前端大师的 9 个项目</span>
+            <span class="post-date" title="2020-06-25 20:13:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter：初学者的学习资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter：初学者的学习资源">Flutter：初学者的学习资源</span>
+            <span class="post-date" title="2020-06-25 19:46:43">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 404页面自定义/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 404页面自定义">Flutter 404页面自定义</span>
+            <span class="post-date" title="2020-06-25 19:22:33">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 滑块小部件有哪些新增功能/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 滑块小部件有哪些新增功能">Flutter 滑块小部件有哪些新增功能</span>
+            <span class="post-date" title="2020-06-25 19:17:07">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/用于 Flutter 开发人员的新工具，内置于 Flutter/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="用于 Flutter 开发人员的新工具，内置于 Flutter">用于 Flutter 开发人员的新工具，内置于 Flutter</span>
+            <span class="post-date" title="2020-06-25 19:06:02">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 八大优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 八大优势">Flutter 八大优势</span>
+            <span class="post-date" title="2020-06-25 18:17:38">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Vue.js 和 Angular 比 jQuery 有什么好处/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js 和 Angular 比 jQuery 有什么好处">Vue.js 和 Angular 比 jQuery 有什么好处</span>
+            <span class="post-date" title="2020-06-25 18:05:10">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/数据科学专家必修之路/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据科学专家必修之路">数据科学专家必修之路</span>
+            <span class="post-date" title="2020-06-25 14:08:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/学习 JavaScript 的最佳方式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习 JavaScript 的最佳方式">学习 JavaScript 的最佳方式</span>
+            <span class="post-date" title="2020-06-25 14:00:18">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 最佳资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 最佳资源">GraphQL 最佳资源</span>
+            <span class="post-date" title="2020-06-25 12:04:57">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/与 REST API 相比，GraphQL 有哪些优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="与 REST API 相比，GraphQL 有哪些优势">与 REST API 相比，GraphQL 有哪些优势</span>
+            <span class="post-date" title="2020-06-25 12:02:49">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 深入理解系列 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 深入理解系列 一">GraphQL 深入理解系列 一</span>
+            <span class="post-date" title="2020-06-25 11:59:41">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的主要组件分析 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的主要组件分析 - 分步指南">Python 中的主要组件分析 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:29:05">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/K 表示 Python 中的群集 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="K 表示 Python 中的群集 - 分步指南">K 表示 Python 中的群集 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:28:18">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中支持矢量机 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中支持矢量机 - 分步指南">Python 中支持矢量机 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:27:01">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的决策树和随机林/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的决策树和随机林">Python 中的决策树和随机林</span>
+            <span class="post-date" title="2020-06-21 11:25:57">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的 K 最近邻居 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的 K 最近邻居 - 分步指南">Python 中的 K 最近邻居 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:24:52">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的逻辑回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的逻辑回归 - 分步指南">Python 中的逻辑回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:23:42">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的线性回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的线性回归 - 分步指南">Python 中的线性回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:19:43">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/推荐算法简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法简介">推荐算法简介</span>
+            <span class="post-date" title="2020-06-21 11:18:15">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/9 种常用关键机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9 种常用关键机器学习算法">9 种常用关键机器学习算法</span>
+            <span class="post-date" title="2020-06-21 11:17:12">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/最新技术周刊 01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="最新技术周刊 01">最新技术周刊 01</span>
+            <span class="post-date" title="2020-06-21 11:08:27">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/20/初创团队选择 Vert.x /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初创团队选择 Vert.x">初创团队选择 Vert.x</span>
+            <span class="post-date" title="2020-06-20 17:19:35">2020/06/20</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/19/GraphQL 入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 入门指南">GraphQL 入门指南</span>
+            <span class="post-date" title="2020-06-19 20:06:53">2020/06/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/17/Linux的du用法排除某个目录/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux的du用法排除某个目录">Linux的du用法排除某个目录</span>
+            <span class="post-date" title="2020-06-17 16:47:00">2020/06/17</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/16/dubbo go 初步使用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="dubbo go 初步使用">dubbo go 初步使用</span>
+            <span class="post-date" title="2020-06-16 16:03:40">2020/06/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/15/GraphQL架构拼接解释：架构委派/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL架构拼接解释：架构委派">GraphQL架构拼接解释：架构委派</span>
+            <span class="post-date" title="2020-06-15 18:36:56">2020/06/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 作为微服务的 API 网关/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 作为微服务的 API 网关">GraphQL 作为微服务的 API 网关</span>
+            <span class="post-date" title="2020-06-14 21:10:27">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 在微服务架构中的实践/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 在微服务架构中的实践">GraphQL 在微服务架构中的实践</span>
+            <span class="post-date" title="2020-06-14 20:54:37">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 微服务化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 微服务化">GraphQL 微服务化</span>
+            <span class="post-date" title="2020-06-14 20:52:36">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/MySQL 上构造即时 Graphql API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MySQL 上构造即时 Graphql API">MySQL 上构造即时 Graphql API</span>
+            <span class="post-date" title="2020-06-12 13:44:34">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/graphql mysql /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="graphql mysql">graphql mysql</span>
+            <span class="post-date" title="2020-06-12 13:42:42">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/11/golang gateway 从零开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang gateway 从零开始">golang gateway 从零开始</span>
+            <span class="post-date" title="2020-06-11 09:12:48">2020/06/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/09/springboot + spring security验证token进行用户认证/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot + spring security验证token进行用户认证">springboot + spring security验证token进行用户认证</span>
+            <span class="post-date" title="2020-06-09 17:11:25">2020/06/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/08/zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has">zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has</span>
+            <span class="post-date" title="2020-06-08 13:31:04">2020/06/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/微信 小程序需要授权 有部分人需要获取验证码/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微信 小程序需要授权 有部分人需要获取验证码">微信 小程序需要授权 有部分人需要获取验证码</span>
+            <span class="post-date" title="2020-06-04 13:26:37">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang 正则表达式 过滤手机号带有字符串，特殊符号/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang 正则表达式 过滤手机号带有字符串，特殊符号">golang 正则表达式 过滤手机号带有字符串，特殊符号</span>
+            <span class="post-date" title="2020-06-04 12:06:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang regexp.Compile 正则表达式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang regexp.Compile 正则表达式">golang regexp.Compile 正则表达式</span>
+            <span class="post-date" title="2020-06-04 11:56:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/初学者的 Docker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者的 Docker">初学者的 Docker</span>
+            <span class="post-date" title="2020-05-31 15:38:34">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/按值排序对象的 JavaScript 排序数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="按值排序对象的 JavaScript 排序数组">按值排序对象的 JavaScript 排序数组</span>
+            <span class="post-date" title="2020-05-31 15:32:48">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js——60分钟快速入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js——60分钟快速入门">Vue.js——60分钟快速入门</span>
+            <span class="post-date" title="2020-05-30 12:19:41">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js新手入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js新手入门指南">Vue.js新手入门指南</span>
+            <span class="post-date" title="2020-05-30 12:00:43">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Node.js的替代者，初识Deno/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Node.js的替代者，初识Deno">Node.js的替代者，初识Deno</span>
+            <span class="post-date" title="2020-05-30 11:59:58">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/初学者，学习vue应该从何下手？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者，学习vue应该从何下手？">初学者，学习vue应该从何下手？</span>
+            <span class="post-date" title="2020-05-30 11:58:18">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统">从0到1，Vue大牛的前端搭建——异常监控系统</span>
+            <span class="post-date" title="2020-05-30 11:57:22">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）">从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）</span>
+            <span class="post-date" title="2020-05-30 11:56:59">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/9道价值20k薪资的VUE必备面试题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9道价值20k薪资的VUE必备面试题">9道价值20k薪资的VUE必备面试题</span>
+            <span class="post-date" title="2020-05-30 11:25:07">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/29/canvas 折线/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="canvas 折线">canvas 折线</span>
+            <span class="post-date" title="2020-05-29 13:06:27">2020/05/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/28/Emoji 转换 base64/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Emoji 转换 base64">Emoji 转换 base64</span>
+            <span class="post-date" title="2020-05-28 18:41:42">2020/05/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/公众号 H5 分享/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号 H5 分享">公众号 H5 分享</span>
+            <span class="post-date" title="2020-05-27 19:46:03">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 signature/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 signature">获取微信公众号 signature</span>
+            <span class="post-date" title="2020-05-27 19:44:37">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 jsapi_ticket/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 jsapi_ticket">获取微信公众号 jsapi_ticket</span>
+            <span class="post-date" title="2020-05-27 19:43:56">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/2020编程大牛的网盘资料汇总/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020编程大牛的网盘资料汇总">2020编程大牛的网盘资料汇总</span>
+            <span class="post-date" title="2020-05-26 14:50:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/一个简单的RTMP服务器实现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="一个简单的RTMP服务器实现">一个简单的RTMP服务器实现</span>
+            <span class="post-date" title="2020-05-26 12:01:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/HTML5实现播放RTMP协议视频/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML5实现播放RTMP协议视频">HTML5实现播放RTMP协议视频</span>
+            <span class="post-date" title="2020-05-26 11:58:15">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/正文提取算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正文提取算法">正文提取算法</span>
+            <span class="post-date" title="2020-05-24 19:16:30">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma CSS - 开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma CSS - 开始">Bulma CSS - 开始</span>
+            <span class="post-date" title="2020-05-24 18:54:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/2020年，jQuery需要了解的那些知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020年，jQuery需要了解的那些知识点">2020年，jQuery需要了解的那些知识点</span>
+            <span class="post-date" title="2020-05-24 18:50:59">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员经常去的网站有哪些？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员经常去的网站有哪些？">程序员经常去的网站有哪些？</span>
+            <span class="post-date" title="2020-05-24 18:45:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员常去的网站/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员常去的网站">程序员常去的网站</span>
+            <span class="post-date" title="2020-05-24 18:33:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Redis 集群演进探讨和总结/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Redis 集群演进探讨和总结">Redis 集群演进探讨和总结</span>
+            <span class="post-date" title="2020-05-24 18:29:41">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Buefy框架如何自定义主题？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Buefy框架如何自定义主题？">Bulma和Buefy框架如何自定义主题？</span>
+            <span class="post-date" title="2020-05-24 13:24:53">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/bulma和bootstrap等前端框架我应该选择哪个？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bulma和bootstrap等前端框架我应该选择哪个？">bulma和bootstrap等前端框架我应该选择哪个？</span>
+            <span class="post-date" title="2020-05-24 13:20:09">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Bootstrap 区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Bootstrap 区别">Bulma和Bootstrap 区别</span>
+            <span class="post-date" title="2020-05-24 13:16:19">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma Vue.js集成/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma Vue.js集成">Bulma Vue.js集成</span>
+            <span class="post-date" title="2020-05-24 13:12:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma-起步/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma 起步">Bulma 起步</span>
+            <span class="post-date" title="2020-05-24 12:04:15">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/19/Deno-1-0-简介，node-js的代替者出现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Deno 1.0 简介，node.js的代替者出现">Deno 1.0 简介，node.js的代替者出现</span>
+            <span class="post-date" title="2020-05-19 08:55:46">2020/05/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/19/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号">公众号</span>
+            <span class="post-date" title="2020-04-19 17:15:07">2020/04/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（2）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（2）">ECG ×AI: 机器/深度学习的ECG应用入门（2）</span>
+            <span class="post-date" title="2020-04-18 13:18:17">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（1）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（1）">ECG ×AI: 机器/深度学习的ECG应用入门（1）</span>
+            <span class="post-date" title="2020-04-18 13:14:59">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（2）-环境搭建/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（2）---环境搭建">学习使用 webpack（2）---环境搭建</span>
+            <span class="post-date" title="2020-04-16 20:00:33">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（1）-简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（1）---简介">学习使用 webpack（1）---简介</span>
+            <span class="post-date" title="2020-04-16 19:57:59">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/RxJava总体流程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RxJava总体流程">RxJava总体流程</span>
+            <span class="post-date" title="2020-04-16 14:54:14">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/15/B1-Spring-Security-url-拦截匹配规则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Security url 拦截匹配规则">Spring Security url 拦截匹配规则</span>
+            <span class="post-date" title="2020-04-15 08:56:15">2020/04/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/在-JAVASCRIPT-中揭开提升的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="在 JAVASCRIPT 中揭开声明倒置的神秘面纱">在 JAVASCRIPT 中揭开声明倒置的神秘面纱</span>
+            <span class="post-date" title="2020-04-14 22:24:33">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/了解-JAVASCRIPT-中的一等公民函数和匿名函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="了解 JAVASCRIPT 中的一等公民函数和匿名函数">了解 JAVASCRIPT 中的一等公民函数和匿名函数</span>
+            <span class="post-date" title="2020-04-14 22:11:52">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/构建一致的-RESTful-API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建一致的 RESTful API">构建一致的 RESTful API</span>
+            <span class="post-date" title="2020-04-14 22:06:08">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列四、实例微型交易系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列四、实例微型交易系统">Vertx系列四、实例微型交易系统</span>
+            <span class="post-date" title="2020-04-13 20:09:38">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列三、揭开微服务的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列三、揭开微服务的神秘面纱">Vertx系列三、揭开微服务的神秘面纱</span>
+            <span class="post-date" title="2020-04-13 19:56:24">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列二、vert-x/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列二、vert.x">Vertx系列二、vert.x</span>
+            <span class="post-date" title="2020-04-13 18:59:58">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列一，简述/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列一、简述">Vertx系列一、简述</span>
+            <span class="post-date" title="2020-04-13 18:55:32">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/监督机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="监督机器学习算法">监督机器学习算法</span>
+            <span class="post-date" title="2020-04-13 10:16:48">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/MQTT和WebSocket-对比/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT和WebSocket 对比">MQTT和WebSocket 对比</span>
+            <span class="post-date" title="2020-04-13 09:27:10">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/12/HTTP-请求方法指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTTP 请求方法指南">HTTP 请求方法指南</span>
+            <span class="post-date" title="2020-04-12 21:38:58">2020/04/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/全栈工程师刷这些就够了/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="全栈工程师面试题刷这些就够了">全栈工程师面试题刷这些就够了</span>
+            <span class="post-date" title="2020-04-11 17:28:23">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/【前端知识梳理】HTML篇-笔记整理（一）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【前端知识梳理】HTML篇 笔记整理（一）">【前端知识梳理】HTML篇 笔记整理（一）</span>
+            <span class="post-date" title="2020-04-11 17:20:45">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/哈勃拍摄唯美宇宙/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="哈勃拍摄唯美宇宙">哈勃拍摄唯美宇宙</span>
+            <span class="post-date" title="2020-04-11 17:07:12">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/从零开始实现一个RPC框架（零）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始实现一个RPC框架（零）">从零开始实现一个RPC框架（零）</span>
+            <span class="post-date" title="2020-04-11 14:41:09">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/MQTT之Mosquitto源码分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT之Mosquitto源码分析">MQTT之Mosquitto源码分析</span>
+            <span class="post-date" title="2020-04-11 13:10:29">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/为什么选择go-kit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="为什么选择go-kit">为什么选择go-kit</span>
+            <span class="post-date" title="2020-04-11 11:49:46">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/Gokit-go流行微服务入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gokit go流行微服务入门">Gokit go流行微服务入门</span>
+            <span class="post-date" title="2020-04-11 11:39:44">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/10/JVM自动推荐文章列表-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM自动推荐文章列表">JVM自动推荐文章列表</span>
+            <span class="post-date" title="2020-04-10 20:17:22">2020/04/10</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/macaca-doctor之Android证书Not-accepted-Android-SDK-license-agreements/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="macaca doctor之Android证书Not accepted Android SDK license agreements">macaca doctor之Android证书Not accepted Android SDK license agreements</span>
+            <span class="post-date" title="2020-04-09 17:02:16">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/工具推荐篇：PlantUML-程序员的专属绘制流程图工具，就像写代码一样便利/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利">工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利</span>
+            <span class="post-date" title="2020-04-09 10:28:01">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/Istio-是什么-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Istio 是什么">Istio 是什么</span>
+            <span class="post-date" title="2020-04-09 10:08:02">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/08/vert-x入门系列-03-vertx详细介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 03 vertx详细介绍">vert x入门系列: 03 vertx详细介绍</span>
+            <span class="post-date" title="2020-04-08 22:32:45">2020/04/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/Java-面试题系列-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 面试题系列 1">Java 面试题系列 1</span>
+            <span class="post-date" title="2020-04-06 20:17:19">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/30-深入Java系列Java-数据结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30.深入Java系列Java - 数据结构">30.深入Java系列Java - 数据结构</span>
+            <span class="post-date" title="2020-04-06 19:59:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/29-深入Java系列Java-构造函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="29.深入Java系列Java - 构造函数">29.深入Java系列Java - 构造函数</span>
+            <span class="post-date" title="2020-04-06 19:54:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/28-深入Java系列Java-对象和类/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="28.深入Java系列Java - 对象和类">28.深入Java系列Java - 对象和类</span>
+            <span class="post-date" title="2020-04-06 19:50:43">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/27-深入Java系列Java-文件和-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="27.深入Java系列Java - 文件和 I/O">27.深入Java系列Java - 文件和 I/O</span>
+            <span class="post-date" title="2020-04-06 19:46:11">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/26-深入Java系列Java中Integer为什么有个-128—-127/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="26.深入Java系列Java中Integer为什么有个-128—+127">26.深入Java系列Java中Integer为什么有个-128—+127</span>
+            <span class="post-date" title="2020-04-06 19:24:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/25-深入Java系列Java中int的取值范围关键点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="25.深入Java系列Java中int的取值范围关键点">25.深入Java系列Java中int的取值范围关键点</span>
+            <span class="post-date" title="2020-04-06 19:04:37">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/24-深入Java系列Java中int面试知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="24.深入Java系列Java中int面试知识点">24.深入Java系列Java中int面试知识点</span>
+            <span class="post-date" title="2020-04-06 18:53:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/JS系列js-获取子数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.JS系列js 获取子数组">1.JS系列js 获取子数组</span>
+            <span class="post-date" title="2020-04-06 12:40:13">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/3-深入Java系列Java内存模型和JVM内存模型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="23.深入Java系列Java内存模型和JVM内存模型">23.深入Java系列Java内存模型和JVM内存模型</span>
+            <span class="post-date" title="2020-04-06 11:17:06">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/22-深入Java系列结构模式之组合模式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="22.深入Java系列结构模式之组合模式">22.深入Java系列结构模式之组合模式</span>
+            <span class="post-date" title="2020-04-05 22:10:38">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/21-深入Java系列Java之异常处理/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="21.深入Java系列Java之异常处理">21.深入Java系列Java之异常处理</span>
+            <span class="post-date" title="2020-04-05 22:04:06">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/20-深入Java系列Java中的回调机制/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="20.深入Java系列Java中的回调机制">20.深入Java系列Java中的回调机制</span>
+            <span class="post-date" title="2020-04-05 21:54:11">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java类的信息全解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="19.深入Java系列java类的信息全解">19.深入Java系列java类的信息全解</span>
+            <span class="post-date" title="2020-04-05 19:49:23">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="18.深入Java系列java方法区内存溢出分析">18.深入Java系列java方法区内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:46:36">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="17.深入Java系列java方法区">17.深入Java系列java方法区</span>
+            <span class="post-date" title="2020-04-05 19:45:17">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java栈内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="16.深入Java系列Java栈内存溢出分析">16.深入Java系列Java栈内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:43:47">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java堆内存溢出解决方案/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="15.深入Java系列Java堆内存溢出解决方案">15.深入Java系列Java堆内存溢出解决方案</span>
+            <span class="post-date" title="2020-04-05 19:27:05">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java堆内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="14.深入Java系列Java堆内存">14.深入Java系列Java堆内存</span>
+            <span class="post-date" title="2020-04-04 20:41:53">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java栈内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="13.深入Java系列Java栈内存">13.深入Java系列Java栈内存</span>
+            <span class="post-date" title="2020-04-04 20:34:01">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java内存结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="12.深入Java系列Java内存结构">12.深入Java系列Java内存结构</span>
+            <span class="post-date" title="2020-04-04 19:49:30">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java-命令知多少/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="11.深入Java系列Java 命令知多少">11.深入Java系列Java 命令知多少</span>
+            <span class="post-date" title="2020-04-03 23:16:26">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java变量深入理解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="10.深入Java系列Java变量深入理解">10.深入Java系列Java变量深入理解</span>
+            <span class="post-date" title="2020-04-03 23:14:55">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9.深入Java系列java &amp; &amp;&amp;区别">9.深入Java系列java &amp; &amp;&amp;区别</span>
+            <span class="post-date" title="2020-04-03 23:13:10">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-path-classpath作用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="8.深入Java系列java path classpath作用">8.深入Java系列java path classpath作用</span>
+            <span class="post-date" title="2020-04-03 23:11:42">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列JVM、JVM、JRE区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="7.深入Java系列JVM、JVM、JRE区别">7.深入Java系列JVM、JVM、JRE区别</span>
+            <span class="post-date" title="2020-04-03 23:10:53">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Spring-Boot-2-0-2-Oauth2-持久化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot 2.0.2 Oauth2 持久化">鉴权中心：Spring Boot 2.0.2 Oauth2 持久化</span>
+            <span class="post-date" title="2020-04-03 15:58:07">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Springboot-Springsecurity-Oauth2整合/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Springboot+Springsecurity+Oauth2整合">鉴权中心：Springboot+Springsecurity+Oauth2整合</span>
+            <span class="post-date" title="2020-04-03 11:21:47">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/Spring-Boot-v2-1-3-兼容鉴权中心Spring-Boot-v2-0-2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2">鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2</span>
+            <span class="post-date" title="2020-04-03 11:12:12">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列异常org-springframework-security-authentication-BadCredentialsException/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException">6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException</span>
+            <span class="post-date" title="2020-04-02 14:05:00">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列深入理解JAVA-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="5.深入Java系列深入理解JAVA I/O">5.深入Java系列深入理解JAVA I/O</span>
+            <span class="post-date" title="2020-04-02 11:07:02">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列之绘图/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="4.深入Java系列之绘图">4.深入Java系列之绘图</span>
+            <span class="post-date" title="2020-04-02 10:48:56">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/01/深入Java系列之基本数据类型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="3.深入Java系列之基本数据类型">3.深入Java系列之基本数据类型</span>
+            <span class="post-date" title="2020-04-01 13:25:39">2020/04/01</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之虚拟机栈/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2.深入Java系列之虚拟机栈">2.深入Java系列之虚拟机栈</span>
+            <span class="post-date" title="2020-03-31 17:07:43">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之JVM/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.深入Java系列之JVM">1.深入Java系列之JVM</span>
+            <span class="post-date" title="2020-03-31 17:01:41">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/将您的Spring-Booot应用迁移到最新的Spring-Security-和-OAuth-2-0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0">将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0</span>
+            <span class="post-date" title="2020-03-31 13:35:01">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/Neo4j系列：CentOS下Neo4j安装教程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Neo4j系列：CentOS下Neo4j安装教程">Neo4j系列：CentOS下Neo4j安装教程</span>
+            <span class="post-date" title="2020-03-31 11:03:20">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/JVM入门到入魔：01JVM基础必备知识/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：01JVM基础必备知识">JVM入门到入魔：01JVM基础必备知识</span>
+            <span class="post-date" title="2020-03-28 21:13:14">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/团队管理：打造高绩效团队/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="团队管理：打造高绩效团队">团队管理：打造高绩效团队</span>
+            <span class="post-date" title="2020-03-28 15:49:46">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/27/JVM入门到入魔：课程大纲/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：00课程大纲">JVM入门到入魔：00课程大纲</span>
+            <span class="post-date" title="2020-03-27 15:21:01">2020/03/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-02-vertx的Http服务器入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 02 vertx的Http服务器入门">vert x入门系列: 02 vertx的Http服务器入门</span>
+            <span class="post-date" title="2020-03-26 21:39:33">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师：一个演进式架构师应该承担的职责/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师：一个演进式架构师应该承担的职责">架构师：一个演进式架构师应该承担的职责</span>
+            <span class="post-date" title="2020-03-26 21:29:44">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-01-reactive编程介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 01 reactive编程介绍">vert x入门系列: 01 reactive编程介绍</span>
+            <span class="post-date" title="2020-03-26 21:18:32">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/程序员-程序猿与牛的斗争/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员:程序猿与牛的斗争">程序员:程序猿与牛的斗争</span>
+            <span class="post-date" title="2020-03-26 21:02:05">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-知人善用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:知人善用">架构师:知人善用</span>
+            <span class="post-date" title="2020-03-26 21:00:00">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-架构师三大原则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:架构师三大原则">架构师:架构师三大原则</span>
+            <span class="post-date" title="2020-03-26 16:09:08">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/24/GitHub日报：GitHub-Explore-code-and-developers-on-GitHub-today-today-Mar-24/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.">GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.</span>
+            <span class="post-date" title="2020-03-24 21:40:45">2020/03/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-M81-发行说明/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC M81 发行说明">WebRTC系列：WebRTC M81 发行说明</span>
+            <span class="post-date" title="2020-03-22 22:12:10">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC介绍">WebRTC系列：WebRTC介绍</span>
+            <span class="post-date" title="2020-03-22 16:54:06">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：getUserMedia-API及HTML5-调用手机摄像头拍照/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照">WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照</span>
+            <span class="post-date" title="2020-03-22 16:45:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC基础学习之一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC基础学习之一">WebRTC系列：WebRTC基础学习之一</span>
+            <span class="post-date" title="2020-03-22 16:11:45">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-将一统实时音视频天下？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC 将一统实时音视频天下？">WebRTC系列：WebRTC 将一统实时音视频天下？</span>
+            <span class="post-date" title="2020-03-22 15:49:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 二">100天Spring零基础起飞 二</span>
+            <span class="post-date" title="2019-12-06 20:17:24">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 一">100天Spring零基础起飞 一</span>
+            <span class="post-date" title="2019-12-06 20:15:37">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Next-js手册/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Next.js手册">Next.js手册</span>
+            <span class="post-date" title="2019-11-29 14:45:06">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Vue手册：Vue-js的完整介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue手册：Vue.js的完整介绍">Vue手册：Vue.js的完整介绍</span>
+            <span class="post-date" title="2019-11-29 13:34:21">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/27/Dos批量修改文件后缀/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dos批量修改文件后缀">Dos批量修改文件后缀</span>
+            <span class="post-date" title="2019-11-27 11:33:22">2019/11/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/PHP编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PHP编码规范">PHP编码规范</span>
+            <span class="post-date" title="2019-11-22 15:53:38">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范3">HTML编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:36:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范3">Java编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:33:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范2">Java编码规范2</span>
+            <span class="post-date" title="2019-11-22 15:11:53">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/通用编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通用编码规范">通用编码规范</span>
+            <span class="post-date" title="2019-11-22 15:05:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范">Java编码规范</span>
+            <span class="post-date" title="2019-11-22 14:07:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/C-编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C#编码规范">C#编码规范</span>
+            <span class="post-date" title="2019-11-22 13:16:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范2">HTML编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:22:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范2">JavaScript编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:20:31">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范-第二部/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范2">CSS编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:18:01">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Markdown-编写规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Markdown 编写规范">Markdown 编写规范</span>
+            <span class="post-date" title="2019-11-22 11:08:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范">HTML编码规范</span>
+            <span class="post-date" title="2019-11-22 11:04:41">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范">CSS编码规范</span>
+            <span class="post-date" title="2019-11-22 10:06:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范">JavaScript编码规范</span>
+            <span class="post-date" title="2019-11-22 09:58:35">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/日常笔记-开篇/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日常笔记-开篇">日常笔记-开篇</span>
+            <span class="post-date" title="2019-11-14 19:34:48">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/Java-字符串拼接一次学到位/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 字符串拼接一次学到位">Java 字符串拼接一次学到位</span>
+            <span class="post-date" title="2019-11-14 11:58:31">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/务限流与降级/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微服务限流与降级">微服务限流与降级</span>
+            <span class="post-date" title="2019-11-14 11:36:43">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/13/CSS控制长串英文字母换行问题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS控制长串英文字母换行问题">CSS控制长串英文字母换行问题</span>
+            <span class="post-date" title="2019-11-13 10:26:10">2019/11/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/12/centos虚拟内存设置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=" centos虚拟内存设置"> centos虚拟内存设置</span>
+            <span class="post-date" title="2019-11-12 21:44:11">2019/11/12</span>
+        </a>
+        
+        <a  class="go "
+           href="/tlg/2019/11/11/第-03-课：进阶模板用法/"
+           data-tag="go,web"
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 03 课：进阶模板用法">拜读无闻大神Go web编程 - 第 03 课：进阶模板用法</span>
+            <span class="post-date" title="2019-11-11 17:56:00">2019/11/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/11/第-02-课：基础模板用法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 02 课：基础模板用法">拜读无闻大神Go web编程 - 第 02 课：基础模板用法</span>
+            <span class="post-date" title="2019-11-11 17:53:52">2019/11/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-深入Java系列之基本数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">3.深入Java系列之基本数据类型</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-04-05 19:52:33'>2020-04-01 13:25</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-基本数据类型-菜鸟教程"><span class="toc-text">Java 基本数据类型 | 菜鸟教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-的-基本数据类型-1130136248-博客园"><span class="toc-text">Java_的_基本数据类型 - 1130136248 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基础-一-八大基本数据类型-工匠初心-博客园"><span class="toc-text">Java基础(一) 八大基本数据类型 - 工匠初心 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-八大-基本数据类型-JavaT的专栏-CSDN博客"><span class="toc-text">Java 八大_基本数据类型_JavaT的专栏-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-拓展详细讲解"><span class="toc-text">_Java基本数据类型_拓展详细讲解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中几种-基本数据类型-Sindyue的博客-CSDN博客"><span class="toc-text">Java_中几种_基本数据类型 - Sindyue的博客 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-之ArrayList集合存储-基本数据类型"><span class="toc-text">java_之ArrayList集合存储_基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-的-基本数据类型-有这几个"><span class="toc-text">_java_的_基本数据类型_有这几个!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基础-教程之八大-基本数据类型-java脚本之家"><span class="toc-text">_Java基础_教程之八大_基本数据类型_java脚本之家</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-语言的八种-基本数据类型-介绍-职坐标"><span class="toc-text">_Java_语言的八种_基本数据类型_介绍-职坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中常用的-基本数据类型-有哪些"><span class="toc-text">_Java_中常用的_基本数据类型_有哪些?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中-基本数据类型-和Object之间的关系-CSDN论坛"><span class="toc-text">_Java_中_基本数据类型_和Object之间的关系?-CSDN论坛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-中八种-基本数据类型-的默认值-空即是色-ITeye博客"><span class="toc-text">_JAVA_中八种_基本数据类型_的默认值 - 空即是色 - ITeye博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以下哪几种是-java-的-基本数据类型。用友笔试题-牛客网"><span class="toc-text">以下哪几种是_java_的_基本数据类型。用友笔试题_牛客网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-八种-基本数据类型-慕课手记"><span class="toc-text">_Java_八种_基本数据类型__慕课手记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-基本数据类型-和引用数据类型-简书"><span class="toc-text">Java 基本数据类型 和引用数据类型 - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-的-基本数据类型-及属性-java"><span class="toc-text">java_的_基本数据类型_及属性 - _java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-的-基本数据类型-及属性-java-1"><span class="toc-text">java_的_基本数据类型_及属性 - _java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-的-基本数据类型-有八种-Sonnyb-博客园"><span class="toc-text">_java_的_基本数据类型_有八种: - Sonnyb - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-的8种-基本数据类型-chancaoer-博客园"><span class="toc-text">Java_的8种_基本数据类型 - chancaoer - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-JavaSpring-Hadoop-Spark-BI-ML-CSDN博客"><span class="toc-text">_Java基本数据类型_JavaSpring , Hadoop, Spark , BI , ML-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-之-基本数据类型-NYfor2018-博客园"><span class="toc-text">Java_之_基本数据类型 - NYfor2018 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-基本数据类型-介绍-青竹逸风-博客园"><span class="toc-text">java-_基本数据类型_介绍 - 青竹逸风 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java基础—-gt-java-的八种-基本数据类型-及其包装类-LXRM-J…-博客园"><span class="toc-text">java基础—&gt;_java_的八种_基本数据类型_及其包装类 - LXRM-J…_博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-的8种-基本数据类型-WhoKnows1-博客园"><span class="toc-text">Java_的8种_基本数据类型 - WhoKnows1 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-Java-基本数据类型-静默虚空-博客园"><span class="toc-text">深入理解 Java 基本数据类型 - 静默虚空 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-中的-基本数据类型-的转换-Black-Knight-博客园"><span class="toc-text">_java_中的_基本数据类型_的转换 - Black_Knight - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中的-基本数据类型-风一样的码农-博客园"><span class="toc-text">Java_中的_基本数据类型 - 风一样的码农 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-基本数据类型-四类八种-清风Coder-CSDN博客"><span class="toc-text">Java 基本数据类型 - 四类八种 - 清风Coder - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-的-基本数据类型-最喜欢夏天了-博客园"><span class="toc-text">Java_的_基本数据类型 - 最喜欢夏天了 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-的-基本数据类型-1130136248-博客园-1"><span class="toc-text">Java_的_基本数据类型 - 1130136248 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-总结-时间朋友-博客园"><span class="toc-text">_Java基本数据类型_总结 - 时间朋友 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-的-基本数据类型-有几种-分别是-网易订阅"><span class="toc-text">_Java_的_基本数据类型_有几种?分别是?_网易订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-基本数据类型-取值范围-qsfwy-ITeye博客"><span class="toc-text">JAVA 基本数据类型 取值范围 - qsfwy - ITeye博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-和长度-java-coder-ITeye博客"><span class="toc-text">Java基本数据类型_和长度 - _java coder - ITeye博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java基本数据类型-取值范围-夕弦-ITeye博客"><span class="toc-text">_java基本数据类型_取值范围 - 夕弦 - ITeye博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-基本数据类型-之间的转换-ITeye博客"><span class="toc-text">Java _基本数据类型_之间的转换 - - ITeye博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-的-基本数据类型-为什么不包括String-【-java-吧】-百度贴吧"><span class="toc-text">_JAVA_的_基本数据类型_为什么不包括String?【_java_吧】_百度贴吧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java基本数据类型-练习题-道客巴巴"><span class="toc-text">_java基本数据类型_练习题 - 道客巴巴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基础-2-基本数据类型-及包装类-似水流年-51CTO博客"><span class="toc-text">Java基础 (2) - _基本数据类型_及包装类-似水流年-51CTO博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-与包装类-程序员大本营"><span class="toc-text">_Java基本数据类型_与包装类 - 程序员大本营</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-基本数据类型-各种情况下在内存中存储位置-SegmentFault…"><span class="toc-text">java _基本数据类型_各种情况下在内存中存储位置? - SegmentFault…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基础-――-基本数据类型-及其包装类-易学教程"><span class="toc-text">_Java基础_――_基本数据类型_及其包装类 | 易学教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA基本数据类型-所占字节-没救了呀疯子的个人空间-OSCHINA"><span class="toc-text">_JAVA基本数据类型_所占字节 - 没救了呀疯子的个人空间 - OSCHINA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-的-基本数据类型-中-有几种可以表示数字-布布扣-bubuko-com"><span class="toc-text">_java_的_基本数据类型_中,有几种可以表示数字?-布布扣-bubuko.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA基本数据类型-的取值范围-AIDE技术网–技术综合类博客-AIDEZY…"><span class="toc-text">_JAVA基本数据类型_的取值范围-AIDE技术网–技术综合类博客|AIDEZY…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-编程-基础-八种基本数据类型-教育视频-搜狐视频"><span class="toc-text">Java_编程_基础 八种基本数据类型-教育视频-搜狐视频</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm-Java基本数据类型-字面量在JVM中如何申请内存——CSDN问答频道"><span class="toc-text">jvm-_Java基本数据类型_字面量在JVM中如何申请内存——CSDN问答频道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-的-基本数据类型-有哪些-百度经验"><span class="toc-text">_java_的_基本数据类型_有哪些-百度经验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-Java-的-基本数据类型-中-char型采用Unicode编码方案…-考试资料网"><span class="toc-text">在_Java_的_基本数据类型_中,char型采用Unicode编码方案…_考试资料网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java基本-8种-数据类型-简书"><span class="toc-text">java基本_8种_数据类型 - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中八种-基本数据类型-和八种封装数据类型word免…-爱问共享资料"><span class="toc-text">_Java_中八种_基本数据类型_和八种封装数据类型word免…_爱问共享资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-语言的-基本数据类型-ppt-图文-百度文库"><span class="toc-text">Java_语言的_基本数据类型.ppt_图文_百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java基本数据类型-各占多少字节-「dt猫」"><span class="toc-text">_java基本数据类型_各占多少字节 - 「dt猫」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-c-c-语言之间-基本数据类型-的比较-wu928320442的专栏…"><span class="toc-text">java,c,c 语言之间_基本数据类型_的比较 - wu928320442的专栏…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-为什么-基本数据类型-不需要进行创建对象-java脚本之家"><span class="toc-text">_Java_为什么_基本数据类型_不需要进行创建对象?java脚本之家</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-百度经验"><span class="toc-text">Java基本数据类型-百度经验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大数据-语言-Java-的八大-基本数据类型"><span class="toc-text">大数据_语言,_Java_的八大_基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-变量类型-菜鸟教程"><span class="toc-text">Java 变量类型 | 菜鸟教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-图文-百度文库"><span class="toc-text">_Java基本数据类型__图文_百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-的基本数据类型-saulc的个人空间-OSCHINA"><span class="toc-text">Java 的基本数据类型 - saulc的个人空间 - OSCHINA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-八种-基本数据类型-Simon-Liu的博客-CSDN博客"><span class="toc-text">_Java_八种_基本数据类型__Simon Liu的博客-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-的长度范围-JAVA-编程语言程序开发技…-红黑联盟"><span class="toc-text">_Java基本数据类型_的长度范围 - _JAVA_编程语言程序开发技…_红黑联盟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#怎样记忆JAVA-的-基本数据类型-百度经验"><span class="toc-text">怎样记忆JAVA_的_基本数据类型-百度经验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-Java-1-基本-概念-4八大-基本数据类型-简书"><span class="toc-text">[Android-Java_]1._基本_概念-4八大_基本数据类型 - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中8中-基本数据类型-百度文库"><span class="toc-text">_Java_中8中_基本数据类型__百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-有那些-基本数据类型-String是不是基本数据类型-他们有何区别"><span class="toc-text">Java_有那些_基本数据类型,String是不是基本数据类型,他们有何区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA基本数据类型-面试题-l123j的博客-51CTO博客"><span class="toc-text">JAVA基本数据类型 面试题-l123j的博客-51CTO博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#菜鸟java-基本数据类型"><span class="toc-text">菜鸟java-基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中8种-基本数据类型-及取值范围-简书"><span class="toc-text">_Java_中8种_基本数据类型_及取值范围 - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java基本数据类型-转换规则详解——图文详解-百度经验"><span class="toc-text">_java基本数据类型_转换规则详解——图文详解-百度经验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-基本数据类型-各种情况下在内存中存储位置-OSCHINA"><span class="toc-text">java _基本数据类型_各种情况下在内存中存储位置? - OSCHINA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-的8中-基本数据类型-weixin-33872660的博客-CSDN博客"><span class="toc-text">Java_的8中_基本数据类型 - weixin_33872660的博客 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-八种-基本数据类型-详解-图文-百度文库"><span class="toc-text">_java_八种_基本数据类型_详解_图文_百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-转换详解-百度经验"><span class="toc-text">_Java基本数据类型_转换详解-百度经验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-反射基本数据类型-简书"><span class="toc-text">Java 反射基本数据类型 - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-的-基本数据类型-有八种-Sonnyb-博客园-1"><span class="toc-text">_java_的_基本数据类型_有八种: - Sonnyb - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-的8种-基本数据类型-chancaoer-博客园-1"><span class="toc-text">Java_的8种_基本数据类型 - chancaoer - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java基本数据类型-和长度-svennee-博客园"><span class="toc-text">_Java基本数据类型_和长度 - svennee - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-基本数据类型-四类八种-知乎"><span class="toc-text">Java 基本数据类型 - 四类八种 - 知乎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java基本数据类型-和引用数据类型的区别"><span class="toc-text">_java基本数据类型_和引用数据类型的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-四类八种-基本数据类型-hu-service-博客园"><span class="toc-text">Java_四类八种_基本数据类型 - hu_service - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-中的-基本数据类型-存放位置-THISISPAN-博客园"><span class="toc-text">_java_中的_基本数据类型_存放位置 - THISISPAN - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中-基本数据类型-简书"><span class="toc-text">Java_中_基本数据类型 - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-中分为-基本数据类型-和引用数据类型区别-yinyanlei-博客园"><span class="toc-text">_JAVA_中分为_基本数据类型_和引用数据类型区别 - yinyanlei - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-四类八种-基本数据类型-仙人球很多刺-博客园"><span class="toc-text">java_四类八种_基本数据类型 - 仙人球很多刺 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java基本数据类型-习题-选择24-百度文库"><span class="toc-text">_java基本数据类型_习题(选择24)._百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-中-基本数据类型-是什么-各自占用多少字节以及取值…-CSDN博客"><span class="toc-text">JAVA 中_基本数据类型_是什么,各自占用多少字节以及取值…-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中-基本数据类型-有哪些-百度知道"><span class="toc-text">_Java_中_基本数据类型_有哪些_百度知道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-的-基本数据类型-有八种-百度文库"><span class="toc-text">_java_的_基本数据类型_有八种_百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-3-基本数据类型-HL-博客园"><span class="toc-text">Java 3.基本数据类型 - HL() - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-中8种-基本数据类型-是哪些-乱世以外-博客园"><span class="toc-text">_Java_中8种_基本数据类型_是哪些? - 乱世以外 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-八种基础数据类型-百度经验"><span class="toc-text">Java:八种基础数据类型-百度经验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-八种-基本数据类型-CSII-王大仙的博客-CSDN博客"><span class="toc-text">JAVA-八种_基本数据类型__CSII@王大仙的博客-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【JAVA-】5、-Java数据类型-的划分及8种-基本数据类型-zh…-CSDN博客"><span class="toc-text">【JAVA_】5、_Java数据类型_的划分及8种_基本数据类型 - zh…-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA基本数据类型-和引用数据类型的区别-cccuteboy-博客园"><span class="toc-text">_JAVA基本数据类型_和引用数据类型的区别 - cccuteboy - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA基本数据类型-所占字节数是多少-java-gubin-博客园"><span class="toc-text">JAVA基本数据类型_所占字节数是多少? - _java-gubin - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-中八大-基本数据类型-详解-Tanyboye-博客园"><span class="toc-text">_java_中八大_基本数据类型_详解 - Tanyboye - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java基本数据类型-范围-菜菜鸟的博客-CSDN博客"><span class="toc-text">_java基本数据类型_范围 - 菜菜鸟的博客 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA基本数据类型-、引用数据类型-参数传递详解-TMusket…-博客园"><span class="toc-text">_JAVA基本数据类型_、引用数据类型-参数传递详解 - TMusket…_博客园</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Java-基本数据类型-菜鸟教程"><a href="#Java-基本数据类型-菜鸟教程" class="headerlink" title="Java 基本数据类型 | 菜鸟教程"></a><a href="https://zshipu.com/t?url=https://www.runoob.com/java/java-basic-datatypes.html" target="_blank" rel="noopener"><em>Java</em> <em>基本数据类型</em> | 菜鸟教程</a></h3><p> <em>Java</em> <em>基本数据类型</em> 变量就是申请内存来存储值。也就是说,当创建变量的时候,需要在内存中申请空间。 内存管理系统根据变量的类型为变量分配存储空间,分配的空间只能…</p>
+<h3 id="Java-的-基本数据类型-1130136248-博客园"><a href="#Java-的-基本数据类型-1130136248-博客园" class="headerlink" title="Java_的_基本数据类型 - 1130136248 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/1130136248wlxk/articles/5105524.html" target="_blank" rel="noopener"><em>Java_的_基本数据类型</em> - 1130136248 - 博客园</a></h3><p> 2016年1月6日 - <em>Java_语言提供了八种_基本类型_。六种数字类型(四个整数型(默认是int 型),两个浮点型(默认是double 型)),一种字符类型,还有一种布尔型。 byte: byte_数据</em>…</p>
+<h3 id="Java基础-一-八大基本数据类型-工匠初心-博客园"><a href="#Java基础-一-八大基本数据类型-工匠初心-博客园" class="headerlink" title="Java基础(一) 八大基本数据类型 - 工匠初心 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/LiaHon/p/11043238.html" target="_blank" rel="noopener"><em>Java基础</em>(一) 八大<em>基本数据类型</em> - 工匠初心 - 博客园</a></h3><p> 2019年6月18日 - 自从_Java_发布以来,_基本数据类型_就是_Java_语言的一部分,分别是byte, short, int, long, char, float, double, boolean. 其中: 整型:byte, short, int, l…</p>
+<h3 id="Java-八大-基本数据类型-JavaT的专栏-CSDN博客"><a href="#Java-八大-基本数据类型-JavaT的专栏-CSDN博客" class="headerlink" title="Java 八大_基本数据类型_JavaT的专栏-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/tantion/article/details/82626006" target="_blank" rel="noopener"><em>Java</em> 八大_基本数据类型<strong>_Java</strong>T的专栏-CSDN博客</a></h3><p> 2018年9月11日 - 1.bit就是位,也叫比特位,是计算机表示<em>数据_最小的单位2.byte就是字节3.1byte=8bit_Java</em>… _Java基本类型_共有八种,_基本类型_可以分为三类,字符_类型_char,布…</p>
+<h3 id="Java基本数据类型-拓展详细讲解"><a href="#Java基本数据类型-拓展详细讲解" class="headerlink" title="_Java基本数据类型_拓展详细讲解"></a><a href="https://zshipu.com/t?url=https://baijiahao.baidu.com/s?id=1625866229204840473&wfr=spider&for=pc" target="_blank" rel="noopener">_Java基本数据类型_拓展详细讲解</a></h3><p> 2019年2月19日 - <em>基本数据类型</em> <em>JAVA_中一共有八种_基本数据类型</em>,他们分别是byte、short、int、long、float、double、char、boolean。 <em>基本数据类型</em> 在通常情况下,如果_JAVA_中出现了一个…</p>
+<h3 id="Java-中几种-基本数据类型-Sindyue的博客-CSDN博客"><a href="#Java-中几种-基本数据类型-Sindyue的博客-CSDN博客" class="headerlink" title="Java_中几种_基本数据类型 - Sindyue的博客 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/Sindyue/article/details/88036054" target="_blank" rel="noopener"><em>Java_中几种_基本数据类型</em> - Sindyue的博客 - CSDN博客</a></h3><p> 2019年2月28日 - 内置_数据类型Java_语言提供了八种_基本类型_。六种数字类型(四个整数型,两个浮点型),一种字符类型,还有一种布尔型。1.bytebyte_数据类型_是8位、有符号的,…</p>
+<h3 id="java-之ArrayList集合存储-基本数据类型"><a href="#java-之ArrayList集合存储-基本数据类型" class="headerlink" title="java_之ArrayList集合存储_基本数据类型"></a><a href="https://zshipu.com/t?url=https://baijiahao.baidu.com/s?id=1635480964562426842&wfr=spider&for=pc" target="_blank" rel="noopener"><em>java_之ArrayList集合存储_基本数据类型</em></a></h3><p> 2019年6月5日 - 在ArrayList集合当中,如果要存储<em>基本数据类型_需要用到_基本数据类型_相对应的包装类(包装类是引用数据类型,位于_java</em>.long包下,不需要导包)。 小编先插入一个表格,来…</p>
+<h3 id="java-的-基本数据类型-有这几个"><a href="#java-的-基本数据类型-有这几个" class="headerlink" title="_java_的_基本数据类型_有这几个!"></a><a href="https://zshipu.com/t?url=https://baijiahao.baidu.com/s?id=1617747937071400569&wfr=spider&for=pc" target="_blank" rel="noopener">_java_的_基本数据类型_有这几个!</a></h3><p> 2018年11月23日 - _Java_的_基本数据类型_也叫做内置类型是_java_语言本身提供的数据类型,是引用其他类型的基础。_Java_的_基本数据类型_分为:整数类型、浮点类型、字符类型、布尔类型这四个类型。…</p>
+<h3 id="Java基础-教程之八大-基本数据类型-java脚本之家"><a href="#Java基础-教程之八大-基本数据类型-java脚本之家" class="headerlink" title="_Java基础_教程之八大_基本数据类型_java脚本之家"></a><a href="https://zshipu.com/t?url=https://www.jb51.net/article/164270.htm" target="_blank" rel="noopener">_Java基础_教程之八大_基本数据类型<strong>_java</strong>脚本之家</a></h3><p> 2019年6月30日 - 这篇文章主要给大家介绍了关于_Java基础_教程之八大_基本数据类型_的相关资料,文中通过示例代码介绍的非常详细,对大家的学习或者工作具有一定的参考学习价…</p>
+<h3 id="Java-语言的八种-基本数据类型-介绍-职坐标"><a href="#Java-语言的八种-基本数据类型-介绍-职坐标" class="headerlink" title="_Java_语言的八种_基本数据类型_介绍-职坐标"></a><a href="https://zshipu.com/t?url=http://m.zhizuobiao.com/java/java-18120400174/" target="_blank" rel="noopener">_Java_语言的八种_基本数据类型_介绍-职坐标</a></h3><p> 2018年12月4日 - 本文主要向大家介绍了_Java_语言的八种_基本数据类型_介绍,通过具体的内容向大家展示,希望对大家学习_JAVA_语言有所帮助。</p>
+<h3 id="Java-中常用的-基本数据类型-有哪些"><a href="#Java-中常用的-基本数据类型-有哪些" class="headerlink" title="_Java_中常用的_基本数据类型_有哪些?"></a><a href="https://zshipu.com/t?url=http://www.douban.com/note/601806481/" target="_blank" rel="noopener">_Java_中常用的_基本数据类型_有哪些?</a></h3><p> 2017年1月11日 - <em>Java_语言中定义了8个_基本<em>的</em>数据类型</em>:字节型(byte),短整型(short),整型(int),长整型(long),字符型(char),浮点型(float),双精度型(double),布尔型(boole…</p>
+<h3 id="Java-中-基本数据类型-和Object之间的关系-CSDN论坛"><a href="#Java-中-基本数据类型-和Object之间的关系-CSDN论坛" class="headerlink" title="_Java_中_基本数据类型_和Object之间的关系?-CSDN论坛"></a><a href="https://zshipu.com/t?url=https://bbs.csdn.net/topics/391058565?page=1" target="_blank" rel="noopener">_Java_中_基本数据类型_和Object之间的关系?-CSDN论坛</a></h3><p> _java_语言的数据类型包括两种,_基本数据类型_和引用数据类型。引用数据类型的类都是Object类的子类。_基本数据类型_对应了封装类,需要时jdk把他们自动装箱,包装成封装类。…</p>
+<h3 id="JAVA-中八种-基本数据类型-的默认值-空即是色-ITeye博客"><a href="#JAVA-中八种-基本数据类型-的默认值-空即是色-ITeye博客" class="headerlink" title="_JAVA_中八种_基本数据类型_的默认值 - 空即是色 - ITeye博客"></a><a href="https://zshipu.com/t?url=https://simon-c.iteye.com/blog/1016031" target="_blank" rel="noopener">_JAVA_中八种_基本数据类型_的默认值 - 空即是色 - ITeye博客</a></h3><p> 2011年4月25日 - <em>JAVA_中八种_基本数据类型_的默认值 博客分类: Core _Java</em> <em>Java</em> 引用 For type byte, the default value is zero, that is, the value of (byte)0. For ty…</p>
+<h3 id="以下哪几种是-java-的-基本数据类型。用友笔试题-牛客网"><a href="#以下哪几种是-java-的-基本数据类型。用友笔试题-牛客网" class="headerlink" title="以下哪几种是_java_的_基本数据类型。用友笔试题_牛客网"></a><a href="https://zshipu.com/t?url=https://www.nowcoder.com/questionTerminal/9cb40bab2d424aa1b692456d6887f9c6" target="_blank" rel="noopener">以下哪几种是_java_的_基本数据类型<em>。</em>用友笔试题_牛客网</a></h3><p> 2019年10月9日 - Double在<em>java</em>.lang包,是double的一个包装类,不是<em>基本数据类型</em> 发表于 2019-07-25 22:02:18回复(0)举报 3 一只Simon <em>java</em> 8中<em>基本数据类型</em>:byte,short,…</p>
+<h3 id="Java-八种-基本数据类型-慕课手记"><a href="#Java-八种-基本数据类型-慕课手记" class="headerlink" title="_Java_八种_基本数据类型__慕课手记"></a><a href="https://zshipu.com/t?url=https://www.imooc.com/article/26258?block_id=tuijian_wz" target="_blank" rel="noopener">_Java_八种_基本数据类型__慕课手记</a></h3><p> 2018年4月16日 - _基本数据类型Java_八种_基本数据类型_1)四种整数类型(byte、short、int、long):(注意: 一个字节byte = 8位bit) ! byte:</p>
+<h3 id="Java-基本数据类型-和引用数据类型-简书"><a href="#Java-基本数据类型-和引用数据类型-简书" class="headerlink" title="Java 基本数据类型 和引用数据类型 - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/11aa20b276dc" target="_blank" rel="noopener"><em>Java</em> <em>基本数据类型</em> 和引用数据类型 - 简书</a></h3><p> 2018年5月8日 - 很多时候由于 原理基础知识反而显得生疏。 动手敲了一遍。 发现确实是这样子, 想到了是<em>基本数据类型</em> 和引用数据类型的差异。<em>java_中数据类型分为_基本数</em>…</p>
+<h3 id="java-的-基本数据类型-及属性-java"><a href="#java-的-基本数据类型-及属性-java" class="headerlink" title="java_的_基本数据类型_及属性 - _java"></a><a href="https://zshipu.com/t?url=http://www.luyixian.cn/java_show_169792.aspx" target="_blank" rel="noopener"><em>java_的_基本数据类型_及属性 - _java</em></a></h3><p> 2019年8月5日 - <em>java_的_基本数据类型_及属性,需要的朋友可以可以参考一下… _java_的_基本数据类型_及属性2019/8/5 15:03:26 0 人评论 72 次浏览 分类:_java</em> 数据类型 大小 范围 默…</p>
+<h3 id="java-的-基本数据类型-及属性-java-1"><a href="#java-的-基本数据类型-及属性-java-1" class="headerlink" title="java_的_基本数据类型_及属性 - _java"></a><a href="https://zshipu.com/t?url=http://www.luyixian.cn/java_show_169792.aspx" target="_blank" rel="noopener"><em>java_的_基本数据类型_及属性 - _java</em></a></h3><p> 2019年8月5日 - <em>java_的_基本数据类型_及属性,需要的朋友可以可以参考一下… _java_的_基本数据类型_及属性2019/8/5 15:03:26 0 人评论 72 次浏览 分类:_java</em> 数据类型 大小 范围 默…</p>
+<h3 id="java-的-基本数据类型-有八种-Sonnyb-博客园"><a href="#java-的-基本数据类型-有八种-Sonnyb-博客园" class="headerlink" title="_java_的_基本数据类型_有八种: - Sonnyb - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/123hll/p/5805040.html" target="_blank" rel="noopener">_java_的_基本数据类型_有八种: - Sonnyb - 博客园</a></h3><p> 2016年8月24日 - _java_的_基本数据类型_有八种: 1)四种整数类型(byte、short、int、long): byte:8 位,用于表示最小数据单位,如文件中数据,-128~127 short:16 位,很少用,-3…</p>
+<h3 id="Java-的8种-基本数据类型-chancaoer-博客园"><a href="#Java-的8种-基本数据类型-chancaoer-博客园" class="headerlink" title="Java_的8种_基本数据类型 - chancaoer - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/chancaoer/p/9777142.html" target="_blank" rel="noopener"><em>Java_的8种_基本数据类型</em> - chancaoer - 博客园</a></h3><p> 2018年10月12日 - 关于<em>Java_的8种_基本数据类型</em>,其名称、位数、默认值、取值范围及示例如下表所示: 序号 数据类型 位数 默认值 取值范围 举例说明 1 byte(位) 8 0 -…</p>
+<h3 id="Java基本数据类型-JavaSpring-Hadoop-Spark-BI-ML-CSDN博客"><a href="#Java基本数据类型-JavaSpring-Hadoop-Spark-BI-ML-CSDN博客" class="headerlink" title="_Java基本数据类型_JavaSpring , Hadoop, Spark , BI , ML-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/bingduanlbd/article/details/27790287" target="_blank" rel="noopener">_Java基本数据类型<strong>_Java</strong>Spring , Hadoop, Spark , BI , ML-CSDN博客</a></h3><p> 2014年5月31日 - <em>Java_语言是静态类型的… 因此,_Java数据类型</em>(type)可以分为两大类:<em>基本类型</em>(primitive types)和引用类型(reference types)。primitive types 包括bool…</p>
+<h3 id="Java-之-基本数据类型-NYfor2018-博客园"><a href="#Java-之-基本数据类型-NYfor2018-博客园" class="headerlink" title="Java_之_基本数据类型 - NYfor2018 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/NYfor2018/p/9501811.html" target="_blank" rel="noopener"><em>Java_之_基本数据类型</em> - NYfor2018 - 博客园</a></h3><p> 2018年8月19日 - <em>Java_有8种_基本数据类型</em>,其中有4种整型、2种浮点类型、1种用于表示Unicode编码的字符单元的字符类型char和1种用于表示真值的boolean类型。 类型 boole…</p>
+<h3 id="java-基本数据类型-介绍-青竹逸风-博客园"><a href="#java-基本数据类型-介绍-青竹逸风-博客园" class="headerlink" title="java-_基本数据类型_介绍 - 青竹逸风 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/private-lxl/p/10181526.html" target="_blank" rel="noopener"><em>java</em>-_基本数据类型_介绍 - 青竹逸风 - 博客园</a></h3><p> 2018年12月26日 - 在写<em>java_代码的时候,所有的变量都需要声明一种数据类型,在_java_的代码中,数据类型分为_基本数据类型_和引用数据类型。下面先介绍_基本数据类型</em> _基本数据类型_由8个: 1、…</p>
+<h3 id="java基础—-gt-java-的八种-基本数据类型-及其包装类-LXRM-J…-博客园"><a href="#java基础—-gt-java-的八种-基本数据类型-及其包装类-LXRM-J…-博客园" class="headerlink" title="java基础—&gt;_java_的八种_基本数据类型_及其包装类 - LXRM-J…_博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/lxrm/p/6427628.html" target="_blank" rel="noopener"><em>java基础</em>—&gt;_java_的八种_基本数据类型_及其包装类 - LXRM-J…_博客园</a></h3><p> 2017年2月22日 - <em>Java_不仅支持上述8种_基本数据类型</em>,还为这8种_基本数据类型_提供了对应的包装类,通过这些包装类,我们就可以将上述_基本数据类型_当做_Java_中的类对象来处理了。值得说明的…</p>
+<h3 id="Java-的8种-基本数据类型-WhoKnows1-博客园"><a href="#Java-的8种-基本数据类型-WhoKnows1-博客园" class="headerlink" title="Java_的8种_基本数据类型 - WhoKnows1 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/whoknows1/p/10535097.html" target="_blank" rel="noopener"><em>Java_的8种_基本数据类型</em> - WhoKnows1 - 博客园</a></h3><p> 2019年3月15日 - 待整理主题:_Java_的8种_基本数据类型_与对应封装类型、拆箱、装箱 ===…- 整数字面量默认都为int类型,所以在定义的long型数据后面加L或l。 - 小于32位数…</p>
+<h3 id="深入理解-Java-基本数据类型-静默虚空-博客园"><a href="#深入理解-Java-基本数据类型-静默虚空-博客园" class="headerlink" title="深入理解 Java 基本数据类型 - 静默虚空 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/jingmoxukong/p/10507697.html" target="_blank" rel="noopener">深入理解 <em>Java</em> <em>基本数据类型</em> - 静默虚空 - 博客园</a></h3><p> 2019年3月10日 - <em>Java</em> 中的数据类型有两类:值类型(又叫内置数据类型,<em>基本数据类型</em>) 引用类型(除值类型以外,都是引用类型,包括 String、数组)值类型…</p>
+<h3 id="java-中的-基本数据类型-的转换-Black-Knight-博客园"><a href="#java-中的-基本数据类型-的转换-Black-Knight-博客园" class="headerlink" title="_java_中的_基本数据类型_的转换 - Black_Knight - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/liujinhong/p/6005714.html" target="_blank" rel="noopener">_java_中的_基本数据类型_的转换 - Black_Knight - 博客园</a></h3><p> 2016年10月27日 - _Java_中数据类型主要分为两大类:_基本数据类型_和引用数据类型。_基本数据类型_共有8种,分别是:布尔型boolean, 字符型char和数值型byte/short/int/long/flo…</p>
+<h3 id="Java-中的-基本数据类型-风一样的码农-博客园"><a href="#Java-中的-基本数据类型-风一样的码农-博客园" class="headerlink" title="Java_中的_基本数据类型 - 风一样的码农 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/chenpi/p/5944022.html" target="_blank" rel="noopener"><em>Java_中的_基本数据类型</em> - 风一样的码农 - 博客园</a></h3><p> 2016年10月10日 - 什么是<em>基本数据类型</em> 就是我们在编程的时候经常需要用到的数据类型,如整型,浮点型等,把这些数据类型专门拿出来特殊对待,并想象成所谓的“<em>基本类型_”。 _…</em></p>
+<h3 id="Java-基本数据类型-四类八种-清风Coder-CSDN博客"><a href="#Java-基本数据类型-四类八种-清风Coder-CSDN博客" class="headerlink" title="Java 基本数据类型 - 四类八种 - 清风Coder - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/liangxilian2208/article/details/80674682" target="_blank" rel="noopener"><em>Java</em> <em>基本数据类型</em> - 四类八种 - 清风Coder - CSDN博客</a></h3><p> 2018年6月13日 - 整理一下脑子里的知识,也算温故知新吧。一、_Java_四大_数据类型_分类1、整型byte、short、int、long2、浮点型float、double3、字符型char4、布尔型boolea…</p>
+<h3 id="Java-的-基本数据类型-最喜欢夏天了-博客园"><a href="#Java-的-基本数据类型-最喜欢夏天了-博客园" class="headerlink" title="Java_的_基本数据类型 - 最喜欢夏天了 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/scar1et/p/11830497.html" target="_blank" rel="noopener"><em>Java_的_基本数据类型</em> - 最喜欢夏天了 - 博客园</a></h3><p> 2019年11月10日 - <em>Java_是一个近乎纯洁的面向对象编程语言,但是为了编程的方便还是引入了_基本数据类型</em>,为了能够将这些<em>基本数据类型_当成对象操作,_Java_为每一个_基本数据类</em>…</p>
+<h3 id="Java-的-基本数据类型-1130136248-博客园-1"><a href="#Java-的-基本数据类型-1130136248-博客园-1" class="headerlink" title="Java_的_基本数据类型 - 1130136248 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/1130136248wlxk/articles/5105524.html" target="_blank" rel="noopener"><em>Java_的_基本数据类型</em> - 1130136248 - 博客园</a></h3><p> 2016年1月6日 - <em>Java_语言提供了八种_基本类型_。六种数字类型(四个整数型(默认是int 型),两个浮点型(默认是double 型)),一种字符类型,还有一种布尔型。 byte: byte_数据</em>…</p>
+<h3 id="Java基本数据类型-总结-时间朋友-博客园"><a href="#Java基本数据类型-总结-时间朋友-博客园" class="headerlink" title="_Java基本数据类型_总结 - 时间朋友 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/doit8791/archive/2012/05/25/2517448.html" target="_blank" rel="noopener">_Java基本数据类型_总结 - 时间朋友 - 博客园</a></h3><p> 2012年5月25日 - <em>基本类型</em>,或者叫做内置类型,是<em>JAVA_中不同于类的特殊类型。它们是我们编程中使用最频繁的类型。_java_是一种强类型语言,第一次申明变量必须说明_数据类型</em>,…</p>
+<h3 id="Java-的-基本数据类型-有几种-分别是-网易订阅"><a href="#Java-的-基本数据类型-有几种-分别是-网易订阅" class="headerlink" title="_Java_的_基本数据类型_有几种?分别是?_网易订阅"></a><a href="https://zshipu.com/t?url=http://dy.163.com/v2/article/detail/DN3IBTU60516CVRE.html" target="_blank" rel="noopener">_Java_的_基本数据类型_有几种?分别是?_网易订阅</a></h3><p> 2018年7月19日 - 如果你想学习_Java_可以来这个群,首先是二二零,中间是一四二,最后是九零六,里面有大量的学习资料可以下载。 3、 _Java_的_基本数据类型_有几种?分别是? …</p>
+<h3 id="JAVA-基本数据类型-取值范围-qsfwy-ITeye博客"><a href="#JAVA-基本数据类型-取值范围-qsfwy-ITeye博客" class="headerlink" title="JAVA 基本数据类型 取值范围 - qsfwy - ITeye博客"></a><a href="https://zshipu.com/t?url=http://qsfwy.iteye.com/blog/244200" target="_blank" rel="noopener"><em>JAVA</em> <em>基本数据类型</em> 取值范围 - qsfwy - ITeye博客</a></h3><p> 2009年9月14日 - <em>JAVA_4:_基本数据类型</em> 先看一段代码public class Hello{ public static void main(String[] args){ int i = 5 , j = 2; System.out.println(i+j); …</p>
+<h3 id="Java基本数据类型-和长度-java-coder-ITeye博客"><a href="#Java基本数据类型-和长度-java-coder-ITeye博客" class="headerlink" title="Java基本数据类型_和长度 - _java coder - ITeye博客"></a><a href="https://zshipu.com/t?url=http://lysongfei.iteye.com/blog/602546" target="_blank" rel="noopener"><em>Java基本数据类型_和长度 - _java</em> coder - ITeye博客</a></h3><p> 2010年2月25日 - <em>java数据类型</em> 字节 表示范围 byte(字节型) 1 -128～127 short(短整型) 2 -32768～32767 int(整型) 4 -2147483648～2147483647 long(长整型) 8 -…</p>
+<h3 id="java基本数据类型-取值范围-夕弦-ITeye博客"><a href="#java基本数据类型-取值范围-夕弦-ITeye博客" class="headerlink" title="_java基本数据类型_取值范围 - 夕弦 - ITeye博客"></a><a href="https://zshipu.com/t?url=http://xixian.iteye.com/blog/1117432" target="_blank" rel="noopener">_java基本数据类型_取值范围 - 夕弦 - ITeye博客</a></h3><p> 2011年7月6日 - 在<em>JAVA_中一共有八种_基本数据类型</em>,他们分别是 byte、short、int、long、float、double、char、boolean 整型 其中byte、short、int、long都是表示整数的…</p>
+<h3 id="Java-基本数据类型-之间的转换-ITeye博客"><a href="#Java-基本数据类型-之间的转换-ITeye博客" class="headerlink" title="Java _基本数据类型_之间的转换 - - ITeye博客"></a><a href="https://zshipu.com/t?url=https://hongwei3344661.iteye.com/blog/2249431" target="_blank" rel="noopener"><em>Java</em> _基本数据类型_之间的转换 - - ITeye博客</a></h3><p> 2015年10月15日 - <em>java_内存泄漏 _Java</em> _基本数据类型_之间的转换 一、数据类型 1.布尔型(boolean) :true/false,不可以以0或非0的数字代替;不能进行数据之间的转换。 2.整数…</p>
+<h3 id="JAVA-的-基本数据类型-为什么不包括String-【-java-吧】-百度贴吧"><a href="#JAVA-的-基本数据类型-为什么不包括String-【-java-吧】-百度贴吧" class="headerlink" title="_JAVA_的_基本数据类型_为什么不包括String?【_java_吧】_百度贴吧"></a><a href="https://zshipu.com/t?url=http://tieba.baidu.com/p/5420367309" target="_blank" rel="noopener">_JAVA_的_基本数据类型_为什么不包括String?【_java_吧】_百度贴吧</a></h3><p> 2楼: …不是_基本数据类型_。或者你还可以这样想， _java_分为1…</p>
+<p> 15楼: 什么语言_基本数据类型_包括string？</p>
+<h3 id="java基本数据类型-练习题-道客巴巴"><a href="#java基本数据类型-练习题-道客巴巴" class="headerlink" title="_java基本数据类型_练习题 - 道客巴巴"></a><a href="https://zshipu.com/t?url=http://www.doc88.com/p-9963542475672.html" target="_blank" rel="noopener">_java基本数据类型_练习题 - 道客巴巴</a></h3><p> 2017年11月14日 - _java基本数据类型_练习题 浏览次数:291 内容提示: 1 . 用 8 位无符号二进制数能表示的最大十进制数为 ( C ) A. 127 B. 128 C. 255 D. 256 2 .以下…</p>
+<h3 id="Java基础-2-基本数据类型-及包装类-似水流年-51CTO博客"><a href="#Java基础-2-基本数据类型-及包装类-似水流年-51CTO博客" class="headerlink" title="Java基础 (2) - _基本数据类型_及包装类-似水流年-51CTO博客"></a><a href="https://zshipu.com/t?url=https://blog.51cto.com/4397014/2436217" target="_blank" rel="noopener"><em>Java基础</em> (2) - _基本数据类型_及包装类-似水流年-51CTO博客</a></h3><p> 2019年9月6日 - JDK1.5,开始提供自动装箱和拆箱功能,<em>基本类型_变量赋给对应的包装类变量称之为装箱。自动拆箱与之相反。_Java</em> 7增强了包装类的功能,为所有的包装类提供了一个静态…</p>
+<h3 id="Java基本数据类型-与包装类-程序员大本营"><a href="#Java基本数据类型-与包装类-程序员大本营" class="headerlink" title="_Java基本数据类型_与包装类 - 程序员大本营"></a><a href="https://zshipu.com/t?url=https://www.pianshen.com/article/4874352687/" target="_blank" rel="noopener">_Java基本数据类型_与包装类 - 程序员大本营</a></h3><p> <em>Java基本数据类型_与包装类,程序员大本营,技术文章内容聚合第一站。… 2.4:这些类都在_java</em>.lang包中 3.自动装箱和自动拆箱 3.1将_基本数据类型_变成包装类称为装箱 …</p>
+<h3 id="java-基本数据类型-各种情况下在内存中存储位置-SegmentFault…"><a href="#java-基本数据类型-各种情况下在内存中存储位置-SegmentFault…" class="headerlink" title="java _基本数据类型_各种情况下在内存中存储位置? - SegmentFault…"></a><a href="https://zshipu.com/t?url=https://segmentfault.com/q/1010000008840920?_ea=1755351" target="_blank" rel="noopener"><em>java</em> _基本数据类型_各种情况下在内存中存储位置? - SegmentFault…</a></h3><p> 2017年3月29日 - <em>java</em> <em>基本数据类型_各种情况下在内存中存储位置?_java</em> 问题: 如何理解《_Java_编程思想-第四版》P23 中,这个变量直接存储“值”,并置于堆栈中,因此更加高…</p>
+<h3 id="Java基础-――-基本数据类型-及其包装类-易学教程"><a href="#Java基础-――-基本数据类型-及其包装类-易学教程" class="headerlink" title="_Java基础_――_基本数据类型_及其包装类 | 易学教程"></a><a href="https://zshipu.com/t?url=https://www.e-learn.cn/content/java/2325982" target="_blank" rel="noopener">_Java基础_――_基本数据类型_及其包装类 | 易学教程</a></h3><p> 2019年12月2日 - 了解_基本数据类型_和包装数据类型的区别之前,先来说说_Java_中的内存分配 栈:函数中定义的一些_基本类型_的数据变量和对象的引用变量都在函数的ջ内存中分…</p>
+<h3 id="JAVA基本数据类型-所占字节-没救了呀疯子的个人空间-OSCHINA"><a href="#JAVA基本数据类型-所占字节-没救了呀疯子的个人空间-OSCHINA" class="headerlink" title="_JAVA基本数据类型_所占字节 - 没救了呀疯子的个人空间 - OSCHINA"></a><a href="https://zshipu.com/t?url=https://my.oschina.net/aspiretruth/blog/2874801" target="_blank" rel="noopener">_JAVA基本数据类型_所占字节 - 没救了呀疯子的个人空间 - OSCHINA</a></h3><p> 2018年11月11日 - <em>Java基本数据类型</em> int 32bit short 16bit long 64bit byte 8bit char 16bit float 32bit double 64bit boolean 1bit,This data type represents one b…</p>
+<h3 id="java-的-基本数据类型-中-有几种可以表示数字-布布扣-bubuko-com"><a href="#java-的-基本数据类型-中-有几种可以表示数字-布布扣-bubuko-com" class="headerlink" title="_java_的_基本数据类型_中,有几种可以表示数字?-布布扣-bubuko.com"></a><a href="https://zshipu.com/t?url=http://www.bubuko.com/infodetail-1663692.html" target="_blank" rel="noopener">_java_的_基本数据类型_中,有几种可以表示数字?-布布扣-bubuko.com</a></h3><p> 2016年7月13日 - _java_的_基本类型_一共有8个,byte字节型,8位;short短整型,16位;int整型,32位;long长整型,64位;float单精度浮点型,32位;double双精度浮点型,64位;…</p>
+<h3 id="JAVA基本数据类型-的取值范围-AIDE技术网–技术综合类博客-AIDEZY…"><a href="#JAVA基本数据类型-的取值范围-AIDE技术网–技术综合类博客-AIDEZY…" class="headerlink" title="_JAVA基本数据类型_的取值范围-AIDE技术网–技术综合类博客|AIDEZY…"></a><a href="https://zshipu.com/t?url=http://aidezy.com/4121.html" target="_blank" rel="noopener">_JAVA基本数据类型_的取值范围-AIDE技术网–技术综合类博客|AIDEZY…</a></h3><p> 2019年9月26日 - [caption id=’’ align=’alignnone’ width=’998’] _JAVA基本数据类型_的取值范围[/caption] 前言: 对于_java_的数据类型,既熟悉又陌生,于是整理了这篇文档…</p>
+<h3 id="Java-编程-基础-八种基本数据类型-教育视频-搜狐视频"><a href="#Java-编程-基础-八种基本数据类型-教育视频-搜狐视频" class="headerlink" title="Java_编程_基础 八种基本数据类型-教育视频-搜狐视频"></a><a href="https://zshipu.com/t?url=https://tv.sohu.com/v/cGwvOTM3NTU5My85MDk0NzM4NS5zaHRtbA==.html" target="_blank" rel="noopener"><em>Java_编程_基础</em> 八种<em>基本数据类型</em>-教育视频-搜狐视频</a></h3><h3 id="jvm-Java基本数据类型-字面量在JVM中如何申请内存——CSDN问答频道"><a href="#jvm-Java基本数据类型-字面量在JVM中如何申请内存——CSDN问答频道" class="headerlink" title="jvm-_Java基本数据类型_字面量在JVM中如何申请内存——CSDN问答频道"></a><a href="https://zshipu.com/t?url=https://ask.csdn.net/questions/376857" target="_blank" rel="noopener">jvm-_Java基本数据类型_字面量在JVM中如何申请内存——CSDN问答频道</a></h3><p> 2017年4月7日 - _Java基本数据类型_字面量在JVM中如何申请内存 有如下三段代码,A、B、C。 其中A段代码中,i1、i2打印出来的HashCode是一样的,这个我可以理解,因为127在常…</p>
+<h3 id="java-的-基本数据类型-有哪些-百度经验"><a href="#java-的-基本数据类型-有哪些-百度经验" class="headerlink" title="_java_的_基本数据类型_有哪些-百度经验"></a><a href="https://zshipu.com/t?url=https://jingyan.baidu.com/article/6181c3e0fa1dbf152ef153e3.html" target="_blank" rel="noopener">_java_的_基本数据类型_有哪些-百度经验</a></h3><p> 2019年1月22日 - 有时候我们想知道<em>java_的_基本数据类型_有哪些,下面来介绍一下 工具/原料 _java</em> <em>基本数据类型</em> 方法/步骤 1 第一步我们首先需要知道_java_的_基本数据类型_一…</p>
+<h3 id="在-Java-的-基本数据类型-中-char型采用Unicode编码方案…-考试资料网"><a href="#在-Java-的-基本数据类型-中-char型采用Unicode编码方案…-考试资料网" class="headerlink" title="在_Java_的_基本数据类型_中,char型采用Unicode编码方案…_考试资料网"></a><a href="https://zshipu.com/t?url=https://www.ppkao.com/shiti/6993430/" target="_blank" rel="noopener">在_Java_的_基本数据类型_中,char型采用Unicode编码方案…_考试资料网</a></h3><p> 2014年11月11日 - 在_Java_的_基本数据类型_中,char型采用Unicode编码方案,每个Unicode码占用<strong><em>字节内存空间,这样,无论是中文字符还是英文字符,都是占用</em></strong>字节内存空间。 …</p>
+<h3 id="java基本-8种-数据类型-简书"><a href="#java基本-8种-数据类型-简书" class="headerlink" title="java基本_8种_数据类型 - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/fc7670bba1fd" target="_blank" rel="noopener"><em>java基本_8种_数据类型</em> - 简书</a></h3><p> 以上占用字节数其实是针对c/c++语言而言的,对于_java_来说由于其JVM具有跨平台性因此_java_在32位和64位机下_基本数据类型_占字节数是一致的(这样才能达到跨平台通信)。…</p>
+<h3 id="Java-中八种-基本数据类型-和八种封装数据类型word免…-爱问共享资料"><a href="#Java-中八种-基本数据类型-和八种封装数据类型word免…-爱问共享资料" class="headerlink" title="_Java_中八种_基本数据类型_和八种封装数据类型word免…_爱问共享资料"></a><a href="https://zshipu.com/t?url=http://ishare.iask.sina.com.cn/f/j0xqJdBEVe.html" target="_blank" rel="noopener">_Java_中八种_基本数据类型_和八种封装数据类型word免…_爱问共享资料</a></h3><p> 2019年4月19日 - doc格式-5页-文件0.02M-_Java_中八种_基本数据类型_和八种封装数据类型初使值的求解过程及比较 作者:Zealjiang1八种_基本数据类型_创建名为MemberTestBasic…</p>
+<h3 id="Java-语言的-基本数据类型-ppt-图文-百度文库"><a href="#Java-语言的-基本数据类型-ppt-图文-百度文库" class="headerlink" title="Java_语言的_基本数据类型.ppt_图文_百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/ea0cd8b40a4c2e3f5727a5e9856a561252d321c4.html" target="_blank" rel="noopener"><em>Java_语言的_基本数据类型</em>.ppt_图文_百度文库</a></h3><p> 2019年3月26日 - ? ? <em>基本数据类型_、数组和枚举类型 2.1 标识符和关键字 2.2 _Java_语言的_基本数据类型</em> 2.3 从命令行输入、输出数据 2.4 _Java_的数组 2.5 枚举类型(jd …</p>
+<h3 id="java基本数据类型-各占多少字节-「dt猫」"><a href="#java基本数据类型-各占多少字节-「dt猫」" class="headerlink" title="_java基本数据类型_各占多少字节 - 「dt猫」"></a><a href="https://zshipu.com/t?url=http://www.luyixian.cn/news_show_16188.aspx" target="_blank" rel="noopener">_java基本数据类型_各占多少字节 - 「dt猫」</a></h3><p> 2019年2月20日 - _类型_字节数取值范围byte1-128<del>127(-2的7次方到2的7次方-1) short2-32768</del>32767(-2的15次方到2的15次方-1)int4-2147483648~2147483647(-2的31…</p>
+<h3 id="java-c-c-语言之间-基本数据类型-的比较-wu928320442的专栏…"><a href="#java-c-c-语言之间-基本数据类型-的比较-wu928320442的专栏…" class="headerlink" title="java,c,c 语言之间_基本数据类型_的比较 - wu928320442的专栏…"></a><a href="https://zshipu.com/t?url=http://www.360doc.com/content/11/0311/12/3700464_100147661.shtml" target="_blank" rel="noopener"><em>java</em>,c,c 语言之间_基本数据类型_的比较 - wu928320442的专栏…</a></h3><p> 2011年3月11日 - <em>java_语言_基本数据类型</em> 在<em>JAVA_中一共有八种_基本数据类型</em>,他们分别是 byte、short、int、long、float、double、char、boolean 整型 其中byte、short、in…</p>
+<h3 id="Java-为什么-基本数据类型-不需要进行创建对象-java脚本之家"><a href="#Java-为什么-基本数据类型-不需要进行创建对象-java脚本之家" class="headerlink" title="_Java_为什么_基本数据类型_不需要进行创建对象?java脚本之家"></a><a href="https://zshipu.com/t?url=https://www.jb51.net/article/159484.htm" target="_blank" rel="noopener">_Java_为什么_基本数据类型_不需要进行创建对象?<strong>java</strong>脚本之家</a></h3><p> 2019年4月11日 - 今天小编就为大家分享一篇关于_Java_为什么_基本数据类型_不需要进行创建对象?,小编觉得内容挺不错的,现在分享给大家,具有很好的参考价值,需要的朋友一起…</p>
+<h3 id="Java基本数据类型-百度经验"><a href="#Java基本数据类型-百度经验" class="headerlink" title="Java基本数据类型-百度经验"></a><a href="https://zshipu.com/t?url=https://jingyan.baidu.com/article/4f34706e0840abe386b56d72.html" target="_blank" rel="noopener"><em>Java基本数据类型</em>-百度经验</a></h3><p> 2018年7月16日 - <em>Java基本数据类型</em>,今天小编就来给大家分享<em>Java基本数据类型</em>,希望可以帮助到大家… 今天小编就来给大家分享<em>Java基本数据类型</em>,希望可以帮助到大家; 工…</p>
+<h3 id="大数据-语言-Java-的八大-基本数据类型"><a href="#大数据-语言-Java-的八大-基本数据类型" class="headerlink" title="大数据_语言,_Java_的八大_基本数据类型"></a><a href="https://zshipu.com/t?url=https://baijiahao.baidu.com/s?id=1615283819126188832&wfr=spider&for=pc" target="_blank" rel="noopener">大<em>数据_语言,_Java_的八大_基本数据类型</em></a></h3><p> 2018年10月25日 - <em>Java_中的数据类型,分为引用类型和_基本数据类型<em>。</em>基本类型_又分为8种,今天为大家介绍这8种_基本数据类型</em>: 整型:byte,short,int,long 浮点型:float,double 字符型:ch…</p>
+<h3 id="Java-变量类型-菜鸟教程"><a href="#Java-变量类型-菜鸟教程" class="headerlink" title="Java 变量类型 | 菜鸟教程"></a><a href="https://zshipu.com/t?url=https://www.runoob.com/java/java-variable-types.html" target="_blank" rel="noopener"><em>Java</em> 变量<em>类型</em> | 菜鸟教程</a></h3><p> <em>Java</em> 变量<em>类型</em> 在<em>Java_语言中,所有的变量在使用前必须声明。声明变量的_基本_格式如下: [mycode3 type=’_java</em>‘] type identifier [ = value][, identifier [= …</p>
+<h3 id="Java基本数据类型-图文-百度文库"><a href="#Java基本数据类型-图文-百度文库" class="headerlink" title="_Java基本数据类型__图文_百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/aaeb44e0f56527d3240c844769eae009581ba2cc.html" target="_blank" rel="noopener">_Java基本数据类型__图文_百度文库</a></h3><p> 2019年5月18日 - 第3章 <em>Java基本数据类型</em> 3.1 _Java_程序基本组成元素 3.2 数据类型 3.3 变量与常量 3.4 运算符与表达式 本章要点: ? 熟练掌握标识符的命名规则,关键字和…</p>
+<h3 id="Java-的基本数据类型-saulc的个人空间-OSCHINA"><a href="#Java-的基本数据类型-saulc的个人空间-OSCHINA" class="headerlink" title="Java 的基本数据类型 - saulc的个人空间 - OSCHINA"></a><a href="https://zshipu.com/t?url=https://my.oschina.net/saulc/blog/617304" target="_blank" rel="noopener"><em>Java</em> 的<em>基本数据类型</em> - saulc的个人空间 - OSCHINA</a></h3><p> 2016年2月18日 - 了解_Java_的8种_基本数据类型_的字节空间,使用场景,取值范围,默认值… 前阵子,我们分享了《_Java_中的_基本数据类型_转换》这篇文章,对许多粉丝还是有带来帮…</p>
+<h3 id="Java-八种-基本数据类型-Simon-Liu的博客-CSDN博客"><a href="#Java-八种-基本数据类型-Simon-Liu的博客-CSDN博客" class="headerlink" title="_Java_八种_基本数据类型__Simon Liu的博客-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/moxik/article/details/79966296" target="_blank" rel="noopener">_Java_八种_基本数据类型__Simon Liu的博客-CSDN博客</a></h3><p> 2018年4月16日 - <em>基本数据类型Java_八种_基本数据类型_1)四种整数类型(byte、short、int、long):(注… _Java_八种_基本数据类型</em> 1)四种整数类型(byte、short、int、long):(…</p>
+<h3 id="Java基本数据类型-的长度范围-JAVA-编程语言程序开发技…-红黑联盟"><a href="#Java基本数据类型-的长度范围-JAVA-编程语言程序开发技…-红黑联盟" class="headerlink" title="_Java基本数据类型_的长度范围 - _JAVA_编程语言程序开发技…_红黑联盟"></a><a href="https://zshipu.com/t?url=https://www.2cto.com/kf/201403/284200.html" target="_blank" rel="noopener">_Java基本数据类型_的长度范围 - _JAVA_编程语言程序开发技…_红黑联盟</a></h3><p> 2014年3月9日 - 1、<em>Java基本数据类型_的长度范围代码 ** * @Title:DataTypeLength _java</em> * @Package:com you dao * @Description:_Java_数据类型长度 * @Author: 游海东 *…</p>
+<h3 id="怎样记忆JAVA-的-基本数据类型-百度经验"><a href="#怎样记忆JAVA-的-基本数据类型-百度经验" class="headerlink" title="怎样记忆JAVA_的_基本数据类型-百度经验"></a><a href="https://zshipu.com/t?url=https://jingyan.baidu.com/article/63acb44adebc4661fcc17e9d.html" target="_blank" rel="noopener">怎样记忆<em>JAVA_的_基本数据类型</em>-百度经验</a></h3><p> 2014年12月7日 - 怎样记忆<em>JAVA_的_基本数据类型</em>,在_JAVA_中有8中_基本数据类型_来储存数值、字符和布尔值,那么都有哪8种呢,我们来看一看</p>
+<h3 id="Android-Java-1-基本-概念-4八大-基本数据类型-简书"><a href="#Android-Java-1-基本-概念-4八大-基本数据类型-简书" class="headerlink" title="[Android-Java_]1._基本_概念-4八大_基本数据类型 - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/948f32b04fa5" target="_blank" rel="noopener">[Android-<em>Java_]1._基本_概念-4八大_基本数据类型</em> - 简书</a></h3><p> 四、八大<em>基本数据类型</em> 在了解_基本数据类型_之前呢,我觉得大家有必要先来了解一下电脑的构成应该都玩过游戏,就比如魔兽世界来说,很大那么这个很大指的是什么呢?存储…</p>
+<h3 id="Java-中8中-基本数据类型-百度文库"><a href="#Java-中8中-基本数据类型-百度文库" class="headerlink" title="_Java_中8中_基本数据类型__百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/c91002efa6c30c2259019ef9.html" target="_blank" rel="noopener">_Java_中8中_基本数据类型__百度文库</a></h3><p> <em>Java</em> 中 8 中<em>基本数据类型</em>:String 类型 byte short int long float double boolean char 字节数 1 2 4 8 4 8 1/8 2 null 默认值 数据范围计算公式(-2^…</p>
+<h3 id="Java-有那些-基本数据类型-String是不是基本数据类型-他们有何区别"><a href="#Java-有那些-基本数据类型-String是不是基本数据类型-他们有何区别" class="headerlink" title="Java_有那些_基本数据类型,String是不是基本数据类型,他们有何区别"></a><a href="https://zshipu.com/t?url=http://www.360doc.com/content/10/0321/00/942210_19626136.shtml" target="_blank" rel="noopener"><em>Java_有那些_基本数据类型</em>,String是不是<em>基本数据类型</em>,他们有何区别</a></h3><p> 2010年3月21日 - <em>Java_有那些_基本数据类型</em>,String是不是<em>基本数据类型</em>,他们有何区别 2010-03-21 | 阅:3542 转:26 | 分享 基本:byte short int long float double boolean…</p>
+<h3 id="JAVA基本数据类型-面试题-l123j的博客-51CTO博客"><a href="#JAVA基本数据类型-面试题-l123j的博客-51CTO博客" class="headerlink" title="JAVA基本数据类型 面试题-l123j的博客-51CTO博客"></a><a href="https://zshipu.com/t?url=https://blog.51cto.com/13670525/2094905" target="_blank" rel="noopener"><em>JAVA基本数据类型</em> 面试题-l123j的博客-51CTO博客</a></h3><p> 2018年4月4日 - b=b1+b2;编译失败: byte,short,char之间相互不转换,一旦进行运算的,默认提升为一个int类型 变量相加,是先看<em>数据类型</em>,最终相加后的结果是否在当前这个…</p>
+<h3 id="菜鸟java-基本数据类型"><a href="#菜鸟java-基本数据类型" class="headerlink" title="菜鸟java-基本数据类型"></a><a href="https://zshipu.com/t?url=https://baijiahao.baidu.com/s?id=1608755767122977261&wfr=spider&for=pc" target="_blank" rel="noopener">菜鸟<em>java</em>-<em>基本数据类型</em></a></h3><p> 2018年8月14日 - 所以根据不同的数据类型的变量,可以在内存中储存整数、小数或者字符。 <em>基本数据类型_引用数据类型 _基本数据类型</em> _java_有八种_基本数据类型_分别是六种数字类型(四种整数型…</p>
+<h3 id="Java-中8种-基本数据类型-及取值范围-简书"><a href="#Java-中8种-基本数据类型-及取值范围-简书" class="headerlink" title="_Java_中8种_基本数据类型_及取值范围 - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/572a83fefcd6" target="_blank" rel="noopener">_Java_中8种_基本数据类型_及取值范围 - 简书</a></h3><p> _类型_转换: boolean_类型_与其他_基本类型_不能进行_类型_的转换(既不能进行自动_类型_的提升,也不能强制_类型_转换), 否则,将编译出错。 image byte型不能自动_类型_提升到char…</p>
+<h3 id="java基本数据类型-转换规则详解——图文详解-百度经验"><a href="#java基本数据类型-转换规则详解——图文详解-百度经验" class="headerlink" title="_java基本数据类型_转换规则详解——图文详解-百度经验"></a><a href="https://zshipu.com/t?url=https://jingyan.baidu.com/article/e3c78d64b37bfa3c4c85f52f.html" target="_blank" rel="noopener">_java基本数据类型_转换规则详解——图文详解-百度经验</a></h3><p> 2016年6月20日 - 标签:<em>JAVA</em> 1 2 3 4 5 6 7分步阅读_java基本类型_分为8种,分别为byte,short,int,long,float,double,char,boolean,除boolean外,其他_类型_都可以进行相互转…</p>
+<h3 id="java-基本数据类型-各种情况下在内存中存储位置-OSCHINA"><a href="#java-基本数据类型-各种情况下在内存中存储位置-OSCHINA" class="headerlink" title="java _基本数据类型_各种情况下在内存中存储位置? - OSCHINA"></a><a href="https://zshipu.com/t?url=https://www.oschina.net/question/2938358_2215813" target="_blank" rel="noopener"><em>java</em> _基本数据类型_各种情况下在内存中存储位置? - OSCHINA</a></h3><p> 2016年12月29日 - 参考《_Java_编程思想-第四版》P23 和《深入理解_Java_虚拟机:JVM高级特性与最佳实践 第2版》P39-P43,对于该 demo 我的理解: 实例1:存储在堆内存中 变量…</p>
+<h3 id="Java-的8中-基本数据类型-weixin-33872660的博客-CSDN博客"><a href="#Java-的8中-基本数据类型-weixin-33872660的博客-CSDN博客" class="headerlink" title="Java_的8中_基本数据类型 - weixin_33872660的博客 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/weixin_33872660/article/details/88589494" target="_blank" rel="noopener"><em>Java_的8中_基本数据类型</em> - weixin_33872660的博客 - CSDN博客</a></h3><p> 2019年2月15日 - <em>JAVA_的四类八种_基本数据类型</em> 阅读数 4756 先说明两个词汇的基本概念:bit(位):位是计算机中存储数据的最小单位,指二进制数中的一个位数,其值为“0”或…</p>
+<h3 id="java-八种-基本数据类型-详解-图文-百度文库"><a href="#java-八种-基本数据类型-详解-图文-百度文库" class="headerlink" title="_java_八种_基本数据类型_详解_图文_百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/9fc33446ec630b1c59eef8c75fbfc77da26997c2.html" target="_blank" rel="noopener">_java_八种_基本数据类型_详解_图文_百度文库</a></h3><p> 不是只有强制转换的时候会出现数据,例如下 面这种情况 2018/12/27 阳凡凡 3.1八种<em>基本数据类型_包装_类基本_知识 _java_是一门面向对象的语言,但是8中_基本数据类型</em> 不…</p>
+<h3 id="Java基本数据类型-转换详解-百度经验"><a href="#Java基本数据类型-转换详解-百度经验" class="headerlink" title="_Java基本数据类型_转换详解-百度经验"></a><a href="https://zshipu.com/t?url=https://jingyan.baidu.com/article/4f34706e734bb0e386b56d7b.html" target="_blank" rel="noopener">_Java基本数据类型_转换详解-百度经验</a></h3><p> 2020年2月16日 - <em>Java基本数据类型_转换详解,_Java_有八大_基本数据类型</em>,那么八大类型之间如何实现转换?htt://<a href="http://www.iliili.com/htt://www.iliili.com/htt://www.iliili" target="_blank" rel="noopener">www.iliili.com/htt://www.iliili.com/htt://www.iliili</a>…</p>
+<h3 id="Java-反射基本数据类型-简书"><a href="#Java-反射基本数据类型-简书" class="headerlink" title="Java 反射基本数据类型 - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/f7f5cf5e08dd" target="_blank" rel="noopener"><em>Java</em> 反射<em>基本数据类型</em> - 简书</a></h3><p> 2018年5月8日 - class 是不同的,所以在获得 Method 指定参数时需要精确指定参数的<em>类型</em>,即<em>基本类型_参数 int 是无法使用包装_类型</em> Integer 来获得的,在 <em>Java</em> 反射中一定…</p>
+<h3 id="java-的-基本数据类型-有八种-Sonnyb-博客园-1"><a href="#java-的-基本数据类型-有八种-Sonnyb-博客园-1" class="headerlink" title="_java_的_基本数据类型_有八种: - Sonnyb - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/123hll/p/5805040.html" target="_blank" rel="noopener">_java_的_基本数据类型_有八种: - Sonnyb - 博客园</a></h3><p> 2016年8月24日 - _java_的_基本数据类型_有八种: 1)四种整数类型(byte、short、int、long): byte:8 位,用于表示最小数据单位,如文件中数据,-128~127 short:16 位,很少用,-3…</p>
+<h3 id="Java-的8种-基本数据类型-chancaoer-博客园-1"><a href="#Java-的8种-基本数据类型-chancaoer-博客园-1" class="headerlink" title="Java_的8种_基本数据类型 - chancaoer - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/chancaoer/p/9777142.html" target="_blank" rel="noopener"><em>Java_的8种_基本数据类型</em> - chancaoer - 博客园</a></h3><p> 2018年10月12日 - 关于<em>Java_的8种_基本数据类型</em>,其名称、位数、默认值、取值范围及示例如下表所示: 序号 数据类型 位数 默认值 取值范围 举例说明 1 byte(位) 8 0 -…</p>
+<h3 id="Java基本数据类型-和长度-svennee-博客园"><a href="#Java基本数据类型-和长度-svennee-博客园" class="headerlink" title="_Java基本数据类型_和长度 - svennee - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/svennee/p/4082939.html" target="_blank" rel="noopener">_Java基本数据类型_和长度 - svennee - 博客园</a></h3><p> 2014年11月8日 - <em>基本类型</em>,或者叫做内置类型,是_JAVA_中不同于类的特殊类型。_Java基本数据类型_共有八种,它们分别都有相对应的包装类。关于它们的详细信息请看下表:表…</p>
+<h3 id="Java-基本数据类型-四类八种-知乎"><a href="#Java-基本数据类型-四类八种-知乎" class="headerlink" title="Java 基本数据类型 - 四类八种 - 知乎"></a><a href="https://zshipu.com/t?url=https://zhuanlan.zhihu.com/p/25439066" target="_blank" rel="noopener"><em>Java</em> <em>基本数据类型</em> - 四类八种 - 知乎</a></h3><p> 2017年3月14日 - 整理一下脑子里的知识,也算温故知新吧。 一、_Java_四大_数据类型_分类1、整型byte 、short 、int 、long 2、浮点型float 、 double3、字符型char4、布尔…</p>
+<h3 id="java基本数据类型-和引用数据类型的区别"><a href="#java基本数据类型-和引用数据类型的区别" class="headerlink" title="_java基本数据类型_和引用数据类型的区别"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/xiaobaizhang/p/7783106.html" target="_blank" rel="noopener">_java基本数据类型_和引用数据类型的区别</a></h3><p> 2017年11月4日 - 一、<em>基本数据类型</em>: byte:_Java_中最小的数据类型,在内存中占8位(bit),即1个字节,取值范围-128~127,默认值0 short:短整型,在内存中占16位,即2个字节,取值…</p>
+<h3 id="Java-四类八种-基本数据类型-hu-service-博客园"><a href="#Java-四类八种-基本数据类型-hu-service-博客园" class="headerlink" title="Java_四类八种_基本数据类型 - hu_service - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/mr-hu2009/p/9346723.html" target="_blank" rel="noopener"><em>Java_四类八种_基本数据类型</em> - hu_service - 博客园</a></h3><p> 2018年7月21日 - _Java基本数据类型_就8种,记住就好了。除了这些都是引用型的了。 第一类:逻辑型boolean 第二类:文本型char 第三类:整数型(byte、short、int、long) cha…</p>
+<h3 id="java-中的-基本数据类型-存放位置-THISISPAN-博客园"><a href="#java-中的-基本数据类型-存放位置-THISISPAN-博客园" class="headerlink" title="_java_中的_基本数据类型_存放位置 - THISISPAN - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/panxuejun/p/5970739.html" target="_blank" rel="noopener">_java_中的_基本数据类型_存放位置 - THISISPAN - 博客园</a></h3><p> 2016年10月17日 - _java_中的_基本数据类型_存放位置 _基本数据类型_是放在栈中还是放在堆中,这取决于_基本类型_声明的位置。 一:在方法中声明的变量,即该变量是局部变量,每当程…</p>
+<h3 id="Java-中-基本数据类型-简书"><a href="#Java-中-基本数据类型-简书" class="headerlink" title="Java_中_基本数据类型 - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/d845301106e2" target="_blank" rel="noopener"><em>Java_中_基本数据类型</em> - 简书</a></h3><p> 2018年9月3日 - _JAVA_中,char占2字节,16位。可在存放汉字 在_Java_中定义的八种_基本数据类型_中,除了其它七种类型都有明确的内存占用字节数外,就boolean类型没有给出具体…</p>
+<h3 id="JAVA-中分为-基本数据类型-和引用数据类型区别-yinyanlei-博客园"><a href="#JAVA-中分为-基本数据类型-和引用数据类型区别-yinyanlei-博客园" class="headerlink" title="_JAVA_中分为_基本数据类型_和引用数据类型区别 - yinyanlei - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/bekeyuan123/p/7468845.html" target="_blank" rel="noopener">_JAVA_中分为_基本数据类型_和引用数据类型区别 - yinyanlei - 博客园</a></h3><p> 2017年9月3日 - 一、<em>基本数据类型</em>: byte:_Java_中最小的数据类型,在内存中占8位(bit),即1个字节,取值范围-128~127,默认值0 short:短整型,在内存中占16位,即2个字节,取值…</p>
+<h3 id="java-四类八种-基本数据类型-仙人球很多刺-博客园"><a href="#java-四类八种-基本数据类型-仙人球很多刺-博客园" class="headerlink" title="java_四类八种_基本数据类型 - 仙人球很多刺 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/sophelia-M/p/5827437.html" target="_blank" rel="noopener"><em>java_四类八种_基本数据类型</em> - 仙人球很多刺 - 博客园</a></h3><p> 2016年8月31日 - 在栈中可以直接分配内存的数据是_基本数据类型_。 引用数据类型:是数据的引用在栈中,但是他的对象在堆中。 要想学好_Java_必须知道各种数据的在内存中存储…</p>
+<h3 id="java基本数据类型-习题-选择24-百度文库"><a href="#java基本数据类型-习题-选择24-百度文库" class="headerlink" title="_java基本数据类型_习题(选择24)._百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/6360504efd4ffe4733687e21af45b307e871f90c.html" target="_blank" rel="noopener">_java基本数据类型_习题(选择24)._百度文库</a></h3><p> 浮点型属于复合类型; D、变量属性分为:<em>基本类型_和符合类型; 6、下列选项中,哪一项不属于 _JAVA</em> 语言的简单<em>数据类型</em>: A、整数型; B、数组; C、字符型; D、…</p>
+<h3 id="JAVA-中-基本数据类型-是什么-各自占用多少字节以及取值…-CSDN博客"><a href="#JAVA-中-基本数据类型-是什么-各自占用多少字节以及取值…-CSDN博客" class="headerlink" title="JAVA 中_基本数据类型_是什么,各自占用多少字节以及取值…-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/Roger_CoderLife/article/details/82586035" target="_blank" rel="noopener"><em>JAVA</em> 中_基本数据类型_是什么,各自占用多少字节以及取值…-CSDN博客</a></h3><p> 2018年9月11日 - 前提:在学习<em>基本数据类型_之前,我们先认识一下这两个单词:1、bit–位:位是计算机中存储数据的最小_Java</em></p>
+<h3 id="Java-中-基本数据类型-有哪些-百度知道"><a href="#Java-中-基本数据类型-有哪些-百度知道" class="headerlink" title="_Java_中_基本数据类型_有哪些_百度知道"></a><a href="https://zshipu.com/t?url=https://zhidao.baidu.com/question/1823399217805632188.html" target="_blank" rel="noopener">_Java_中_基本数据类型_有哪些_百度知道</a></h3><p> 2017年6月6日 - _Java_中_基本数据类型_有哪些byte:8位,最大存储数据量是255,存放的数据范围是-128<del>127之间。short:16位,最大数据存储量是65536,数据范围是-32768</del>32767之…</p>
+<h3 id="java-的-基本数据类型-有八种-百度文库"><a href="#java-的-基本数据类型-有八种-百度文库" class="headerlink" title="_java_的_基本数据类型_有八种_百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/e70822daae1ffc4ffe4733687e21af45b307feb0.html" target="_blank" rel="noopener">_java_的_基本数据类型_有八种_百度文库</a></h3><p> <em>java</em> 的_基本数据类型_有八种 四类八种差不多数据类型 1. 整型 byte(1 字节) short (2 个字节) int(4 个字节) long (8 个字节) 2.浮点型 float(4 个…</p>
+<h3 id="Java-3-基本数据类型-HL-博客园"><a href="#Java-3-基本数据类型-HL-博客园" class="headerlink" title="Java 3.基本数据类型 - HL() - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/H97042/p/10744580.html" target="_blank" rel="noopener"><em>Java</em> 3.<em>基本数据类型</em> - HL() - 博客园</a></h3><p> <em>基本数据类型</em> <em>java_有8大_基本数据类型</em>,分别是4个整数型byte,short,int,long,2个浮点类型float,double,1个布尔型boolean和一个字符型char。 整形与浮点型 整形 …</p>
+<h3 id="Java-中8种-基本数据类型-是哪些-乱世以外-博客园"><a href="#Java-中8种-基本数据类型-是哪些-乱世以外-博客园" class="headerlink" title="_Java_中8种_基本数据类型_是哪些? - 乱世以外 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/lszw/p/11396569.html%20" target="_blank" rel="noopener">_Java_中8种_基本数据类型_是哪些? - 乱世以外 - 博客园</a></h3><p> 2019年8月22日 - <em>基本数据类型</em> 是_JAVA_程序里已经定义好的规则,引用类型 是程序员在程序编写时定义的,一般只在程序员些的某个程序里有意义。_Java_中如何强制类型转换?…</p>
+<h3 id="Java-八种基础数据类型-百度经验"><a href="#Java-八种基础数据类型-百度经验" class="headerlink" title="Java:八种基础数据类型-百度经验"></a><a href="https://zshipu.com/t?url=https://jingyan.baidu.com/article/8ebacdf04201de49f65cd515.html" target="_blank" rel="noopener"><em>Java</em>:八种<em>基础数据类型</em>-百度经验</a></h3><p> 2019年6月12日 - 认识<em>Java_的八种_基础数据类型_。 工具/原料 Eclipse工具 方法/步骤 1 八种_基础数据类型</em>: 四种整数类型:byte、short、int、long两种浮点数据类型:float…</p>
+<h3 id="JAVA-八种-基本数据类型-CSII-王大仙的博客-CSDN博客"><a href="#JAVA-八种-基本数据类型-CSII-王大仙的博客-CSDN博客" class="headerlink" title="JAVA-八种_基本数据类型__CSII@王大仙的博客-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/joxlin/article/details/81627499" target="_blank" rel="noopener"><em>JAVA</em>-八种_基本数据类型__CSII@王大仙的博客-CSDN博客</a></h3><p> 2018年8月13日 - 八种_基本数据类型_1)四种整数类型(byte、short、int、long):byte:8位,用于表示… _基本数据类型Java_八种_基本数据类型_1)四种整数类型(byte、short、int…</p>
+<h3 id="【JAVA-】5、-Java数据类型-的划分及8种-基本数据类型-zh…-CSDN博客"><a href="#【JAVA-】5、-Java数据类型-的划分及8种-基本数据类型-zh…-CSDN博客" class="headerlink" title="【JAVA_】5、_Java数据类型_的划分及8种_基本数据类型 - zh…-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/zhang1223665986/article/details/80507172" target="_blank" rel="noopener">【<em>JAVA_】5、_Java数据类型_的划分及8种_基本数据类型</em> - zh…-CSDN博客</a></h3><p> 2018年5月30日 - _Java_的数据类型可分为“_基本数据类型_”与“引用数据类型” ①_基本数据类型_也称为原始数据类型,它们包括了最基本的boolean、byte、char、shoot、int、l…</p>
+<h3 id="JAVA基本数据类型-和引用数据类型的区别-cccuteboy-博客园"><a href="#JAVA基本数据类型-和引用数据类型的区别-cccuteboy-博客园" class="headerlink" title="_JAVA基本数据类型_和引用数据类型的区别 - cccuteboy - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/cuteboy/p/8646526.html" target="_blank" rel="noopener">_JAVA基本数据类型_和引用数据类型的区别 - cccuteboy - 博客园</a></h3><p> 2018年3月25日 - <em>JAVA基本数据类型_和引用数据类型的区别 【_基本数据类型_】 _基本数据类型</em>:声明时直接在栈内存中开辟空间,并直接在当前内存中存放数据,赋值时传递的是变…</p>
+<h3 id="JAVA基本数据类型-所占字节数是多少-java-gubin-博客园"><a href="#JAVA基本数据类型-所占字节数是多少-java-gubin-博客园" class="headerlink" title="JAVA基本数据类型_所占字节数是多少? - _java-gubin - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/gu-bin/p/9859103.html" target="_blank" rel="noopener"><em>JAVA基本数据类型_所占字节数是多少? - _java</em>-gubin - 博客园</a></h3><p> 2018年10月26日 - 在<em>Java_中一共有8种_基本数据类型</em>,其中有4种整型,2种浮点类型,1种用于表示Unicode编码的字符单元的字符类型和1种用于表示真值的boolean类型。(一个字节…</p>
+<h3 id="java-中八大-基本数据类型-详解-Tanyboye-博客园"><a href="#java-中八大-基本数据类型-详解-Tanyboye-博客园" class="headerlink" title="_java_中八大_基本数据类型_详解 - Tanyboye - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/Tanyboye/p/9088863.html" target="_blank" rel="noopener">_java_中八大_基本数据类型_详解 - Tanyboye - 博客园</a></h3><p> 2018年5月25日 - _基本数据类型_的分类 _java_中的类型分为_基本数据类型_和引用类型,今天我们讨论的是_java_中的八大_基本数据类型_。 _基本数据类型_可以分为三类:1.数值类型。2…</p>
+<h3 id="java基本数据类型-范围-菜菜鸟的博客-CSDN博客"><a href="#java基本数据类型-范围-菜菜鸟的博客-CSDN博客" class="headerlink" title="_java基本数据类型_范围 - 菜菜鸟的博客 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/weixin_41217541/article/details/94727489" target="_blank" rel="noopener">_java基本数据类型_范围 - 菜菜鸟的博客 - CSDN博客</a></h3><p> 2019年7月5日 - boolean_类型_与其他_基本类型_不能进行_类型_的转换(既不能进行自动_类型_的提升,也不能强制_类型_转换), 否则,将编译出错。 byte型不能自动_类型_提升到char,cha…</p>
+<h3 id="JAVA基本数据类型-、引用数据类型-参数传递详解-TMusket…-博客园"><a href="#JAVA基本数据类型-、引用数据类型-参数传递详解-TMusket…-博客园" class="headerlink" title="_JAVA基本数据类型_、引用数据类型-参数传递详解 - TMusket…_博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/cmusketeer/p/10026050.html" target="_blank" rel="noopener">_JAVA基本数据类型_、引用数据类型-参数传递详解 - TMusket…_博客园</a></h3><p> 2018年11月27日 - <em>JAVA基本数据类型_、引用数据类型-参数传递详解 1:_基本类型_的参数传值 对于_基本数据类型</em>,修改这个值并不会影响作为参数传进来的那个变量,因为你修改的…</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>3.深入Java系列之基本数据类型</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-04-01, 13:25:39</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-05, 19:52:33</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/tlg/2020/04/01/深入Java系列之基本数据类型/" title="3.深入Java系列之基本数据类型">https://blog.zshipu.com/tlg/2020/04/01/深入Java系列之基本数据类型/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+					| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#go','#web',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

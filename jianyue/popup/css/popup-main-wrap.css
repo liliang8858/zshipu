@@ -1,0 +1,336 @@
+#main-wrap{
+    width:100%;
+}
+#main-wrap .jm_nav{
+    display:flex;
+    justify-content:space-between;
+}
+#main-wrap nav{
+    background:rgba(246,246,248,1);
+    overflow: hidden;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#main-wrap nav .nav-item{
+    width:33%;
+    /* width:50%; */
+    /* float:left; */
+    font-size:14px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(154,154,159,1);
+    line-height:30px;
+    position:relative;
+    cursor: pointer;
+    /* text-align: center; */
+    text-indent: 4.1em;
+    user-select: none;
+}
+#main-wrap nav .nav-item img{
+    position: absolute;
+    left: 32px;
+    top: 4px;
+}
+#main-wrap nav .nav-item::after{
+    content:'';
+    position:absolute;
+    width:2px;
+    height:12px;
+    opacity:0.4357;
+    background-color:#979797;
+    right:0;
+    top:11px;
+}
+#main-wrap nav .nav-item:last-child::after{
+    display:none;
+}
+#main-wrap nav .nav-item .active{
+    display:none;
+}
+#main-wrap nav .nav-item .normal{
+    display:block;
+}
+#main-wrap nav .nav-item.active .active{
+    display:block;
+}
+#main-wrap nav .nav-item.active .normal{
+    display:none;
+}
+#main-wrap .content{
+    /* padding-left: 20px;
+    padding-right:20px; */
+}
+#main-wrap .content .content-item{
+    display:none;
+}
+/* 进度 */
+#main-wrap .content .content-item.progress{
+    min-height:259px;
+    font-size: 14px;
+    text-align: center;
+    position:relative;
+    padding: 20px 35px;
+    background-color:rgba(246,246,248,.6);
+}
+#main-wrap .content .content-item.progress .progress-wrap{
+    width: 290px;
+    height: 20px;
+    position: absolute;
+    top: 100px;
+    font-size: 10px;
+    line-height: 15px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    text-align: right;
+    border-radius: 4px;
+    background-color:#fff;
+}
+.progress-tip{
+    position: absolute;
+    /* left:0; */
+    bottom: 137px;
+    color: red;
+}
+#main-wrap .content .content-item.progress .progress-title{
+    margin-top: 40px;
+    color:rgba(23,31,36,.8);
+}
+#main-wrap .content .content-item.progress .progress-wrap .progress-num{
+    position:absolute;
+    top:3px;
+    right:5px;
+    font-weight:900;
+}
+#main-wrap .content .content-item.progress .progress-wrap .progress-width{
+    width:0%;
+    height: 100%;
+    background-color: rgba(45,201,235,1);
+    border-radius: 4px;
+    transition: width .1s;
+    
+}
+#main-wrap .content .content-item.data{
+    display:block;
+}
+#main-wrap .content .account{
+    padding-left: 20px;
+    padding-right:20px;
+}
+#main-wrap .content .all-account{
+    display:flex;
+    justify-content:space-between;
+}
+#main-wrap .content .all-account div{
+    width:50%;
+}
+#main-wrap .content .all-account .txt-wrap{
+    line-height: 60px;
+    user-select: none;
+}
+#main-wrap .content .all-account .button-wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+#main-wrap .content .all-account .button-wrap p{
+    width:68px;
+    height:22px;
+    border-radius:11px;
+    border:1px solid rgba(203,209,224,0.38);
+    text-align: center;
+    line-height: 22px;
+    font-size:10px;
+    font-family:PingFangSC-Medium;
+    font-weight:500;
+    color:#768196;
+    cursor: pointer;
+    user-select: none;
+}
+#main-wrap .content .all-account .button-wrap p.active{
+    color:rgba(20,210,184,1);
+    border:1px solid rgba(20,210,184,1);
+}
+#main-wrap .content .account-list .account-list-item{
+    border-bottom: 1px solid rgba(108,123,138,.1);
+    padding-top:15px;
+    padding-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+}
+#main-wrap .content .account-list{
+    max-height:350px;
+    overflow-y: scroll;
+}
+#main-wrap .content .account-list .no-data-wrap{
+    opacity: 0.3;
+    text-align: center;  
+    padding: 20px 0;
+    user-select: none;
+}
+#main-wrap .content .account-list .no-data-wrap .no-data-text{
+    text-align: center;
+    opacity: 1;
+}
+#main-wrap .content .account-list::-webkit-scrollbar {display:none}
+
+#main-wrap .content .account-list .account-list-item.abnormal .r-part p:nth-child(2){
+    color:rgba(255,61,23,1);
+}
+#main-wrap .content .account-list .account-list-item.abnormal .r-part p:nth-child(2)::before{
+    background-color:rgba(255,61,23,1);
+}
+#main-wrap .content .account-list .account-list-item .l-part{
+    display:flex;
+    justify-content:space-between;
+}
+#main-wrap .content .account-list .account-list-item .l-part img.account_img{
+    width:38px;
+    height:38px;
+    display:block;
+    margin-right: 15px;
+}
+#main-wrap .content .account-list .account-list-item .l-part img.plateform_img{
+    width:14px;
+    height:14px;
+    vertical-align: middle;
+    margin-right:3px;
+}
+#main-wrap .content .account-list .account-list-item .l-part .account_name{
+    margin-bottom:5px;
+}
+
+#main-wrap .content .account-list .account-list-item .r-part p:nth-child(1){
+    font-size:12px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(65,94,173,1);
+    line-height:20px;
+    cursor: pointer;
+}
+#main-wrap .content .account-list .account-list-item .r-part p:nth-child(2){
+    font-size:9px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(20,210,184,1);
+    line-height:17px;
+    transform: scale(.8);
+    position:relative;
+    right:-4px;
+}
+#main-wrap .content .account-list .account-list-item .r-part p:nth-child(2)::before{
+    content:'';
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:rgba(80,227,194,1);
+    border-radius: 50%;
+    left:-10px;
+    top:5px;
+}
+#main-wrap .content .add-button{
+    width:133px;
+    height:40px;
+    background:linear-gradient(135deg,rgba(45,201,235,1) 0%,rgba(20,210,184,1) 100%);
+    box-shadow:0px 3px 8px 0px rgba(0,0,0,0.1);
+    border-radius:20px;
+    font-size:14px;
+    font-family:PingFangSC-Medium;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    line-height:11px;
+    margin:0 auto;
+    line-height: 40px;
+    position: relative;
+    text-indent: 3em;
+    margin-bottom:20px;
+    margin-top:20px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    user-select: none;
+}
+#main-wrap .content .add-button img{
+    position:absolute;
+    top:7px;
+    left:10px;
+}
+/* 我的 */
+#main-wrap .content .me{
+
+}
+#main-wrap .content .me header{
+    display:flex;
+    justify-content:space-between;
+    padding: 20px;
+    border-bottom:6px solid rgba(246,246,248,1);
+    overflow: hidden;
+}
+#main-wrap .content .me header img.avatar{
+    width:58px;
+    height:58px;
+    margin-right:19px;
+    border-radius:50%;
+}
+#main-wrap .content .me header .user-info{
+    display:flex;
+    justify-content:space-between;
+}
+#main-wrap .content .me header .user-info .username{
+    font-size:16px;
+    font-family:PingFangSC-Medium;
+    font-weight:500;
+    color:rgba(0,0,0,1);
+    line-height:22px;
+    margin-bottom:10px;
+}
+#main-wrap .content .me header .upgrade{
+    position:relative;
+    left:-20px;
+    top:34px;
+    cursor: pointer;
+    font-size:12px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(34,34,34,1);
+    line-height:17px;
+}
+#main-wrap .content .me header .upgrade .next{
+    position: absolute;
+    right: -26px;
+    top: -2px;
+}
+#main-wrap .content .me section .item{
+    display:flex;
+    justify-content: space-between;
+    padding-left:20px;
+    padding-right:20px;
+    height:56px;
+    display: flex;
+    align-items: center;   
+    border-bottom:1px solid rgba(108,123,138,.1);
+    font-size:14px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(23,31,36,1);
+    line-height:20px;
+    cursor: pointer;
+}
+#main-wrap .content .me section .item img{
+    vertical-align: middle;
+}
+#main-wrap .content .me section .item .m10{
+    margin-right:10px;
+    position:relative;
+    top:-2px;
+}
+#main-wrap .content .change-account{
+    width:360px;
+    height:41px;
+    background:rgba(246,246,248,1);
+    font-size:14px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(93,100,121,1);
+    line-height:41px;
+    text-align: center;
+    cursor: pointer;
+}

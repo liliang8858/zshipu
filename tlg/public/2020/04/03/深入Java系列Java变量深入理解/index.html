@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>10.深入Java系列Java变量深入理解 | 技术分享 | 知识铺</title>
+  <meta name="keywords" content>
+  <meta name="description" content="10.深入Java系列Java变量深入理解 | 知识铺">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="java变量深入理解 - THISISPAN - 博客园 2016年9月26日 - java变量深入理解 4,变量:其实就是内存中的一个存储空间,用于存储常量数据。 作用:方便于运算。因为有些数据不确定。所以确定该数据的名词和存储空间… java变量深入理解 - weixin_34138255的博客 - CSDN博客 2016年9月26日 - java变量深入理解 2016年09月26日 15:3">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10.深入Java系列Java变量深入理解">
+<meta property="og:url" content="https://blog.zshipu.com/tlg/2020/04/03/深入Java系列Java变量深入理解/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="java变量深入理解 - THISISPAN - 博客园 2016年9月26日 - java变量深入理解 4,变量:其实就是内存中的一个存储空间,用于存储常量数据。 作用:方便于运算。因为有些数据不确定。所以确定该数据的名词和存储空间… java变量深入理解 - weixin_34138255的博客 - CSDN博客 2016年9月26日 - java变量深入理解 2016年09月26日 15:3">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2020-04-05T11:54:13.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10.深入Java系列Java变量深入理解">
+<meta name="twitter:description" content="java变量深入理解 - THISISPAN - 博客园 2016年9月26日 - java变量深入理解 4,变量:其实就是内存中的一个存储空间,用于存储常量数据。 作用:方便于运算。因为有些数据不确定。所以确定该数据的名词和存储空间… java变量深入理解 - weixin_34138255的博客 - CSDN博客 2016年9月26日 - java变量深入理解 2016年09月26日 15:3">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(190)</small></div></li>
+    
+        
+            
+            <li><div data-rel="go">go<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="190">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">go</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">web</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务">Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务</span>
+            <span class="post-date" title="2020-07-16 18:43:02">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud+nacos+Feign，实现注册中心及配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud+nacos+Feign，实现注册中心及配置中心">Spring Cloud+nacos+Feign，实现注册中心及配置中心</span>
+            <span class="post-date" title="2020-07-16 18:39:59">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos作为配置中心时，多个服务共用一个dataId的配置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos作为配置中心时，多个服务共用一个dataId的配置">Nacos作为配置中心时，多个服务共用一个dataId的配置</span>
+            <span class="post-date" title="2020-07-16 18:32:26">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(三)：使用Nacos作为配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(三)：使用Nacos作为配置中心">SpringCloudAlibaba(三)：使用Nacos作为配置中心</span>
+            <span class="post-date" title="2020-07-16 17:34:29">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos 集群部署/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos 集群部署">Nacos 集群部署</span>
+            <span class="post-date" title="2020-07-16 17:31:53">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(二)：Nacos介绍与环境安装/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(二)：Nacos介绍与环境安装">SpringCloudAlibaba(二)：Nacos介绍与环境安装</span>
+            <span class="post-date" title="2020-07-16 17:26:15">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(一)：概述与重要组件/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(一)：概述与重要组件">SpringCloudAlibaba(一)：概述与重要组件</span>
+            <span class="post-date" title="2020-07-16 17:23:13">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Java面试宝典300问-第一部分/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java面试宝典300问 第一部分">Java面试宝典300问 第一部分</span>
+            <span class="post-date" title="2020-07-09 14:39:53">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/GraaphQL实战：GraphQL Mutations 五/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL实战：GraphQL Mutations 五">GraphQL实战：GraphQL Mutations 五</span>
+            <span class="post-date" title="2020-07-09 13:50:49">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：GraphQL 基础知识  四/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：GraphQL 基础知识  四">Graphql实战：GraphQL 基础知识  四</span>
+            <span class="post-date" title="2020-07-09 13:38:27">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：自动执行后端测试 三/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：自动执行后端测试 三">Graphql实战：自动执行后端测试 三</span>
+            <span class="post-date" title="2020-07-09 13:22:30">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：基本模型和多态关联 二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：基本模型和多态关联 二">Graphql实战：基本模型和多态关联 二</span>
+            <span class="post-date" title="2020-07-09 11:59:15">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：构建论坛应用，从代码到部署 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：构建论坛应用，从代码到部署 一">Graphql实战：构建论坛应用，从代码到部署 一</span>
+            <span class="post-date" title="2020-07-09 11:48:06">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/04/学习Go 第一周/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习Go 第一周">学习Go 第一周</span>
+            <span class="post-date" title="2020-07-04 11:24:14">2020/07/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法">每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法</span>
+            <span class="post-date" title="2020-07-02 11:43:59">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/同心管家-专业心脏病医疗服务平台/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="同心管家-专业心脏病医疗服务平台">同心管家-专业心脏病医疗服务平台</span>
+            <span class="post-date" title="2020-07-02 11:30:40">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/2020 年成为前端大师的 9 个项目/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020 年成为前端大师的 9 个项目">2020 年成为前端大师的 9 个项目</span>
+            <span class="post-date" title="2020-06-25 20:13:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter：初学者的学习资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter：初学者的学习资源">Flutter：初学者的学习资源</span>
+            <span class="post-date" title="2020-06-25 19:46:43">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 404页面自定义/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 404页面自定义">Flutter 404页面自定义</span>
+            <span class="post-date" title="2020-06-25 19:22:33">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 滑块小部件有哪些新增功能/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 滑块小部件有哪些新增功能">Flutter 滑块小部件有哪些新增功能</span>
+            <span class="post-date" title="2020-06-25 19:17:07">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/用于 Flutter 开发人员的新工具，内置于 Flutter/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="用于 Flutter 开发人员的新工具，内置于 Flutter">用于 Flutter 开发人员的新工具，内置于 Flutter</span>
+            <span class="post-date" title="2020-06-25 19:06:02">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 八大优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 八大优势">Flutter 八大优势</span>
+            <span class="post-date" title="2020-06-25 18:17:38">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Vue.js 和 Angular 比 jQuery 有什么好处/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js 和 Angular 比 jQuery 有什么好处">Vue.js 和 Angular 比 jQuery 有什么好处</span>
+            <span class="post-date" title="2020-06-25 18:05:10">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/数据科学专家必修之路/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据科学专家必修之路">数据科学专家必修之路</span>
+            <span class="post-date" title="2020-06-25 14:08:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/学习 JavaScript 的最佳方式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习 JavaScript 的最佳方式">学习 JavaScript 的最佳方式</span>
+            <span class="post-date" title="2020-06-25 14:00:18">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 最佳资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 最佳资源">GraphQL 最佳资源</span>
+            <span class="post-date" title="2020-06-25 12:04:57">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/与 REST API 相比，GraphQL 有哪些优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="与 REST API 相比，GraphQL 有哪些优势">与 REST API 相比，GraphQL 有哪些优势</span>
+            <span class="post-date" title="2020-06-25 12:02:49">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 深入理解系列 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 深入理解系列 一">GraphQL 深入理解系列 一</span>
+            <span class="post-date" title="2020-06-25 11:59:41">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的主要组件分析 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的主要组件分析 - 分步指南">Python 中的主要组件分析 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:29:05">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/K 表示 Python 中的群集 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="K 表示 Python 中的群集 - 分步指南">K 表示 Python 中的群集 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:28:18">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中支持矢量机 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中支持矢量机 - 分步指南">Python 中支持矢量机 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:27:01">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的决策树和随机林/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的决策树和随机林">Python 中的决策树和随机林</span>
+            <span class="post-date" title="2020-06-21 11:25:57">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的 K 最近邻居 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的 K 最近邻居 - 分步指南">Python 中的 K 最近邻居 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:24:52">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的逻辑回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的逻辑回归 - 分步指南">Python 中的逻辑回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:23:42">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的线性回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的线性回归 - 分步指南">Python 中的线性回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:19:43">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/推荐算法简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法简介">推荐算法简介</span>
+            <span class="post-date" title="2020-06-21 11:18:15">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/9 种常用关键机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9 种常用关键机器学习算法">9 种常用关键机器学习算法</span>
+            <span class="post-date" title="2020-06-21 11:17:12">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/最新技术周刊 01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="最新技术周刊 01">最新技术周刊 01</span>
+            <span class="post-date" title="2020-06-21 11:08:27">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/20/初创团队选择 Vert.x /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初创团队选择 Vert.x">初创团队选择 Vert.x</span>
+            <span class="post-date" title="2020-06-20 17:19:35">2020/06/20</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/19/GraphQL 入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 入门指南">GraphQL 入门指南</span>
+            <span class="post-date" title="2020-06-19 20:06:53">2020/06/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/17/Linux的du用法排除某个目录/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux的du用法排除某个目录">Linux的du用法排除某个目录</span>
+            <span class="post-date" title="2020-06-17 16:47:00">2020/06/17</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/16/dubbo go 初步使用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="dubbo go 初步使用">dubbo go 初步使用</span>
+            <span class="post-date" title="2020-06-16 16:03:40">2020/06/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/15/GraphQL架构拼接解释：架构委派/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL架构拼接解释：架构委派">GraphQL架构拼接解释：架构委派</span>
+            <span class="post-date" title="2020-06-15 18:36:56">2020/06/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 作为微服务的 API 网关/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 作为微服务的 API 网关">GraphQL 作为微服务的 API 网关</span>
+            <span class="post-date" title="2020-06-14 21:10:27">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 在微服务架构中的实践/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 在微服务架构中的实践">GraphQL 在微服务架构中的实践</span>
+            <span class="post-date" title="2020-06-14 20:54:37">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 微服务化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 微服务化">GraphQL 微服务化</span>
+            <span class="post-date" title="2020-06-14 20:52:36">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/MySQL 上构造即时 Graphql API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MySQL 上构造即时 Graphql API">MySQL 上构造即时 Graphql API</span>
+            <span class="post-date" title="2020-06-12 13:44:34">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/graphql mysql /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="graphql mysql">graphql mysql</span>
+            <span class="post-date" title="2020-06-12 13:42:42">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/11/golang gateway 从零开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang gateway 从零开始">golang gateway 从零开始</span>
+            <span class="post-date" title="2020-06-11 09:12:48">2020/06/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/09/springboot + spring security验证token进行用户认证/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot + spring security验证token进行用户认证">springboot + spring security验证token进行用户认证</span>
+            <span class="post-date" title="2020-06-09 17:11:25">2020/06/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/08/zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has">zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has</span>
+            <span class="post-date" title="2020-06-08 13:31:04">2020/06/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/微信 小程序需要授权 有部分人需要获取验证码/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微信 小程序需要授权 有部分人需要获取验证码">微信 小程序需要授权 有部分人需要获取验证码</span>
+            <span class="post-date" title="2020-06-04 13:26:37">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang 正则表达式 过滤手机号带有字符串，特殊符号/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang 正则表达式 过滤手机号带有字符串，特殊符号">golang 正则表达式 过滤手机号带有字符串，特殊符号</span>
+            <span class="post-date" title="2020-06-04 12:06:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang regexp.Compile 正则表达式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang regexp.Compile 正则表达式">golang regexp.Compile 正则表达式</span>
+            <span class="post-date" title="2020-06-04 11:56:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/初学者的 Docker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者的 Docker">初学者的 Docker</span>
+            <span class="post-date" title="2020-05-31 15:38:34">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/按值排序对象的 JavaScript 排序数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="按值排序对象的 JavaScript 排序数组">按值排序对象的 JavaScript 排序数组</span>
+            <span class="post-date" title="2020-05-31 15:32:48">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js——60分钟快速入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js——60分钟快速入门">Vue.js——60分钟快速入门</span>
+            <span class="post-date" title="2020-05-30 12:19:41">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js新手入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js新手入门指南">Vue.js新手入门指南</span>
+            <span class="post-date" title="2020-05-30 12:00:43">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Node.js的替代者，初识Deno/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Node.js的替代者，初识Deno">Node.js的替代者，初识Deno</span>
+            <span class="post-date" title="2020-05-30 11:59:58">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/初学者，学习vue应该从何下手？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者，学习vue应该从何下手？">初学者，学习vue应该从何下手？</span>
+            <span class="post-date" title="2020-05-30 11:58:18">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统">从0到1，Vue大牛的前端搭建——异常监控系统</span>
+            <span class="post-date" title="2020-05-30 11:57:22">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）">从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）</span>
+            <span class="post-date" title="2020-05-30 11:56:59">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/9道价值20k薪资的VUE必备面试题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9道价值20k薪资的VUE必备面试题">9道价值20k薪资的VUE必备面试题</span>
+            <span class="post-date" title="2020-05-30 11:25:07">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/29/canvas 折线/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="canvas 折线">canvas 折线</span>
+            <span class="post-date" title="2020-05-29 13:06:27">2020/05/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/28/Emoji 转换 base64/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Emoji 转换 base64">Emoji 转换 base64</span>
+            <span class="post-date" title="2020-05-28 18:41:42">2020/05/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/公众号 H5 分享/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号 H5 分享">公众号 H5 分享</span>
+            <span class="post-date" title="2020-05-27 19:46:03">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 signature/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 signature">获取微信公众号 signature</span>
+            <span class="post-date" title="2020-05-27 19:44:37">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 jsapi_ticket/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 jsapi_ticket">获取微信公众号 jsapi_ticket</span>
+            <span class="post-date" title="2020-05-27 19:43:56">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/2020编程大牛的网盘资料汇总/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020编程大牛的网盘资料汇总">2020编程大牛的网盘资料汇总</span>
+            <span class="post-date" title="2020-05-26 14:50:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/一个简单的RTMP服务器实现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="一个简单的RTMP服务器实现">一个简单的RTMP服务器实现</span>
+            <span class="post-date" title="2020-05-26 12:01:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/HTML5实现播放RTMP协议视频/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML5实现播放RTMP协议视频">HTML5实现播放RTMP协议视频</span>
+            <span class="post-date" title="2020-05-26 11:58:15">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/正文提取算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正文提取算法">正文提取算法</span>
+            <span class="post-date" title="2020-05-24 19:16:30">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma CSS - 开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma CSS - 开始">Bulma CSS - 开始</span>
+            <span class="post-date" title="2020-05-24 18:54:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/2020年，jQuery需要了解的那些知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020年，jQuery需要了解的那些知识点">2020年，jQuery需要了解的那些知识点</span>
+            <span class="post-date" title="2020-05-24 18:50:59">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员经常去的网站有哪些？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员经常去的网站有哪些？">程序员经常去的网站有哪些？</span>
+            <span class="post-date" title="2020-05-24 18:45:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员常去的网站/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员常去的网站">程序员常去的网站</span>
+            <span class="post-date" title="2020-05-24 18:33:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Redis 集群演进探讨和总结/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Redis 集群演进探讨和总结">Redis 集群演进探讨和总结</span>
+            <span class="post-date" title="2020-05-24 18:29:41">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Buefy框架如何自定义主题？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Buefy框架如何自定义主题？">Bulma和Buefy框架如何自定义主题？</span>
+            <span class="post-date" title="2020-05-24 13:24:53">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/bulma和bootstrap等前端框架我应该选择哪个？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bulma和bootstrap等前端框架我应该选择哪个？">bulma和bootstrap等前端框架我应该选择哪个？</span>
+            <span class="post-date" title="2020-05-24 13:20:09">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Bootstrap 区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Bootstrap 区别">Bulma和Bootstrap 区别</span>
+            <span class="post-date" title="2020-05-24 13:16:19">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma Vue.js集成/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma Vue.js集成">Bulma Vue.js集成</span>
+            <span class="post-date" title="2020-05-24 13:12:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma-起步/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma 起步">Bulma 起步</span>
+            <span class="post-date" title="2020-05-24 12:04:15">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/19/Deno-1-0-简介，node-js的代替者出现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Deno 1.0 简介，node.js的代替者出现">Deno 1.0 简介，node.js的代替者出现</span>
+            <span class="post-date" title="2020-05-19 08:55:46">2020/05/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/19/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号">公众号</span>
+            <span class="post-date" title="2020-04-19 17:15:07">2020/04/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（2）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（2）">ECG ×AI: 机器/深度学习的ECG应用入门（2）</span>
+            <span class="post-date" title="2020-04-18 13:18:17">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（1）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（1）">ECG ×AI: 机器/深度学习的ECG应用入门（1）</span>
+            <span class="post-date" title="2020-04-18 13:14:59">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（2）-环境搭建/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（2）---环境搭建">学习使用 webpack（2）---环境搭建</span>
+            <span class="post-date" title="2020-04-16 20:00:33">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（1）-简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（1）---简介">学习使用 webpack（1）---简介</span>
+            <span class="post-date" title="2020-04-16 19:57:59">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/RxJava总体流程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RxJava总体流程">RxJava总体流程</span>
+            <span class="post-date" title="2020-04-16 14:54:14">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/15/B1-Spring-Security-url-拦截匹配规则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Security url 拦截匹配规则">Spring Security url 拦截匹配规则</span>
+            <span class="post-date" title="2020-04-15 08:56:15">2020/04/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/在-JAVASCRIPT-中揭开提升的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="在 JAVASCRIPT 中揭开声明倒置的神秘面纱">在 JAVASCRIPT 中揭开声明倒置的神秘面纱</span>
+            <span class="post-date" title="2020-04-14 22:24:33">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/了解-JAVASCRIPT-中的一等公民函数和匿名函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="了解 JAVASCRIPT 中的一等公民函数和匿名函数">了解 JAVASCRIPT 中的一等公民函数和匿名函数</span>
+            <span class="post-date" title="2020-04-14 22:11:52">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/构建一致的-RESTful-API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建一致的 RESTful API">构建一致的 RESTful API</span>
+            <span class="post-date" title="2020-04-14 22:06:08">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列四、实例微型交易系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列四、实例微型交易系统">Vertx系列四、实例微型交易系统</span>
+            <span class="post-date" title="2020-04-13 20:09:38">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列三、揭开微服务的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列三、揭开微服务的神秘面纱">Vertx系列三、揭开微服务的神秘面纱</span>
+            <span class="post-date" title="2020-04-13 19:56:24">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列二、vert-x/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列二、vert.x">Vertx系列二、vert.x</span>
+            <span class="post-date" title="2020-04-13 18:59:58">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列一，简述/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列一、简述">Vertx系列一、简述</span>
+            <span class="post-date" title="2020-04-13 18:55:32">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/监督机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="监督机器学习算法">监督机器学习算法</span>
+            <span class="post-date" title="2020-04-13 10:16:48">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/MQTT和WebSocket-对比/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT和WebSocket 对比">MQTT和WebSocket 对比</span>
+            <span class="post-date" title="2020-04-13 09:27:10">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/12/HTTP-请求方法指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTTP 请求方法指南">HTTP 请求方法指南</span>
+            <span class="post-date" title="2020-04-12 21:38:58">2020/04/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/全栈工程师刷这些就够了/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="全栈工程师面试题刷这些就够了">全栈工程师面试题刷这些就够了</span>
+            <span class="post-date" title="2020-04-11 17:28:23">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/【前端知识梳理】HTML篇-笔记整理（一）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【前端知识梳理】HTML篇 笔记整理（一）">【前端知识梳理】HTML篇 笔记整理（一）</span>
+            <span class="post-date" title="2020-04-11 17:20:45">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/哈勃拍摄唯美宇宙/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="哈勃拍摄唯美宇宙">哈勃拍摄唯美宇宙</span>
+            <span class="post-date" title="2020-04-11 17:07:12">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/从零开始实现一个RPC框架（零）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始实现一个RPC框架（零）">从零开始实现一个RPC框架（零）</span>
+            <span class="post-date" title="2020-04-11 14:41:09">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/MQTT之Mosquitto源码分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT之Mosquitto源码分析">MQTT之Mosquitto源码分析</span>
+            <span class="post-date" title="2020-04-11 13:10:29">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/为什么选择go-kit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="为什么选择go-kit">为什么选择go-kit</span>
+            <span class="post-date" title="2020-04-11 11:49:46">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/Gokit-go流行微服务入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gokit go流行微服务入门">Gokit go流行微服务入门</span>
+            <span class="post-date" title="2020-04-11 11:39:44">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/10/JVM自动推荐文章列表-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM自动推荐文章列表">JVM自动推荐文章列表</span>
+            <span class="post-date" title="2020-04-10 20:17:22">2020/04/10</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/macaca-doctor之Android证书Not-accepted-Android-SDK-license-agreements/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="macaca doctor之Android证书Not accepted Android SDK license agreements">macaca doctor之Android证书Not accepted Android SDK license agreements</span>
+            <span class="post-date" title="2020-04-09 17:02:16">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/工具推荐篇：PlantUML-程序员的专属绘制流程图工具，就像写代码一样便利/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利">工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利</span>
+            <span class="post-date" title="2020-04-09 10:28:01">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/Istio-是什么-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Istio 是什么">Istio 是什么</span>
+            <span class="post-date" title="2020-04-09 10:08:02">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/08/vert-x入门系列-03-vertx详细介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 03 vertx详细介绍">vert x入门系列: 03 vertx详细介绍</span>
+            <span class="post-date" title="2020-04-08 22:32:45">2020/04/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/Java-面试题系列-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 面试题系列 1">Java 面试题系列 1</span>
+            <span class="post-date" title="2020-04-06 20:17:19">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/30-深入Java系列Java-数据结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30.深入Java系列Java - 数据结构">30.深入Java系列Java - 数据结构</span>
+            <span class="post-date" title="2020-04-06 19:59:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/29-深入Java系列Java-构造函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="29.深入Java系列Java - 构造函数">29.深入Java系列Java - 构造函数</span>
+            <span class="post-date" title="2020-04-06 19:54:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/28-深入Java系列Java-对象和类/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="28.深入Java系列Java - 对象和类">28.深入Java系列Java - 对象和类</span>
+            <span class="post-date" title="2020-04-06 19:50:43">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/27-深入Java系列Java-文件和-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="27.深入Java系列Java - 文件和 I/O">27.深入Java系列Java - 文件和 I/O</span>
+            <span class="post-date" title="2020-04-06 19:46:11">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/26-深入Java系列Java中Integer为什么有个-128—-127/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="26.深入Java系列Java中Integer为什么有个-128—+127">26.深入Java系列Java中Integer为什么有个-128—+127</span>
+            <span class="post-date" title="2020-04-06 19:24:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/25-深入Java系列Java中int的取值范围关键点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="25.深入Java系列Java中int的取值范围关键点">25.深入Java系列Java中int的取值范围关键点</span>
+            <span class="post-date" title="2020-04-06 19:04:37">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/24-深入Java系列Java中int面试知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="24.深入Java系列Java中int面试知识点">24.深入Java系列Java中int面试知识点</span>
+            <span class="post-date" title="2020-04-06 18:53:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/JS系列js-获取子数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.JS系列js 获取子数组">1.JS系列js 获取子数组</span>
+            <span class="post-date" title="2020-04-06 12:40:13">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/3-深入Java系列Java内存模型和JVM内存模型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="23.深入Java系列Java内存模型和JVM内存模型">23.深入Java系列Java内存模型和JVM内存模型</span>
+            <span class="post-date" title="2020-04-06 11:17:06">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/22-深入Java系列结构模式之组合模式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="22.深入Java系列结构模式之组合模式">22.深入Java系列结构模式之组合模式</span>
+            <span class="post-date" title="2020-04-05 22:10:38">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/21-深入Java系列Java之异常处理/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="21.深入Java系列Java之异常处理">21.深入Java系列Java之异常处理</span>
+            <span class="post-date" title="2020-04-05 22:04:06">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/20-深入Java系列Java中的回调机制/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="20.深入Java系列Java中的回调机制">20.深入Java系列Java中的回调机制</span>
+            <span class="post-date" title="2020-04-05 21:54:11">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java类的信息全解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="19.深入Java系列java类的信息全解">19.深入Java系列java类的信息全解</span>
+            <span class="post-date" title="2020-04-05 19:49:23">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="18.深入Java系列java方法区内存溢出分析">18.深入Java系列java方法区内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:46:36">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="17.深入Java系列java方法区">17.深入Java系列java方法区</span>
+            <span class="post-date" title="2020-04-05 19:45:17">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java栈内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="16.深入Java系列Java栈内存溢出分析">16.深入Java系列Java栈内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:43:47">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java堆内存溢出解决方案/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="15.深入Java系列Java堆内存溢出解决方案">15.深入Java系列Java堆内存溢出解决方案</span>
+            <span class="post-date" title="2020-04-05 19:27:05">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java堆内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="14.深入Java系列Java堆内存">14.深入Java系列Java堆内存</span>
+            <span class="post-date" title="2020-04-04 20:41:53">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java栈内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="13.深入Java系列Java栈内存">13.深入Java系列Java栈内存</span>
+            <span class="post-date" title="2020-04-04 20:34:01">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java内存结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="12.深入Java系列Java内存结构">12.深入Java系列Java内存结构</span>
+            <span class="post-date" title="2020-04-04 19:49:30">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java-命令知多少/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="11.深入Java系列Java 命令知多少">11.深入Java系列Java 命令知多少</span>
+            <span class="post-date" title="2020-04-03 23:16:26">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java变量深入理解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="10.深入Java系列Java变量深入理解">10.深入Java系列Java变量深入理解</span>
+            <span class="post-date" title="2020-04-03 23:14:55">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9.深入Java系列java &amp; &amp;&amp;区别">9.深入Java系列java &amp; &amp;&amp;区别</span>
+            <span class="post-date" title="2020-04-03 23:13:10">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-path-classpath作用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="8.深入Java系列java path classpath作用">8.深入Java系列java path classpath作用</span>
+            <span class="post-date" title="2020-04-03 23:11:42">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列JVM、JVM、JRE区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="7.深入Java系列JVM、JVM、JRE区别">7.深入Java系列JVM、JVM、JRE区别</span>
+            <span class="post-date" title="2020-04-03 23:10:53">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Spring-Boot-2-0-2-Oauth2-持久化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot 2.0.2 Oauth2 持久化">鉴权中心：Spring Boot 2.0.2 Oauth2 持久化</span>
+            <span class="post-date" title="2020-04-03 15:58:07">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Springboot-Springsecurity-Oauth2整合/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Springboot+Springsecurity+Oauth2整合">鉴权中心：Springboot+Springsecurity+Oauth2整合</span>
+            <span class="post-date" title="2020-04-03 11:21:47">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/Spring-Boot-v2-1-3-兼容鉴权中心Spring-Boot-v2-0-2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2">鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2</span>
+            <span class="post-date" title="2020-04-03 11:12:12">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列异常org-springframework-security-authentication-BadCredentialsException/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException">6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException</span>
+            <span class="post-date" title="2020-04-02 14:05:00">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列深入理解JAVA-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="5.深入Java系列深入理解JAVA I/O">5.深入Java系列深入理解JAVA I/O</span>
+            <span class="post-date" title="2020-04-02 11:07:02">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列之绘图/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="4.深入Java系列之绘图">4.深入Java系列之绘图</span>
+            <span class="post-date" title="2020-04-02 10:48:56">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/01/深入Java系列之基本数据类型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="3.深入Java系列之基本数据类型">3.深入Java系列之基本数据类型</span>
+            <span class="post-date" title="2020-04-01 13:25:39">2020/04/01</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之虚拟机栈/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2.深入Java系列之虚拟机栈">2.深入Java系列之虚拟机栈</span>
+            <span class="post-date" title="2020-03-31 17:07:43">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之JVM/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.深入Java系列之JVM">1.深入Java系列之JVM</span>
+            <span class="post-date" title="2020-03-31 17:01:41">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/将您的Spring-Booot应用迁移到最新的Spring-Security-和-OAuth-2-0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0">将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0</span>
+            <span class="post-date" title="2020-03-31 13:35:01">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/Neo4j系列：CentOS下Neo4j安装教程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Neo4j系列：CentOS下Neo4j安装教程">Neo4j系列：CentOS下Neo4j安装教程</span>
+            <span class="post-date" title="2020-03-31 11:03:20">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/JVM入门到入魔：01JVM基础必备知识/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：01JVM基础必备知识">JVM入门到入魔：01JVM基础必备知识</span>
+            <span class="post-date" title="2020-03-28 21:13:14">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/团队管理：打造高绩效团队/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="团队管理：打造高绩效团队">团队管理：打造高绩效团队</span>
+            <span class="post-date" title="2020-03-28 15:49:46">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/27/JVM入门到入魔：课程大纲/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：00课程大纲">JVM入门到入魔：00课程大纲</span>
+            <span class="post-date" title="2020-03-27 15:21:01">2020/03/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-02-vertx的Http服务器入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 02 vertx的Http服务器入门">vert x入门系列: 02 vertx的Http服务器入门</span>
+            <span class="post-date" title="2020-03-26 21:39:33">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师：一个演进式架构师应该承担的职责/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师：一个演进式架构师应该承担的职责">架构师：一个演进式架构师应该承担的职责</span>
+            <span class="post-date" title="2020-03-26 21:29:44">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-01-reactive编程介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 01 reactive编程介绍">vert x入门系列: 01 reactive编程介绍</span>
+            <span class="post-date" title="2020-03-26 21:18:32">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/程序员-程序猿与牛的斗争/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员:程序猿与牛的斗争">程序员:程序猿与牛的斗争</span>
+            <span class="post-date" title="2020-03-26 21:02:05">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-知人善用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:知人善用">架构师:知人善用</span>
+            <span class="post-date" title="2020-03-26 21:00:00">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-架构师三大原则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:架构师三大原则">架构师:架构师三大原则</span>
+            <span class="post-date" title="2020-03-26 16:09:08">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/24/GitHub日报：GitHub-Explore-code-and-developers-on-GitHub-today-today-Mar-24/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.">GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.</span>
+            <span class="post-date" title="2020-03-24 21:40:45">2020/03/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-M81-发行说明/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC M81 发行说明">WebRTC系列：WebRTC M81 发行说明</span>
+            <span class="post-date" title="2020-03-22 22:12:10">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC介绍">WebRTC系列：WebRTC介绍</span>
+            <span class="post-date" title="2020-03-22 16:54:06">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：getUserMedia-API及HTML5-调用手机摄像头拍照/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照">WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照</span>
+            <span class="post-date" title="2020-03-22 16:45:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC基础学习之一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC基础学习之一">WebRTC系列：WebRTC基础学习之一</span>
+            <span class="post-date" title="2020-03-22 16:11:45">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-将一统实时音视频天下？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC 将一统实时音视频天下？">WebRTC系列：WebRTC 将一统实时音视频天下？</span>
+            <span class="post-date" title="2020-03-22 15:49:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 二">100天Spring零基础起飞 二</span>
+            <span class="post-date" title="2019-12-06 20:17:24">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 一">100天Spring零基础起飞 一</span>
+            <span class="post-date" title="2019-12-06 20:15:37">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Next-js手册/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Next.js手册">Next.js手册</span>
+            <span class="post-date" title="2019-11-29 14:45:06">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Vue手册：Vue-js的完整介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue手册：Vue.js的完整介绍">Vue手册：Vue.js的完整介绍</span>
+            <span class="post-date" title="2019-11-29 13:34:21">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/27/Dos批量修改文件后缀/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dos批量修改文件后缀">Dos批量修改文件后缀</span>
+            <span class="post-date" title="2019-11-27 11:33:22">2019/11/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/PHP编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PHP编码规范">PHP编码规范</span>
+            <span class="post-date" title="2019-11-22 15:53:38">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范3">HTML编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:36:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范3">Java编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:33:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范2">Java编码规范2</span>
+            <span class="post-date" title="2019-11-22 15:11:53">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/通用编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通用编码规范">通用编码规范</span>
+            <span class="post-date" title="2019-11-22 15:05:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范">Java编码规范</span>
+            <span class="post-date" title="2019-11-22 14:07:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/C-编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C#编码规范">C#编码规范</span>
+            <span class="post-date" title="2019-11-22 13:16:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范2">HTML编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:22:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范2">JavaScript编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:20:31">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范-第二部/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范2">CSS编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:18:01">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Markdown-编写规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Markdown 编写规范">Markdown 编写规范</span>
+            <span class="post-date" title="2019-11-22 11:08:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范">HTML编码规范</span>
+            <span class="post-date" title="2019-11-22 11:04:41">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范">CSS编码规范</span>
+            <span class="post-date" title="2019-11-22 10:06:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范">JavaScript编码规范</span>
+            <span class="post-date" title="2019-11-22 09:58:35">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/日常笔记-开篇/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日常笔记-开篇">日常笔记-开篇</span>
+            <span class="post-date" title="2019-11-14 19:34:48">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/Java-字符串拼接一次学到位/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 字符串拼接一次学到位">Java 字符串拼接一次学到位</span>
+            <span class="post-date" title="2019-11-14 11:58:31">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/务限流与降级/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微服务限流与降级">微服务限流与降级</span>
+            <span class="post-date" title="2019-11-14 11:36:43">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/13/CSS控制长串英文字母换行问题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS控制长串英文字母换行问题">CSS控制长串英文字母换行问题</span>
+            <span class="post-date" title="2019-11-13 10:26:10">2019/11/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/12/centos虚拟内存设置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=" centos虚拟内存设置"> centos虚拟内存设置</span>
+            <span class="post-date" title="2019-11-12 21:44:11">2019/11/12</span>
+        </a>
+        
+        <a  class="go "
+           href="/tlg/2019/11/11/第-03-课：进阶模板用法/"
+           data-tag="go,web"
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 03 课：进阶模板用法">拜读无闻大神Go web编程 - 第 03 课：进阶模板用法</span>
+            <span class="post-date" title="2019-11-11 17:56:00">2019/11/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/11/第-02-课：基础模板用法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 02 课：基础模板用法">拜读无闻大神Go web编程 - 第 02 课：基础模板用法</span>
+            <span class="post-date" title="2019-11-11 17:53:52">2019/11/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-深入Java系列Java变量深入理解" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">10.深入Java系列Java变量深入理解</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-04-05 19:54:13'>2020-04-03 23:14</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java变量深入理解-THISISPAN-博客园"><span class="toc-text">java变量深入理解 - THISISPAN - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java变量深入理解-weixin-34138255的博客-CSDN博客"><span class="toc-text">java变量深入理解 - weixin_34138255的博客 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java变量深入理解-weixin-30945039的博客-CSDN博客"><span class="toc-text">java变量深入理解 - weixin_30945039的博客 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java变量-与内存-深入了解-浴血卫国-博客园"><span class="toc-text">java变量_与内存_深入了解 - 浴血卫国 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java变量深入理解-布布扣-bubuko-com"><span class="toc-text">java变量深入理解-布布扣-bubuko.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解java-线程本地变量-java-lang-ThreadLocal类"><span class="toc-text">深入理解java:线程本地变量 java.lang.ThreadLocal类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-内存模型-一-——基础-并发编程网-–-ifeve-com"><span class="toc-text">_深入理解Java_内存模型(一)——基础 | 并发编程网 – ifeve.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习笔记-深入理解Java-内存模型-知乎"><span class="toc-text">学习笔记 | _深入理解Java_内存模型 - 知乎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对Java-方法内部使用this访问成员-变量的深入理解-ITeye博客"><span class="toc-text">对Java_方法内部使用this访问成员_变量的深入理解 - - ITeye博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#《-Java-架构筑基》从-Java-基础讲起——-深入理解-Finial-未来可期-的…"><span class="toc-text">《_Java_架构筑基》从_Java_基础讲起——_深入理解_Finial-未来可期_的…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-内存模型-程晓明-带书签文字版-pdf-Java-文档类资源…"><span class="toc-text">_深入理解Java_内存模型.程晓明(带书签文字版).pdf-_Java_文档类资源…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-内存模型-简书"><span class="toc-text">_深入理解Java_内存模型 - 简书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#年薪百万大牛带你-深入理解Java-原子-变量-原理解析-哔哩哔哩-゜-゜…"><span class="toc-text">年薪百万大牛带你_深入理解Java_原子_变量_原理解析_哔哩哔哩 (゜-゜…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解java-泛型详解java脚本之家"><span class="toc-text">_深入理解java_泛型详解java脚本之家</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-语言的-深入理解-图文-百度文库"><span class="toc-text">_Java_语言的_深入理解__图文_百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM-深入理解-JAVA-语言内存模型JMM学习讲解"><span class="toc-text">JVM_深入理解:JAVA_语言内存模型JMM学习讲解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-虚拟机-码农登陆"><span class="toc-text">_深入理解Java_虚拟机 - 码农登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-自定义注解-一-入门-高伟的个人空间-OSCHINA"><span class="toc-text">_深入理解Java_自定义注解(一):入门 - 高伟的个人空间 - OSCHINA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#《-深入理解JAVA-内存模型》PDF-下载-Java-知识分享网-免费-Java-资源…"><span class="toc-text">《_深入理解JAVA_内存模型》PDF 下载__Java_知识分享网-免费_Java_资源…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#…我的第一个Java-程序-8-深入理解-下环境-变量-朱祚华的在线视频…"><span class="toc-text">…我的第一个Java_程序-8-_深入理解_下环境_变量-朱祚华的在线视频…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-常量与-变量深入理解-dragon4466的博客-CSDN博客"><span class="toc-text">_java_常量与_变量深入理解__dragon4466的博客-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-中配置环境-变量-范仁义-博客园"><span class="toc-text">深入理解Java_中配置环境_变量 - 范仁义 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java深入理解-类、-变量-、方法的声明-CSDN博客"><span class="toc-text">_Java深入理解_类、_变量_、方法的声明 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java变量-翱翔云端的专栏-CSDN博客"><span class="toc-text">深入理解Java变量 - 翱翔云端的专栏_CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-程序员应该-深入理解-的-Java-final-变量-的内存模型-CSDN博客"><span class="toc-text">Java_程序员应该_深入理解_的 _Java final _变量_的内存模型_CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-成员-变量-和局部-变量深入理解-qq-33458228的博客-CSDN博客"><span class="toc-text">java 成员_变量_和局部_变量深入理解__qq_33458228的博客-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-内存-图解-堆-JVM-值传递K天道酬勤-CSDN博客"><span class="toc-text">_深入理解Java_内存(图解)_堆,JVM,值传递K天道酬勤-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java变量的理解-浪灬迹-红尘少年的博客-CSDN博客"><span class="toc-text">_Java变量的理解__浪灬迹-红尘少年的博客-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-的环境-变量-配置-nomousewch的专栏-CSDN博客"><span class="toc-text">_深入理解Java_的环境_变量_配置 - nomousewch的专栏 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-Java-基本数据类型-静默虚空-博客园"><span class="toc-text">深入理解 Java 基本数据类型 - 静默虚空 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-内存-图解堆栈-万物为铜-博客园"><span class="toc-text">_深入理解Java_内存(图解堆栈) - 万物为铜 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-入门——-深入理解Java-三大特性-聪哥聪哥-博客园"><span class="toc-text">_Java_入门——_深入理解Java_三大特性 - 聪哥聪哥 - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-引用类型-牛-牛-NET-博客园"><span class="toc-text">_深入理解Java_引用类型 - (牛_牛).NET - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Static-深入理解-SoulCoder-博客园"><span class="toc-text">Java Static 深入理解 - SoulCoder - 博客园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-引用-一-alphadjz的博客-CSDN博客"><span class="toc-text">_深入理解Java_引用(一) - alphadjz的博客 - CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-Java-final-变量-的内存模型-u010746364的博客-CSDN博客"><span class="toc-text">深入理解 Java final _变量_的内存模型_u010746364的博客-CSDN博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【Java-核心技术卷】-深入理解Java-数据类型、-变量-扩展讲解-结合…"><span class="toc-text">【Java_核心技术卷】_深入理解Java_数据类型、_变量 (扩展讲解,结合…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-为什么-Java-中方法内定义的内部类可以访问方法中的局部-变量"><span class="toc-text">深入理解_为什么_Java_中方法内定义的内部类可以访问方法中的局部_变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Sript中-变量-的作用域闭包的-深入理解-Java软件编程-编程客栈"><span class="toc-text">_Java_Sript中_变量_的作用域闭包的_深入理解_Java软件编程 - 编程客栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-Java-内存模型-程晓明-InfoQ在线阅读-爱问共享资料"><span class="toc-text">深入理解 Java 内存模型_程晓明_InfoQ在线阅读_爱问共享资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-Java-内存模型-程晓明-InfoQ在线阅读-爱问共享资料-1"><span class="toc-text">深入理解 Java 内存模型_程晓明_InfoQ在线阅读_爱问共享资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-闭包概念-OrcHome"><span class="toc-text">_深入理解Java_闭包概念 - OrcHome</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Sript中-变量-的作用域闭包的-深入理解"><span class="toc-text">Java_Sript中_变量_的作用域闭包的_深入理解  </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-虚拟机-程序员大本营"><span class="toc-text">_深入理解Java_虚拟机 - 程序员大本营</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Sript中-变量-的作用域闭包的-深入理解-张生荣"><span class="toc-text">Java_Sript中_变量_的作用域闭包的_深入理解 / 张生荣</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解java-3-NIO编程-一-燎野-新浪博客"><span class="toc-text">深入理解java:3.NIO编程(一)_燎野_新浪博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-Java-函数式编程-第-2-部分-函数式编程中的重要概念"><span class="toc-text">深入理解 Java 函数式编程,第 2 部分: 函数式编程中的重要概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-中的volatile关键字-HollisChuang’s-Blog"><span class="toc-text">_深入理解Java_中的volatile关键字-HollisChuang’s Blog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-内存模型-四-——volatile-并发编程网-–-ifeve-com"><span class="toc-text">_深入理解Java_内存模型(四)——volatile | 并发编程网 – ifeve.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解java-虚拟机-关于常量池的字面量值和栈帧的局部-变量-表的…"><span class="toc-text">_深入理解java_虚拟机,关于常量池的字面量值和栈帧的局部_变量_表的…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-的protected修饰符"><span class="toc-text">_深入理解Java_的protected修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-Java-内存模型-Java-文档类资源-CSDN下载"><span class="toc-text">深入理解 Java 内存模型-_Java_文档类资源-CSDN下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-虚拟机-学习笔记-3内存模型和线程-慕课网-原创-慕课…"><span class="toc-text">_深入理解Java_虚拟机-学习笔记-3内存模型和线程@慕课网 原创_慕课…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-堆栈-码神岛"><span class="toc-text">_深入理解Java_堆栈_码神岛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-内存模型-一-百度文库"><span class="toc-text">_深入理解Java_内存模型(一)_百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-程序运行原理-各种配置-环境-变量-jdk-jre-classpath-深入理解…"><span class="toc-text">JAVA_程序运行原理:各种配置 环境_变量 jdk jre classpath 深入理解…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Sript中变量-的作用域闭包的-深入理解-JavaScript-网络编程-IT…"><span class="toc-text">Java_Sript中变量_的作用域闭包的_深入理解 JavaScript_网络编程_IT…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解-Java-并发核心机制-看完后好爽"><span class="toc-text">深入理解 Java 并发核心机制,看完后好爽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-内存模型-七-——总结-并发编程网-–-ifeve-com"><span class="toc-text">_深入理解Java_内存模型(七)——总结 | 并发编程网 – ifeve.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解java-虚拟机-22-volatitle-变量-规则-易学教程"><span class="toc-text">_深入理解java_虚拟机(22):volatitle_变量_规则 | 易学教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Sript中-变量-的作用域闭包的-深入理解-JavaScript"><span class="toc-text">Java_Sript中_变量_的作用域闭包的_深入理解 - JavaScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-序列化机制-慕课手记"><span class="toc-text">_深入理解Java_序列化机制_慕课手记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解Java-final-变量-的内存模型-51Testing软件测试网"><span class="toc-text">深入理解Java final_变量_的内存模型 - 51Testing软件测试网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-语言之-深入理解Java-Class文件格式-八"><span class="toc-text">JAVA_语言之_深入理解Java Class文件格式(八)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解JAVA-内存模型-PDF版-Java-文档类资源-CSDN下载"><span class="toc-text">_深入理解JAVA_内存模型(PDF版)-_Java_文档类资源-CSDN下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-中Static关键字的-深入理解-码迷移动版-m-mamicode-com"><span class="toc-text">java_中Static关键字的_深入理解-码迷移动版-m.mamicode.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从内存分配-深入理解JAVA-反射知识-百度文库"><span class="toc-text">从内存分配_深入理解JAVA_反射知识_百度文库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入理解java-中值传递与引用传递-偶尔诗文的个人空间-OSCHINA"><span class="toc-text">_深入理解java_中值传递与引用传递 - 偶尔诗文的个人空间 - OSCHINA</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="java变量深入理解-THISISPAN-博客园"><a href="#java变量深入理解-THISISPAN-博客园" class="headerlink" title="java变量深入理解 - THISISPAN - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/panxuejun/p/5909410.html" target="_blank" rel="noopener"><em>java变量深入理解</em> - THISISPAN - 博客园</a></h3><p> 2016年9月26日 - <em>java变量深入理解</em> 4,变量:其实就是内存中的一个存储空间,用于存储常量数据。 作用:方便于运算。因为有些数据不确定。所以确定该数据的名词和存储空间…</p>
+<h3 id="java变量深入理解-weixin-34138255的博客-CSDN博客"><a href="#java变量深入理解-weixin-34138255的博客-CSDN博客" class="headerlink" title="java变量深入理解 - weixin_34138255的博客 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/weixin_34138255/article/details/85823513" target="_blank" rel="noopener"><em>java变量深入理解</em> - weixin_34138255的博客 - CSDN博客</a></h3><p> 2016年9月26日 - <em>java变量深入理解</em> 2016年09月26日 15:39:00 weixin_34138255 阅读数:5 4,变量:其实就是内存中的一个存储空间,用于存储常量数据。 作用:方便于运算。因…</p>
+<h3 id="java变量深入理解-weixin-30945039的博客-CSDN博客"><a href="#java变量深入理解-weixin-30945039的博客-CSDN博客" class="headerlink" title="java变量深入理解 - weixin_30945039的博客 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/weixin_30945039/article/details/97569661" target="_blank" rel="noopener"><em>java变量深入理解</em> - weixin_30945039的博客 - CSDN博客</a></h3><p> 2016年9月26日 - 使用javap_深入理解Java_整型常量和整型_变量_的区别 阅读数 623 我下图代码第五行和第九行分别定义了一个整型_变量_和一个整型常量:staticfinalintnumber1…</p>
+<h3 id="java变量-与内存-深入了解-浴血卫国-博客园"><a href="#java变量-与内存-深入了解-浴血卫国-博客园" class="headerlink" title="java变量_与内存_深入了解 - 浴血卫国 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/pla1949/p/7834351.html" target="_blank" rel="noopener"><em>java变量_与内存_深入了解</em> - 浴血卫国 - 博客园</a></h3><p> 2017年11月15日 - (2)._变量_的数据类型=这个空间要存储什么数据? (3)._变量_名称=这个空间叫什么名字…· _java_基本数据类型存储范围· _深入了解_JVM—内存区域· _Java_中的…</p>
+<h3 id="java变量深入理解-布布扣-bubuko-com"><a href="#java变量深入理解-布布扣-bubuko-com" class="headerlink" title="java变量深入理解-布布扣-bubuko.com"></a><a href="https://zshipu.com/t?url=http://www.bubuko.com/infodetail-1774549.html" target="_blank" rel="noopener"><em>java变量深入理解</em>-布布扣-bubuko.com</a></h3><p> 2016年9月26日 - 标签:style 使用 sp <em>java</em> 数据 bs 一个 on / 4,<em>变量</em>:其实就是内存中的一个存储空间,用于存储常量数据。 作用:方便于运算。因为有些数据不确定。所以…</p>
+<h3 id="深入理解java-线程本地变量-java-lang-ThreadLocal类"><a href="#深入理解java-线程本地变量-java-lang-ThreadLocal类" class="headerlink" title="深入理解java:线程本地变量 java.lang.ThreadLocal类"></a><a href="https://zshipu.com/t?url=https://www.liangzl.com/get-article-detail-33638.html" target="_blank" rel="noopener"><em>深入理解java</em>:线程本地<em>变量</em> <em>java</em>.lang.ThreadLocal类</a></h3><p> 2018年12月10日 - <em>深入理解java</em>:线程本地<em>变量</em> <em>java</em>.lang.ThreadLocal类丶一个站在web后端设计之路的男青年个人博客网站</p>
+<h3 id="深入理解Java-内存模型-一-——基础-并发编程网-–-ifeve-com"><a href="#深入理解Java-内存模型-一-——基础-并发编程网-–-ifeve-com" class="headerlink" title="_深入理解Java_内存模型(一)——基础 | 并发编程网 – ifeve.com"></a><a href="https://zshipu.com/t?url=https://ifeve.com/java-memory-model-1/" target="_blank" rel="noopener">_深入理解Java_内存模型(一)——基础 | 并发编程网 – ifeve.com</a></h3><p> _Java_线程之间的通信由_Java_内存模型(本文简称为JMM)控制,JMM决定一个线程对共享_变量_的写入何时对另一个线程可见。从抽象的角度来看,JMM定义了线程和主内存之间的抽象…</p>
+<h3 id="学习笔记-深入理解Java-内存模型-知乎"><a href="#学习笔记-深入理解Java-内存模型-知乎" class="headerlink" title="学习笔记 | _深入理解Java_内存模型 - 知乎"></a><a href="https://zshipu.com/t?url=https://zhuanlan.zhihu.com/p/86233942" target="_blank" rel="noopener">学习笔记 | _深入理解Java_内存模型 - 知乎</a></h3><p> 2019年10月12日 - 虚拟机栈描述的是 <em>Java</em> 方法执行的内存模型:每个方法被执行的时候都会同时创建一个栈帧(Stack Frame)用于存储局部_变量_表、操作数栈、动态链接、方法出口等信息。每…</p>
+<h3 id="对Java-方法内部使用this访问成员-变量的深入理解-ITeye博客"><a href="#对Java-方法内部使用this访问成员-变量的深入理解-ITeye博客" class="headerlink" title="对Java_方法内部使用this访问成员_变量的深入理解 - - ITeye博客"></a><a href="https://zshipu.com/t?url=https://f543711700.iteye.com/blog/840814" target="_blank" rel="noopener">对<em>Java_方法内部使用this访问成员_变量<em>的</em>深入理解</em> - - ITeye博客</a></h3><p> 2010年12月13日 - 1、在<em>Java_中,直接访问域或静态成员(包括静态方法和静态成员_变量</em>)永远都是前期绑定。 2、在_Java_中,访问方法是后期绑定。 不过这样容易出现一个疑点:若…</p>
+<h3 id="《-Java-架构筑基》从-Java-基础讲起——-深入理解-Finial-未来可期-的…"><a href="#《-Java-架构筑基》从-Java-基础讲起——-深入理解-Finial-未来可期-的…" class="headerlink" title="《_Java_架构筑基》从_Java_基础讲起——_深入理解_Finial-未来可期_的…"></a><a href="https://zshipu.com/t?url=https://blog.51cto.com/14637764/2459809?source=dra" target="_blank" rel="noopener">《_Java_架构筑基》从_Java_基础讲起——_深入理解_Finial-未来可期_的…</a></h3><p> 2019年12月18日 - 1. final可以修饰类,方法,<em>变量</em> final修饰类代表类不可以继承拓展 final修饰_变量_表示_变量_不可以修改 final修饰方法表示方法不可以被重写 2. finally则是_Java_保证重点代…</p>
+<h3 id="深入理解Java-内存模型-程晓明-带书签文字版-pdf-Java-文档类资源…"><a href="#深入理解Java-内存模型-程晓明-带书签文字版-pdf-Java-文档类资源…" class="headerlink" title="_深入理解Java_内存模型.程晓明(带书签文字版).pdf-_Java_文档类资源…"></a><a href="https://zshipu.com/t?url=https://download.csdn.net/download/kxjrzyk/11029994" target="_blank" rel="noopener">_深入理解Java_内存模型.程晓明(带书签文字版).pdf-_Java_文档类资源…</a></h3><p> 2019年3月18日 - 《_深入理解JAVA_内存模型》PDF 在_java_中,所有实例域、静态域和数组元素存储在堆内存中,堆内存在线程之间共享(本文使用“共享_变量_”这个术语代指实例域…</p>
+<h3 id="深入理解Java-内存模型-简书"><a href="#深入理解Java-内存模型-简书" class="headerlink" title="_深入理解Java_内存模型 - 简书"></a><a href="https://zshipu.com/t?url=https://www.jianshu.com/p/15106e9c4bf3" target="_blank" rel="noopener">_深入理解Java_内存模型 - 简书</a></h3><p> 2018年9月24日 - 主内存:<em>java_虚拟机规定所有的_变量</em>(不是程序中的<em>变量</em>)都必须在主内存中产生,为了方便<em>理解</em>,可以认为是堆区。可以与前面说的物理机的主内存相比,只不过物…</p>
+<h3 id="年薪百万大牛带你-深入理解Java-原子-变量-原理解析-哔哩哔哩-゜-゜…"><a href="#年薪百万大牛带你-深入理解Java-原子-变量-原理解析-哔哩哔哩-゜-゜…" class="headerlink" title="年薪百万大牛带你_深入理解Java_原子_变量_原理解析_哔哩哔哩 (゜-゜…"></a><a href="https://zshipu.com/t?url=https://www.bilibili.com/video/av49406155/" target="_blank" rel="noopener">年薪百万大牛带你_深入理解Java_原子_变量_原理解析_哔哩哔哩 (゜-゜…</a></h3><p> 获取完整资源<em>java_技术交流群:940577921 验证:【09】… 年薪百万 _java</em> 原理解析 <em>深入理解</em> <em>Java_架构师学习路线 原子_变量</em> 评论查看删除日志_Java_小提莫发消息 …</p>
+<h3 id="深入理解java-泛型详解java脚本之家"><a href="#深入理解java-泛型详解java脚本之家" class="headerlink" title="_深入理解java_泛型详解java脚本之家"></a><a href="https://zshipu.com/t?url=https://www.jb51.net/article/111128.htm" target="_blank" rel="noopener">_深入理解java_泛型详解<strong>java</strong>脚本之家</a></h3><p> 2017年4月13日 - <em>深入理解java_泛型详解更新时间:2017年04月13日 15:55:08 作者:一休哥 我要…前一屏 类型通配符 中引入了类型通配符,这让您可以声明 List&lt;?&gt; 类型的_变</em>…</p>
+<h3 id="Java-语言的-深入理解-图文-百度文库"><a href="#Java-语言的-深入理解-图文-百度文库" class="headerlink" title="_Java_语言的_深入理解__图文_百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/3a7efb610b1c59eef8c7b450.html" target="_blank" rel="noopener">_Java_语言的_深入理解__图文_百度文库</a></h3><p> 评分:3.5/5 40页</p>
+<p> 2011年4月2日 - <em>Java_语言的_深入理解</em> _Java_程序设计 华中科技大学机械学院工业工程系 内容 ? ? ?…不同对象的类_变量_将共享同一内存 _Java_程序设计 华中科技大学机械学院…</p>
+<h3 id="JVM-深入理解-JAVA-语言内存模型JMM学习讲解"><a href="#JVM-深入理解-JAVA-语言内存模型JMM学习讲解" class="headerlink" title="JVM_深入理解:JAVA_语言内存模型JMM学习讲解"></a><a href="https://zshipu.com/t?url=https://www.douban.com/group/topic/124869952/" target="_blank" rel="noopener">JVM_深入理解<em>:</em>JAVA_语言内存模型JMM学习讲解</a></h3><p> 2018年9月26日 - 本文主要向大家介绍了JVM_深入理解<em>:</em>JAVA_语言内存模型JMM学习讲解,通过具体的内容向…_Java_内存模型的主要目标是定义程序中各个_变量_的访问规则,即在虚拟…</p>
+<h3 id="深入理解Java-虚拟机-码农登陆"><a href="#深入理解Java-虚拟机-码农登陆" class="headerlink" title="_深入理解Java_虚拟机 - 码农登陆"></a><a href="https://zshipu.com/t?url=https://baijiahao.baidu.com/s?id=1615674728647851945&wfr=spider&for=pc" target="_blank" rel="noopener">_深入理解Java_虚拟机 - 码农登陆</a></h3><p> 2018年10月29日 - 今天是来自我学弟的一篇关于《<em>深入理解Java_虚拟机》的内容。 因为篇幅比较长,这…LocalVariableTable 属性用于描述栈帧中局部_变量_表中的_变量_与 _Java</em> …</p>
+<h3 id="深入理解Java-自定义注解-一-入门-高伟的个人空间-OSCHINA"><a href="#深入理解Java-自定义注解-一-入门-高伟的个人空间-OSCHINA" class="headerlink" title="_深入理解Java_自定义注解(一):入门 - 高伟的个人空间 - OSCHINA"></a><a href="https://zshipu.com/t?url=https://my.oschina.net/itgaowei/blog/1600525" target="_blank" rel="noopener">_深入理解Java_自定义注解(一):入门 - 高伟的个人空间 - OSCHINA</a></h3><p> 2018年1月2日 - (方法、构造方法、成员<em>变量_、枚举值)、方法参数和本地_变量</em>(如循环_变量_、catch…上一篇: _深入理解Java_自定义注解(二)-使用自定义注解 下一篇: Intell…</p>
+<h3 id="《-深入理解JAVA-内存模型》PDF-下载-Java-知识分享网-免费-Java-资源…"><a href="#《-深入理解JAVA-内存模型》PDF-下载-Java-知识分享网-免费-Java-资源…" class="headerlink" title="《_深入理解JAVA_内存模型》PDF 下载__Java_知识分享网-免费_Java_资源…"></a><a href="https://zshipu.com/t?url=http://www.java1234.com/a/javabook/javabase/2016/0229/5745.html" target="_blank" rel="noopener">《_深入理解JAVA_内存模型》PDF 下载__Java_知识分享网-免费_Java_资源…</a></h3><p> 2016年2月29日 - 《<em>深入理解JAVA_内存模型》PDF 下载失效链接处理 《_深入理解JAVA_内存模型》PDF …12.3.3 对于volatile型_变量_的特殊规则 12.3.4 对于long和double型_变</em>…</p>
+<h3 id="…我的第一个Java-程序-8-深入理解-下环境-变量-朱祚华的在线视频…"><a href="#…我的第一个Java-程序-8-深入理解-下环境-变量-朱祚华的在线视频…" class="headerlink" title="…我的第一个Java_程序-8-_深入理解_下环境_变量-朱祚华的在线视频…"></a><a href="https://zshipu.com/t?url=https://edu.csdn.net/course/play/4871/87845" target="_blank" rel="noopener">…我的第一个<em>Java_程序-8-_深入理解_下环境_变量</em>-朱祚华的在线视频…</a></h3><p> 本课程是从零学<em>JAVA_的第一章,是_JAVA_的一个入门课程… 我的第一个_java_程序—helloword (15:14) 谈谈这个helloword (12:39) _深入理解_下环境_变量</em> (13:47) …</p>
+<h3 id="java-常量与-变量深入理解-dragon4466的博客-CSDN博客"><a href="#java-常量与-变量深入理解-dragon4466的博客-CSDN博客" class="headerlink" title="_java_常量与_变量深入理解__dragon4466的博客-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/dragon4466/article/details/82895609" target="_blank" rel="noopener">_java_常量与_变量深入理解__dragon4466的博客-CSDN博客</a></h3><p> 2018年9月29日 - _java_常量与_变量深入理解_常量常量 :其值不会发生改变的值,称为常量.比如:整数常量,浮点型类型,字</p>
+<h3 id="深入理解Java-中配置环境-变量-范仁义-博客园"><a href="#深入理解Java-中配置环境-变量-范仁义-博客园" class="headerlink" title="深入理解Java_中配置环境_变量 - 范仁义 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/Renyi-Fan/p/6876442.html" target="_blank" rel="noopener"><em>深入理解Java_中配置环境_变量</em> - 范仁义 - 博客园</a></h3><p> 2017年5月19日 - <em>深入理解Java_中配置环境_变量</em> 打赏目录 配置的目的: 配置的解决途径: 找所需命令的过程: 通俗理解:回到顶部 配置的目的:本来只在安装JDK的bin目下能运…</p>
+<h3 id="Java深入理解-类、-变量-、方法的声明-CSDN博客"><a href="#Java深入理解-类、-变量-、方法的声明-CSDN博客" class="headerlink" title="_Java深入理解_类、_变量_、方法的声明 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/qq_41814546/article/details/79506970" target="_blank" rel="noopener">_Java深入理解_类、_变量_、方法的声明 - CSDN博客</a></h3><p> 2018年3月10日 - 原 _Java深入理解_类、_变量_、方法的声明 2018年03月10日 14:02:30 阅读数:22 声明描述了类的访问范围,以此限定此类与他类的可见范围,也可以使用extends…</p>
+<h3 id="深入理解Java变量-翱翔云端的专栏-CSDN博客"><a href="#深入理解Java变量-翱翔云端的专栏-CSDN博客" class="headerlink" title="深入理解Java变量 - 翱翔云端的专栏_CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/tendency_yang/article/details/51115946" target="_blank" rel="noopener"><em>深入理解Java变量</em> - 翱翔云端的专栏_CSDN博客</a></h3><p> 2016年4月10日 - <em>深入理解Java变量</em> 原创 翱翔云端 发布于2016-04-10 22:37:26 阅读数 940 收藏 展开 一、总述 形象地说,_变量_就是一个盒子,我们可以往里面放东西。专业…</p>
+<h3 id="Java-程序员应该-深入理解-的-Java-final-变量-的内存模型-CSDN博客"><a href="#Java-程序员应该-深入理解-的-Java-final-变量-的内存模型-CSDN博客" class="headerlink" title="Java_程序员应该_深入理解_的 _Java final _变量_的内存模型_CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/java03_15/article/details/82841367" target="_blank" rel="noopener"><em>Java_程序员应该_深入理解_的 _Java</em> final _变量_的内存模型_CSDN博客</a></h3><p> 2018年9月25日 - <em>深入理解</em> <em>Java</em> final _变量_的内存模型 阅读数 392 转载地址:<a href="http://www.importnew.com/16989.html对于" target="_blank" rel="noopener">http://www.importnew.com/16989.html对于</a> final 域,编译器和处理器要遵守两个重排序规则:…</p>
+<h3 id="java-成员-变量-和局部-变量深入理解-qq-33458228的博客-CSDN博客"><a href="#java-成员-变量-和局部-变量深入理解-qq-33458228的博客-CSDN博客" class="headerlink" title="java 成员_变量_和局部_变量深入理解__qq_33458228的博客-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/qq_33458228/article/details/80744591" target="_blank" rel="noopener"><em>java</em> 成员_变量_和局部_变量深入理解__qq_33458228的博客-CSDN博客</a></h3><p> 2018年6月20日 - 私有化成员<em>变量_系统不会将成员_变量_自动初始化 2.因为成员_变量_不是静态_变量</em>,不会独立与实例而存在,而该类实例化后放在堆中,所有存放在堆成员_变量_就中 3…</p>
+<h3 id="深入理解Java-内存-图解-堆-JVM-值传递K天道酬勤-CSDN博客"><a href="#深入理解Java-内存-图解-堆-JVM-值传递K天道酬勤-CSDN博客" class="headerlink" title="_深入理解Java_内存(图解)_堆,JVM,值传递K天道酬勤-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/qq_21688757/article/details/53118758" target="_blank" rel="noopener">_深入理解Java_内存(图解)_堆,JVM,值传递<em>K</em>天道酬勤-CSDN博客</a></h3><p> 2016年11月10日 - 以上就是<em>Java_程序运行时内存分配的大致情况。其实也没什么,掌握了思想就很简单了。无非就是两种类型的_变量</em>:基本类型和引用类型。二者作为局部<em>变量</em>,都…</p>
+<h3 id="Java变量的理解-浪灬迹-红尘少年的博客-CSDN博客"><a href="#Java变量的理解-浪灬迹-红尘少年的博客-CSDN博客" class="headerlink" title="_Java变量的理解__浪灬迹-红尘少年的博客-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/qq_33706146/article/details/85043619" target="_blank" rel="noopener">_Java变量<em>的</em>理解__浪灬迹-红尘少年的博客-CSDN博客</a></h3><p> 2018年12月17日 - <em>Java_中的_变量理解</em>:基本数据类型:基本类型包括四类八种:整数类型:byte,short,int,l… _java_语言中除基本类型之外所有的_变量_类型都为引用类型,所有对象…</p>
+<h3 id="深入理解Java-的环境-变量-配置-nomousewch的专栏-CSDN博客"><a href="#深入理解Java-的环境-变量-配置-nomousewch的专栏-CSDN博客" class="headerlink" title="_深入理解Java_的环境_变量_配置 - nomousewch的专栏 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/nomousewch/article/details/7850922" target="_blank" rel="noopener">_深入理解Java_的环境_变量_配置 - nomousewch的专栏 - CSDN博客</a></h3><p> 2012年8月14日 - 对于每一个_Java_开发者,在开始接触_Java_时,基本上都要先做一件事,那就是配置_Java_开发环境,windows环境下,我们首先下载安装JDK,然后再计算机高级_变量_中添…</p>
+<h3 id="深入理解-Java-基本数据类型-静默虚空-博客园"><a href="#深入理解-Java-基本数据类型-静默虚空-博客园" class="headerlink" title="深入理解 Java 基本数据类型 - 静默虚空 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/jingmoxukong/p/10507697.html" target="_blank" rel="noopener"><em>深入理解</em> <em>Java</em> 基本数据类型 - 静默虚空 - 博客园</a></h3><p> 2019年3月10日 - 基本类型:<em>变量_名指向具体的数值。 引用类型:_变量_名指向存数据对象的内存地址。 从内存方面来说 基本类型:_变量_在声明之后,_Java</em> 就会立刻分配给他内存…</p>
+<h3 id="深入理解Java-内存-图解堆栈-万物为铜-博客园"><a href="#深入理解Java-内存-图解堆栈-万物为铜-博客园" class="headerlink" title="_深入理解Java_内存(图解堆栈) - 万物为铜 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/lipeineng/p/8358601.html" target="_blank" rel="noopener">_深入理解Java_内存(图解堆栈) - 万物为铜 - 博客园</a></h3><p> 2018年1月26日 - <em>深入理解Java_内存(图解) 这篇文章是转自<a href="http://blog.csdn.net/shimiso/article...2.无论是普通类型的_变量_还是引用类型的_变量" target="_blank" rel="noopener">http://blog.csdn.net/shimiso/article...2.无论是普通类型的_变量_还是引用类型的_变量</a></em>(俗称实例),都可以作为局部<em>变量</em>,他…</p>
+<h3 id="Java-入门——-深入理解Java-三大特性-聪哥聪哥-博客园"><a href="#Java-入门——-深入理解Java-三大特性-聪哥聪哥-博客园" class="headerlink" title="_Java_入门——_深入理解Java_三大特性 - 聪哥聪哥 - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/BoscoGuo/p/5877185.html" target="_blank" rel="noopener">_Java_入门——_深入理解Java_三大特性 - 聪哥聪哥 - 博客园</a></h3><p> 2016年9月16日 - 多态就是指程序中定义的引用<em>变量_所指向的具体类型和通过该引用_变量_发出的方法调用…_Java_开发中最基础也是最重要的概念,对这三个概念的_理解_只能越来越</em>…_</p>
+<h3 id="深入理解Java-引用类型-牛-牛-NET-博客园"><a href="#深入理解Java-引用类型-牛-牛-NET-博客园" class="headerlink" title="_深入理解Java_引用类型 - (牛_牛).NET - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/SilentCode/p/4858790.html" target="_blank" rel="noopener">_深入理解Java_引用类型 - (牛_牛).NET - 博客园</a></h3><p> 2015年10月7日 - _深入理解Java_引用类型 在_Java_中类型可分为两大类:值类型与引用类型。值类型就是基本数据类型(如int ,double 等),而引用类型,是指除了基本的_变量_类型之…</p>
+<h3 id="Java-Static-深入理解-SoulCoder-博客园"><a href="#Java-Static-深入理解-SoulCoder-博客园" class="headerlink" title="Java Static 深入理解 - SoulCoder - 博客园"></a><a href="https://zshipu.com/t?url=https://www.cnblogs.com/wonderlands/p/5630573.html" target="_blank" rel="noopener"><em>Java</em> Static <em>深入理解</em> - SoulCoder - 博客园</a></h3><p> 2016年6月30日 - <em>Java</em> Static <em>深入理解</em> static修饰的成员_变量_和成员方法独立于该类的任何对象。也就是说,它不依赖类特定的实例,被类的所有实例共享。 只要这个类被加载…</p>
+<h3 id="深入理解Java-引用-一-alphadjz的博客-CSDN博客"><a href="#深入理解Java-引用-一-alphadjz的博客-CSDN博客" class="headerlink" title="_深入理解Java_引用(一) - alphadjz的博客 - CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/alphadjz/article/details/82810514" target="_blank" rel="noopener">_深入理解Java_引用(一) - alphadjz的博客 - CSDN博客</a></h3><p> 2018年9月22日 - 在C/C++中是通过指针,而是<em>Java_中是通过引用,引用指向了对象在内存(heap)中的…_理解_方法执行时栈帧的局部_变量_表内存数据结构对这两个概念会有_深入<em>的</em>理</em>…</p>
+<h3 id="深入理解-Java-final-变量-的内存模型-u010746364的博客-CSDN博客"><a href="#深入理解-Java-final-变量-的内存模型-u010746364的博客-CSDN博客" class="headerlink" title="深入理解 Java final _变量_的内存模型_u010746364的博客-CSDN博客"></a><a href="https://zshipu.com/t?url=https://blog.csdn.net/u010746364/article/details/50537670" target="_blank" rel="noopener"><em>深入理解</em> <em>Java</em> final _变量_的内存模型_u010746364的博客-CSDN博客</a></h3><p> 2016年1月18日 - _深入理解Java_内存模型(六)——final 阅读数 393 与前面介绍的锁和 volatile 相比较,对 final 域的读和写更像是普通的_变量_访问。对于 final 域,编译器…</p>
+<h3 id="【Java-核心技术卷】-深入理解Java-数据类型、-变量-扩展讲解-结合…"><a href="#【Java-核心技术卷】-深入理解Java-数据类型、-变量-扩展讲解-结合…" class="headerlink" title="【Java_核心技术卷】_深入理解Java_数据类型、_变量 (扩展讲解,结合…"></a><a href="https://zshipu.com/t?url=http://www.imooc.com/article/295337" target="_blank" rel="noopener">【<em>Java_核心技术卷】_深入理解Java_数据类型、_变量</em> (扩展讲解,结合…</a></h3><p> 2019年11月10日 - 这个与类相关 很好<em>理解</em> 二,基元数据类型 和 非基元数据类型 语言中的数据类型…三,<em>变量</em> 同样的错误: _变量_未初始化 对于c语言好_Java_语言有所不同 C…</p>
+<h3 id="深入理解-为什么-Java-中方法内定义的内部类可以访问方法中的局部-变量"><a href="#深入理解-为什么-Java-中方法内定义的内部类可以访问方法中的局部-变量" class="headerlink" title="深入理解_为什么_Java_中方法内定义的内部类可以访问方法中的局部_变量"></a><a href="https://zshipu.com/t?url=https://zhidao.baidu.com/question/922032412564921099.html" target="_blank" rel="noopener"><em>深入理解_为什么_Java_中方法内定义的内部类可以访问方法中的局部_变量</em></a></h3><p> 2016年7月11日 - _深入理解_为什么_Java_中方法内定义的内部类可以访问方法中的局部_变量_public class Test1 {public static void main(String[] args){final int a=1;class…</p>
+<h3 id="Java-Sript中-变量-的作用域闭包的-深入理解-Java软件编程-编程客栈"><a href="#Java-Sript中-变量-的作用域闭包的-深入理解-Java软件编程-编程客栈" class="headerlink" title="_Java_Sript中_变量_的作用域闭包的_深入理解_Java软件编程 - 编程客栈"></a><a href="https://zshipu.com/t?url=http://www.cppcns.com/ruanjian/java/108454.html" target="_blank" rel="noopener">_Java_Sript中_变量_的作用域闭包的_深入理解<strong>_Java</strong>软件编程 - 编程客栈</a></h3><p> 2018年7月26日 - js中的<em>变量_都是公用的没有静态_变量</em>,下面为大家介绍下_变量_的作用域闭包,需要的朋友可以参考下</p>
+<h3 id="深入理解-Java-内存模型-程晓明-InfoQ在线阅读-爱问共享资料"><a href="#深入理解-Java-内存模型-程晓明-InfoQ在线阅读-爱问共享资料" class="headerlink" title="深入理解 Java 内存模型_程晓明_InfoQ在线阅读_爱问共享资料"></a><a href="https://zshipu.com/t?url=https://ishare.iask.sina.com.cn/f/64268212.html" target="_blank" rel="noopener"><em>深入理解</em> <em>Java</em> 内存模型_程晓明_InfoQ在线阅读_爱问共享资料</a></h3><p> 2013年11月28日 - 爱问共享资料硬件及网络频道提供<em>深入理解</em> <em>Java</em> 内存模型_程晓明_InfoQ.pdf文档免费…_Java_线程之间的通信由_Java_内存模型(本文简称为JMM)控制JMM决定一…</p>
+<h3 id="深入理解-Java-内存模型-程晓明-InfoQ在线阅读-爱问共享资料-1"><a href="#深入理解-Java-内存模型-程晓明-InfoQ在线阅读-爱问共享资料-1" class="headerlink" title="深入理解 Java 内存模型_程晓明_InfoQ在线阅读_爱问共享资料"></a><a href="https://zshipu.com/t?url=https://ishare.iask.sina.com.cn/f/64268212.html" target="_blank" rel="noopener"><em>深入理解</em> <em>Java</em> 内存模型_程晓明_InfoQ在线阅读_爱问共享资料</a></h3><p> 2013年11月28日 - 爱问共享资料硬件及网络频道提供<em>深入理解</em> <em>Java</em> 内存模型_程晓明_InfoQ.pdf文档免费…_Java_线程之间的通信由_Java_内存模型(本文简称为JMM)控制JMM决定一…</p>
+<h3 id="深入理解Java-闭包概念-OrcHome"><a href="#深入理解Java-闭包概念-OrcHome" class="headerlink" title="_深入理解Java_闭包概念 - OrcHome"></a><a href="https://zshipu.com/t?url=https://orchome.com/1069" target="_blank" rel="noopener">_深入理解Java_闭包概念 - OrcHome</a></h3><p> 2018年8月10日 - 注:&lt;自由<em>变量</em>&gt;:除了局部<em>变量_的其他_变量</em> 简单<em>理解</em>:闭包能够将一个方法作为一个_变量_去存储,这个方法有能力去访问所在类的自由_变量_。 _Java_中闭包实现 如…</p>
+<h3 id="Java-Sript中-变量-的作用域闭包的-深入理解"><a href="#Java-Sript中-变量-的作用域闭包的-深入理解" class="headerlink" title="Java_Sript中_变量_的作用域闭包的_深入理解  "></a><a href="https://zshipu.com/t?url=https://teakki.com/p/57dfb8c7d3a7507f975ecbdc" target="_blank" rel="noopener"><em>Java_Sript中_变量_的作用域闭包的_深入理解</em>  </a></h3><p> <em>Java_Sript中_变量_的作用域闭包的_深入理解</em> Javascript中的回调函数和匿名函数的回调示例介绍 JavaScript中对象属性的添加和删除示例 构造函数+原型模式构造js自定义对象(最…</p>
+<h3 id="深入理解Java-虚拟机-程序员大本营"><a href="#深入理解Java-虚拟机-程序员大本营" class="headerlink" title="_深入理解Java_虚拟机 - 程序员大本营"></a><a href="https://zshipu.com/t?url=https://www.pianshen.com/article/2015705202/" target="_blank" rel="noopener">_深入理解Java_虚拟机 - 程序员大本营</a></h3><p> _深入理解Java_虚拟机,程序员大本营,技术文章内容聚合第一站。… 每个虚拟机线程都有一个私有栈,一个线程的_Java_栈在线程被创建的时候被创建,_Java_栈保存着局部_变量_、…</p>
+<h3 id="Java-Sript中-变量-的作用域闭包的-深入理解-张生荣"><a href="#Java-Sript中-变量-的作用域闭包的-深入理解-张生荣" class="headerlink" title="Java_Sript中_变量_的作用域闭包的_深入理解 / 张生荣"></a><a href="https://zshipu.com/t?url=https://www.zhangshengrong.com/p/bYXx8RWXZj/" target="_blank" rel="noopener"><em>Java_Sript中_变量_的作用域闭包的_深入理解</em> / 张生荣</a></h3><p> 2014年5月9日 - <em>Java_Sript中_变量_的作用域闭包的_深入理解</em> 复制代码 代码如下: <!DOCTYPE html> Insert title here …</p>
+<h3 id="深入理解java-3-NIO编程-一-燎野-新浪博客"><a href="#深入理解java-3-NIO编程-一-燎野-新浪博客" class="headerlink" title="深入理解java:3.NIO编程(一)_燎野_新浪博客"></a><a href="https://zshipu.com/t?url=http://blog.sina.com.cn/s/blog_73b4b91f0102xlsy.html" target="_blank" rel="noopener"><em>深入理解java</em>:3.NIO编程(一)_燎野_新浪博客</a></h3><p> 2018年9月19日 - 控制buffer状态的三个<em>变量</em> position:跟踪已经写了多少数据或已经读了多少数据,它…前一篇:可重入锁 后一篇…</p>
+<h3 id="深入理解-Java-函数式编程-第-2-部分-函数式编程中的重要概念"><a href="#深入理解-Java-函数式编程-第-2-部分-函数式编程中的重要概念" class="headerlink" title="深入理解 Java 函数式编程,第 2 部分: 函数式编程中的重要概念"></a><a href="https://zshipu.com/t?url=https://www.ibm.com/developerworks/cn/java/j-understanding-functional-programming-2/index.html" target="_blank" rel="noopener"><em>深入理解</em> <em>Java</em> 函数式编程,第 2 部分: 函数式编程中的重要概念</a></h3><p> 2018年12月3日 - 在 JavaScript 中,闭包可以用来实现真正意义上的私有<em>变量_。 从闭包的使用方式可以…Zone=_Java</em> technology ArticleID=1063656 ArticleTitle=<em>深入理解</em> <em>…</em></p>
+<h3 id="深入理解Java-中的volatile关键字-HollisChuang’s-Blog"><a href="#深入理解Java-中的volatile关键字-HollisChuang’s-Blog" class="headerlink" title="_深入理解Java_中的volatile关键字-HollisChuang’s Blog"></a><a href="https://zshipu.com/t?url=https://www.hollischuang.com/archives/2648" target="_blank" rel="noopener">_深入理解Java_中的volatile关键字-HollisChuang’s Blog</a></h3><p> 2018年8月12日 - 我们在再有人问你_Java_内存模型是什么,就把这篇文章发给他中分析过:_Java_内存模型规定了所有的_变量_都存储在主内存中,每条线程还有自己的工作内存,线程的…</p>
+<h3 id="深入理解Java-内存模型-四-——volatile-并发编程网-–-ifeve-com"><a href="#深入理解Java-内存模型-四-——volatile-并发编程网-–-ifeve-com" class="headerlink" title="_深入理解Java_内存模型(四)——volatile | 并发编程网 – ifeve.com"></a><a href="https://zshipu.com/t?url=https://ifeve.com/java-memory-model-4/" target="_blank" rel="noopener">_深入理解Java_内存模型(四)——volatile | 并发编程网 – ifeve.com</a></h3><p> 当我们声明共享_变量_为volatile后,对这个_变量_的读/写将会很特别。_理解_volatile特性…在JSR-133之前的旧_Java_内存模型中,虽然不允许volatile_变量_之间重排序,但旧的…</p>
+<h3 id="深入理解java-虚拟机-关于常量池的字面量值和栈帧的局部-变量-表的…"><a href="#深入理解java-虚拟机-关于常量池的字面量值和栈帧的局部-变量-表的…" class="headerlink" title="_深入理解java_虚拟机,关于常量池的字面量值和栈帧的局部_变量_表的…"></a><a href="https://zshipu.com/t?url=https://www.zhihu.com/question/64039658" target="_blank" rel="noopener">_深入理解java_虚拟机,关于常量池的字面量值和栈帧的局部_变量_表的…</a></h3><p> 2017年9月11日 - _深入理解java_虚拟机中写道:1.运行时常量池存放的是各种字面量值和符号引用,这部分内容将在类加载后进入…</p>
+<h3 id="深入理解Java-的protected修饰符"><a href="#深入理解Java-的protected修饰符" class="headerlink" title="_深入理解Java_的protected修饰符"></a><a href="https://zshipu.com/t?url=https://www.bbsmax.com/A/lk5aGEoqz1/" target="_blank" rel="noopener">_深入理解Java_的protected修饰符</a></h3><p> 2015年2月8日 - 其实<em>Java_的protected修饰符,权限定义的很微妙,大致有以下几种:(1)protected控制符用于修饰方法和成员_变量</em>;(2)一个类的protected方法或成员<em>变量</em>,在包外…</p>
+<h3 id="深入理解-Java-内存模型-Java-文档类资源-CSDN下载"><a href="#深入理解-Java-内存模型-Java-文档类资源-CSDN下载" class="headerlink" title="深入理解 Java 内存模型-_Java_文档类资源-CSDN下载"></a><a href="https://zshipu.com/t?url=https://download.csdn.net/download/weixin_39564838/11162132" target="_blank" rel="noopener"><em>深入理解</em> <em>Java</em> 内存模型-_Java_文档类资源-CSDN下载</a></h3><p> 2019年5月6日 - <em>深入理解</em> <em>Java</em> 内存模型,由程晓明编著,_深入理解java_内存模型JMM更多下载资源、学习资料请访问CSDN下载频道.</p>
+<h3 id="深入理解Java-虚拟机-学习笔记-3内存模型和线程-慕课网-原创-慕课…"><a href="#深入理解Java-虚拟机-学习笔记-3内存模型和线程-慕课网-原创-慕课…" class="headerlink" title="_深入理解Java_虚拟机-学习笔记-3内存模型和线程@慕课网 原创_慕课…"></a><a href="https://zshipu.com/t?url=https://m.imooc.com/article/266435?block_id=tuijian_wz" target="_blank" rel="noopener">_深入理解Java_虚拟机-学习笔记-3内存模型和线程@慕课网 原创_慕课…</a></h3><p> 2018年12月6日 - 7.store 工作内存中<em>变量_到主内存 8.write _变量_值到主内存的_变量</em> 原子操作的规则…2.抢占式 _Java_选用 线程状态: 1.new 2.Runnable 3.Waiting/Timed Wa…</p>
+<h3 id="深入理解Java-堆栈-码神岛"><a href="#深入理解Java-堆栈-码神岛" class="headerlink" title="_深入理解Java_堆栈_码神岛"></a><a href="https://zshipu.com/t?url=https://msd.misuland.com/pd/3094725972029605100?page=1" target="_blank" rel="noopener">_深入理解Java_堆栈_码神岛</a></h3><p> 2019年3月29日 - JVM在启动时,会开启虚拟机自身的线程,例如垃圾回收线程,还有<em>java_程序的线程,创建的线程名,同时创建对象和_变量</em>,这些都会放在JVM的栈中,而线程对象字符…</p>
+<h3 id="深入理解Java-内存模型-一-百度文库"><a href="#深入理解Java-内存模型-一-百度文库" class="headerlink" title="_深入理解Java_内存模型(一)_百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/4cc3509c5122aaea998fcc22bcd126fff7055de2.html" target="_blank" rel="noopener">_深入理解Java_内存模型(一)_百度文库</a></h3><p> _深入理解Java_内存模型(一)_计算机软件及应用_IT/计算机_专业资料。_Java_内存模型的主要目标是定义程序中各个_变量_的访问规则,即在JVM中将_变量_存储到内存和从内存中取出…</p>
+<h3 id="JAVA-程序运行原理-各种配置-环境-变量-jdk-jre-classpath-深入理解…"><a href="#JAVA-程序运行原理-各种配置-环境-变量-jdk-jre-classpath-深入理解…" class="headerlink" title="JAVA_程序运行原理:各种配置 环境_变量 jdk jre classpath 深入理解…"></a><a href="https://zshipu.com/t?url=http://www.itkeyword.com/doc/4694118832202301748" target="_blank" rel="noopener"><em>JAVA_程序运行原理:各种配置 环境_变量</em> jdk jre classpath <em>深入理解</em>…</a></h3><p> 2013年1月11日 - 简单精辟:<em>JAVA_编译过程_理解</em>:<em>Java_源文件 xxx._java</em> —&gt;<em>java_c.exe编译器—&gt;xxx.class文件 (字节码文件,JVM可以看懂的)—&gt;_java</em>.exe解释执行器(需CLASSP…</p>
+<h3 id="Java-Sript中变量-的作用域闭包的-深入理解-JavaScript-网络编程-IT…"><a href="#Java-Sript中变量-的作用域闭包的-深入理解-JavaScript-网络编程-IT…" class="headerlink" title="Java_Sript中变量_的作用域闭包的_深入理解 JavaScript_网络编程_IT…"></a><a href="https://zshipu.com/t?url=http://www.lovean.com/view-10-169852-0.html" target="_blank" rel="noopener"><em>Java_Sript中<em>变量_的作用域闭包的_深入理解</em></em> JavaScript_网络编程_IT…</a></h3><p> 2016年6月7日 - js中的<em>变量_都是公用的没有静态_变量</em>,下面为大家介绍下<em>变量_的作用域闭包,需要的朋友可以参考下<!DOCTYPE html> Insert title here /* * 1.js中的_变</em>…</p>
+<h3 id="深入理解-Java-并发核心机制-看完后好爽"><a href="#深入理解-Java-并发核心机制-看完后好爽" class="headerlink" title="深入理解 Java 并发核心机制,看完后好爽"></a><a href="https://zshipu.com/t?url=https://baijiahao.baidu.com/s?id=1655180692996054806&wfr=spider&for=pc" target="_blank" rel="noopener"><em>深入理解</em> <em>Java</em> 并发核心机制,看完后好爽</a></h3><p> 2020年1月9日 - volatile 是轻量级的 synchronized,它在多处理器开发中保证了共享<em>变量_的“可见性”…《_Java</em> 并发编程实战》《<em>Java</em> 并发编程的艺术》《<em>深入理解</em> <em>Java</em> 虚拟机》<em>Java</em> …</p>
+<h3 id="深入理解Java-内存模型-七-——总结-并发编程网-–-ifeve-com"><a href="#深入理解Java-内存模型-七-——总结-并发编程网-–-ifeve-com" class="headerlink" title="_深入理解Java_内存模型(七)——总结 | 并发编程网 – ifeve.com"></a><a href="https://zshipu.com/t?url=http://ifeve.com/java-memory-model-7/" target="_blank" rel="noopener">_深入理解Java_内存模型(七)——总结 | 并发编程网 – ifeve.com</a></h3><p> _深入理解Java_内存模型(七)——总结处理器内存模型顺序一致性内存模型是一个理论…JSR-133严格限制volatile_变量_与普通_变量_的重排序,使volatile的写-读和锁的释放-…</p>
+<h3 id="深入理解java-虚拟机-22-volatitle-变量-规则-易学教程"><a href="#深入理解java-虚拟机-22-volatitle-变量-规则-易学教程" class="headerlink" title="_深入理解java_虚拟机(22):volatitle_变量_规则 | 易学教程"></a><a href="https://zshipu.com/t?url=https://www.e-learn.cn/content/wangluowenzhang/1834864" target="_blank" rel="noopener">_深入理解java_虚拟机(22):volatitle_变量_规则 | 易学教程</a></h3><p> 2019年12月6日 - volatitle_变量<em>在线程工作内存里面也存在不一致性,但由于每次使用前要刷新,执行引擎看不到不一致的情况,但是_java_里面的运算并非原子操作,volatitle_变量</em>…</p>
+<h3 id="Java-Sript中-变量-的作用域闭包的-深入理解-JavaScript"><a href="#Java-Sript中-变量-的作用域闭包的-深入理解-JavaScript" class="headerlink" title="Java_Sript中_变量_的作用域闭包的_深入理解 - JavaScript"></a><a href="https://zshipu.com/t?url=http://www.luyixian.cn/javascript_show_136352.aspx" target="_blank" rel="noopener"><em>Java_Sript中_变量_的作用域闭包的_深入理解</em> - JavaScript</a></h3><p> 2019年8月3日 - js中的<em>变量_都是公用的没有静态_变量</em>,下面为大家介绍下_变量_的作用域闭包,需要的朋友可以参考下</p>
+<h3 id="深入理解Java-序列化机制-慕课手记"><a href="#深入理解Java-序列化机制-慕课手记" class="headerlink" title="_深入理解Java_序列化机制_慕课手记"></a><a href="https://zshipu.com/t?url=http://www.imooc.com/article/46993?block_id=tuijian_wz" target="_blank" rel="noopener">_深入理解Java_序列化机制_慕课手记</a></h3><p> 2018年7月25日 - _深入理解Java_序列化机制1、_Java_序列化介绍序列化是指对象通过写出描述自己状态的数值来记录自己的过程,即将对象表示成一系列有序字节,_Java_提供了将对…</p>
+<h3 id="深入理解Java-final-变量-的内存模型-51Testing软件测试网"><a href="#深入理解Java-final-变量-的内存模型-51Testing软件测试网" class="headerlink" title="深入理解Java final_变量_的内存模型 - 51Testing软件测试网"></a><a href="https://zshipu.com/t?url=http://www.51testing.com/html/30/n-3686230.html" target="_blank" rel="noopener"><em>深入理解Java</em> final_变量_的内存模型 - 51Testing软件测试网</a></h3><p> 2015年10月26日 - 在构造函数内对一个 final 域的写,与随后把这个构造对象的引用赋值给一个<em>变量</em>,这两个操作之间不能重排序 初次读一个包含 final 域的对象的引用,与随后…</p>
+<h3 id="JAVA-语言之-深入理解Java-Class文件格式-八"><a href="#JAVA-语言之-深入理解Java-Class文件格式-八" class="headerlink" title="JAVA_语言之_深入理解Java Class文件格式(八)"></a><a href="https://zshipu.com/t?url=https://www.douban.com/group/topic/121638857/" target="_blank" rel="noopener"><em>JAVA_语言之_深入理解Java</em> Class文件格式(八)</a></h3><p> 2018年8月6日 - 由于这个属性相对较为复杂, 而对于我们理解class文件又不具有很大的意义, 所以我们只是简单的介绍一下。 如果想<em>深入理解_这个属性, 请参考 《深入_Java</em>…</p>
+<h3 id="深入理解JAVA-内存模型-PDF版-Java-文档类资源-CSDN下载"><a href="#深入理解JAVA-内存模型-PDF版-Java-文档类资源-CSDN下载" class="headerlink" title="_深入理解JAVA_内存模型(PDF版)-_Java_文档类资源-CSDN下载"></a><a href="https://zshipu.com/t?url=https://download.csdn.net/download/mr_ph/10006263" target="_blank" rel="noopener">_深入理解JAVA_内存模型(PDF版)-_Java_文档类资源-CSDN下载</a></h3><p> 2017年10月3日 - _深入理解JAVA_内存模型.pdf (高清版) 1.基础 2.重排序 3.顺序一致性 4.vol…堆内存在线程之间共享(本文使用“共享_变量_”这个术语代指实例域,静态域和…</p>
+<h3 id="java-中Static关键字的-深入理解-码迷移动版-m-mamicode-com"><a href="#java-中Static关键字的-深入理解-码迷移动版-m-mamicode-com" class="headerlink" title="java_中Static关键字的_深入理解-码迷移动版-m.mamicode.com"></a><a href="https://zshipu.com/t?url=http://www.mamicode.com/info-detail-2315782.html" target="_blank" rel="noopener"><em>java_中Static关键字的_深入理解</em>-码迷移动版-m.mamicode.com</a></h3><p> 2018年5月29日 - <em>java_中Static关键字的_深入理解_时间:2018-05-29 01:41:22 收藏:0 阅读:66 static 声明类的成员_变量</em> 以及方法的特点。 1.1:static声明的方法是静态方法,…</p>
+<h3 id="从内存分配-深入理解JAVA-反射知识-百度文库"><a href="#从内存分配-深入理解JAVA-反射知识-百度文库" class="headerlink" title="从内存分配_深入理解JAVA_反射知识_百度文库"></a><a href="https://zshipu.com/t?url=https://wenku.baidu.com/view/d07521395bcfa1c7aa00b52acfc789eb172d9ed3.html" target="_blank" rel="noopener">从内存分配_深入理解JAVA_反射知识_百度文库</a></h3><p> 2018年7月13日 - 从内存分配_深入理解JAVA_反射知识_数学_自然科学_专业资料。学习知识点:_Java_内存分配、管理_变量_被释放,该_变量_对应的对象,也就失去了引用,也就变成 了可…</p>
+<h3 id="深入理解java-中值传递与引用传递-偶尔诗文的个人空间-OSCHINA"><a href="#深入理解java-中值传递与引用传递-偶尔诗文的个人空间-OSCHINA" class="headerlink" title="_深入理解java_中值传递与引用传递 - 偶尔诗文的个人空间 - OSCHINA"></a><a href="https://zshipu.com/t?url=https://my.oschina.net/u/1169535/blog/1557638" target="_blank" rel="noopener">_深入理解java_中值传递与引用传递 - 偶尔诗文的个人空间 - OSCHINA</a></h3><p> 2017年10月28日 - _深入理解java_中值传递与引用传递 转偶尔诗文 发布于 2017/10/28 16:59…值传递是将_变量_的一个副本传递到方法中,方法中如何操作该_变量_副本,都不会改变原…</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>10.深入Java系列Java变量深入理解</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-04-03, 23:14:55</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-05, 19:54:13</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/tlg/2020/04/03/深入Java系列Java变量深入理解/" title="10.深入Java系列Java变量深入理解">https://blog.zshipu.com/tlg/2020/04/03/深入Java系列Java变量深入理解/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+					| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#go','#web',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

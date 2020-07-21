@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>9 种常用关键机器学习算法 | 技术分享 | 知识铺</title>
+  <meta name="keywords" content>
+  <meta name="description" content="9 种常用关键机器学习算法 | 知识铺">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="机器学习正在改变世界。谷歌使用机器学习向用户推荐搜索结果。Netflix 使用它推荐电影供您观看。Facebook 使用机器学习来推荐您可能认识的人。 机器学习从未像现在这样重要。同时，理解机器学习也很难。田野里充满了行话。不同的 ML 算法数量每年都在增长。 本文将向您介绍机器学习领域的基本概念。更具体地说，我们将讨论当今 9 个最重要的机器学习算法背后的基本概念。 推荐系统什么是推荐系统？建议">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9 种常用关键机器学习算法">
+<meta property="og:url" content="https://blog.zshipu.com/tlg/2020/06/21/9 种常用关键机器学习算法/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="机器学习正在改变世界。谷歌使用机器学习向用户推荐搜索结果。Netflix 使用它推荐电影供您观看。Facebook 使用机器学习来推荐您可能认识的人。 机器学习从未像现在这样重要。同时，理解机器学习也很难。田野里充满了行话。不同的 ML 算法数量每年都在增长。 本文将向您介绍机器学习领域的基本概念。更具体地说，我们将讨论当今 9 个最重要的机器学习算法背后的基本概念。 推荐系统什么是推荐系统？建议">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://nickmccullum.com/images/python-machine-learning/introduction-logistic-regression/linear-vs-logistic-regression.png">
+<meta property="og:image" content="https://nickmccullum.com/images/python-machine-learning/introduction-logistic-regression/sigmoid-equation.png">
+<meta property="og:image" content="https://nickmccullum.com/images/python-machine-learning/introduction-k-nearest-neighbors/k-value-error-rates.png">
+<meta property="og:image" content="https://nickmccullum.com/images/python-machine-learning/introduction-decision-tree/decision-tree.png">
+<meta property="og:image" content="https://nickmccullum.com/images/python-machine-learning/introduction-k-means-clustering/k-means-iteration.gif">
+<meta property="og:image" content="https://nickmccullum.com/images/python-machine-learning/introduction-k-means-clustering/elbow-method.png">
+<meta property="og:image" content="https://nickmccullum.com/images/python-machine-learning/introduction-principal-component-analysis/principal-component-analysis.png">
+<meta property="og:updated_time" content="2020-06-21T03:17:12.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="9 种常用关键机器学习算法">
+<meta name="twitter:description" content="机器学习正在改变世界。谷歌使用机器学习向用户推荐搜索结果。Netflix 使用它推荐电影供您观看。Facebook 使用机器学习来推荐您可能认识的人。 机器学习从未像现在这样重要。同时，理解机器学习也很难。田野里充满了行话。不同的 ML 算法数量每年都在增长。 本文将向您介绍机器学习领域的基本概念。更具体地说，我们将讨论当今 9 个最重要的机器学习算法背后的基本概念。 推荐系统什么是推荐系统？建议">
+<meta name="twitter:image" content="https://nickmccullum.com/images/python-machine-learning/introduction-logistic-regression/linear-vs-logistic-regression.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(190)</small></div></li>
+    
+        
+            
+            <li><div data-rel="go">go<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="190">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">go</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">web</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务">Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务</span>
+            <span class="post-date" title="2020-07-16 18:43:02">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud+nacos+Feign，实现注册中心及配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud+nacos+Feign，实现注册中心及配置中心">Spring Cloud+nacos+Feign，实现注册中心及配置中心</span>
+            <span class="post-date" title="2020-07-16 18:39:59">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos作为配置中心时，多个服务共用一个dataId的配置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos作为配置中心时，多个服务共用一个dataId的配置">Nacos作为配置中心时，多个服务共用一个dataId的配置</span>
+            <span class="post-date" title="2020-07-16 18:32:26">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(三)：使用Nacos作为配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(三)：使用Nacos作为配置中心">SpringCloudAlibaba(三)：使用Nacos作为配置中心</span>
+            <span class="post-date" title="2020-07-16 17:34:29">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos 集群部署/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos 集群部署">Nacos 集群部署</span>
+            <span class="post-date" title="2020-07-16 17:31:53">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(二)：Nacos介绍与环境安装/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(二)：Nacos介绍与环境安装">SpringCloudAlibaba(二)：Nacos介绍与环境安装</span>
+            <span class="post-date" title="2020-07-16 17:26:15">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(一)：概述与重要组件/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(一)：概述与重要组件">SpringCloudAlibaba(一)：概述与重要组件</span>
+            <span class="post-date" title="2020-07-16 17:23:13">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Java面试宝典300问-第一部分/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java面试宝典300问 第一部分">Java面试宝典300问 第一部分</span>
+            <span class="post-date" title="2020-07-09 14:39:53">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/GraaphQL实战：GraphQL Mutations 五/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL实战：GraphQL Mutations 五">GraphQL实战：GraphQL Mutations 五</span>
+            <span class="post-date" title="2020-07-09 13:50:49">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：GraphQL 基础知识  四/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：GraphQL 基础知识  四">Graphql实战：GraphQL 基础知识  四</span>
+            <span class="post-date" title="2020-07-09 13:38:27">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：自动执行后端测试 三/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：自动执行后端测试 三">Graphql实战：自动执行后端测试 三</span>
+            <span class="post-date" title="2020-07-09 13:22:30">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：基本模型和多态关联 二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：基本模型和多态关联 二">Graphql实战：基本模型和多态关联 二</span>
+            <span class="post-date" title="2020-07-09 11:59:15">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：构建论坛应用，从代码到部署 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：构建论坛应用，从代码到部署 一">Graphql实战：构建论坛应用，从代码到部署 一</span>
+            <span class="post-date" title="2020-07-09 11:48:06">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/04/学习Go 第一周/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习Go 第一周">学习Go 第一周</span>
+            <span class="post-date" title="2020-07-04 11:24:14">2020/07/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法">每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法</span>
+            <span class="post-date" title="2020-07-02 11:43:59">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/同心管家-专业心脏病医疗服务平台/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="同心管家-专业心脏病医疗服务平台">同心管家-专业心脏病医疗服务平台</span>
+            <span class="post-date" title="2020-07-02 11:30:40">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/2020 年成为前端大师的 9 个项目/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020 年成为前端大师的 9 个项目">2020 年成为前端大师的 9 个项目</span>
+            <span class="post-date" title="2020-06-25 20:13:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter：初学者的学习资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter：初学者的学习资源">Flutter：初学者的学习资源</span>
+            <span class="post-date" title="2020-06-25 19:46:43">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 404页面自定义/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 404页面自定义">Flutter 404页面自定义</span>
+            <span class="post-date" title="2020-06-25 19:22:33">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 滑块小部件有哪些新增功能/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 滑块小部件有哪些新增功能">Flutter 滑块小部件有哪些新增功能</span>
+            <span class="post-date" title="2020-06-25 19:17:07">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/用于 Flutter 开发人员的新工具，内置于 Flutter/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="用于 Flutter 开发人员的新工具，内置于 Flutter">用于 Flutter 开发人员的新工具，内置于 Flutter</span>
+            <span class="post-date" title="2020-06-25 19:06:02">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 八大优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 八大优势">Flutter 八大优势</span>
+            <span class="post-date" title="2020-06-25 18:17:38">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Vue.js 和 Angular 比 jQuery 有什么好处/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js 和 Angular 比 jQuery 有什么好处">Vue.js 和 Angular 比 jQuery 有什么好处</span>
+            <span class="post-date" title="2020-06-25 18:05:10">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/数据科学专家必修之路/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据科学专家必修之路">数据科学专家必修之路</span>
+            <span class="post-date" title="2020-06-25 14:08:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/学习 JavaScript 的最佳方式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习 JavaScript 的最佳方式">学习 JavaScript 的最佳方式</span>
+            <span class="post-date" title="2020-06-25 14:00:18">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 最佳资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 最佳资源">GraphQL 最佳资源</span>
+            <span class="post-date" title="2020-06-25 12:04:57">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/与 REST API 相比，GraphQL 有哪些优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="与 REST API 相比，GraphQL 有哪些优势">与 REST API 相比，GraphQL 有哪些优势</span>
+            <span class="post-date" title="2020-06-25 12:02:49">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 深入理解系列 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 深入理解系列 一">GraphQL 深入理解系列 一</span>
+            <span class="post-date" title="2020-06-25 11:59:41">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的主要组件分析 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的主要组件分析 - 分步指南">Python 中的主要组件分析 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:29:05">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/K 表示 Python 中的群集 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="K 表示 Python 中的群集 - 分步指南">K 表示 Python 中的群集 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:28:18">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中支持矢量机 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中支持矢量机 - 分步指南">Python 中支持矢量机 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:27:01">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的决策树和随机林/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的决策树和随机林">Python 中的决策树和随机林</span>
+            <span class="post-date" title="2020-06-21 11:25:57">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的 K 最近邻居 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的 K 最近邻居 - 分步指南">Python 中的 K 最近邻居 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:24:52">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的逻辑回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的逻辑回归 - 分步指南">Python 中的逻辑回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:23:42">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的线性回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的线性回归 - 分步指南">Python 中的线性回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:19:43">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/推荐算法简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法简介">推荐算法简介</span>
+            <span class="post-date" title="2020-06-21 11:18:15">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/9 种常用关键机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9 种常用关键机器学习算法">9 种常用关键机器学习算法</span>
+            <span class="post-date" title="2020-06-21 11:17:12">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/最新技术周刊 01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="最新技术周刊 01">最新技术周刊 01</span>
+            <span class="post-date" title="2020-06-21 11:08:27">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/20/初创团队选择 Vert.x /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初创团队选择 Vert.x">初创团队选择 Vert.x</span>
+            <span class="post-date" title="2020-06-20 17:19:35">2020/06/20</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/19/GraphQL 入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 入门指南">GraphQL 入门指南</span>
+            <span class="post-date" title="2020-06-19 20:06:53">2020/06/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/17/Linux的du用法排除某个目录/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux的du用法排除某个目录">Linux的du用法排除某个目录</span>
+            <span class="post-date" title="2020-06-17 16:47:00">2020/06/17</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/16/dubbo go 初步使用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="dubbo go 初步使用">dubbo go 初步使用</span>
+            <span class="post-date" title="2020-06-16 16:03:40">2020/06/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/15/GraphQL架构拼接解释：架构委派/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL架构拼接解释：架构委派">GraphQL架构拼接解释：架构委派</span>
+            <span class="post-date" title="2020-06-15 18:36:56">2020/06/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 作为微服务的 API 网关/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 作为微服务的 API 网关">GraphQL 作为微服务的 API 网关</span>
+            <span class="post-date" title="2020-06-14 21:10:27">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 在微服务架构中的实践/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 在微服务架构中的实践">GraphQL 在微服务架构中的实践</span>
+            <span class="post-date" title="2020-06-14 20:54:37">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 微服务化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 微服务化">GraphQL 微服务化</span>
+            <span class="post-date" title="2020-06-14 20:52:36">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/MySQL 上构造即时 Graphql API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MySQL 上构造即时 Graphql API">MySQL 上构造即时 Graphql API</span>
+            <span class="post-date" title="2020-06-12 13:44:34">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/graphql mysql /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="graphql mysql">graphql mysql</span>
+            <span class="post-date" title="2020-06-12 13:42:42">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/11/golang gateway 从零开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang gateway 从零开始">golang gateway 从零开始</span>
+            <span class="post-date" title="2020-06-11 09:12:48">2020/06/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/09/springboot + spring security验证token进行用户认证/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot + spring security验证token进行用户认证">springboot + spring security验证token进行用户认证</span>
+            <span class="post-date" title="2020-06-09 17:11:25">2020/06/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/08/zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has">zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has</span>
+            <span class="post-date" title="2020-06-08 13:31:04">2020/06/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/微信 小程序需要授权 有部分人需要获取验证码/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微信 小程序需要授权 有部分人需要获取验证码">微信 小程序需要授权 有部分人需要获取验证码</span>
+            <span class="post-date" title="2020-06-04 13:26:37">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang 正则表达式 过滤手机号带有字符串，特殊符号/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang 正则表达式 过滤手机号带有字符串，特殊符号">golang 正则表达式 过滤手机号带有字符串，特殊符号</span>
+            <span class="post-date" title="2020-06-04 12:06:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang regexp.Compile 正则表达式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang regexp.Compile 正则表达式">golang regexp.Compile 正则表达式</span>
+            <span class="post-date" title="2020-06-04 11:56:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/初学者的 Docker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者的 Docker">初学者的 Docker</span>
+            <span class="post-date" title="2020-05-31 15:38:34">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/按值排序对象的 JavaScript 排序数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="按值排序对象的 JavaScript 排序数组">按值排序对象的 JavaScript 排序数组</span>
+            <span class="post-date" title="2020-05-31 15:32:48">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js——60分钟快速入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js——60分钟快速入门">Vue.js——60分钟快速入门</span>
+            <span class="post-date" title="2020-05-30 12:19:41">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js新手入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js新手入门指南">Vue.js新手入门指南</span>
+            <span class="post-date" title="2020-05-30 12:00:43">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Node.js的替代者，初识Deno/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Node.js的替代者，初识Deno">Node.js的替代者，初识Deno</span>
+            <span class="post-date" title="2020-05-30 11:59:58">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/初学者，学习vue应该从何下手？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者，学习vue应该从何下手？">初学者，学习vue应该从何下手？</span>
+            <span class="post-date" title="2020-05-30 11:58:18">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统">从0到1，Vue大牛的前端搭建——异常监控系统</span>
+            <span class="post-date" title="2020-05-30 11:57:22">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）">从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）</span>
+            <span class="post-date" title="2020-05-30 11:56:59">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/9道价值20k薪资的VUE必备面试题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9道价值20k薪资的VUE必备面试题">9道价值20k薪资的VUE必备面试题</span>
+            <span class="post-date" title="2020-05-30 11:25:07">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/29/canvas 折线/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="canvas 折线">canvas 折线</span>
+            <span class="post-date" title="2020-05-29 13:06:27">2020/05/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/28/Emoji 转换 base64/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Emoji 转换 base64">Emoji 转换 base64</span>
+            <span class="post-date" title="2020-05-28 18:41:42">2020/05/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/公众号 H5 分享/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号 H5 分享">公众号 H5 分享</span>
+            <span class="post-date" title="2020-05-27 19:46:03">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 signature/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 signature">获取微信公众号 signature</span>
+            <span class="post-date" title="2020-05-27 19:44:37">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 jsapi_ticket/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 jsapi_ticket">获取微信公众号 jsapi_ticket</span>
+            <span class="post-date" title="2020-05-27 19:43:56">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/2020编程大牛的网盘资料汇总/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020编程大牛的网盘资料汇总">2020编程大牛的网盘资料汇总</span>
+            <span class="post-date" title="2020-05-26 14:50:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/一个简单的RTMP服务器实现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="一个简单的RTMP服务器实现">一个简单的RTMP服务器实现</span>
+            <span class="post-date" title="2020-05-26 12:01:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/HTML5实现播放RTMP协议视频/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML5实现播放RTMP协议视频">HTML5实现播放RTMP协议视频</span>
+            <span class="post-date" title="2020-05-26 11:58:15">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/正文提取算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正文提取算法">正文提取算法</span>
+            <span class="post-date" title="2020-05-24 19:16:30">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma CSS - 开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma CSS - 开始">Bulma CSS - 开始</span>
+            <span class="post-date" title="2020-05-24 18:54:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/2020年，jQuery需要了解的那些知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020年，jQuery需要了解的那些知识点">2020年，jQuery需要了解的那些知识点</span>
+            <span class="post-date" title="2020-05-24 18:50:59">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员经常去的网站有哪些？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员经常去的网站有哪些？">程序员经常去的网站有哪些？</span>
+            <span class="post-date" title="2020-05-24 18:45:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员常去的网站/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员常去的网站">程序员常去的网站</span>
+            <span class="post-date" title="2020-05-24 18:33:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Redis 集群演进探讨和总结/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Redis 集群演进探讨和总结">Redis 集群演进探讨和总结</span>
+            <span class="post-date" title="2020-05-24 18:29:41">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Buefy框架如何自定义主题？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Buefy框架如何自定义主题？">Bulma和Buefy框架如何自定义主题？</span>
+            <span class="post-date" title="2020-05-24 13:24:53">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/bulma和bootstrap等前端框架我应该选择哪个？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bulma和bootstrap等前端框架我应该选择哪个？">bulma和bootstrap等前端框架我应该选择哪个？</span>
+            <span class="post-date" title="2020-05-24 13:20:09">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Bootstrap 区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Bootstrap 区别">Bulma和Bootstrap 区别</span>
+            <span class="post-date" title="2020-05-24 13:16:19">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma Vue.js集成/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma Vue.js集成">Bulma Vue.js集成</span>
+            <span class="post-date" title="2020-05-24 13:12:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma-起步/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma 起步">Bulma 起步</span>
+            <span class="post-date" title="2020-05-24 12:04:15">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/19/Deno-1-0-简介，node-js的代替者出现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Deno 1.0 简介，node.js的代替者出现">Deno 1.0 简介，node.js的代替者出现</span>
+            <span class="post-date" title="2020-05-19 08:55:46">2020/05/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/19/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号">公众号</span>
+            <span class="post-date" title="2020-04-19 17:15:07">2020/04/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（2）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（2）">ECG ×AI: 机器/深度学习的ECG应用入门（2）</span>
+            <span class="post-date" title="2020-04-18 13:18:17">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（1）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（1）">ECG ×AI: 机器/深度学习的ECG应用入门（1）</span>
+            <span class="post-date" title="2020-04-18 13:14:59">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（2）-环境搭建/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（2）---环境搭建">学习使用 webpack（2）---环境搭建</span>
+            <span class="post-date" title="2020-04-16 20:00:33">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（1）-简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（1）---简介">学习使用 webpack（1）---简介</span>
+            <span class="post-date" title="2020-04-16 19:57:59">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/RxJava总体流程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RxJava总体流程">RxJava总体流程</span>
+            <span class="post-date" title="2020-04-16 14:54:14">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/15/B1-Spring-Security-url-拦截匹配规则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Security url 拦截匹配规则">Spring Security url 拦截匹配规则</span>
+            <span class="post-date" title="2020-04-15 08:56:15">2020/04/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/在-JAVASCRIPT-中揭开提升的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="在 JAVASCRIPT 中揭开声明倒置的神秘面纱">在 JAVASCRIPT 中揭开声明倒置的神秘面纱</span>
+            <span class="post-date" title="2020-04-14 22:24:33">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/了解-JAVASCRIPT-中的一等公民函数和匿名函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="了解 JAVASCRIPT 中的一等公民函数和匿名函数">了解 JAVASCRIPT 中的一等公民函数和匿名函数</span>
+            <span class="post-date" title="2020-04-14 22:11:52">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/构建一致的-RESTful-API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建一致的 RESTful API">构建一致的 RESTful API</span>
+            <span class="post-date" title="2020-04-14 22:06:08">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列四、实例微型交易系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列四、实例微型交易系统">Vertx系列四、实例微型交易系统</span>
+            <span class="post-date" title="2020-04-13 20:09:38">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列三、揭开微服务的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列三、揭开微服务的神秘面纱">Vertx系列三、揭开微服务的神秘面纱</span>
+            <span class="post-date" title="2020-04-13 19:56:24">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列二、vert-x/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列二、vert.x">Vertx系列二、vert.x</span>
+            <span class="post-date" title="2020-04-13 18:59:58">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列一，简述/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列一、简述">Vertx系列一、简述</span>
+            <span class="post-date" title="2020-04-13 18:55:32">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/监督机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="监督机器学习算法">监督机器学习算法</span>
+            <span class="post-date" title="2020-04-13 10:16:48">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/MQTT和WebSocket-对比/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT和WebSocket 对比">MQTT和WebSocket 对比</span>
+            <span class="post-date" title="2020-04-13 09:27:10">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/12/HTTP-请求方法指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTTP 请求方法指南">HTTP 请求方法指南</span>
+            <span class="post-date" title="2020-04-12 21:38:58">2020/04/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/全栈工程师刷这些就够了/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="全栈工程师面试题刷这些就够了">全栈工程师面试题刷这些就够了</span>
+            <span class="post-date" title="2020-04-11 17:28:23">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/【前端知识梳理】HTML篇-笔记整理（一）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【前端知识梳理】HTML篇 笔记整理（一）">【前端知识梳理】HTML篇 笔记整理（一）</span>
+            <span class="post-date" title="2020-04-11 17:20:45">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/哈勃拍摄唯美宇宙/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="哈勃拍摄唯美宇宙">哈勃拍摄唯美宇宙</span>
+            <span class="post-date" title="2020-04-11 17:07:12">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/从零开始实现一个RPC框架（零）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始实现一个RPC框架（零）">从零开始实现一个RPC框架（零）</span>
+            <span class="post-date" title="2020-04-11 14:41:09">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/MQTT之Mosquitto源码分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT之Mosquitto源码分析">MQTT之Mosquitto源码分析</span>
+            <span class="post-date" title="2020-04-11 13:10:29">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/为什么选择go-kit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="为什么选择go-kit">为什么选择go-kit</span>
+            <span class="post-date" title="2020-04-11 11:49:46">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/Gokit-go流行微服务入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gokit go流行微服务入门">Gokit go流行微服务入门</span>
+            <span class="post-date" title="2020-04-11 11:39:44">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/10/JVM自动推荐文章列表-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM自动推荐文章列表">JVM自动推荐文章列表</span>
+            <span class="post-date" title="2020-04-10 20:17:22">2020/04/10</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/macaca-doctor之Android证书Not-accepted-Android-SDK-license-agreements/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="macaca doctor之Android证书Not accepted Android SDK license agreements">macaca doctor之Android证书Not accepted Android SDK license agreements</span>
+            <span class="post-date" title="2020-04-09 17:02:16">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/工具推荐篇：PlantUML-程序员的专属绘制流程图工具，就像写代码一样便利/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利">工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利</span>
+            <span class="post-date" title="2020-04-09 10:28:01">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/Istio-是什么-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Istio 是什么">Istio 是什么</span>
+            <span class="post-date" title="2020-04-09 10:08:02">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/08/vert-x入门系列-03-vertx详细介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 03 vertx详细介绍">vert x入门系列: 03 vertx详细介绍</span>
+            <span class="post-date" title="2020-04-08 22:32:45">2020/04/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/Java-面试题系列-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 面试题系列 1">Java 面试题系列 1</span>
+            <span class="post-date" title="2020-04-06 20:17:19">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/30-深入Java系列Java-数据结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30.深入Java系列Java - 数据结构">30.深入Java系列Java - 数据结构</span>
+            <span class="post-date" title="2020-04-06 19:59:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/29-深入Java系列Java-构造函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="29.深入Java系列Java - 构造函数">29.深入Java系列Java - 构造函数</span>
+            <span class="post-date" title="2020-04-06 19:54:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/28-深入Java系列Java-对象和类/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="28.深入Java系列Java - 对象和类">28.深入Java系列Java - 对象和类</span>
+            <span class="post-date" title="2020-04-06 19:50:43">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/27-深入Java系列Java-文件和-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="27.深入Java系列Java - 文件和 I/O">27.深入Java系列Java - 文件和 I/O</span>
+            <span class="post-date" title="2020-04-06 19:46:11">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/26-深入Java系列Java中Integer为什么有个-128—-127/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="26.深入Java系列Java中Integer为什么有个-128—+127">26.深入Java系列Java中Integer为什么有个-128—+127</span>
+            <span class="post-date" title="2020-04-06 19:24:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/25-深入Java系列Java中int的取值范围关键点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="25.深入Java系列Java中int的取值范围关键点">25.深入Java系列Java中int的取值范围关键点</span>
+            <span class="post-date" title="2020-04-06 19:04:37">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/24-深入Java系列Java中int面试知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="24.深入Java系列Java中int面试知识点">24.深入Java系列Java中int面试知识点</span>
+            <span class="post-date" title="2020-04-06 18:53:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/JS系列js-获取子数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.JS系列js 获取子数组">1.JS系列js 获取子数组</span>
+            <span class="post-date" title="2020-04-06 12:40:13">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/3-深入Java系列Java内存模型和JVM内存模型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="23.深入Java系列Java内存模型和JVM内存模型">23.深入Java系列Java内存模型和JVM内存模型</span>
+            <span class="post-date" title="2020-04-06 11:17:06">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/22-深入Java系列结构模式之组合模式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="22.深入Java系列结构模式之组合模式">22.深入Java系列结构模式之组合模式</span>
+            <span class="post-date" title="2020-04-05 22:10:38">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/21-深入Java系列Java之异常处理/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="21.深入Java系列Java之异常处理">21.深入Java系列Java之异常处理</span>
+            <span class="post-date" title="2020-04-05 22:04:06">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/20-深入Java系列Java中的回调机制/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="20.深入Java系列Java中的回调机制">20.深入Java系列Java中的回调机制</span>
+            <span class="post-date" title="2020-04-05 21:54:11">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java类的信息全解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="19.深入Java系列java类的信息全解">19.深入Java系列java类的信息全解</span>
+            <span class="post-date" title="2020-04-05 19:49:23">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="18.深入Java系列java方法区内存溢出分析">18.深入Java系列java方法区内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:46:36">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="17.深入Java系列java方法区">17.深入Java系列java方法区</span>
+            <span class="post-date" title="2020-04-05 19:45:17">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java栈内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="16.深入Java系列Java栈内存溢出分析">16.深入Java系列Java栈内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:43:47">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java堆内存溢出解决方案/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="15.深入Java系列Java堆内存溢出解决方案">15.深入Java系列Java堆内存溢出解决方案</span>
+            <span class="post-date" title="2020-04-05 19:27:05">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java堆内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="14.深入Java系列Java堆内存">14.深入Java系列Java堆内存</span>
+            <span class="post-date" title="2020-04-04 20:41:53">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java栈内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="13.深入Java系列Java栈内存">13.深入Java系列Java栈内存</span>
+            <span class="post-date" title="2020-04-04 20:34:01">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java内存结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="12.深入Java系列Java内存结构">12.深入Java系列Java内存结构</span>
+            <span class="post-date" title="2020-04-04 19:49:30">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java-命令知多少/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="11.深入Java系列Java 命令知多少">11.深入Java系列Java 命令知多少</span>
+            <span class="post-date" title="2020-04-03 23:16:26">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java变量深入理解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="10.深入Java系列Java变量深入理解">10.深入Java系列Java变量深入理解</span>
+            <span class="post-date" title="2020-04-03 23:14:55">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9.深入Java系列java &amp; &amp;&amp;区别">9.深入Java系列java &amp; &amp;&amp;区别</span>
+            <span class="post-date" title="2020-04-03 23:13:10">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-path-classpath作用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="8.深入Java系列java path classpath作用">8.深入Java系列java path classpath作用</span>
+            <span class="post-date" title="2020-04-03 23:11:42">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列JVM、JVM、JRE区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="7.深入Java系列JVM、JVM、JRE区别">7.深入Java系列JVM、JVM、JRE区别</span>
+            <span class="post-date" title="2020-04-03 23:10:53">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Spring-Boot-2-0-2-Oauth2-持久化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot 2.0.2 Oauth2 持久化">鉴权中心：Spring Boot 2.0.2 Oauth2 持久化</span>
+            <span class="post-date" title="2020-04-03 15:58:07">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Springboot-Springsecurity-Oauth2整合/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Springboot+Springsecurity+Oauth2整合">鉴权中心：Springboot+Springsecurity+Oauth2整合</span>
+            <span class="post-date" title="2020-04-03 11:21:47">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/Spring-Boot-v2-1-3-兼容鉴权中心Spring-Boot-v2-0-2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2">鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2</span>
+            <span class="post-date" title="2020-04-03 11:12:12">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列异常org-springframework-security-authentication-BadCredentialsException/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException">6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException</span>
+            <span class="post-date" title="2020-04-02 14:05:00">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列深入理解JAVA-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="5.深入Java系列深入理解JAVA I/O">5.深入Java系列深入理解JAVA I/O</span>
+            <span class="post-date" title="2020-04-02 11:07:02">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列之绘图/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="4.深入Java系列之绘图">4.深入Java系列之绘图</span>
+            <span class="post-date" title="2020-04-02 10:48:56">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/01/深入Java系列之基本数据类型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="3.深入Java系列之基本数据类型">3.深入Java系列之基本数据类型</span>
+            <span class="post-date" title="2020-04-01 13:25:39">2020/04/01</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之虚拟机栈/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2.深入Java系列之虚拟机栈">2.深入Java系列之虚拟机栈</span>
+            <span class="post-date" title="2020-03-31 17:07:43">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之JVM/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.深入Java系列之JVM">1.深入Java系列之JVM</span>
+            <span class="post-date" title="2020-03-31 17:01:41">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/将您的Spring-Booot应用迁移到最新的Spring-Security-和-OAuth-2-0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0">将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0</span>
+            <span class="post-date" title="2020-03-31 13:35:01">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/Neo4j系列：CentOS下Neo4j安装教程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Neo4j系列：CentOS下Neo4j安装教程">Neo4j系列：CentOS下Neo4j安装教程</span>
+            <span class="post-date" title="2020-03-31 11:03:20">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/JVM入门到入魔：01JVM基础必备知识/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：01JVM基础必备知识">JVM入门到入魔：01JVM基础必备知识</span>
+            <span class="post-date" title="2020-03-28 21:13:14">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/团队管理：打造高绩效团队/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="团队管理：打造高绩效团队">团队管理：打造高绩效团队</span>
+            <span class="post-date" title="2020-03-28 15:49:46">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/27/JVM入门到入魔：课程大纲/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：00课程大纲">JVM入门到入魔：00课程大纲</span>
+            <span class="post-date" title="2020-03-27 15:21:01">2020/03/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-02-vertx的Http服务器入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 02 vertx的Http服务器入门">vert x入门系列: 02 vertx的Http服务器入门</span>
+            <span class="post-date" title="2020-03-26 21:39:33">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师：一个演进式架构师应该承担的职责/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师：一个演进式架构师应该承担的职责">架构师：一个演进式架构师应该承担的职责</span>
+            <span class="post-date" title="2020-03-26 21:29:44">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-01-reactive编程介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 01 reactive编程介绍">vert x入门系列: 01 reactive编程介绍</span>
+            <span class="post-date" title="2020-03-26 21:18:32">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/程序员-程序猿与牛的斗争/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员:程序猿与牛的斗争">程序员:程序猿与牛的斗争</span>
+            <span class="post-date" title="2020-03-26 21:02:05">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-知人善用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:知人善用">架构师:知人善用</span>
+            <span class="post-date" title="2020-03-26 21:00:00">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-架构师三大原则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:架构师三大原则">架构师:架构师三大原则</span>
+            <span class="post-date" title="2020-03-26 16:09:08">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/24/GitHub日报：GitHub-Explore-code-and-developers-on-GitHub-today-today-Mar-24/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.">GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.</span>
+            <span class="post-date" title="2020-03-24 21:40:45">2020/03/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-M81-发行说明/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC M81 发行说明">WebRTC系列：WebRTC M81 发行说明</span>
+            <span class="post-date" title="2020-03-22 22:12:10">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC介绍">WebRTC系列：WebRTC介绍</span>
+            <span class="post-date" title="2020-03-22 16:54:06">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：getUserMedia-API及HTML5-调用手机摄像头拍照/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照">WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照</span>
+            <span class="post-date" title="2020-03-22 16:45:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC基础学习之一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC基础学习之一">WebRTC系列：WebRTC基础学习之一</span>
+            <span class="post-date" title="2020-03-22 16:11:45">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-将一统实时音视频天下？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC 将一统实时音视频天下？">WebRTC系列：WebRTC 将一统实时音视频天下？</span>
+            <span class="post-date" title="2020-03-22 15:49:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 二">100天Spring零基础起飞 二</span>
+            <span class="post-date" title="2019-12-06 20:17:24">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 一">100天Spring零基础起飞 一</span>
+            <span class="post-date" title="2019-12-06 20:15:37">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Next-js手册/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Next.js手册">Next.js手册</span>
+            <span class="post-date" title="2019-11-29 14:45:06">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Vue手册：Vue-js的完整介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue手册：Vue.js的完整介绍">Vue手册：Vue.js的完整介绍</span>
+            <span class="post-date" title="2019-11-29 13:34:21">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/27/Dos批量修改文件后缀/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dos批量修改文件后缀">Dos批量修改文件后缀</span>
+            <span class="post-date" title="2019-11-27 11:33:22">2019/11/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/PHP编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PHP编码规范">PHP编码规范</span>
+            <span class="post-date" title="2019-11-22 15:53:38">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范3">HTML编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:36:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范3">Java编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:33:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范2">Java编码规范2</span>
+            <span class="post-date" title="2019-11-22 15:11:53">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/通用编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通用编码规范">通用编码规范</span>
+            <span class="post-date" title="2019-11-22 15:05:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范">Java编码规范</span>
+            <span class="post-date" title="2019-11-22 14:07:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/C-编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C#编码规范">C#编码规范</span>
+            <span class="post-date" title="2019-11-22 13:16:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范2">HTML编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:22:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范2">JavaScript编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:20:31">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范-第二部/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范2">CSS编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:18:01">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Markdown-编写规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Markdown 编写规范">Markdown 编写规范</span>
+            <span class="post-date" title="2019-11-22 11:08:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范">HTML编码规范</span>
+            <span class="post-date" title="2019-11-22 11:04:41">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范">CSS编码规范</span>
+            <span class="post-date" title="2019-11-22 10:06:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范">JavaScript编码规范</span>
+            <span class="post-date" title="2019-11-22 09:58:35">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/日常笔记-开篇/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日常笔记-开篇">日常笔记-开篇</span>
+            <span class="post-date" title="2019-11-14 19:34:48">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/Java-字符串拼接一次学到位/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 字符串拼接一次学到位">Java 字符串拼接一次学到位</span>
+            <span class="post-date" title="2019-11-14 11:58:31">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/务限流与降级/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微服务限流与降级">微服务限流与降级</span>
+            <span class="post-date" title="2019-11-14 11:36:43">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/13/CSS控制长串英文字母换行问题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS控制长串英文字母换行问题">CSS控制长串英文字母换行问题</span>
+            <span class="post-date" title="2019-11-13 10:26:10">2019/11/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/12/centos虚拟内存设置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=" centos虚拟内存设置"> centos虚拟内存设置</span>
+            <span class="post-date" title="2019-11-12 21:44:11">2019/11/12</span>
+        </a>
+        
+        <a  class="go "
+           href="/tlg/2019/11/11/第-03-课：进阶模板用法/"
+           data-tag="go,web"
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 03 课：进阶模板用法">拜读无闻大神Go web编程 - 第 03 课：进阶模板用法</span>
+            <span class="post-date" title="2019-11-11 17:56:00">2019/11/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/11/第-02-课：基础模板用法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 02 课：基础模板用法">拜读无闻大神Go web编程 - 第 02 课：基础模板用法</span>
+            <span class="post-date" title="2019-11-11 17:53:52">2019/11/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-9 种常用关键机器学习算法" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">9 种常用关键机器学习算法</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-06-21 11:17:12'>2020-06-21 11:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#推荐系统"><span class="toc-text">推荐系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是推荐系统？"><span class="toc-text">什么是推荐系统？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐系统和线性代数"><span class="toc-text">推荐系统和线性代数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐系统如何工作？"><span class="toc-text">推荐系统如何工作？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#章节总结"><span class="toc-text">章节总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线性回归"><span class="toc-text">线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是逻辑回归？"><span class="toc-text">什么是逻辑回归？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#西格莫伊德函数"><span class="toc-text">西格莫伊德函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用逻辑回归模型进行预测"><span class="toc-text">使用逻辑回归模型进行预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#K-最近邻域算法中-K-的重要性"><span class="toc-text">K-最近邻域算法中 K 的重要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#K-最近邻域算法的优缺点"><span class="toc-text">K-最近邻域算法的优缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#决策树和随机林"><span class="toc-text">决策树和随机林</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是树方法？"><span class="toc-text">什么是树方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用随机林的好处"><span class="toc-text">使用随机林的好处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#章节总结-1"><span class="toc-text">章节总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为-K-选择正确的-K-值意味着聚类算法"><span class="toc-text">为 K 选择正确的 K 值意味着聚类算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#主要组件分析"><span class="toc-text">主要组件分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是主要组件分析？"><span class="toc-text">什么是主要组件分析？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线性回归与主分量分析的区别"><span class="toc-text">线性回归与主分量分析的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#章节总结-2"><span class="toc-text">章节总结</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>机器学习正在改变世界。谷歌使用机器学习向用户推荐搜索结果。Netflix 使用它推荐电影供您观看。Facebook 使用机器学习来推荐您可能认识的人。</p>
+<p>机器学习从未像现在这样重要。同时，理解机器学习也很难。田野里充满了行话。不同的 ML 算法数量每年都在增长。</p>
+<p>本文将向您介绍机器学习领域的基本概念。更具体地说，我们将讨论当今 9 个最重要的机器学习算法背后的基本概念。</p>
+<h1 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h1><h3 id="什么是推荐系统？"><a href="#什么是推荐系统？" class="headerlink" title="什么是推荐系统？"></a>什么是推荐系统？</h3><p><a href="https://zshipu.com/t?url=https://nickmccullum.com/python-machine-learning/introduction-recommendation-systems/" target="_blank" rel="noopener">建议系统</a>用于在数据集中查找类似的条目。</p>
+<p>也许最常见的建议真实示例存在于 Netflix 中。更具体地说，其视频流媒体服务将推荐基于你已经观看的内容的电影和电视节目。</p>
+<p>另一个推荐系统是Facebook的”你可能认识的人”功能，它建议你可能的朋友，根据你现有的朋友名单。</p>
+<p>充分开发和部署的建议系统极其复杂。它们也非常耗费资源。</p>
+<h3 id="推荐系统和线性代数"><a href="#推荐系统和线性代数" class="headerlink" title="推荐系统和线性代数"></a>推荐系统和线性代数</h3><p>成熟的推荐系统需要线性代数的深层背景，才能从头开始构建。</p>
+<p>因此，如果您以前从未研究过线性代数，则本节中可能有些概念无法理解。</p>
+<p>不过，别担心——学习的 Python 库使得构建推荐系统变得非常简单。S0 你不需要太多的线性代数背景来构建真实世界的建议系统。</p>
+<h3 id="推荐系统如何工作？"><a href="#推荐系统如何工作？" class="headerlink" title="推荐系统如何工作？"></a>推荐系统如何工作？</h3><p>推荐系统主要有两种类型：</p>
+<ul>
+<li>基于内容的建议系统</li>
+<li>协作筛选建议系统</li>
+</ul>
+<p>基于内容的推荐系统根据已使用的项目的相似性为您提供建议。他们完全按照你期望的推荐系统来做。</p>
+<p>协作筛选建议系统根据用户与项目交互的知识生成建议。换句话说，他们利用了人群的智慧。（因此，其名称中的术语”协作”。</p>
+<p>在现实世界中，协作筛选建议系统比基于内容的系统更常见。这主要是因为它们通常能产生更好的结果。一些从业者还发现协作筛选建议系统更易于理解。</p>
+<p>协作筛选建议系统还具有缺少基于内容的系统的独特功能。也就是说，他们有能力自己学习功能。</p>
+<p>这意味着他们甚至可以开始根据您甚至未告诉他们要考虑的属性来识别项之间的相似性。</p>
+<p>协作筛选中有两个子类别：</p>
+<ul>
+<li>基于内存的协作筛选</li>
+<li>基于模型的协作筛选</li>
+</ul>
+<p>在机器学习中取得成功，您无需了解这两种类型的协作筛选建议系统之间的区别。这足以识别存在多种类型。</p>
+<h3 id="章节总结"><a href="#章节总结" class="headerlink" title="章节总结"></a>章节总结</h3><p>以下是我们在本教程中讨论的关于建议系统的简要摘要：</p>
+<ul>
+<li>现实世界中推荐制度的例子</li>
+<li>不同类型的推荐系统，以及协作筛选系统如何比基于内容的建议系统更常用</li>
+<li>推荐系统与线性代数的关系</li>
+</ul>
+<h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p><a href="https://zshipu.com/t?url=https://nickmccullum.com/python-machine-learning/linear-regression-python/" target="_blank" rel="noopener">线性回归</a>用于根据另一组值的值预测某些值。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 线性回归的历史</span><br><span class="line"></span><br><span class="line">线性回归是由[弗朗西斯·加尔顿](https://zshipu.com/t?url=https://en.wikipedia.org/wiki/Francis_Galton)在19世纪创建的。</span><br><span class="line"></span><br><span class="line">高尔顿是研究父母和孩子之间关系的科学家。更具体地说，高尔顿正在调查父亲身高和儿子身高之间的关系。</span><br><span class="line"></span><br><span class="line">高尔顿的第一个发现是，儿子往往和父亲一样高。这并不奇怪。</span><br><span class="line"></span><br><span class="line">后来，加尔顿发现了一些更有趣的东西。儿子的身高往往__更接近于所有人的总平均身高__，而不是他自己的父亲__。__</span><br><span class="line"></span><br><span class="line">加尔顿给这种现象起一个名称：****回归****。具体来说，他说&quot;父亲的儿子的身高倾向于倒退（或向）平均（平均）高度漂移&quot;。</span><br><span class="line"></span><br><span class="line">这导致了整个统计和机器学习领域称为回归。</span><br><span class="line"></span><br><span class="line">### 线性回归数学</span><br><span class="line"></span><br><span class="line">创建回归模型时，我们尝试的只是绘制一条尽可能接近数据集中每个点的线。</span><br><span class="line"></span><br><span class="line">典型的示例是线性回归的&quot;最小平方法&quot;，该方法仅计算向上和向下方向的直线的接近度。</span><br><span class="line"></span><br><span class="line">下面是一个示例，可帮助说明这一点：</span><br><span class="line"></span><br><span class="line">![An example of the math behind least squares regression](https://nickmccullum.com/images/python-machine-learning/introduction-linear-regression/least-squares-regression.gif)</span><br><span class="line"></span><br><span class="line">创建回归模型时，最终产品是一个方程，可用于预测 x 值的 y 值，而无需事先实际知道 y 值。</span><br><span class="line"></span><br><span class="line"># 逻辑回归</span><br><span class="line"></span><br><span class="line">[逻辑回归](https://zshipu.com/t?url=https://nickmccullum.com/python-machine-learning/logistic-regression-python/)类似于线性回归，只不过它不是计算数值，而是估计数据点属于哪个_类别_。```y</span><br></pre></td></tr></table></figure></p>
+<h3 id="什么是逻辑回归？"><a href="#什么是逻辑回归？" class="headerlink" title="什么是逻辑回归？"></a>什么是逻辑回归？</h3><p>逻辑回归是一种机器学习模型，用于解决分类问题。</p>
+<p>以下是机器学习分类问题的一些示例：</p>
+<ul>
+<li>垃圾邮件（垃圾邮件还是垃圾邮件？</li>
+<li>汽车保险索赔（注销或修理？</li>
+<li>疾病诊断</li>
+</ul>
+<p>每个分类问题都有两个类别，这使得它们成为<strong>二进制分类</strong>问题的示例。</p>
+<p>逻辑回归非常适合解决<strong>二进制分类</strong>问题 - 我们只是为每个类别指定值和分别。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">为什么我们需要逻辑回归？因为不能使用线性回归模型进行二进制分类预测。它不会导致良好的拟合，因为您尝试通过只有两个可能的值的数据集拟合直线。</span><br><span class="line"></span><br><span class="line">此图像可以帮助您理解为什么线性回归模型不适合二进制分类问题：</span><br><span class="line"></span><br><span class="line">![Linear Regression Classification](https://nickmccullum.com/images/python-machine-learning/introduction-logistic-regression/linear-regression-classification.png)</span><br><span class="line"></span><br><span class="line">在此图像中， 表示肿瘤是恶性的概率.相反，该值表示肿瘤不是恶性肿瘤的概率。如您所见，线性回归模型在预测数据集中大多数观测值的此概率方面做得很差。```y-axis``````1-y</span><br></pre></td></tr></table></figure></p>
+<p>这就是为什么逻辑回归模型很有用。它们有一个弯曲到他们的最佳拟合线，这使得他们更适合预测分类数据。</p>
+<p>下面是一个使用相同训练数据将线性回归模型与逻辑回归模型进行比较的示例：</p>
+<p><img src="https://nickmccullum.com/images/python-machine-learning/introduction-logistic-regression/linear-vs-logistic-regression.png" alt="Linear Regression vs Logistic Regression"></p>
+<h3 id="西格莫伊德函数"><a href="#西格莫伊德函数" class="headerlink" title="西格莫伊德函数"></a>西格莫伊德函数</h3><p>逻辑回归模型在其曲线中具有折弯的原因是因为它没有使用线性方程计算。相反，逻辑回归模型是使用 Sigmoid 函数构建的（由于逻辑回归中使用，因此也称为逻辑函数）。</p>
+<p>您不必记住<a href="https://zshipu.com/t?url=https://en.wikipedia.org/wiki/Sigmoid_function" target="_blank" rel="noopener">Sigmoid 函数</a>即可在机器学习中取得成功。话虽如此，对它的外观有一些了解是有用的。</p>
+<p>公式如下所示：</p>
+<p><img src="https://nickmccullum.com/images/python-machine-learning/introduction-logistic-regression/sigmoid-equation.png" alt="The Sigmoid Equation"></p>
+<p>Sigmoid 函数的主要特征值得理解：无论您向它传递什么价值，它始终都会在 0 和 1 之间生成输出。</p>
+<h3 id="使用逻辑回归模型进行预测"><a href="#使用逻辑回归模型进行预测" class="headerlink" title="使用逻辑回归模型进行预测"></a>使用逻辑回归模型进行预测</h3><p>要使用线性回归模型进行预测，通常需要指定截止点。此截止点通常是 。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">让我们用我们早期图像中的癌症诊断示例来在实践中看到这一原则。如果逻辑回归模型输出的值低于 0.5，则数据点被归类为非恶性肿瘤。同样，如果 Sigmoid 函数输出的值高于 0.5，则肿瘤将归类为恶性肿瘤。</span><br><span class="line"></span><br><span class="line">### 使用混淆矩阵测量逻辑回归性能</span><br><span class="line"></span><br><span class="line">混淆矩阵可用作比较机器学习中真实正值、真负数、误报和假负数的工具。</span><br><span class="line"></span><br><span class="line">当用于测量逻辑回归模型的性能时，混淆矩阵特别有用。下面是一个示例，演示如何使用混淆矩阵：</span><br><span class="line"></span><br><span class="line">![An Example Confusion Matrix](https://nickmccullum.com/images/python-machine-learning/introduction-logistic-regression/confusion-matrix.png)在此图中，TN 代表&quot;真负&quot;，FN 代表&quot;假负&quot;。FP 代表&quot;误报&quot;，TP 代表&quot;真实正&quot;。</span><br><span class="line"></span><br><span class="line">混淆矩阵可用于评估模型在混淆矩阵的特定象限中是否特别弱。例如，它可能有异常数量的误报。</span><br><span class="line"></span><br><span class="line">在某些应用程序中，确保模型在混淆矩阵的异常危险区域中表现良好也很有帮助。</span><br><span class="line"></span><br><span class="line">例如，在这个癌症示例中，您希望非常确定模型的假阴性率不会很高，因为这将表明某人的恶性肿瘤被错误地归类为非恶性肿瘤。</span><br><span class="line"></span><br><span class="line">### 章节总结</span><br><span class="line"></span><br><span class="line">在本节中，您首次接触了逻辑回归机器学习模型。</span><br><span class="line"></span><br><span class="line">以下是您学到的有关逻辑回归的简要摘要：</span><br><span class="line"></span><br><span class="line">*   使用逻辑回归模型解决的分类问题类型</span><br><span class="line">*   物流函数（也称为 Sigmoid 函数）始终输出介于 0 和 1 之间的值</span><br><span class="line">*   如何使用截止点使用逻辑回归机器学习模型进行预测</span><br><span class="line">*   为什么混淆矩阵可用于测量逻辑回归模型的性能</span><br><span class="line"></span><br><span class="line"># K-最近邻域</span><br><span class="line"></span><br><span class="line">[K 最近邻域](https://zshipu.com/t?url=https://nickmccullum.com/python-machine-learning/k-nearest-neighbors-python/)算法可以帮助您解决分类问题，其中有两个以上类别。</span><br><span class="line"></span><br><span class="line">### 什么是 K-最近邻域算法？</span><br><span class="line"></span><br><span class="line">K 最近邻域算法是基于简单原理的分类算法。事实上，这个原则是如此简单，最好通过实例来理解它。</span><br><span class="line"></span><br><span class="line">想象一下，你有关于足球运动员和篮球运动员身高和体重的数据。K 近邻算法可用于预测新运动员是足球运动员还是篮球运动员。</span><br><span class="line"></span><br><span class="line">为此，K 最近的邻域算法标识最接近新观测点的数据点。```K</span><br></pre></td></tr></table></figure></p>
+<p>下图以 K 值的 K 值显示此情况，K 值为 ：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![A visualization of k nearest neighbors](https://nickmccullum.com/images/python-machine-learning/introduction-k-nearest-neighbors/k-nearest-neighbors.jpg)</span><br><span class="line"></span><br><span class="line">在此图像中，足球运动员被标记为蓝色数据点，篮球运动员标记为橙色点。我们尝试分类的数据点标记为绿色。</span><br><span class="line"></span><br><span class="line">由于新数据点的壁橱数据点中的大部分（3个中的2个）是蓝色足球运动员，因此K最近的邻域算法将预测新数据点也是足球运动员。</span><br><span class="line"></span><br><span class="line">### 构建 K-最近邻域算法的步骤</span><br><span class="line"></span><br><span class="line">构建 K 最近邻域算法的一般步骤是：</span><br><span class="line"></span><br><span class="line">1.  存储所有数据</span><br><span class="line">2.  计算[欧几里登](https://zshipu.com/t?url=https://en.wikipedia.org/wiki/Euclidean_distance)距离的新数据点到数据集中的所有其他点```x</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>按与<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.  使用与大多数最近数据点相同的类别进行预测```K``````x</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="K-最近邻域算法中-K-的重要性"><a href="#K-最近邻域算法中-K-的重要性" class="headerlink" title="K-最近邻域算法中 K 的重要性"></a>K-最近邻域算法中 K 的重要性</h3><p>尽管从一开始可能并不明显，但更改 K-最近邻域算法中 的值将更改新点分配给哪个类别。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">更具体地说，值非常低将导致模型完全预测您的训练数据，并预测测试数据不足。同样，值过高会使模型不必要地复杂。```K``````K</span><br></pre></td></tr></table></figure></p>
+<p>以下可视化效果很好地说明了这一点：</p>
+<p><img src="https://nickmccullum.com/images/python-machine-learning/introduction-k-nearest-neighbors/k-value-error-rates.png" alt="K value and error rates"></p>
+<h3 id="K-最近邻域算法的优缺点"><a href="#K-最近邻域算法的优缺点" class="headerlink" title="K-最近邻域算法的优缺点"></a>K-最近邻域算法的优缺点</h3><p>最后，对 K-最近邻域算法的介绍，我想简要地讨论使用此模型的一些利弊。</p>
+<p>以下是 K 最接近邻域算法的一些主要优点：</p>
+<ul>
+<li><p>该算法简单易懂</p>
+</li>
+<li><p>根据新的训练数据对模型进行培训是微不足道的</p>
+</li>
+<li><p>它适用于分类问题中的任意数量的类别</p>
+</li>
+<li><p>可以轻松地向数据集添加更多数据</p>
+</li>
+<li><p>模型仅接受两个参数：以及您要使用的距离指标（通常为欧几里得距离）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">同样，以下是算法的一些主要缺点：</span><br><span class="line"></span><br><span class="line">*   进行预测的计算成本很高，因为您需要对整个数据集进行排序</span><br><span class="line">*   它不适用于分类功能</span><br><span class="line"></span><br><span class="line">### 章节总结</span><br><span class="line"></span><br><span class="line">以下是您刚刚了解到的关于 k-最近邻域算法的简要摘要：</span><br><span class="line"></span><br><span class="line">*   K 近邻算法可以解决的分类问题（足球运动员与篮球运动员）的示例</span><br><span class="line">*   K 最近邻域如何使用相邻数据点的欧几里得距离来预测新数据点属于哪个类别</span><br><span class="line">*   为什么进行预测的价值```K</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>使用 K 最近邻域算法的优缺点</p>
+</li>
+</ul>
+<h1 id="决策树和随机林"><a href="#决策树和随机林" class="headerlink" title="决策树和随机林"></a>决策树和随机林</h1><p><a href="https://zshipu.com/t?url=https://nickmccullum.com/python-machine-learning/decision-trees-random-forests-python/" target="_blank" rel="noopener">决策树和随机林</a>都是树方法的示例。</p>
+<p>更具体地说，决策树是机器学习模型，用于通过逐个循环浏览数据集中的每个要素来进行预测。随机林是决策树的集中，它们使用数据集中要素的随机顺序。</p>
+<h3 id="什么是树方法？"><a href="#什么是树方法？" class="headerlink" title="什么是树方法？"></a>什么是树方法？</h3><p>在深入探讨机器学习中树方法的理论基础之前，先从示例开始是很有帮助的。</p>
+<p>想象一下你每个星期一打篮球。此外，你总是邀请同一个朋友来和你一起玩。</p>
+<p>有时朋友真的来了。有时他们没有。</p>
+<p>决定是否来取决于许多因素，如天气，温度，风和疲劳。您开始注意到这些功能，并开始跟踪它们，同时您朋友决定是否播放。</p>
+<p>您可以使用这些数据来预测你的朋友是否会出现打篮球。可以使用的一种技术是决策树。以下是此决策树的外观：</p>
+<p><img src="https://nickmccullum.com/images/python-machine-learning/introduction-decision-tree/decision-tree.png" alt="An example of a decision tree"></p>
+<p>每个决策树都有两种类型的元素：</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*   ```Edges```：拆分到下一个节点的结果</span><br><span class="line"></span><br><span class="line">您可以在上面的图像中看到 ， 和 的 节点。每个属性的每个潜在值都有一个边。```outlook``````humidity``````windy</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>下面是在继续操作之前应了解的另外两个决策树术语：</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">*   ```Leaves```：预测最终结果的终端节点</span><br><span class="line"></span><br><span class="line">现在，您对决策树有了基本的了解。我们将在下一节中了解如何从头开始构建决策树。</span><br><span class="line"></span><br><span class="line">### 如何从头开始构建决策树</span><br><span class="line"></span><br><span class="line">建立决策树比你想象的要难。这是因为决定要拆分数据的功能（这是属于[熵](https://zshipu.com/t?url=https://en.wikipedia.org/wiki/Entropy)和信息[增益](https://zshipu.com/t?url=https://machinelearningmastery.com/information-gain-and-mutual-information/#:~:text=Information+gain+is+the+reduction,before+and+after+a+transformation.)领域的主题）是一个数学上复杂的问题。</span><br><span class="line"></span><br><span class="line">为了解决这个问题，机器学习从业者通常使用许多决策树，使用选择为拆分的要素的随机样本。</span><br><span class="line"></span><br><span class="line">换句话说，每次拆分时，都会为每个树选择新的要素随机样本。这种技术称为**随机林**。</span><br><span class="line"></span><br><span class="line">通常，从业者通常选择要素随机样本（表示）的大小作为数据集（表示）中总要素数的平方根。简洁，是 的平方根，然后从 随机选择特定要素。```m``````p``````m``````p``````m</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>如果这现在不完全有意义，不要担心。当您最终构建第一个随机林模型时，它将更加清晰。</p>
+<h3 id="使用随机林的好处"><a href="#使用随机林的好处" class="headerlink" title="使用随机林的好处"></a>使用随机林的好处</h3><p>假设您正在使用具有非常强大功能的数据集。换句话说，数据集有一个功能比数据集中的其他功能更具有预测最终结果。</p>
+<p>如果要手动构建决策树，则使用此功能作为决策树的顶部拆分是有意义的。这意味着您将有多个预测高度相关的树。</p>
+<p>我们希望避免这种情况，因为取高度相关变量的平均值不会显著降低方差。通过随机选择随机林中每个树的特征，树变得不相关，并减小生成的模型的方差。这种相互性是使用随机林而不是手工决策树的主要优点</p>
+<h3 id="章节总结-1"><a href="#章节总结-1" class="headerlink" title="章节总结"></a>章节总结</h3><p>本文简要总结了您学到的关于决策树和随机林的知识：</p>
+<ul>
+<li>可以使用决策树预测的问题示例</li>
+<li>决策树的元素： 、 、 和<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">*   如何随机采样决策树特征，使我们能够构建一个随机林</span><br><span class="line">*   为什么使用随机林来关联变量有助于降低最终模型的方差</span><br><span class="line"></span><br><span class="line"># 支持矢量机</span><br><span class="line"></span><br><span class="line">[支持向量机](https://zshipu.com/t?url=https://nickmccullum.com/python-machine-learning/support-vector-machines-python/)是分类算法（尽管从技术上讲，它们也可用于解决回归问题），它们通过切片划分类别之间的最广泛差距将数据集划分为多个类别。这一概念将在一瞬间通过可视化来更加清晰。</span><br><span class="line"></span><br><span class="line">### 什么是支持向量机？</span><br><span class="line"></span><br><span class="line">[支持向量机](https://zshipu.com/t?url=https://en.wikipedia.org/wiki/Support_vector_machine)（简称 SVM）是受监督的机器学习模型，具有分析数据和识别模式的相关学习算法。</span><br><span class="line"></span><br><span class="line">支持向量机可用于分类问题和回归问题。在本文中，我们将专门研究支持向量机用于解决分类问题。</span><br><span class="line"></span><br><span class="line">### 支持矢量机的工作原理是什么？</span><br><span class="line"></span><br><span class="line">让我们深入了解支持向量机的真正工作方式。</span><br><span class="line"></span><br><span class="line">给定一组训练示例（每个示例都标记为属于两个类别之一），支持向量机器训练算法可生成模型。此模型将新示例分配给两个类别之一。这使得支持向量机成为非概率二进制线性分类器。</span><br><span class="line"></span><br><span class="line">SVM 使用几何进行分类预测。</span><br><span class="line"></span><br><span class="line">更具体地说，SVM 模型将数据点映射为空间中的点，并将单独的类别进行划分，以便它们除以尽可能宽的开放间隙。根据它们所属的间隙的哪一侧，预测新数据点属于一个类别。</span><br><span class="line"></span><br><span class="line">下面是一个示例可视化，可帮助您了解支持向量机背后的直觉：</span><br><span class="line"></span><br><span class="line">![](https://www.freecodecamp.org/news/content/images/2020/06/image-57.png)</span><br><span class="line"></span><br><span class="line">正如您所看到的，如果新数据点落在绿线的左侧，它将使用红色类别标记。同样，如果新数据点落在绿线的右侧，它将被贴上属于蓝色类别的标签。</span><br><span class="line"></span><br><span class="line">这条绿线被称为**超平面**，它是支持向量机算法的重要词汇。</span><br><span class="line"></span><br><span class="line">让我们来看看支持向量机的不同可视表示形式：</span><br><span class="line"></span><br><span class="line">![](https://www.freecodecamp.org/news/content/images/2020/06/image-58.png)</span><br><span class="line"></span><br><span class="line">在此图中，超平面标记为**最佳超平面**。支持向量机理论将**最佳超平面**定义为最大化每个类别最近数据点之间的边距。</span><br><span class="line"></span><br><span class="line">如您所见，边距线实际上触及三个数据点 - 两个来自红色类别，一个来自蓝色类别。这些接触边距线的数据点称为**支持向量**，是支持向量机从中获取其名称的位置。</span><br><span class="line"></span><br><span class="line">### 章节总结</span><br><span class="line"></span><br><span class="line">以下是您刚刚了解到的支持向量机的简要摘要：</span><br><span class="line"></span><br><span class="line">*   支持向量机是受监督机器学习算法的一个示例</span><br><span class="line">*   支持向量机可用于解决分类和回归问题</span><br><span class="line">*   支持向量机如何使用超平面对数据点进行分类，该**超平面**可最大化数据集中类别之间的差值</span><br><span class="line">*   在支持向量机中触摸边距线的数据点称为**支持向量**。这些数据点是支持向量机从中派生其名称的位置。</span><br><span class="line"></span><br><span class="line"># K-意味着聚类</span><br><span class="line"></span><br><span class="line">[K-意味着聚类](https://zshipu.com/t?url=https://nickmccullum.com/python-machine-learning/k-means-clustering-python/)是一种机器学习算法，允许您识别数据集中类似数据段。</span><br><span class="line"></span><br><span class="line">### 什么是 K-意味着聚类？</span><br><span class="line"></span><br><span class="line">K-意味着聚类是一种不受监督的机器学习算法。</span><br><span class="line"></span><br><span class="line">这意味着它占用了未标记的数据，并尝试将数据中的相似观测组分组在一起。</span><br><span class="line"></span><br><span class="line">K-意味着聚类算法对于解决实际问题非常有用。以下是此机器学习模型的一些用例：</span><br><span class="line"></span><br><span class="line">*   营销团队的客户细分</span><br><span class="line">*   文档分类</span><br><span class="line">*   亚马逊、UPS 或联邦快递等公司的交付路线优化</span><br><span class="line">*   识别和应对城市内的犯罪中心</span><br><span class="line">*   专业体育分析</span><br><span class="line">*   预测和预防网络犯罪</span><br><span class="line"></span><br><span class="line">K 表示聚类算法的主要目标是将数据集划分为不同的组，以便每个组中的观测值彼此相似。</span><br><span class="line"></span><br><span class="line">下面是实际外观的视觉表示形式：</span><br><span class="line"></span><br><span class="line">![A Visualization of a K Means Clustering Algorithm](https://nickmccullum.com/images/python-machine-learning/introduction-k-means-clustering/k-means-clustering.png)</span><br><span class="line"></span><br><span class="line">我们将在本教程的下一节中探讨 K 表示聚类背后的数学。</span><br><span class="line"></span><br><span class="line">### K-意味着聚类算法的工作原理是什么？</span><br><span class="line"></span><br><span class="line">运行 K-表示聚类算法的第一步是选择要将数据划分为的群集数。此群集数是算法名称中引用的值。```K</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>在 K-表示聚类算法中选择值是一个重要的选择。在本文中，我们将更多地讨论如何选择后面的正确值。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">接下来，必须随机将数据集中的每个点分配给随机群集。这提供了我们的初始赋值，然后运行以下迭代，直到群集停止更改：</span><br><span class="line"></span><br><span class="line">*   通过取取该群集内点的平均矢量来计算每个群集的质心</span><br><span class="line">*   将每个数据点重新分配给具有最近质心的群集</span><br><span class="line"></span><br><span class="line">下面是一个动画，说明对于值 为 的 K-表示聚类算法来说，这在实践中是如何工作的。您可以看到由黑色字符表示的每个群集的质心。```K``````3``````+</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://nickmccullum.com/images/python-machine-learning/introduction-k-means-clustering/k-means-iteration.gif" alt="A Visualization of a K Means Clustering Algorithm"></p>
+<p>如您所见，此迭代将继续，直到群集停止更改 - 这意味着数据点不再分配给新的群集。</p>
+<h3 id="为-K-选择正确的-K-值意味着聚类算法"><a href="#为-K-选择正确的-K-值意味着聚类算法" class="headerlink" title="为 K 选择正确的 K 值意味着聚类算法"></a>为 K 选择正确的 K 值意味着聚类算法</h3><p>为 K-意味着聚类算法选择适当的值实际上相当困难。选择”最佳”值没有”正确”答案。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">机器学习从业者经常使用的一种方法称为**肘部方法**。</span><br><span class="line"></span><br><span class="line">要使用弯头方法，您需要做的第一件事是计算一组值的 K 表示聚类算法的平方误差 （SSE） 的总和。K 中的 SSE 表示聚类算法定义为群集中每个数据点与群集的质心之间的平方距离之和。```K</span><br></pre></td></tr></table></figure></p>
+<p>作为此步骤的示例，您可以计算 SSE 的值， 和 。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">接下来，您需要针对这些不同的值生成 SSE 的绘图。您将看到错误会随着值的增加而减小。```K``````K</span><br></pre></td></tr></table></figure></p>
+<p>这是有道理的 - 在数据集中创建的类别越多，每个数据点都越接近其特定群集的中心。</p>
+<p>话虽如此，肘部法背后的理念是选择一个值，即上证所突然放慢下跌速度。此突然减少在图形中生成 。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">例如，下面是 SSE 反对 的图表。在这种情况下，弯头方法建议使用近似 值。```K``````K``````6</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://nickmccullum.com/images/python-machine-learning/introduction-k-means-clustering/elbow-method.png" alt="A Visualization of a K Means Clustering Algorithm"></p>
+<p>重要的是，只是对使用价值的估计。K-表示聚类算法中永远不会有”最佳”值。与机器学习领域的许多内容一样，这是一个高度依赖于情况的决策。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 章节总结</span><br><span class="line"></span><br><span class="line">以下是您在本文中学到的内容的简要摘要：</span><br><span class="line"></span><br><span class="line">*   K-意味着聚类算法能够解决的无监督机器学习问题示例</span><br><span class="line">*   K-意味着聚类算法的基本原理</span><br><span class="line">*   K-意味着聚类算法的工作原理</span><br><span class="line">*   如何使用弯头方法在 K 表示聚类模型中选择 适当的值```K</span><br></pre></td></tr></table></figure></p>
+<h1 id="主要组件分析"><a href="#主要组件分析" class="headerlink" title="主要组件分析"></a>主要组件分析</h1><p><a href="https://zshipu.com/t?url=https://nickmccullum.com/python-machine-learning/principal-component-analysis-python/" target="_blank" rel="noopener">主要组件分析</a>用于将多要素数据集转换为具有较少功能的转换数据集，其中每个新功能都是预先存在的要素的线性组合。此转换数据集旨在以更简单得多来解释原始数据集的大部分差异。</p>
+<h3 id="什么是主要组件分析？"><a href="#什么是主要组件分析？" class="headerlink" title="什么是主要组件分析？"></a>什么是主要组件分析？</h3><p>主要组件分析是一种机器学习技术，用于检查变量集之间的相互关系。</p>
+<p>说的不同，主要成分分析研究变量集，以便确定这些变量的基础结构。</p>
+<p>主要成分分析有时称为<strong><strong>因子分析</strong></strong>。</p>
+<p>基于此描述，您可能会认为主要分量分析与线性回归非常相似。</p>
+<p>事实并非如此。事实上，这两种技术有一些重要的区别。</p>
+<h3 id="线性回归与主分量分析的区别"><a href="#线性回归与主分量分析的区别" class="headerlink" title="线性回归与主分量分析的区别"></a>线性回归与主分量分析的区别</h3><p>线性回归确定数据集的最佳拟合线。主组件分析确定几个最适合数据集的正交行。</p>
+<p>如果您不熟悉正<strong>交</strong>一词，则只表示线彼此成直角（90 度），如地图上的北、东、南和西。</p>
+<p>让我们考虑一个示例，以帮助您更好地理解这一点。</p>
+<p><img src="https://nickmccullum.com/images/python-machine-learning/introduction-principal-component-analysis/principal-component-analysis.png" alt="A principal component analysis"></p>
+<p>查看此图像中的轴标签。</p>
+<p>在此图像中，x 轴主组件示例数据集中 73% 的方差。y 轴主组件解释了数据集中大约 23% 的方差。</p>
+<p>这意味着数据集中 4% 的方差仍无法解释。您可以通过向分析添加更多主要组件来进一步减少此数字。</p>
+<h3 id="章节总结-2"><a href="#章节总结-2" class="headerlink" title="章节总结"></a>章节总结</h3><p>以下是您在本教程中学到的关于主要组件分析的简要摘要：</p>
+<ul>
+<li>该主要组件分析试图找到确定数据集中可变性的正交因子</li>
+<li>主分量分析与线性回归的区别</li>
+<li>在数据集内部可视化时，正交主体组件的外观</li>
+<li>添加更多主要组件可以帮助您解释数据集中的更多差异</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>9 种常用关键机器学习算法</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-06-21, 11:17:12</p>
+    <p><span class="copy-title">最后更新:</span>2020-06-21, 11:17:12</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/tlg/2020/06/21/9 种常用关键机器学习算法/" title="9 种常用关键机器学习算法">https://blog.zshipu.com/tlg/2020/06/21/9 种常用关键机器学习算法/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+					| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#go','#web',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

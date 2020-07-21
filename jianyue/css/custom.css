@@ -1,0 +1,109 @@
+.plugin-title {
+    width: 100%;
+    background-color: #E87A90;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.plugin-tip {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px 10px;
+    color: white;
+    width: 178px;
+    line-height: 21px;
+    text-align: center;
+    font-size: 18px;
+    background-color: #43b244;
+    z-index: 99999;
+}
+
+.plugin-animated {
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+@-webkit-keyframes plugin-fade {
+    0% {
+        visibility: visible;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes plugin-fade {
+    0% {
+        visibility: visible;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.plugin-fade {
+    -webkit-animation-name: plugin-fade;
+    animation-name: plugin-fade;
+}
+
+.jm-tip{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    color: #515151;
+    background-color: rgba(255, 255, 204, 1);
+    line-height: 50px;
+    letter-spacing: 1px;
+    font-size: 16px;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:9999999999;
+    
+    /* display:none; */
+}
+.jm-tip .jm-tip-close{
+    cursor: pointer;
+    position:absolute;
+    right:80px;
+    font-size: 20px;
+    font-size: 16px;
+    display: block;
+    font-size: 16px;
+    width: 30px;
+    height:50px;
+    top:0;
+}
+
+#jm-infoMsg{
+    width: 100%;
+    background-color: rgb(203,203,203);
+    color:rgb(61,90,195);
+    text-align: center;
+    line-height: 30px;
+    position: fixed;
+    left: 0;
+    top: 30px;
+    z-index: 999;
+}

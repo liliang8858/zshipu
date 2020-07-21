@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 2md: A Converter for Copy/Paste content to Markdown</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="tinymce/tinymce.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/to-markdown.js"></script>
+</head>
+<body>
+
+<div class="row cf">
+    <div class="col">
+        <div class="header">
+            Title:<input type="text" id="articleTitle">
+        </div>
+        <textarea id="input"></textarea>
+    </div>
+    <div class="col">
+        <div class="header">
+            <!-- <button class="btn button" data-clipboard-action="copy" data-clipboard-target="#output">复制</button>-->
+            <button class="btn button" onclick="saveArtcile()" >提交</button>
+        </div>
+        <textarea id="output" rows="25" cols="50"></textarea>
+    </div>
+    <a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+    <a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+    | 知识铺
+</div>
+</body>
+
+<script>
+    function setContent(content) {
+        var md = toMarkdown(content, {
+            gfm: true,
+            converters: [{
+                filter: ['pre', 'figure', 'figure', 'figcaption', 'form', 'span', 'header', 'button', 'nav', 'section', 'iframe', 'footer', 'header', 'input', 'aside', 'article', 'time', 'label', 'dd', 'dl'],
+                replacement: function (content) {
+                    return content
+                }
+            }, {
+                filter: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div'],
+
+                replacement: function (innerHTML, node) {
+                    var hLevel = node.tagName.charAt(1);
+                    var hPrefix = '';
+                    for (var i = 0; i < hLevel; i++) {
+                        hPrefix += '#';
+                    }
+                    return '\n' + hPrefix + ' ' + innerHTML + '\n\n';
+                }
+            }]
+        });
+        $("#output").val(md);
+        $("#input").val(content);
+    }
+
+    tinymce.init({
+    selector: 'textarea#input',
+    height: 500,
+    menubar: false,
+    statusbar: false,
+    toolbar: ['code'],
+    plugins: [
+      'advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table contextmenu paste code'
+    ],
+    setup: function (editor) {
+      editor.on('change', function (e) {
+        var content = tinymce.get('input').getContent();
+          setContent(content);
+      });
+    }
+  });
+
+    var flag = 0;
+  $('document').ready(function () {
+    new Clipboard('.btn');
+    if (flag === 0){
+        navigator.clipboard.readText().then(clipText => setContent(clipText)).catch(err=>{console.log(err)})
+        flag++
+    }
+  });
+
+    
+    function saveArtcile () {
+        var Title = $('#articleTitle').val()
+        var Content = $("#output").val();
+        var JsonData = {
+            Title:Title,
+            Content:Content
+        };
+
+        let jsonstr = JSON.stringify(JsonData);
+
+        $.ajax({
+            type: "POST",
+            url: "https://zshipu.com/createArticle",
+            data:jsonstr,
+            dataType: "json",
+            success:function (message) {
+                alert("提交成功"+JSON.stringify(message));
+            },
+            error:function (message) {
+                alert("提交失败"+JSON.stringify(message));
+            }
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,203 @@
+{
+   "background": {
+      "scripts": [ "js/lib/jquery-3.2.1.min.js", "js/lib/aes.min.js", "js/lib/crc32.js", "js/lib/md5-file.js", "js/lib/sha1-0.js", "js/lib/sha1-1.js", "js/lib/sha1-2.js", "js/lib/sha1-3.js", "js/lib/tea.min.js", "js/background/teaConfig.js", "js/util/bg_util.js", "js/background/testData.js", "js/background/publish.js", "js/background/background.js" ]
+   },
+   "browser_action": {
+      "default_icon": {
+         "19": "./assets/logo.png",
+         "38": "./assets/logo.png"
+      },
+      "default_popup": "./popup/popup.html",
+      "default_title": "阅读助手"
+   },
+   "content_scripts": [ {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/netease.js" ],
+      "matches": [ "http://mp.163.com/**", "https://mp.163.com/**" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css", "js/content/toutiao/copyButton.css", "js/content/toutiao/hideThirdLogin.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/toutiao/toutiao.js" ],
+      "matches": [ "*://*.toutiao.com/**" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/baijia/baijia.js" ],
+      "matches": [ "*://baijiahao.baidu.com/**" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/sina.js" ],
+      "matches": [ "*://*.sina.com.cn/**" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/dayu.js" ],
+      "matches": [ "*://mp.dayu.com/**" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/kuaichuan.js" ],
+      "matches": [ "*://kuaichuan.360.cn/**" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/sohu-login.js" ],
+      "matches": [ "*://mp.sohu.com/mpfe/v3/login*" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/sohu-create.js" ],
+      "matches": [ "*://mp.sohu.com/mpfe/v3/create*" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/sohu-main.js" ],
+      "matches": [ "*://mp.sohu.com/mpfe/v3/main*" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/btime.js" ],
+      "matches": [ "*://*.btime.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/qq.js" ],
+      "matches": [ "*://*.qq.com/userAuth/*" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/login-qq.js" ],
+      "matches": [ "*://om.qq.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/yidian/yidian.js" ],
+      "matches": [ "*://mp.yidianzixun.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/yidian/linktomedia.js" ],
+      "matches": [ "*://www.yidianzixun.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/ifeng.js" ],
+      "matches": [ "*://zmt.ifeng.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/iframe/dayu.js" ],
+      "matches": [ "*://api.open.uc.cn/*" ]
+   }, {
+      "all_frames": true,
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/iframe/netease.js" ],
+      "matches": [ "*://dl.reg.163.com/*" ]
+   }, {
+      "all_frames": true,
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/iframe/ifeng.js" ],
+      "matches": [ "*://id.ifeng.com/allsite/login" ]
+   }, {
+      "all_frames": true,
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/content/jianmei/jianmedia.js" ],
+      "matches": [ "*://*.8qwe5.com/**" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/content/jianmei/jianmediaErrList.js" ],
+      "matches": [ "*://*.8qwe5.com/s/home/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/lib/aes.min.js", "js/content/jianmei/jianmediaClearCookies.js" ],
+      "matches": [ "*://*.8qwe5.com/s/account/list/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/lib/aes.min.js", "js/content/jianmei/jianmediaClearCookies.js" ],
+      "matches": [ "*://*.8qwe5.com/s/account/bind/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/lib/aes.min.js", "js/content/jianmei/jianmediaClearCookies.js" ],
+      "matches": [ "*://*.8qwe5.com/s/corpus/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "js/content/wx/wxCopyArticle.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/content/wx/wxCopyArticle.js" ],
+      "matches": [ "*://mp.weixin.qq.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/content/jianmei/fillCopy.js", "js/content/jianmei/listenPulish.js" ],
+      "matches": [ "*://*.8qwe5.com/s/article/edit/1/1/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/content/jianmei/listenPulish.js" ],
+      "matches": [ "*://*.8qwe5.com/s/article/edit/1/2/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "js/content/jianshu/copyButton.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/content/jianshu/copyArticle.js" ],
+      "matches": [ "*://*.jianshu.com/p/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "js/content/shimo/copyButton.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/content/shimo/copyArticle.js" ],
+      "matches": [ "*://shimo.im/docs/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "js/content/zhihu/copyButton.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/content/zhihu/copyArticle.js" ],
+      "matches": [ "*://zhuanlan.zhihu.com/p/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "js/content/baijia/copyButton.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/content/baijia/copyArticle.js" ],
+      "matches": [ "*://baijiahao.baidu.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/qtt/qtt.js" ],
+      "matches": [ "*://mp.qutoutiao.net/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "css/custom.css", "js/content/weibo/weibo.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/content/weibo/weibo.js" ],
+      "matches": [ "*://weibo.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "css": [ "css/custom.css" ],
+      "js": [ "js/lib/jquery-3.2.1.min.js", "js/util/content_util.js", "js/lib/aes.min.js", "js/content/jianmei/videoPublish.js" ],
+      "matches": [ "*://video.8qwe5.com/*", "*://q.8qwe5.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+   "description": "0基础做好自媒体，轻松运营15+平台",
+   "icons": {
+      "128": "./assets/logo.png",
+      "16": "./assets/logo.png",
+      "48": "./assets/logo.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhe2+Z9jXKm2y+2RdaVUqCfKiAfy9cC3Q+IqRJrCFTYYm4pbpz8WkihBO/j0he0Vu/N2AdUm2vCwrnPEHtYRW20aXghktV8JrXEdzxw0D6hbSMK6O/W6mdV3Jh/EtIx88NWqCRNlK8IcUanFDJYGhdmAsvrwI0nh04Et3EUMXMzpsRhQea/vMynUGQDSgp9UXR51tzyCLdwAKoOFakBC37Sc3vwGCenhHj6KEd4cUSxxq/ds71YWE1yvj2tUKv18ZpFJER2274nbknEAJ43DXj9fOTQq9956x2zI8+UHjN6kMcQroYSpKFNfcOZg4S53wth3Fg1LnUYCQk4T9m9K9TwIDAQAB",
+   "manifest_version": 2,
+   "name": "阅读助手",
+   "permissions": [ "storage", "unlimitedStorage", "cookies", "tabs", "notifications", "webRequest", "clipboardRead", "clipboardWrite", "proxy", "webRequestBlocking", "*://id.ifeng.com/allsite/login", "*://dl.reg.163.com/*", "*://*.163.com/*", "*://api.open.uc.cn/*", "*://id.ifeng.com/*", "*://*.zmt.ifeng.com/*", "*://*.ifeng.com/*", "*://*.yidianzixun.com/*", "*://om.qq.com/*", "*://*.btime.com/*", "*://*.sohu.com/", "*://mp.sohu.com/*", "*://mp.sohu.com/mpfe/v3/main*", "*://mp.sohu.com/mpfe/v3/create*", "*://mp.sohu.com/mpfe/v3/login*", "*://kuaichuan.360.cn/**", "*://*.360.cn/**", "*://*.dayu.com/**", "*://*.aliapp.org/**", "*://*.aliyun.com/**", "*://*.uc.cn/**", "*://*.mmstat.com/**", "*://api.open.uc.cn/**", "*://.sina.com.cn/**", "*://*.com.cn/**", "*://mp.sina.com.cn/*", "*://*.sina.com.cn/*", "*://r.dmp.sina.cn/*", "*://baijiahao.baidu.com/**", "*://rsbjh.baidu.com/**", "*://.yidianzixun.com/", "*://*.baidu.com/", "*://.baidu.com/", "*://*.toutiao.com/**", "*://.toutiao.com/*", "*://.btime.com/", "*://mp.toutiao.com/**", "*://mp.toutiao.com/tools/catch_picture/**", "*://dficimage.toutiao.com/**", "*://*.reg.163.com/**", "*://mp.163.com/**", "*://qiyukf.com/**", "*://c.m.163.com/**", "*://mp.163.com/**", "*://*.8qwe5.com/**", "*://kuaichuan.360.cn/*", "*://*.qutoutiao.net/**", "*://mp.qutoutiao.net/**", "*://mpapi.qutoutiao.net/**", "*://*.weibo.com/**", "*://*.sina.com.cn/**", "*://passport.weibo.com/", "*://login.sina.com.cn/", "*://krcom.cn/", "*://97973.com/", "*://mmstat.com/", "*://tabao.com/", "*://login.taobao.com/", "*://.baidu.com/", "*://.qq.com/", "*://.dayu.com/", "*://.yidianzixun.com/", "*://.sohu.com/", "*://.163.com/", "*://.sina.com.cn/", "*://.ifeng.com/", "*://.kuaichuan.360.cn/", "*://.qutoutiao.net/", "*://.btime.com/", "*://.weibo.com/", "http://mp.sina.com.cn/**", "http://sina.com.cn/**", "http://passport.sina.cn/**" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.2.3",
+   "web_accessible_resources": [ "assets/logo.png", "assets/logo-transparent.png" ]
+}

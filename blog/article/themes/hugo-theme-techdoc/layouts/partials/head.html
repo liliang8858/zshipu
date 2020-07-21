@@ -1,0 +1,39 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+{{- if eq .Title "" }}
+<title>{{ .Site.Title }}</title>
+{{- else }}
+<title>{{ .Title }} - {{ .Site.Title }}</title>
+{{- end }}
+{{- if ne .Description "" }}
+<meta name="description" content="{{ .Description }}">
+{{- else if isset .Site.Params "description" }}
+<meta name="description" content="{{ .Site.Params.description }}">
+{{- end }}
+{{ .Hugo.Generator }}
+<link href="{{ .Site.BaseURL }}index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="stylesheet" href="{{"css/theme.min.css" | absURL}}">
+<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+{{ partial "meta/chroma.html" . -}}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+<script src="{{"js/bundle.js" | absURL}}"></script>
+{{- partial "meta/google-analytics-async.html" . -}}
+{{- partial "meta/tag-manager.html" . -}}
+{{- partial "meta/google-site-verification.html" . -}}
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-2874221941555456",
+        enable_page_level_ads: true
+    });
+</script>

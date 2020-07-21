@@ -1,0 +1,2439 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>C#编码规范 | 技术分享 | 知识铺</title>
+  <meta name="keywords" content>
+  <meta name="description" content="C#编码规范 | 知识铺">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1.概述 2.命名规范  2.1.大小写约定 2.1.1.大小写样式 2.1.2.标识符大小写规则 2.1.3.首字母缩写大小写规则 2.1.4.复合词与通用术语大小写规则 2.1.5.大小写敏感   2.2.常规命名约定 2.2.1.单词选择 2.2.2.缩写 2.2.3.特定语言命名   2.3.文件与目录命名 2.4.程序集命名 2.5.名字空间命名 2.5.1.一般规则 2.5.2.名字空">
+<meta name="keywords" content="知识铺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#编码规范">
+<meta property="og:url" content="https://blog.zshipu.com/tlg/2019/11/22/C-编码规范/index.html">
+<meta property="og:site_name" content="知识铺">
+<meta property="og:description" content="1.概述 2.命名规范  2.1.大小写约定 2.1.1.大小写样式 2.1.2.标识符大小写规则 2.1.3.首字母缩写大小写规则 2.1.4.复合词与通用术语大小写规则 2.1.5.大小写敏感   2.2.常规命名约定 2.2.1.单词选择 2.2.2.缩写 2.2.3.特定语言命名   2.3.文件与目录命名 2.4.程序集命名 2.5.名字空间命名 2.5.1.一般规则 2.5.2.名字空">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-11-22T05:16:46.930Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C#编码规范">
+<meta name="twitter:description" content="1.概述 2.命名规范  2.1.大小写约定 2.1.1.大小写样式 2.1.2.标识符大小写规则 2.1.3.首字母缩写大小写规则 2.1.4.复合词与通用术语大小写规则 2.1.5.大小写敏感   2.2.常规命名约定 2.2.1.单词选择 2.2.2.缩写 2.2.3.特定语言命名   2.3.文件与目录命名 2.4.程序集命名 2.5.名字空间命名 2.5.1.一般规则 2.5.2.名字空">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLWJSST');</script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2874221941555456",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="https://zshipu.com/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>知识铺</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/liliang8858" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all"><a href="https://blog.zshipu.com/">博客主页</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/read/">读书笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/note/">建站笔记</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/tlg/">技术分享</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/media/">媒体期刊</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/txp/">淘小鋪</a></div></li>
+    <li><div class="all"><a href="https://blog.zshipu.com/article/post/">归档文章</a></div></li>
+    <li><div class="all active">全部文章<small>(190)</small></div></li>
+    
+        
+            
+            <li><div data-rel="go">go<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="zsp_site_posts_number" value="190">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://zshipu.com/">知识铺</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">go</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">web</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务">Spring Cloud Gateway+Nacos，yml+properties两种配置文件方式搭建网关服务</span>
+            <span class="post-date" title="2020-07-16 18:43:02">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Spring Cloud+nacos+Feign，实现注册中心及配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Cloud+nacos+Feign，实现注册中心及配置中心">Spring Cloud+nacos+Feign，实现注册中心及配置中心</span>
+            <span class="post-date" title="2020-07-16 18:39:59">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos作为配置中心时，多个服务共用一个dataId的配置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos作为配置中心时，多个服务共用一个dataId的配置">Nacos作为配置中心时，多个服务共用一个dataId的配置</span>
+            <span class="post-date" title="2020-07-16 18:32:26">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(三)：使用Nacos作为配置中心/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(三)：使用Nacos作为配置中心">SpringCloudAlibaba(三)：使用Nacos作为配置中心</span>
+            <span class="post-date" title="2020-07-16 17:34:29">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/Nacos 集群部署/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nacos 集群部署">Nacos 集群部署</span>
+            <span class="post-date" title="2020-07-16 17:31:53">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(二)：Nacos介绍与环境安装/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(二)：Nacos介绍与环境安装">SpringCloudAlibaba(二)：Nacos介绍与环境安装</span>
+            <span class="post-date" title="2020-07-16 17:26:15">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/16/SpringCloudAlibaba(一)：概述与重要组件/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba(一)：概述与重要组件">SpringCloudAlibaba(一)：概述与重要组件</span>
+            <span class="post-date" title="2020-07-16 17:23:13">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Java面试宝典300问-第一部分/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java面试宝典300问 第一部分">Java面试宝典300问 第一部分</span>
+            <span class="post-date" title="2020-07-09 14:39:53">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/GraaphQL实战：GraphQL Mutations 五/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL实战：GraphQL Mutations 五">GraphQL实战：GraphQL Mutations 五</span>
+            <span class="post-date" title="2020-07-09 13:50:49">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：GraphQL 基础知识  四/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：GraphQL 基础知识  四">Graphql实战：GraphQL 基础知识  四</span>
+            <span class="post-date" title="2020-07-09 13:38:27">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：自动执行后端测试 三/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：自动执行后端测试 三">Graphql实战：自动执行后端测试 三</span>
+            <span class="post-date" title="2020-07-09 13:22:30">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：基本模型和多态关联 二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：基本模型和多态关联 二">Graphql实战：基本模型和多态关联 二</span>
+            <span class="post-date" title="2020-07-09 11:59:15">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/09/Graphql实战：构建论坛应用，从代码到部署 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Graphql实战：构建论坛应用，从代码到部署 一">Graphql实战：构建论坛应用，从代码到部署 一</span>
+            <span class="post-date" title="2020-07-09 11:48:06">2020/07/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/04/学习Go 第一周/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习Go 第一周">学习Go 第一周</span>
+            <span class="post-date" title="2020-07-04 11:24:14">2020/07/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法">每个人都是 Api 设计师： 我对 Restful Api 、 Graphql 、 Rpc Api 的想法</span>
+            <span class="post-date" title="2020-07-02 11:43:59">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/07/02/同心管家-专业心脏病医疗服务平台/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="同心管家-专业心脏病医疗服务平台">同心管家-专业心脏病医疗服务平台</span>
+            <span class="post-date" title="2020-07-02 11:30:40">2020/07/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/2020 年成为前端大师的 9 个项目/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020 年成为前端大师的 9 个项目">2020 年成为前端大师的 9 个项目</span>
+            <span class="post-date" title="2020-06-25 20:13:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter：初学者的学习资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter：初学者的学习资源">Flutter：初学者的学习资源</span>
+            <span class="post-date" title="2020-06-25 19:46:43">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 404页面自定义/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 404页面自定义">Flutter 404页面自定义</span>
+            <span class="post-date" title="2020-06-25 19:22:33">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 滑块小部件有哪些新增功能/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 滑块小部件有哪些新增功能">Flutter 滑块小部件有哪些新增功能</span>
+            <span class="post-date" title="2020-06-25 19:17:07">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/用于 Flutter 开发人员的新工具，内置于 Flutter/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="用于 Flutter 开发人员的新工具，内置于 Flutter">用于 Flutter 开发人员的新工具，内置于 Flutter</span>
+            <span class="post-date" title="2020-06-25 19:06:02">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Flutter 八大优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Flutter 八大优势">Flutter 八大优势</span>
+            <span class="post-date" title="2020-06-25 18:17:38">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/Vue.js 和 Angular 比 jQuery 有什么好处/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js 和 Angular 比 jQuery 有什么好处">Vue.js 和 Angular 比 jQuery 有什么好处</span>
+            <span class="post-date" title="2020-06-25 18:05:10">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/数据科学专家必修之路/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据科学专家必修之路">数据科学专家必修之路</span>
+            <span class="post-date" title="2020-06-25 14:08:08">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/学习 JavaScript 的最佳方式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习 JavaScript 的最佳方式">学习 JavaScript 的最佳方式</span>
+            <span class="post-date" title="2020-06-25 14:00:18">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 最佳资源/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 最佳资源">GraphQL 最佳资源</span>
+            <span class="post-date" title="2020-06-25 12:04:57">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/与 REST API 相比，GraphQL 有哪些优势/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="与 REST API 相比，GraphQL 有哪些优势">与 REST API 相比，GraphQL 有哪些优势</span>
+            <span class="post-date" title="2020-06-25 12:02:49">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/25/GraphQL 深入理解系列 一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 深入理解系列 一">GraphQL 深入理解系列 一</span>
+            <span class="post-date" title="2020-06-25 11:59:41">2020/06/25</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的主要组件分析 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的主要组件分析 - 分步指南">Python 中的主要组件分析 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:29:05">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/K 表示 Python 中的群集 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="K 表示 Python 中的群集 - 分步指南">K 表示 Python 中的群集 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:28:18">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中支持矢量机 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中支持矢量机 - 分步指南">Python 中支持矢量机 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:27:01">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的决策树和随机林/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的决策树和随机林">Python 中的决策树和随机林</span>
+            <span class="post-date" title="2020-06-21 11:25:57">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的 K 最近邻居 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的 K 最近邻居 - 分步指南">Python 中的 K 最近邻居 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:24:52">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的逻辑回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的逻辑回归 - 分步指南">Python 中的逻辑回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:23:42">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/Python 中的线性回归 - 分步指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python 中的线性回归 - 分步指南">Python 中的线性回归 - 分步指南</span>
+            <span class="post-date" title="2020-06-21 11:19:43">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/推荐算法简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法简介">推荐算法简介</span>
+            <span class="post-date" title="2020-06-21 11:18:15">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/9 种常用关键机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9 种常用关键机器学习算法">9 种常用关键机器学习算法</span>
+            <span class="post-date" title="2020-06-21 11:17:12">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/21/最新技术周刊 01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="最新技术周刊 01">最新技术周刊 01</span>
+            <span class="post-date" title="2020-06-21 11:08:27">2020/06/21</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/20/初创团队选择 Vert.x /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初创团队选择 Vert.x">初创团队选择 Vert.x</span>
+            <span class="post-date" title="2020-06-20 17:19:35">2020/06/20</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/19/GraphQL 入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 入门指南">GraphQL 入门指南</span>
+            <span class="post-date" title="2020-06-19 20:06:53">2020/06/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/17/Linux的du用法排除某个目录/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux的du用法排除某个目录">Linux的du用法排除某个目录</span>
+            <span class="post-date" title="2020-06-17 16:47:00">2020/06/17</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/16/dubbo go 初步使用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="dubbo go 初步使用">dubbo go 初步使用</span>
+            <span class="post-date" title="2020-06-16 16:03:40">2020/06/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/15/GraphQL架构拼接解释：架构委派/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL架构拼接解释：架构委派">GraphQL架构拼接解释：架构委派</span>
+            <span class="post-date" title="2020-06-15 18:36:56">2020/06/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 作为微服务的 API 网关/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 作为微服务的 API 网关">GraphQL 作为微服务的 API 网关</span>
+            <span class="post-date" title="2020-06-14 21:10:27">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 在微服务架构中的实践/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 在微服务架构中的实践">GraphQL 在微服务架构中的实践</span>
+            <span class="post-date" title="2020-06-14 20:54:37">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/14/GraphQL 微服务化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GraphQL 微服务化">GraphQL 微服务化</span>
+            <span class="post-date" title="2020-06-14 20:52:36">2020/06/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/MySQL 上构造即时 Graphql API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MySQL 上构造即时 Graphql API">MySQL 上构造即时 Graphql API</span>
+            <span class="post-date" title="2020-06-12 13:44:34">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/12/graphql mysql /"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="graphql mysql">graphql mysql</span>
+            <span class="post-date" title="2020-06-12 13:42:42">2020/06/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/11/golang gateway 从零开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang gateway 从零开始">golang gateway 从零开始</span>
+            <span class="post-date" title="2020-06-11 09:12:48">2020/06/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/09/springboot + spring security验证token进行用户认证/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot + spring security验证token进行用户认证">springboot + spring security验证token进行用户认证</span>
+            <span class="post-date" title="2020-06-09 17:11:25">2020/06/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/08/zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has">zk 启动异常 Unable to read additional data from server sessionid 0x0, likely server has</span>
+            <span class="post-date" title="2020-06-08 13:31:04">2020/06/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/微信 小程序需要授权 有部分人需要获取验证码/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微信 小程序需要授权 有部分人需要获取验证码">微信 小程序需要授权 有部分人需要获取验证码</span>
+            <span class="post-date" title="2020-06-04 13:26:37">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang 正则表达式 过滤手机号带有字符串，特殊符号/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang 正则表达式 过滤手机号带有字符串，特殊符号">golang 正则表达式 过滤手机号带有字符串，特殊符号</span>
+            <span class="post-date" title="2020-06-04 12:06:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/06/04/golang regexp.Compile 正则表达式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="golang regexp.Compile 正则表达式">golang regexp.Compile 正则表达式</span>
+            <span class="post-date" title="2020-06-04 11:56:09">2020/06/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/初学者的 Docker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者的 Docker">初学者的 Docker</span>
+            <span class="post-date" title="2020-05-31 15:38:34">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/31/按值排序对象的 JavaScript 排序数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="按值排序对象的 JavaScript 排序数组">按值排序对象的 JavaScript 排序数组</span>
+            <span class="post-date" title="2020-05-31 15:32:48">2020/05/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js——60分钟快速入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js——60分钟快速入门">Vue.js——60分钟快速入门</span>
+            <span class="post-date" title="2020-05-30 12:19:41">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Vue.js新手入门指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue.js新手入门指南">Vue.js新手入门指南</span>
+            <span class="post-date" title="2020-05-30 12:00:43">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/Node.js的替代者，初识Deno/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Node.js的替代者，初识Deno">Node.js的替代者，初识Deno</span>
+            <span class="post-date" title="2020-05-30 11:59:58">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/初学者，学习vue应该从何下手？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初学者，学习vue应该从何下手？">初学者，学习vue应该从何下手？</span>
+            <span class="post-date" title="2020-05-30 11:58:18">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统">从0到1，Vue大牛的前端搭建——异常监控系统</span>
+            <span class="post-date" title="2020-05-30 11:57:22">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）">从0到1，Vue大牛的前端搭建——异常监控系统（下篇来啦）</span>
+            <span class="post-date" title="2020-05-30 11:56:59">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/30/9道价值20k薪资的VUE必备面试题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9道价值20k薪资的VUE必备面试题">9道价值20k薪资的VUE必备面试题</span>
+            <span class="post-date" title="2020-05-30 11:25:07">2020/05/30</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/29/canvas 折线/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="canvas 折线">canvas 折线</span>
+            <span class="post-date" title="2020-05-29 13:06:27">2020/05/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/28/Emoji 转换 base64/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Emoji 转换 base64">Emoji 转换 base64</span>
+            <span class="post-date" title="2020-05-28 18:41:42">2020/05/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/公众号 H5 分享/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号 H5 分享">公众号 H5 分享</span>
+            <span class="post-date" title="2020-05-27 19:46:03">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 signature/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 signature">获取微信公众号 signature</span>
+            <span class="post-date" title="2020-05-27 19:44:37">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/27/获取微信公众号 jsapi_ticket/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="获取微信公众号 jsapi_ticket">获取微信公众号 jsapi_ticket</span>
+            <span class="post-date" title="2020-05-27 19:43:56">2020/05/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/2020编程大牛的网盘资料汇总/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020编程大牛的网盘资料汇总">2020编程大牛的网盘资料汇总</span>
+            <span class="post-date" title="2020-05-26 14:50:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/一个简单的RTMP服务器实现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="一个简单的RTMP服务器实现">一个简单的RTMP服务器实现</span>
+            <span class="post-date" title="2020-05-26 12:01:17">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/26/HTML5实现播放RTMP协议视频/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML5实现播放RTMP协议视频">HTML5实现播放RTMP协议视频</span>
+            <span class="post-date" title="2020-05-26 11:58:15">2020/05/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/正文提取算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正文提取算法">正文提取算法</span>
+            <span class="post-date" title="2020-05-24 19:16:30">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma CSS - 开始/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma CSS - 开始">Bulma CSS - 开始</span>
+            <span class="post-date" title="2020-05-24 18:54:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/2020年，jQuery需要了解的那些知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2020年，jQuery需要了解的那些知识点">2020年，jQuery需要了解的那些知识点</span>
+            <span class="post-date" title="2020-05-24 18:50:59">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员经常去的网站有哪些？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员经常去的网站有哪些？">程序员经常去的网站有哪些？</span>
+            <span class="post-date" title="2020-05-24 18:45:52">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/程序员常去的网站/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员常去的网站">程序员常去的网站</span>
+            <span class="post-date" title="2020-05-24 18:33:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Redis 集群演进探讨和总结/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Redis 集群演进探讨和总结">Redis 集群演进探讨和总结</span>
+            <span class="post-date" title="2020-05-24 18:29:41">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Buefy框架如何自定义主题？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Buefy框架如何自定义主题？">Bulma和Buefy框架如何自定义主题？</span>
+            <span class="post-date" title="2020-05-24 13:24:53">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/bulma和bootstrap等前端框架我应该选择哪个？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bulma和bootstrap等前端框架我应该选择哪个？">bulma和bootstrap等前端框架我应该选择哪个？</span>
+            <span class="post-date" title="2020-05-24 13:20:09">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma和Bootstrap 区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma和Bootstrap 区别">Bulma和Bootstrap 区别</span>
+            <span class="post-date" title="2020-05-24 13:16:19">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma Vue.js集成/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma Vue.js集成">Bulma Vue.js集成</span>
+            <span class="post-date" title="2020-05-24 13:12:00">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/24/Bulma-起步/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bulma 起步">Bulma 起步</span>
+            <span class="post-date" title="2020-05-24 12:04:15">2020/05/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/05/19/Deno-1-0-简介，node-js的代替者出现/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Deno 1.0 简介，node.js的代替者出现">Deno 1.0 简介，node.js的代替者出现</span>
+            <span class="post-date" title="2020-05-19 08:55:46">2020/05/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/19/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="公众号">公众号</span>
+            <span class="post-date" title="2020-04-19 17:15:07">2020/04/19</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（2）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（2）">ECG ×AI: 机器/深度学习的ECG应用入门（2）</span>
+            <span class="post-date" title="2020-04-18 13:18:17">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/18/ECG-×AI-机器-深度学习的ECG应用入门（1）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ECG ×AI: 机器/深度学习的ECG应用入门（1）">ECG ×AI: 机器/深度学习的ECG应用入门（1）</span>
+            <span class="post-date" title="2020-04-18 13:14:59">2020/04/18</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（2）-环境搭建/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（2）---环境搭建">学习使用 webpack（2）---环境搭建</span>
+            <span class="post-date" title="2020-04-16 20:00:33">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/学习使用-webpack（1）-简介/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="学习使用 webpack（1）---简介">学习使用 webpack（1）---简介</span>
+            <span class="post-date" title="2020-04-16 19:57:59">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/16/RxJava总体流程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RxJava总体流程">RxJava总体流程</span>
+            <span class="post-date" title="2020-04-16 14:54:14">2020/04/16</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/15/B1-Spring-Security-url-拦截匹配规则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring Security url 拦截匹配规则">Spring Security url 拦截匹配规则</span>
+            <span class="post-date" title="2020-04-15 08:56:15">2020/04/15</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/在-JAVASCRIPT-中揭开提升的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="在 JAVASCRIPT 中揭开声明倒置的神秘面纱">在 JAVASCRIPT 中揭开声明倒置的神秘面纱</span>
+            <span class="post-date" title="2020-04-14 22:24:33">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/了解-JAVASCRIPT-中的一等公民函数和匿名函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="了解 JAVASCRIPT 中的一等公民函数和匿名函数">了解 JAVASCRIPT 中的一等公民函数和匿名函数</span>
+            <span class="post-date" title="2020-04-14 22:11:52">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/14/构建一致的-RESTful-API/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建一致的 RESTful API">构建一致的 RESTful API</span>
+            <span class="post-date" title="2020-04-14 22:06:08">2020/04/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列四、实例微型交易系统/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列四、实例微型交易系统">Vertx系列四、实例微型交易系统</span>
+            <span class="post-date" title="2020-04-13 20:09:38">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列三、揭开微服务的神秘面纱/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列三、揭开微服务的神秘面纱">Vertx系列三、揭开微服务的神秘面纱</span>
+            <span class="post-date" title="2020-04-13 19:56:24">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列二、vert-x/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列二、vert.x">Vertx系列二、vert.x</span>
+            <span class="post-date" title="2020-04-13 18:59:58">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/Vertx系列一，简述/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vertx系列一、简述">Vertx系列一、简述</span>
+            <span class="post-date" title="2020-04-13 18:55:32">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/监督机器学习算法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="监督机器学习算法">监督机器学习算法</span>
+            <span class="post-date" title="2020-04-13 10:16:48">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/13/MQTT和WebSocket-对比/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT和WebSocket 对比">MQTT和WebSocket 对比</span>
+            <span class="post-date" title="2020-04-13 09:27:10">2020/04/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/12/HTTP-请求方法指南/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTTP 请求方法指南">HTTP 请求方法指南</span>
+            <span class="post-date" title="2020-04-12 21:38:58">2020/04/12</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/全栈工程师刷这些就够了/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="全栈工程师面试题刷这些就够了">全栈工程师面试题刷这些就够了</span>
+            <span class="post-date" title="2020-04-11 17:28:23">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/【前端知识梳理】HTML篇-笔记整理（一）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【前端知识梳理】HTML篇 笔记整理（一）">【前端知识梳理】HTML篇 笔记整理（一）</span>
+            <span class="post-date" title="2020-04-11 17:20:45">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/哈勃拍摄唯美宇宙/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="哈勃拍摄唯美宇宙">哈勃拍摄唯美宇宙</span>
+            <span class="post-date" title="2020-04-11 17:07:12">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/从零开始实现一个RPC框架（零）/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="从零开始实现一个RPC框架（零）">从零开始实现一个RPC框架（零）</span>
+            <span class="post-date" title="2020-04-11 14:41:09">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/MQTT之Mosquitto源码分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MQTT之Mosquitto源码分析">MQTT之Mosquitto源码分析</span>
+            <span class="post-date" title="2020-04-11 13:10:29">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/为什么选择go-kit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="为什么选择go-kit">为什么选择go-kit</span>
+            <span class="post-date" title="2020-04-11 11:49:46">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/11/Gokit-go流行微服务入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gokit go流行微服务入门">Gokit go流行微服务入门</span>
+            <span class="post-date" title="2020-04-11 11:39:44">2020/04/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/10/JVM自动推荐文章列表-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM自动推荐文章列表">JVM自动推荐文章列表</span>
+            <span class="post-date" title="2020-04-10 20:17:22">2020/04/10</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/macaca-doctor之Android证书Not-accepted-Android-SDK-license-agreements/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="macaca doctor之Android证书Not accepted Android SDK license agreements">macaca doctor之Android证书Not accepted Android SDK license agreements</span>
+            <span class="post-date" title="2020-04-09 17:02:16">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/工具推荐篇：PlantUML-程序员的专属绘制流程图工具，就像写代码一样便利/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利">工具推荐篇：PlantUML,程序员的专属绘制流程图工具，就像写代码一样便利</span>
+            <span class="post-date" title="2020-04-09 10:28:01">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/09/Istio-是什么-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Istio 是什么">Istio 是什么</span>
+            <span class="post-date" title="2020-04-09 10:08:02">2020/04/09</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/08/vert-x入门系列-03-vertx详细介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 03 vertx详细介绍">vert x入门系列: 03 vertx详细介绍</span>
+            <span class="post-date" title="2020-04-08 22:32:45">2020/04/08</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/Java-面试题系列-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 面试题系列 1">Java 面试题系列 1</span>
+            <span class="post-date" title="2020-04-06 20:17:19">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/30-深入Java系列Java-数据结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30.深入Java系列Java - 数据结构">30.深入Java系列Java - 数据结构</span>
+            <span class="post-date" title="2020-04-06 19:59:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/29-深入Java系列Java-构造函数/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="29.深入Java系列Java - 构造函数">29.深入Java系列Java - 构造函数</span>
+            <span class="post-date" title="2020-04-06 19:54:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/28-深入Java系列Java-对象和类/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="28.深入Java系列Java - 对象和类">28.深入Java系列Java - 对象和类</span>
+            <span class="post-date" title="2020-04-06 19:50:43">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/27-深入Java系列Java-文件和-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="27.深入Java系列Java - 文件和 I/O">27.深入Java系列Java - 文件和 I/O</span>
+            <span class="post-date" title="2020-04-06 19:46:11">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/26-深入Java系列Java中Integer为什么有个-128—-127/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="26.深入Java系列Java中Integer为什么有个-128—+127">26.深入Java系列Java中Integer为什么有个-128—+127</span>
+            <span class="post-date" title="2020-04-06 19:24:48">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/25-深入Java系列Java中int的取值范围关键点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="25.深入Java系列Java中int的取值范围关键点">25.深入Java系列Java中int的取值范围关键点</span>
+            <span class="post-date" title="2020-04-06 19:04:37">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/24-深入Java系列Java中int面试知识点/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="24.深入Java系列Java中int面试知识点">24.深入Java系列Java中int面试知识点</span>
+            <span class="post-date" title="2020-04-06 18:53:36">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/JS系列js-获取子数组/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.JS系列js 获取子数组">1.JS系列js 获取子数组</span>
+            <span class="post-date" title="2020-04-06 12:40:13">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/06/3-深入Java系列Java内存模型和JVM内存模型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="23.深入Java系列Java内存模型和JVM内存模型">23.深入Java系列Java内存模型和JVM内存模型</span>
+            <span class="post-date" title="2020-04-06 11:17:06">2020/04/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/22-深入Java系列结构模式之组合模式/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="22.深入Java系列结构模式之组合模式">22.深入Java系列结构模式之组合模式</span>
+            <span class="post-date" title="2020-04-05 22:10:38">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/21-深入Java系列Java之异常处理/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="21.深入Java系列Java之异常处理">21.深入Java系列Java之异常处理</span>
+            <span class="post-date" title="2020-04-05 22:04:06">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/20-深入Java系列Java中的回调机制/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="20.深入Java系列Java中的回调机制">20.深入Java系列Java中的回调机制</span>
+            <span class="post-date" title="2020-04-05 21:54:11">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java类的信息全解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="19.深入Java系列java类的信息全解">19.深入Java系列java类的信息全解</span>
+            <span class="post-date" title="2020-04-05 19:49:23">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="18.深入Java系列java方法区内存溢出分析">18.深入Java系列java方法区内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:46:36">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列java方法区/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="17.深入Java系列java方法区">17.深入Java系列java方法区</span>
+            <span class="post-date" title="2020-04-05 19:45:17">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java栈内存溢出分析/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="16.深入Java系列Java栈内存溢出分析">16.深入Java系列Java栈内存溢出分析</span>
+            <span class="post-date" title="2020-04-05 19:43:47">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/05/深入Java系列Java堆内存溢出解决方案/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="15.深入Java系列Java堆内存溢出解决方案">15.深入Java系列Java堆内存溢出解决方案</span>
+            <span class="post-date" title="2020-04-05 19:27:05">2020/04/05</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java堆内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="14.深入Java系列Java堆内存">14.深入Java系列Java堆内存</span>
+            <span class="post-date" title="2020-04-04 20:41:53">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java栈内存/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="13.深入Java系列Java栈内存">13.深入Java系列Java栈内存</span>
+            <span class="post-date" title="2020-04-04 20:34:01">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/04/深入Java系列Java内存结构/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="12.深入Java系列Java内存结构">12.深入Java系列Java内存结构</span>
+            <span class="post-date" title="2020-04-04 19:49:30">2020/04/04</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java-命令知多少/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="11.深入Java系列Java 命令知多少">11.深入Java系列Java 命令知多少</span>
+            <span class="post-date" title="2020-04-03 23:16:26">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列Java变量深入理解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="10.深入Java系列Java变量深入理解">10.深入Java系列Java变量深入理解</span>
+            <span class="post-date" title="2020-04-03 23:14:55">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="9.深入Java系列java &amp; &amp;&amp;区别">9.深入Java系列java &amp; &amp;&amp;区别</span>
+            <span class="post-date" title="2020-04-03 23:13:10">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列java-path-classpath作用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="8.深入Java系列java path classpath作用">8.深入Java系列java path classpath作用</span>
+            <span class="post-date" title="2020-04-03 23:11:42">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/深入Java系列JVM、JVM、JRE区别/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="7.深入Java系列JVM、JVM、JRE区别">7.深入Java系列JVM、JVM、JRE区别</span>
+            <span class="post-date" title="2020-04-03 23:10:53">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Spring-Boot-2-0-2-Oauth2-持久化/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot 2.0.2 Oauth2 持久化">鉴权中心：Spring Boot 2.0.2 Oauth2 持久化</span>
+            <span class="post-date" title="2020-04-03 15:58:07">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/鉴权中心：Springboot-Springsecurity-Oauth2整合/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Springboot+Springsecurity+Oauth2整合">鉴权中心：Springboot+Springsecurity+Oauth2整合</span>
+            <span class="post-date" title="2020-04-03 11:21:47">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/03/Spring-Boot-v2-1-3-兼容鉴权中心Spring-Boot-v2-0-2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2">鉴权中心：Spring Boot v2.1.3 兼容鉴权中心Spring Boot v2.0.2</span>
+            <span class="post-date" title="2020-04-03 11:12:12">2020/04/03</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列异常org-springframework-security-authentication-BadCredentialsException/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException">6.深入Java系列异常org.springframework.security.authentication.BadCredentialsException</span>
+            <span class="post-date" title="2020-04-02 14:05:00">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列深入理解JAVA-I-O/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="5.深入Java系列深入理解JAVA I/O">5.深入Java系列深入理解JAVA I/O</span>
+            <span class="post-date" title="2020-04-02 11:07:02">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/02/深入Java系列之绘图/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="4.深入Java系列之绘图">4.深入Java系列之绘图</span>
+            <span class="post-date" title="2020-04-02 10:48:56">2020/04/02</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/04/01/深入Java系列之基本数据类型/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="3.深入Java系列之基本数据类型">3.深入Java系列之基本数据类型</span>
+            <span class="post-date" title="2020-04-01 13:25:39">2020/04/01</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之虚拟机栈/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2.深入Java系列之虚拟机栈">2.深入Java系列之虚拟机栈</span>
+            <span class="post-date" title="2020-03-31 17:07:43">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/深入Java系列之JVM/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="1.深入Java系列之JVM">1.深入Java系列之JVM</span>
+            <span class="post-date" title="2020-03-31 17:01:41">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/将您的Spring-Booot应用迁移到最新的Spring-Security-和-OAuth-2-0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0">将您的Spring Booot应用迁移到最新的Spring Security 和 OAuth 2.0</span>
+            <span class="post-date" title="2020-03-31 13:35:01">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/31/Neo4j系列：CentOS下Neo4j安装教程/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Neo4j系列：CentOS下Neo4j安装教程">Neo4j系列：CentOS下Neo4j安装教程</span>
+            <span class="post-date" title="2020-03-31 11:03:20">2020/03/31</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/JVM入门到入魔：01JVM基础必备知识/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：01JVM基础必备知识">JVM入门到入魔：01JVM基础必备知识</span>
+            <span class="post-date" title="2020-03-28 21:13:14">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/28/团队管理：打造高绩效团队/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="团队管理：打造高绩效团队">团队管理：打造高绩效团队</span>
+            <span class="post-date" title="2020-03-28 15:49:46">2020/03/28</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/27/JVM入门到入魔：课程大纲/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JVM入门到入魔：00课程大纲">JVM入门到入魔：00课程大纲</span>
+            <span class="post-date" title="2020-03-27 15:21:01">2020/03/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-02-vertx的Http服务器入门/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 02 vertx的Http服务器入门">vert x入门系列: 02 vertx的Http服务器入门</span>
+            <span class="post-date" title="2020-03-26 21:39:33">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师：一个演进式架构师应该承担的职责/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师：一个演进式架构师应该承担的职责">架构师：一个演进式架构师应该承担的职责</span>
+            <span class="post-date" title="2020-03-26 21:29:44">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/vert-x入门系列-01-reactive编程介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="vert x入门系列: 01 reactive编程介绍">vert x入门系列: 01 reactive编程介绍</span>
+            <span class="post-date" title="2020-03-26 21:18:32">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/程序员-程序猿与牛的斗争/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序员:程序猿与牛的斗争">程序员:程序猿与牛的斗争</span>
+            <span class="post-date" title="2020-03-26 21:02:05">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-知人善用/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:知人善用">架构师:知人善用</span>
+            <span class="post-date" title="2020-03-26 21:00:00">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/26/架构师-架构师三大原则/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="架构师:架构师三大原则">架构师:架构师三大原则</span>
+            <span class="post-date" title="2020-03-26 16:09:08">2020/03/26</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/24/GitHub日报：GitHub-Explore-code-and-developers-on-GitHub-today-today-Mar-24/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.">GitHub日报：GitHub Explore code on GitHub today, today,2020 Mar 24.</span>
+            <span class="post-date" title="2020-03-24 21:40:45">2020/03/24</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-M81-发行说明/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC M81 发行说明">WebRTC系列：WebRTC M81 发行说明</span>
+            <span class="post-date" title="2020-03-22 22:12:10">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC介绍">WebRTC系列：WebRTC介绍</span>
+            <span class="post-date" title="2020-03-22 16:54:06">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：getUserMedia-API及HTML5-调用手机摄像头拍照/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照">WebRTC系列：getUserMedia API及HTML5 调用手机摄像头拍照</span>
+            <span class="post-date" title="2020-03-22 16:45:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC基础学习之一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC基础学习之一">WebRTC系列：WebRTC基础学习之一</span>
+            <span class="post-date" title="2020-03-22 16:11:45">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2020/03/22/WebRTC系列：WebRTC-将一统实时音视频天下？/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebRTC系列：WebRTC 将一统实时音视频天下？">WebRTC系列：WebRTC 将一统实时音视频天下？</span>
+            <span class="post-date" title="2020-03-22 15:49:58">2020/03/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-二/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 二">100天Spring零基础起飞 二</span>
+            <span class="post-date" title="2019-12-06 20:17:24">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/12/06/100天Spring零基础起飞-一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="100天Spring零基础起飞 一">100天Spring零基础起飞 一</span>
+            <span class="post-date" title="2019-12-06 20:15:37">2019/12/06</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Next-js手册/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Next.js手册">Next.js手册</span>
+            <span class="post-date" title="2019-11-29 14:45:06">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/29/Vue手册：Vue-js的完整介绍/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Vue手册：Vue.js的完整介绍">Vue手册：Vue.js的完整介绍</span>
+            <span class="post-date" title="2019-11-29 13:34:21">2019/11/29</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/27/Dos批量修改文件后缀/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dos批量修改文件后缀">Dos批量修改文件后缀</span>
+            <span class="post-date" title="2019-11-27 11:33:22">2019/11/27</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/PHP编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PHP编码规范">PHP编码规范</span>
+            <span class="post-date" title="2019-11-22 15:53:38">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范3">HTML编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:36:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范3">Java编码规范3</span>
+            <span class="post-date" title="2019-11-22 15:33:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范2">Java编码规范2</span>
+            <span class="post-date" title="2019-11-22 15:11:53">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/通用编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通用编码规范">通用编码规范</span>
+            <span class="post-date" title="2019-11-22 15:05:06">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Java编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java编码规范">Java编码规范</span>
+            <span class="post-date" title="2019-11-22 14:07:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/C-编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C#编码规范">C#编码规范</span>
+            <span class="post-date" title="2019-11-22 13:16:37">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范2">HTML编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:22:20">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范2">JavaScript编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:20:31">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范-第二部/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范2">CSS编码规范2</span>
+            <span class="post-date" title="2019-11-22 11:18:01">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/Markdown-编写规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Markdown 编写规范">Markdown 编写规范</span>
+            <span class="post-date" title="2019-11-22 11:08:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/HTML编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML编码规范">HTML编码规范</span>
+            <span class="post-date" title="2019-11-22 11:04:41">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/CSS编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS编码规范">CSS编码规范</span>
+            <span class="post-date" title="2019-11-22 10:06:46">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/22/JavaScript编码规范/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript编码规范">JavaScript编码规范</span>
+            <span class="post-date" title="2019-11-22 09:58:35">2019/11/22</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/日常笔记-开篇/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日常笔记-开篇">日常笔记-开篇</span>
+            <span class="post-date" title="2019-11-14 19:34:48">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/Java-字符串拼接一次学到位/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Java 字符串拼接一次学到位">Java 字符串拼接一次学到位</span>
+            <span class="post-date" title="2019-11-14 11:58:31">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/14/务限流与降级/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微服务限流与降级">微服务限流与降级</span>
+            <span class="post-date" title="2019-11-14 11:36:43">2019/11/14</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/13/CSS控制长串英文字母换行问题/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS控制长串英文字母换行问题">CSS控制长串英文字母换行问题</span>
+            <span class="post-date" title="2019-11-13 10:26:10">2019/11/13</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/12/centos虚拟内存设置/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=" centos虚拟内存设置"> centos虚拟内存设置</span>
+            <span class="post-date" title="2019-11-12 21:44:11">2019/11/12</span>
+        </a>
+        
+        <a  class="go "
+           href="/tlg/2019/11/11/第-03-课：进阶模板用法/"
+           data-tag="go,web"
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 03 课：进阶模板用法">拜读无闻大神Go web编程 - 第 03 课：进阶模板用法</span>
+            <span class="post-date" title="2019-11-11 17:56:00">2019/11/11</span>
+        </a>
+        
+        <a  class=""
+           href="/tlg/2019/11/11/第-02-课：基础模板用法/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拜读无闻大神Go web编程 - 第 02 课：基础模板用法">拜读无闻大神Go web编程 - 第 02 课：基础模板用法</span>
+            <span class="post-date" title="2019-11-11 17:53:52">2019/11/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-C-编码规范" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">C#编码规范</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-22 13:16:46'>2019-11-22 13:16</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="pushtsua_container_page_pv">
+            阅读:<span id="pushtsua_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-概述"><span class="toc-text">1.概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-命名规范"><span class="toc-text">2.命名规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-大小写约定"><span class="toc-text">2.1.大小写约定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-大小写样式"><span class="toc-text">2.1.1.大小写样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-标识符大小写规则"><span class="toc-text">2.1.2.标识符大小写规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-名字空间、类型、属性、方法、事件、只读字段及所有public成员的名称采用Pascal大小写。"><span class="toc-text">1.名字空间、类型、属性、方法、事件、只读字段及所有public成员的名称采用Pascal大小写。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-参数、局部变量名称采用Camel大小写。"><span class="toc-text">2.参数、局部变量名称采用Camel大小写。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-私有字段，Private-Camel大小写。"><span class="toc-text">3.私有字段，Private Camel大小写。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-首字母缩写大小写规则"><span class="toc-text">2.1.3.首字母缩写大小写规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-短首字母缩写的两个字母均应大写，除非是Camel大小写标识符的第一个词。"><span class="toc-text">4.短首字母缩写的两个字母均应大写，除非是Camel大小写标识符的第一个词。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-长首字母缩的第一个字母大写，除非是Camel大小写的标识符的第一个词。"><span class="toc-text">5.长首字母缩的第一个字母大写，除非是Camel大小写的标识符的第一个词。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-复合词与通用术语大小写规则"><span class="toc-text">2.1.4.复合词与通用术语大小写规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-不要将所谓封闭形式的复合词内的单词大写。他们是被作为单独的词的复合词，比如”endpoint”。确定一个词是否为封闭形式的复合词，查最新字典即可。"><span class="toc-text">6.不要将所谓封闭形式的复合词内的单词大写。他们是被作为单独的词的复合词，比如”endpoint”。确定一个词是否为封闭形式的复合词，查最新字典即可。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-5-大小写敏感"><span class="toc-text">2.1.5.大小写敏感</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-有些语言大小写不敏感，因此不要仅通过大小写来区分不同的标识符。"><span class="toc-text">7.有些语言大小写不敏感，因此不要仅通过大小写来区分不同的标识符。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-Url使用aspx文件名的地方，与aspx文件名大小写一致。"><span class="toc-text">8.Url使用aspx文件名的地方，与aspx文件名大小写一致。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-常规命名约定"><span class="toc-text">2.2.常规命名约定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-单词选择"><span class="toc-text">2.2.1.单词选择</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#9-标识符命名均采用英文，注意拼写正确。"><span class="toc-text">9.标识符命名均采用英文，注意拼写正确。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-选择可读的标识符名称。"><span class="toc-text">10.选择可读的标识符名称。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-可读性比缩写简单性更重要。"><span class="toc-text">11.可读性比缩写简单性更重要。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-请不要使用任何下划线”-”、连字符”-“等非字母字符。私有字段首字符除外-Private-Camel样式-。"><span class="toc-text">12.请不要使用任何下划线”_”、连字符”-“等非字母字符。私有字段首字符除外(Private Camel样式)。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-避免使用与C-、VB、C-语言关键字冲突的标识符名称。"><span class="toc-text">13.避免使用与C#、VB、C++语言关键字冲突的标识符名称。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-缩写"><span class="toc-text">2.2.2.缩写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-不要将缩写作为标识符中间的部分。"><span class="toc-text">14.不要将缩写作为标识符中间的部分。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-在必要的时候，为提高程序的简洁及可读性，使用广为人知的缩写。"><span class="toc-text">15.在必要的时候，为提高程序的简洁及可读性，使用广为人知的缩写。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-特定语言命名"><span class="toc-text">2.2.3.特定语言命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#16-用语意命名标识符，而不要用C-关键字。"><span class="toc-text">16.用语意命名标识符，而不要用C#关键字。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-当标识符没有特定语意的时候，采用CLR类型名，而不要用C-关键字。"><span class="toc-text">17.当标识符没有特定语意的时候，采用CLR类型名，而不要用C#关键字。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-当标识符即没有特定语意，其类型也并不重要的时候，应采用一般的名称，诸如value或item。"><span class="toc-text">18.当标识符即没有特定语意，其类型也并不重要的时候，应采用一般的名称，诸如value或item。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-文件与目录命名"><span class="toc-text">2.3.文件与目录命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#19-每个类型（包括类、结构、接口、枚举）存放在一个文件，文件名与类型名称一致。自动生成程序除外。"><span class="toc-text">19.每个类型（包括类、结构、接口、枚举）存放在一个文件，文件名与类型名称一致。自动生成程序除外。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-特殊的名字空间，放在单独的目录里，目录名字与名字空间相一致。"><span class="toc-text">20.特殊的名字空间，放在单独的目录里，目录名字与名字空间相一致。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-程序集命名"><span class="toc-text">2.4.程序集命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#21-为程序集命名，以提示其主要功能，程序集的名称最好和名字空间名称相一致。"><span class="toc-text">21.为程序集命名，以提示其主要功能，程序集的名称最好和名字空间名称相一致。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-名字空间命名"><span class="toc-text">2.5.名字空间命名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-1-一般规则"><span class="toc-text">2.5.1.一般规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#22-名字空间的名字应该有很长的生命期，因此不要在里面加版本号、机构名称等易变的名称。"><span class="toc-text">22.名字空间的名字应该有很长的生命期，因此不要在里面加版本号、机构名称等易变的名称。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-采用Pascal大小写。"><span class="toc-text">23.采用Pascal大小写。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#24-在适当的时候使用复数名称，缩写除外。"><span class="toc-text">24.在适当的时候使用复数名称，缩写除外。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#25-不要让名字空间及类具有相同的名称。"><span class="toc-text">25.不要让名字空间及类具有相同的名称。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-2-名字空间及类型的名字冲突"><span class="toc-text">2.5.2.名字空间及类型的名字冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#26-不要引入一般类型名称，应该使用限定的一般类型名称。"><span class="toc-text">26.不要引入一般类型名称，应该使用限定的一般类型名称。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#27-不要引入与程序模型名字空间冲突的类型名。"><span class="toc-text">27.不要引入与程序模型名字空间冲突的类型名。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#28-不要与核心名字空间名字冲突。"><span class="toc-text">28.不要与核心名字空间名字冲突。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#29-不要在统一的技术名字空间内，使用相同的类名。"><span class="toc-text">29.不要在统一的技术名字空间内，使用相同的类名。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-类、结构、接口命名"><span class="toc-text">2.6.类、结构、接口命名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-1-一般规则"><span class="toc-text">2.6.1.一般规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#30-类型使用名词、名词短语或形容词短语，名称应反映使用场景。"><span class="toc-text">30.类型使用名词、名词短语或形容词短语，名称应反映使用场景。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#31-类名称不要加前缀（比如C、T）。（注：Delphi等语言的约定）"><span class="toc-text">31.类名称不要加前缀（比如C、T）。（注：Delphi等语言的约定）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#32-考虑子类采用基类名称作为后缀。"><span class="toc-text">32.考虑子类采用基类名称作为后缀。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#33-接口前面都加字母“I”前缀"><span class="toc-text">33.接口前面都加字母“I”前缀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#34-当定义接口-类对时，接口的默认实现类名称与接口名称只有前缀I有差别。"><span class="toc-text">34.当定义接口/类对时，接口的默认实现类名称与接口名称只有前缀I有差别。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-2-范型参数命名"><span class="toc-text">2.6.2.范型参数命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#35-范型参数应使用有描述性名称，除非单个字母足够且描述性名称并不增加什么价值。"><span class="toc-text">35.范型参数应使用有描述性名称，除非单个字母足够且描述性名称并不增加什么价值。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#36-需要使用单字母命名类型参数的时候，使用字母“T”。"><span class="toc-text">36.需要使用单字母命名类型参数的时候，使用字母“T”。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#37-类型参数前缀加字母“T”。"><span class="toc-text">37.类型参数前缀加字母“T”。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#38-考虑在范型参数名称中加入类型约束。"><span class="toc-text">38.考虑在范型参数名称中加入类型约束。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-3-一般类型命名"><span class="toc-text">2.6.3.一般类型命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#39-自定义属性，需要加后缀Attribute。"><span class="toc-text">39.自定义属性，需要加后缀Attribute。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#40-在事件（event）中使用的类型，需要加后缀EventHandler。"><span class="toc-text">40.在事件（event）中使用的类型，需要加后缀EventHandler。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#41-不用于事件的委托-delegate-类型，需要加后缀Callback。"><span class="toc-text">41.不用于事件的委托(delegate)类型，需要加后缀Callback。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#42-继承System-EventArgs的类，需要加后缀EventArgs。"><span class="toc-text">42.继承System.EventArgs的类，需要加后缀EventArgs。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#43-继承System-Exception的类，需要加后缀Exception。"><span class="toc-text">43.继承System.Exception的类，需要加后缀Exception。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#44-实现System-Collecions-IDictionary接口的类，需要加后缀Dictionary。"><span class="toc-text">44.实现System.Collecions.IDictionary接口的类，需要加后缀Dictionary。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#45-实现System-Collections-ICollection-IList-IEnumerable-接口的类，需要加后缀Collection。"><span class="toc-text">45.实现System.Collections.(ICollection|IList|IEnumerable)接口的类，需要加后缀Collection。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#46-继承System-IO-Stream的类，需要加后缀Stream。"><span class="toc-text">46.继承System.IO.Stream的类，需要加后缀Stream。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#47-继承System-Security-CodeAccessPermission的类，需要加后缀Permission。"><span class="toc-text">47.继承System.Security.CodeAccessPermission的类，需要加后缀Permission。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-4-枚举命名"><span class="toc-text">2.6.4.枚举命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#48-不要在枚举值前加前缀。"><span class="toc-text">48.不要在枚举值前加前缀。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#49-不要在枚举类型加后缀Enum。"><span class="toc-text">49.不要在枚举类型加后缀Enum。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#50-不要在Flags枚举类型加后缀Flags。"><span class="toc-text">50.不要在Flags枚举类型加后缀Flags。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#51-用单数词作为枚举名称，除非它是Flags枚举类型。"><span class="toc-text">51.用单数词作为枚举名称，除非它是Flags枚举类型。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#52-用复数词作为Flags枚举类型。"><span class="toc-text">52.用复数词作为Flags枚举类型。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-类成员命名"><span class="toc-text">2.7.类成员命名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-1-方法命名"><span class="toc-text">2.7.1.方法命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#53-方法名称应为动词或动词短语。"><span class="toc-text">53.方法名称应为动词或动词短语。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-2-属性命名"><span class="toc-text">2.7.2.属性命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#54-属性采用名词、名词短语或形容词命名。"><span class="toc-text">54.属性采用名词、名词短语或形容词命名。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#55-不要让属性名称与Get方法的名称相匹配。"><span class="toc-text">55.不要让属性名称与Get方法的名称相匹配。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#56-布尔类型属性，采用肯定语气命名。使用Is-Can或Has作前缀，如果他们能增加清晰性。"><span class="toc-text">56.布尔类型属性，采用肯定语气命名。使用Is,Can或Has作前缀，如果他们能增加清晰性。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#57-考虑属性使用与其类型相同的名称。"><span class="toc-text">57.考虑属性使用与其类型相同的名称。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-3-事件命名"><span class="toc-text">2.7.3.事件命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#58-事件采用动词或动词短语命名。"><span class="toc-text">58.事件采用动词或动词短语命名。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#59-让事件名称拥有前后的事件概念，采用现在进行时或过去时。"><span class="toc-text">59.让事件名称拥有前后的事件概念，采用现在进行时或过去时。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#60-不要在事件名称中使用Before、After前缀或后缀，来标示前后事件。"><span class="toc-text">60.不要在事件名称中使用Before、After前缀或后缀，来标示前后事件。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#61-使用两个参数Sender，e作为事件处理参数。Sender类型为object，e类型为EventArs或其继承类型。"><span class="toc-text">61.使用两个参数Sender，e作为事件处理参数。Sender类型为object，e类型为EventArs或其继承类型。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#62-EventHandler，EventArgs相关命名见一般类型命名。"><span class="toc-text">62.EventHandler，EventArgs相关命名见一般类型命名。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-4-字段命名"><span class="toc-text">2.7.4.字段命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#63-采用名词或名词短语命名。"><span class="toc-text">63.采用名词或名词短语命名。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-参数命名"><span class="toc-text">2.8.参数命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#64-使用描述性的名称。在大多数情形下，参数类型及其名称，应能确定参数的用途。"><span class="toc-text">64.使用描述性的名称。在大多数情形下，参数类型及其名称，应能确定参数的用途。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#65-命名应该基于参数的含义而不是类型。"><span class="toc-text">65.命名应该基于参数的含义而不是类型。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-函数编码"><span class="toc-text">3.函数编码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-空格、空行与缩进的使用"><span class="toc-text">3.1.空格、空行与缩进的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#66-函数参数在”-”后需要空格。"><span class="toc-text">66.函数参数在”,”后需要空格。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#67-各种双目操作符，比如“-”、“-lt-“等，前后需要有空格。"><span class="toc-text">67.各种双目操作符，比如“=”、“&lt;“等，前后需要有空格。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#68-if-while等关键字后面需要有空格。"><span class="toc-text">68.if, while等关键字后面需要有空格。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#69-每次使用嵌套，嵌套体的所有内容必须缩进，使用Tab作为缩进符号。"><span class="toc-text">69.每次使用嵌套，嵌套体的所有内容必须缩进，使用Tab作为缩进符号。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#70-每个函数之间空两行。"><span class="toc-text">70.每个函数之间空两行。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#71-适当的增加空行，以区分方法内的大块逻辑。"><span class="toc-text">71.适当的增加空行，以区分方法内的大块逻辑。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-一般编码约定"><span class="toc-text">3.2.一般编码约定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#72-代码行数不应超过80行。（不超出两屏长度）"><span class="toc-text">72.代码行数不应超过80行。（不超出两屏长度）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#73-一个代码行长度不应超过80个字符。（不超出一屏宽度）"><span class="toc-text">73.一个代码行长度不应超过80个字符。（不超出一屏宽度）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#74-一般情况下不可以使用goto语句，除非goto能够加强程序的清晰性。"><span class="toc-text">74. 一般情况下不可以使用goto语句，除非goto能够加强程序的清晰性。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#75-诸如for、if、foreach、while等嵌套层数不要超过3层，try-catch除外。"><span class="toc-text">75.诸如for、if、foreach、while等嵌套层数不要超过3层，try-catch除外。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#76-变量在离其最近使用的地方声明。"><span class="toc-text">76.变量在离其最近使用的地方声明。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#77-同一个类型的不同方法中不要出现重复代码。"><span class="toc-text">77.同一个类型的不同方法中不要出现重复代码。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-异常处理"><span class="toc-text">4.异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#78-在框架代码中，不要通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。"><span class="toc-text">78.在框架代码中，不要通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#79-在应用代码中，避免通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。有些情况下在应用中淹没错误是可以接受的，但是这种情况很少见。"><span class="toc-text">79.在应用代码中，避免通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。有些情况下在应用中淹没错误是可以接受的，但是这种情况很少见。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#80-捕获特定的异常，如果你理解为什么它会从给定的上下文中抛出。"><span class="toc-text">80.捕获特定的异常，如果你理解为什么它会从给定的上下文中抛出。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#81-不要过度使用catch。异常应当尽可能向调用堆栈上层传递。"><span class="toc-text">81.不要过度使用catch。异常应当尽可能向调用堆栈上层传递。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#82-将清理代码放在finally块中，而不是catch块中。对于书写优良的代码，try-finally比try-catch更为常见。"><span class="toc-text">82.将清理代码放在finally块中，而不是catch块中。对于书写优良的代码，try-finally比try-catch更为常见。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#83-当捕获并重新抛出异常时，使用空的throw。这是保存调用堆栈的最好的方法。"><span class="toc-text">83.当捕获并重新抛出异常时，使用空的throw。这是保存调用堆栈的最好的方法。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-注释规范"><span class="toc-text">5.注释规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-C-标准-注释的使用"><span class="toc-text">5.1.C#标准///注释的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#84-每个类必须注释，采用C-标准-注释，并在Summary中写明此类的主要功能，根据需要在Remark中进行详细描述，如关键设计思路。"><span class="toc-text">84.每个类必须注释，采用C#标准///注释，并在Summary中写明此类的主要功能，根据需要在Remark中进行详细描述，如关键设计思路。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#85-每个属性必须注释，采用C-标准-注释，并在Summary中写明此属性的含义。"><span class="toc-text">85.每个属性必须注释，采用C#标准///注释，并在Summary中写明此属性的含义。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#86-每个方法必须注释，采用C-标准-注释，并在Summary中写明此函数主要功能。根据需要在Remark中进行详细描述。"><span class="toc-text">86.每个方法必须注释，采用C#标准///注释，并在Summary中写明此函数主要功能。根据需要在Remark中进行详细描述。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-一般注释"><span class="toc-text">5.2.一般注释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#87-当代码无法通过直接阅读而清晰获理解它的功能的时候，需要加注释。"><span class="toc-text">87.当代码无法通过直接阅读而清晰获理解它的功能的时候，需要加注释。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#88-当一段代码有单一目的，而没有分隔为一个函数的时候，用注释标明分段功能。"><span class="toc-text">88.当一段代码有单一目的，而没有分隔为一个函数的时候，用注释标明分段功能。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#89-当一个嵌套很长，或者有多个嵌套时，需要在结尾加上注释。"><span class="toc-text">89.当一个嵌套很长，或者有多个嵌套时，需要在结尾加上注释。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-其他注释"><span class="toc-text">5.3.其他注释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#90-在准备添加代码的地方加入-TODO-注释。"><span class="toc-text">90.在准备添加代码的地方加入//TODO 注释。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#91-类似功能的一组函数，需要用-region来包围起来，并做说明。"><span class="toc-text">91.类似功能的一组函数，需要用#region来包围起来，并做说明。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-日志规范"><span class="toc-text">6.日志规范</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#92-对于包含方法成员的类，尽可能使用log4net，以方便程序调试。Log成员定义写在类代码的第一行，内容如下："><span class="toc-text">92.对于包含方法成员的类，尽可能使用log4net，以方便程序调试。Log成员定义写在类代码的第一行，内容如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#93-需要加条件判断是否需要记录log，以增加程序性能，除非log直接输出简单字符串。"><span class="toc-text">93.需要加条件判断是否需要记录log，以增加程序性能，除非log直接输出简单字符串。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#94-日志级别："><span class="toc-text">94.日志级别：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#95-重要函数（比如Page-Load）记录用时，可使用StopWatch。"><span class="toc-text">95.重要函数（比如Page_Load）记录用时，可使用StopWatch。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#96-公共（public）方法或属性内的日志，需要记录方法或属性名。"><span class="toc-text">96.公共（public）方法或属性内的日志，需要记录方法或属性名。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#97-公共-public-方法，在方法代码第一行记录日志，标明此方法被调用并记下传入参数。（即进入时记录。）"><span class="toc-text">97.公共(public)方法，在方法代码第一行记录日志，标明此方法被调用并记下传入参数。（即进入时记录。）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#98-公共-public-方法返回前，记录日志，标明此方法结束并记下返回结果。如果返回内容过于复杂，比如为DataSet，可以简单记录其特征（记录数）。如果没有返回结果，比如void方法，直接标明返回即可。（即返回时记录。）"><span class="toc-text">98.公共(public)方法返回前，记录日志，标明此方法结束并记下返回结果。如果返回内容过于复杂，比如为DataSet，可以简单记录其特征（记录数）。如果没有返回结果，比如void方法，直接标明返回即可。（即返回时记录。）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#99-在捕获异常时，需要记录日志，以及异常内容。（即截获异常时记录。）"><span class="toc-text">99.在捕获异常时，需要记录日志，以及异常内容。（即截获异常时记录。）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#100-在方法内有重要逻辑过程需要记录时，记录日志。（即重要逻辑记录。）"><span class="toc-text">100.在方法内有重要逻辑过程需要记录时，记录日志。（即重要逻辑记录。）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#101-在对外提供接口，而接口实现组件可由第三方开发时。需要在接口调用前后记录日志。（即三方组件调用时记录。）"><span class="toc-text">101.在对外提供接口，而接口实现组件可由第三方开发时。需要在接口调用前后记录日志。（即三方组件调用时记录。）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#102-最外层代码（如Page-Load）要在最外层写try-catch-Excpetion-的代码，并记录异常。如果不知道如何处理，直接throw。"><span class="toc-text">102.最外层代码（如Page_Load）要在最外层写try,catch(Excpetion)的代码，并记录异常。如果不知道如何处理，直接throw。</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="#1概述">1.概述</a></p>
+<p><a href="#2命名规范">2.命名规范</a></p>
+<ul>
+<li><a href="#21大小写约定">2.1.大小写约定</a><ul>
+<li><a href="#211大小写样式">2.1.1.大小写样式</a></li>
+<li><a href="#212标识符大小写规则">2.1.2.标识符大小写规则</a></li>
+<li><a href="#213首字母缩写大小写规则">2.1.3.首字母缩写大小写规则</a></li>
+<li><a href="#214复合词与通用术语大小写规则">2.1.4.复合词与通用术语大小写规则</a></li>
+<li><a href="#215大小写敏感">2.1.5.大小写敏感</a></li>
+</ul>
+</li>
+<li><a href="#22常规命名约定">2.2.常规命名约定</a><ul>
+<li><a href="#221单词选择">2.2.1.单词选择</a></li>
+<li><a href="#222缩写">2.2.2.缩写</a></li>
+<li><a href="#223特定语言命名">2.2.3.特定语言命名</a></li>
+</ul>
+</li>
+<li><a href="#23文件与目录命名">2.3.文件与目录命名</a></li>
+<li><a href="#24程序集命名">2.4.程序集命名</a></li>
+<li><a href="#25名字空间命名">2.5.名字空间命名</a><ul>
+<li><a href="#251一般规则">2.5.1.一般规则</a></li>
+<li><a href="#252名字空间及类型的名字冲突">2.5.2.名字空间及类型的名字冲突</a></li>
+</ul>
+</li>
+<li><a href="#26类、结构、接口命名">2.6.类、结构、接口命名</a><ul>
+<li><a href="#261一般规则">2.6.1.一般规则</a></li>
+<li><a href="#262范型参数命名">2.6.2.范型参数命名</a></li>
+<li><a href="#263一般类型命名">2.6.3.一般类型命名</a></li>
+<li><a href="#264枚举命名">2.6.4.枚举命名</a></li>
+</ul>
+</li>
+<li><a href="#27类成员命名">2.7.类成员命名</a><ul>
+<li><a href="#271方法命名">2.7.1.方法命名</a></li>
+<li><a href="#272属性命名">2.7.2.属性命名</a></li>
+<li><a href="#273事件命名">2.7.3.事件命名</a></li>
+<li><a href="#274字段命名">2.7.4.字段命名</a></li>
+</ul>
+</li>
+<li><a href="#28参数命名">2.8.参数命名</a></li>
+</ul>
+<p><a href="#3函数编码">3.函数编码</a></p>
+<ul>
+<li><a href="#31空格空行与缩进的使用">3.1.空格、空行与缩进的使用</a></li>
+<li><a href="#32一般编码约定">3.2.一般编码约定</a></li>
+</ul>
+<p><a href="#4异常处理">4.异常处理</a></p>
+<p><a href="#5注释规范">5.注释规范</a></p>
+<ul>
+<li><a href="#51c标准注释的使用">5.1.C#标准///注释的使用</a></li>
+<li><a href="#52一般注释">5.2.一般注释</a></li>
+<li><a href="#53其他注释">5.3.其他注释</a></li>
+</ul>
+<p><a href="#6日志规范">6.日志规范</a></p>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>本文档在《C#程序设计与编码规范》2005年版(Old_Backup/编码规范目录)内的基础上缩编修订而成。更多的.net设计知识，请参阅微软出版的相关指南。</p>
+<h1 id="2-命名规范"><a href="#2-命名规范" class="headerlink" title="2.命名规范"></a>2.命名规范</h1><h2 id="2-1-大小写约定"><a href="#2-1-大小写约定" class="headerlink" title="2.1.大小写约定"></a>2.1.大小写约定</h2><h3 id="2-1-1-大小写样式"><a href="#2-1-1-大小写样式" class="headerlink" title="2.1.1.大小写样式"></a>2.1.1.大小写样式</h3><ul>
+<li><p>Pascal大小写</p>
+<p>  将标识符的首字母和后面连接的每个单词的首字母都大写。例如：BlackColor。</p>
+</li>
+<li><p>Camel大小写</p>
+<p>  标识符的首字母小写，而每个后面连接的单词的首字母都大写。例如：blackColor。</p>
+</li>
+<li><p>大写</p>
+<p>  标识符中的所有字母都大写。仅对于由两个或者更少字母组成的标识符使用该约定。例如：IO。</p>
+</li>
+<li><p>Private Camel大小写</p>
+<p>  标识符首字母为下划线”_”，后面单词采用Camel大小写。例如：_blackColor。</p>
+</li>
+</ul>
+<h3 id="2-1-2-标识符大小写规则"><a href="#2-1-2-标识符大小写规则" class="headerlink" title="2.1.2.标识符大小写规则"></a>2.1.2.标识符大小写规则</h3><p>当标识符由多个单词组成的时候，不要在词间使用诸如”_”（Unix C程序样式 ）和”-“之类的分隔符。而要通过大小写来分隔单词。</p>
+<p>下面给出一般标识符的大小写规则：</p>
+<h4 id="1-名字空间、类型、属性、方法、事件、只读字段及所有public成员的名称采用Pascal大小写。"><a href="#1-名字空间、类型、属性、方法、事件、只读字段及所有public成员的名称采用Pascal大小写。" class="headerlink" title="1.名字空间、类型、属性、方法、事件、只读字段及所有public成员的名称采用Pascal大小写。"></a>1.名字空间、类型、属性、方法、事件、只读字段及所有public成员的名称采用Pascal大小写。</h4><h4 id="2-参数、局部变量名称采用Camel大小写。"><a href="#2-参数、局部变量名称采用Camel大小写。" class="headerlink" title="2.参数、局部变量名称采用Camel大小写。"></a>2.参数、局部变量名称采用Camel大小写。</h4><h4 id="3-私有字段，Private-Camel大小写。"><a href="#3-私有字段，Private-Camel大小写。" class="headerlink" title="3.私有字段，Private Camel大小写。"></a>3.私有字段，Private Camel大小写。</h4><p>下表汇总了大写规则，并提供了不同类型的标识符的示例：</p>
+<table>
+<thead>
+<tr>
+<th>标识符</th>
+<th>大小写</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>名字空间</td>
+<td>Pascal</td>
+<td>System.Drawing</td>
+</tr>
+<tr>
+<td>类</td>
+<td>Pascal</td>
+<td>AppDomain</td>
+</tr>
+<tr>
+<td>接口</td>
+<td>Pascal</td>
+<td>IDisposable</td>
+</tr>
+<tr>
+<td>枚举类型</td>
+<td>Pascal</td>
+<td>ErrorLevel</td>
+</tr>
+<tr>
+<td>枚举值</td>
+<td>Pascal</td>
+<td>FatalError</td>
+</tr>
+<tr>
+<td>方法</td>
+<td>Pascal</td>
+<td>ToString</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>Pascal</td>
+<td>BackColor</td>
+</tr>
+<tr>
+<td>事件</td>
+<td>Pascal</td>
+<td>ValueChanged</td>
+</tr>
+<tr>
+<td>只读静态字段</td>
+<td>Pascal</td>
+<td>RedValue</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>Camel</td>
+<td>typeName</td>
+</tr>
+<tr>
+<td>局部变量</td>
+<td>Camel</td>
+<td>targetCount</td>
+</tr>
+<tr>
+<td>私有字段</td>
+<td>Private Camel</td>
+<td>_brushColor</td>
+</tr>
+</tbody></table>
+<h3 id="2-1-3-首字母缩写大小写规则"><a href="#2-1-3-首字母缩写大小写规则" class="headerlink" title="2.1.3.首字母缩写大小写规则"></a>2.1.3.首字母缩写大小写规则</h3><p>首字母缩写(Acronyms)是由短语内各单词的字母构成。例如：HTML是Hypertext Markup Lanugage的首字母缩写。只有众所周知的首字母缩写才可以包含在标识符里。首字母缩写(Acronyms)与缩写词(Abbreviation)不同，缩写词（Abbreviation）仅简化一个单词。例如：ID是identifier的缩写词。一般情况下，不要使用缩写词。</p>
+<p>特例：ID及OK两个缩写词可被用于标识符。但是应该依据使用环境，遵循Pascal或Camel大小写。</p>
+<p>首字母缩写的大小写依赖于它的长度。所有的首字母缩写至少两个字母长。如果正好是两个字母长，被称作短首字母缩写（short acronyms）。三个或三个以上长度的首字母缩写，被称作长首字母缩写（long acronyms）。</p>
+<p>下面给出长短首字母缩写的规则，标识符的大小写优先级更高。</p>
+<h4 id="4-短首字母缩写的两个字母均应大写，除非是Camel大小写标识符的第一个词。"><a href="#4-短首字母缩写的两个字母均应大写，除非是Camel大小写标识符的第一个词。" class="headerlink" title="4.短首字母缩写的两个字母均应大写，除非是Camel大小写标识符的第一个词。"></a>4.短首字母缩写的两个字母均应大写，除非是Camel大小写标识符的第一个词。</h4><p>例如：属性名称DBRate中首字母缩写DB，是Pascal大小写标识符首单词。</p>
+<p>例如：参数名称ioChannel中首字母缩写io，是Camel大小写标识符首单词。</p>
+<h4 id="5-长首字母缩的第一个字母大写，除非是Camel大小写的标识符的第一个词。"><a href="#5-长首字母缩的第一个字母大写，除非是Camel大小写的标识符的第一个词。" class="headerlink" title="5.长首字母缩的第一个字母大写，除非是Camel大小写的标识符的第一个词。"></a>5.长首字母缩的第一个字母大写，除非是Camel大小写的标识符的第一个词。</h4><p>例如：类名称XmlWriter中的首字母缩写Xml，是Pascal小写标识符首单词。</p>
+<p>例如：参数名称htmlWriter中的首字母缩写html，是Camel大小写标识符首单词。</p>
+<h3 id="2-1-4-复合词与通用术语大小写规则"><a href="#2-1-4-复合词与通用术语大小写规则" class="headerlink" title="2.1.4.复合词与通用术语大小写规则"></a>2.1.4.复合词与通用术语大小写规则</h3><h4 id="6-不要将所谓封闭形式的复合词内的单词大写。他们是被作为单独的词的复合词，比如”endpoint”。确定一个词是否为封闭形式的复合词，查最新字典即可。"><a href="#6-不要将所谓封闭形式的复合词内的单词大写。他们是被作为单独的词的复合词，比如”endpoint”。确定一个词是否为封闭形式的复合词，查最新字典即可。" class="headerlink" title="6.不要将所谓封闭形式的复合词内的单词大写。他们是被作为单独的词的复合词，比如”endpoint”。确定一个词是否为封闭形式的复合词，查最新字典即可。"></a>6.不要将所谓封闭形式的复合词内的单词大写。他们是被作为单独的词的复合词，比如”endpoint”。确定一个词是否为封闭形式的复合词，查最新字典即可。</h4><p>例如：hashtable是一个封闭形式的，从而应当作为单独的词来对待及处理大小写。采用Pascal大小写，它是Hashtable；采用Camel大小写，它是hashtable。</p>
+<p>下面一些通用术语不是封闭形式的复合词，采用Pacal及Camel两种方式展现。</p>
+<ul>
+<li>BitFlag (bitFlag)</li>
+<li>FileName (fileName)</li>
+<li>LogOff (logOff)</li>
+<li>LogOn (logOn)</li>
+<li>SignIn (signIn)</li>
+<li>SignOut (signOut)</li>
+<li>UserName (userName)</li>
+<li>WhiteSpace (whiteSpace)</li>
+</ul>
+<h3 id="2-1-5-大小写敏感"><a href="#2-1-5-大小写敏感" class="headerlink" title="2.1.5.大小写敏感"></a>2.1.5.大小写敏感</h3><h4 id="7-有些语言大小写不敏感，因此不要仅通过大小写来区分不同的标识符。"><a href="#7-有些语言大小写不敏感，因此不要仅通过大小写来区分不同的标识符。" class="headerlink" title="7.有些语言大小写不敏感，因此不要仅通过大小写来区分不同的标识符。"></a>7.有些语言大小写不敏感，因此不要仅通过大小写来区分不同的标识符。</h4><h4 id="8-Url使用aspx文件名的地方，与aspx文件名大小写一致。"><a href="#8-Url使用aspx文件名的地方，与aspx文件名大小写一致。" class="headerlink" title="8.Url使用aspx文件名的地方，与aspx文件名大小写一致。"></a>8.Url使用aspx文件名的地方，与aspx文件名大小写一致。</h4><h2 id="2-2-常规命名约定"><a href="#2-2-常规命名约定" class="headerlink" title="2.2.常规命名约定"></a>2.2.常规命名约定</h2><p>此部分是用于所有标识符命名，后面的章节将讨论特殊的元素，如名字空间及属性。</p>
+<h3 id="2-2-1-单词选择"><a href="#2-2-1-单词选择" class="headerlink" title="2.2.1.单词选择"></a>2.2.1.单词选择</h3><h4 id="9-标识符命名均采用英文，注意拼写正确。"><a href="#9-标识符命名均采用英文，注意拼写正确。" class="headerlink" title="9.标识符命名均采用英文，注意拼写正确。"></a>9.标识符命名均采用英文，注意拼写正确。</h4><h4 id="10-选择可读的标识符名称。"><a href="#10-选择可读的标识符名称。" class="headerlink" title="10.选择可读的标识符名称。"></a>10.选择可读的标识符名称。</h4><p>比如：属性名称HorizontalAlignment比AlignmentHorizontal在英语中更可读。</p>
+<h4 id="11-可读性比缩写简单性更重要。"><a href="#11-可读性比缩写简单性更重要。" class="headerlink" title="11.可读性比缩写简单性更重要。"></a>11.可读性比缩写简单性更重要。</h4><p>比如：属性名称CanScrollHorizontally比ScrollableX更好。</p>
+<h4 id="12-请不要使用任何下划线”-”、连字符”-“等非字母字符。私有字段首字符除外-Private-Camel样式-。"><a href="#12-请不要使用任何下划线”-”、连字符”-“等非字母字符。私有字段首字符除外-Private-Camel样式-。" class="headerlink" title="12.请不要使用任何下划线”_”、连字符”-“等非字母字符。私有字段首字符除外(Private Camel样式)。"></a>12.请不要使用任何下划线”_”、连字符”-“等非字母字符。私有字段首字符除外(Private Camel样式)。</h4><h4 id="13-避免使用与C-、VB、C-语言关键字冲突的标识符名称。"><a href="#13-避免使用与C-、VB、C-语言关键字冲突的标识符名称。" class="headerlink" title="13.避免使用与C#、VB、C++语言关键字冲突的标识符名称。"></a>13.避免使用与C#、VB、C++语言关键字冲突的标识符名称。</h4><h3 id="2-2-2-缩写"><a href="#2-2-2-缩写" class="headerlink" title="2.2.2.缩写"></a>2.2.2.缩写</h3><p>一般情况下不应该使用缩写，这样会使程序不容易读，另外也很难确定缩写是否广为人知。</p>
+<h4 id="14-不要将缩写作为标识符中间的部分。"><a href="#14-不要将缩写作为标识符中间的部分。" class="headerlink" title="14.不要将缩写作为标识符中间的部分。"></a>14.不要将缩写作为标识符中间的部分。</h4><p>例如：使用OnButtonClick而不是OnBtnClick</p>
+<h4 id="15-在必要的时候，为提高程序的简洁及可读性，使用广为人知的缩写。"><a href="#15-在必要的时候，为提高程序的简洁及可读性，使用广为人知的缩写。" class="headerlink" title="15.在必要的时候，为提高程序的简洁及可读性，使用广为人知的缩写。"></a>15.在必要的时候，为提高程序的简洁及可读性，使用广为人知的缩写。</h4><h3 id="2-2-3-特定语言命名"><a href="#2-2-3-特定语言命名" class="headerlink" title="2.2.3.特定语言命名"></a>2.2.3.特定语言命名</h3><h4 id="16-用语意命名标识符，而不要用C-关键字。"><a href="#16-用语意命名标识符，而不要用C-关键字。" class="headerlink" title="16.用语意命名标识符，而不要用C#关键字。"></a>16.用语意命名标识符，而不要用C#关键字。</h4><p>例如：使用GetLength而不是GetInt</p>
+<h4 id="17-当标识符没有特定语意的时候，采用CLR类型名，而不要用C-关键字。"><a href="#17-当标识符没有特定语意的时候，采用CLR类型名，而不要用C-关键字。" class="headerlink" title="17.当标识符没有特定语意的时候，采用CLR类型名，而不要用C#关键字。"></a>17.当标识符没有特定语意的时候，采用CLR类型名，而不要用C#关键字。</h4><p>例如：将数据转换成Int16类型的函数，应该被命名为ToInt16，而不是ToShort，因为short仅仅是Int16在C#语言中的对应类型名。</p>
+<h4 id="18-当标识符即没有特定语意，其类型也并不重要的时候，应采用一般的名称，诸如value或item。"><a href="#18-当标识符即没有特定语意，其类型也并不重要的时候，应采用一般的名称，诸如value或item。" class="headerlink" title="18.当标识符即没有特定语意，其类型也并不重要的时候，应采用一般的名称，诸如value或item。"></a>18.当标识符即没有特定语意，其类型也并不重要的时候，应采用一般的名称，诸如value或item。</h4><h2 id="2-3-文件与目录命名"><a href="#2-3-文件与目录命名" class="headerlink" title="2.3.文件与目录命名"></a>2.3.文件与目录命名</h2><h4 id="19-每个类型（包括类、结构、接口、枚举）存放在一个文件，文件名与类型名称一致。自动生成程序除外。"><a href="#19-每个类型（包括类、结构、接口、枚举）存放在一个文件，文件名与类型名称一致。自动生成程序除外。" class="headerlink" title="19.每个类型（包括类、结构、接口、枚举）存放在一个文件，文件名与类型名称一致。自动生成程序除外。"></a>19.每个类型（包括类、结构、接口、枚举）存放在一个文件，文件名与类型名称一致。自动生成程序除外。</h4><h4 id="20-特殊的名字空间，放在单独的目录里，目录名字与名字空间相一致。"><a href="#20-特殊的名字空间，放在单独的目录里，目录名字与名字空间相一致。" class="headerlink" title="20.特殊的名字空间，放在单独的目录里，目录名字与名字空间相一致。"></a>20.特殊的名字空间，放在单独的目录里，目录名字与名字空间相一致。</h4><h2 id="2-4-程序集命名"><a href="#2-4-程序集命名" class="headerlink" title="2.4.程序集命名"></a>2.4.程序集命名</h2><h4 id="21-为程序集命名，以提示其主要功能，程序集的名称最好和名字空间名称相一致。"><a href="#21-为程序集命名，以提示其主要功能，程序集的名称最好和名字空间名称相一致。" class="headerlink" title="21.为程序集命名，以提示其主要功能，程序集的名称最好和名字空间名称相一致。"></a>21.为程序集命名，以提示其主要功能，程序集的名称最好和名字空间名称相一致。</h4><p>采用如下方式命名：</p>
+<p><code>WanFangData.&lt;Component&gt;.dll</code></p>
+<p>其中Component包含一个或多个点分隔的字句。</p>
+<p>例如：WanFangData.WebContorls.dll</p>
+<h2 id="2-5-名字空间命名"><a href="#2-5-名字空间命名" class="headerlink" title="2.5.名字空间命名"></a>2.5.名字空间命名</h2><h3 id="2-5-1-一般规则"><a href="#2-5-1-一般规则" class="headerlink" title="2.5.1.一般规则"></a>2.5.1.一般规则</h3><p>名字空间的名称，应能提示在此名字空间内的所有类型的主要功能。比如System.Socket名字空间所包含的类型，能够让程序员通过Socket方式进行网路通讯编程。</p>
+<p>一般的命名规则是：</p>
+<p><code>WanFangData.(&lt;ProductName&gt;|&lt;Technology&gt;)[.&lt;Feature&gt;][.&lt;Subnamespace&gt;]</code></p>
+<p>例如：Micorsoft.WindowsMobile.DirectX</p>
+<h4 id="22-名字空间的名字应该有很长的生命期，因此不要在里面加版本号、机构名称等易变的名称。"><a href="#22-名字空间的名字应该有很长的生命期，因此不要在里面加版本号、机构名称等易变的名称。" class="headerlink" title="22.名字空间的名字应该有很长的生命期，因此不要在里面加版本号、机构名称等易变的名称。"></a>22.名字空间的名字应该有很长的生命期，因此不要在里面加版本号、机构名称等易变的名称。</h4><h4 id="23-采用Pascal大小写。"><a href="#23-采用Pascal大小写。" class="headerlink" title="23.采用Pascal大小写。"></a>23.采用Pascal大小写。</h4><h4 id="24-在适当的时候使用复数名称，缩写除外。"><a href="#24-在适当的时候使用复数名称，缩写除外。" class="headerlink" title="24.在适当的时候使用复数名称，缩写除外。"></a>24.在适当的时候使用复数名称，缩写除外。</h4><p>例如：应写System.Collections而不是System.Collection。</p>
+<p>例如：应写System.IO而不是System.IOs。（缩写）</p>
+<h4 id="25-不要让名字空间及类具有相同的名称。"><a href="#25-不要让名字空间及类具有相同的名称。" class="headerlink" title="25.不要让名字空间及类具有相同的名称。"></a>25.不要让名字空间及类具有相同的名称。</h4><p>例如：不要在一个名为Debug的名字空间中同时提供一个名为Debug的类。</p>
+<h3 id="2-5-2-名字空间及类型的名字冲突"><a href="#2-5-2-名字空间及类型的名字冲突" class="headerlink" title="2.5.2.名字空间及类型的名字冲突"></a>2.5.2.名字空间及类型的名字冲突</h3><p>应尽量避免与已经存在的类库有名字冲突，否则用户将不得不改变程序，并使用限定名称。下面的讨论将与四类名字空间有关：</p>
+<ul>
+<li><p>应用模型名字空间</p>
+<p>  诸如System.Windows.Forms，System.Web等与应用密切相关的名字空间。不同的应用很少同时在一个程序内使用，因此不容易出现冲突。</p>
+</li>
+<li><p>基础名字空间</p>
+<p>  基础应用提供提供特殊支持，并很少在代码中引用。比如：<em>.Designer，</em>.Permissions名字空间。很难出现冲突。</p>
+</li>
+<li><p>核心名字空间</p>
+<p>  核心名字空间是System.*名字空间。开发人员应该尽力，不产生名字冲突。（可以查Document，以识别此名称是否已经存在）</p>
+</li>
+<li><p>技术名字空间</p>
+<p>  技术名字空间一般为Company.Technology.*，应避免与其冲突。</p>
+</li>
+</ul>
+<h4 id="26-不要引入一般类型名称，应该使用限定的一般类型名称。"><a href="#26-不要引入一般类型名称，应该使用限定的一般类型名称。" class="headerlink" title="26.不要引入一般类型名称，应该使用限定的一般类型名称。"></a>26.不要引入一般类型名称，应该使用限定的一般类型名称。</h4><p>例如：Element，Node，Log及Message等。这样很容易产生冲突。</p>
+<p>限定后：FormElement，XmlNode，EventLog，SoapMessage。</p>
+<h4 id="27-不要引入与程序模型名字空间冲突的类型名。"><a href="#27-不要引入与程序模型名字空间冲突的类型名。" class="headerlink" title="27.不要引入与程序模型名字空间冲突的类型名。"></a>27.不要引入与程序模型名字空间冲突的类型名。</h4><p>例如：为Windows Form应用的用户写的控件库，请不要将类型命名为CheckBox，因为此名称已经存在于Windows Form应用中。</p>
+<h4 id="28-不要与核心名字空间名字冲突。"><a href="#28-不要与核心名字空间名字冲突。" class="headerlink" title="28.不要与核心名字空间名字冲突。"></a>28.不要与核心名字空间名字冲突。</h4><p>例如：不要使用Dictionary类型名称，因为它在核心名字空间里存在。</p>
+<h4 id="29-不要在统一的技术名字空间内，使用相同的类名。"><a href="#29-不要在统一的技术名字空间内，使用相同的类名。" class="headerlink" title="29.不要在统一的技术名字空间内，使用相同的类名。"></a>29.不要在统一的技术名字空间内，使用相同的类名。</h4><h2 id="2-6-类、结构、接口命名"><a href="#2-6-类、结构、接口命名" class="headerlink" title="2.6.类、结构、接口命名"></a>2.6.类、结构、接口命名</h2><h3 id="2-6-1-一般规则"><a href="#2-6-1-一般规则" class="headerlink" title="2.6.1.一般规则"></a>2.6.1.一般规则</h3><h4 id="30-类型使用名词、名词短语或形容词短语，名称应反映使用场景。"><a href="#30-类型使用名词、名词短语或形容词短语，名称应反映使用场景。" class="headerlink" title="30.类型使用名词、名词短语或形容词短语，名称应反映使用场景。"></a>30.类型使用名词、名词短语或形容词短语，名称应反映使用场景。</h4><h4 id="31-类名称不要加前缀（比如C、T）。（注：Delphi等语言的约定）"><a href="#31-类名称不要加前缀（比如C、T）。（注：Delphi等语言的约定）" class="headerlink" title="31.类名称不要加前缀（比如C、T）。（注：Delphi等语言的约定）"></a>31.类名称不要加前缀（比如C、T）。（注：Delphi等语言的约定）</h4><h4 id="32-考虑子类采用基类名称作为后缀。"><a href="#32-考虑子类采用基类名称作为后缀。" class="headerlink" title="32.考虑子类采用基类名称作为后缀。"></a>32.考虑子类采用基类名称作为后缀。</h4><p>例如：从Stream继承的类，采用Stream作为后缀。</p>
+<p>例如：从Exception继承的类，采用Exception作为后缀。</p>
+<h4 id="33-接口前面都加字母“I”前缀"><a href="#33-接口前面都加字母“I”前缀" class="headerlink" title="33.接口前面都加字母“I”前缀"></a>33.接口前面都加字母“I”前缀</h4><h4 id="34-当定义接口-类对时，接口的默认实现类名称与接口名称只有前缀I有差别。"><a href="#34-当定义接口-类对时，接口的默认实现类名称与接口名称只有前缀I有差别。" class="headerlink" title="34.当定义接口/类对时，接口的默认实现类名称与接口名称只有前缀I有差别。"></a>34.当定义接口/类对时，接口的默认实现类名称与接口名称只有前缀I有差别。</h4><p>例如：IAsynResult的默认实现名称为AsynResult。</p>
+<h3 id="2-6-2-范型参数命名"><a href="#2-6-2-范型参数命名" class="headerlink" title="2.6.2.范型参数命名"></a>2.6.2.范型参数命名</h3><h4 id="35-范型参数应使用有描述性名称，除非单个字母足够且描述性名称并不增加什么价值。"><a href="#35-范型参数应使用有描述性名称，除非单个字母足够且描述性名称并不增加什么价值。" class="headerlink" title="35.范型参数应使用有描述性名称，除非单个字母足够且描述性名称并不增加什么价值。"></a>35.范型参数应使用有描述性名称，除非单个字母足够且描述性名称并不增加什么价值。</h4><p>例如：IDictionary&lt;TKey,TValue&gt;。</p>
+<h4 id="36-需要使用单字母命名类型参数的时候，使用字母“T”。"><a href="#36-需要使用单字母命名类型参数的时候，使用字母“T”。" class="headerlink" title="36.需要使用单字母命名类型参数的时候，使用字母“T”。"></a>36.需要使用单字母命名类型参数的时候，使用字母“T”。</h4><h4 id="37-类型参数前缀加字母“T”。"><a href="#37-类型参数前缀加字母“T”。" class="headerlink" title="37.类型参数前缀加字母“T”。"></a>37.类型参数前缀加字母“T”。</h4><p>例如：TKey。</p>
+<h4 id="38-考虑在范型参数名称中加入类型约束。"><a href="#38-考虑在范型参数名称中加入类型约束。" class="headerlink" title="38.考虑在范型参数名称中加入类型约束。"></a>38.考虑在范型参数名称中加入类型约束。</h4><p>例如：参数限制为ISession的，应被命名为TSession。</p>
+<h3 id="2-6-3-一般类型命名"><a href="#2-6-3-一般类型命名" class="headerlink" title="2.6.3.一般类型命名"></a>2.6.3.一般类型命名</h3><p>下面规则，通过前后缀，帮助开发人员识别类的特定使用情景。</p>
+<h4 id="39-自定义属性，需要加后缀Attribute。"><a href="#39-自定义属性，需要加后缀Attribute。" class="headerlink" title="39.自定义属性，需要加后缀Attribute。"></a>39.自定义属性，需要加后缀Attribute。</h4><p>例如：ObsoleteAttribute。</p>
+<h4 id="40-在事件（event）中使用的类型，需要加后缀EventHandler。"><a href="#40-在事件（event）中使用的类型，需要加后缀EventHandler。" class="headerlink" title="40.在事件（event）中使用的类型，需要加后缀EventHandler。"></a>40.在事件（event）中使用的类型，需要加后缀EventHandler。</h4><p>例如：AssemblyLoadEventHandler</p>
+<h4 id="41-不用于事件的委托-delegate-类型，需要加后缀Callback。"><a href="#41-不用于事件的委托-delegate-类型，需要加后缀Callback。" class="headerlink" title="41.不用于事件的委托(delegate)类型，需要加后缀Callback。"></a>41.不用于事件的委托(delegate)类型，需要加后缀Callback。</h4><h4 id="42-继承System-EventArgs的类，需要加后缀EventArgs。"><a href="#42-继承System-EventArgs的类，需要加后缀EventArgs。" class="headerlink" title="42.继承System.EventArgs的类，需要加后缀EventArgs。"></a>42.继承System.EventArgs的类，需要加后缀EventArgs。</h4><h4 id="43-继承System-Exception的类，需要加后缀Exception。"><a href="#43-继承System-Exception的类，需要加后缀Exception。" class="headerlink" title="43.继承System.Exception的类，需要加后缀Exception。"></a>43.继承System.Exception的类，需要加后缀Exception。</h4><h4 id="44-实现System-Collecions-IDictionary接口的类，需要加后缀Dictionary。"><a href="#44-实现System-Collecions-IDictionary接口的类，需要加后缀Dictionary。" class="headerlink" title="44.实现System.Collecions.IDictionary接口的类，需要加后缀Dictionary。"></a>44.实现System.Collecions.IDictionary接口的类，需要加后缀Dictionary。</h4><h4 id="45-实现System-Collections-ICollection-IList-IEnumerable-接口的类，需要加后缀Collection。"><a href="#45-实现System-Collections-ICollection-IList-IEnumerable-接口的类，需要加后缀Collection。" class="headerlink" title="45.实现System.Collections.(ICollection|IList|IEnumerable)接口的类，需要加后缀Collection。"></a>45.实现System.Collections.(ICollection|IList|IEnumerable)接口的类，需要加后缀Collection。</h4><h4 id="46-继承System-IO-Stream的类，需要加后缀Stream。"><a href="#46-继承System-IO-Stream的类，需要加后缀Stream。" class="headerlink" title="46.继承System.IO.Stream的类，需要加后缀Stream。"></a>46.继承System.IO.Stream的类，需要加后缀Stream。</h4><h4 id="47-继承System-Security-CodeAccessPermission的类，需要加后缀Permission。"><a href="#47-继承System-Security-CodeAccessPermission的类，需要加后缀Permission。" class="headerlink" title="47.继承System.Security.CodeAccessPermission的类，需要加后缀Permission。"></a>47.继承System.Security.CodeAccessPermission的类，需要加后缀Permission。</h4><h3 id="2-6-4-枚举命名"><a href="#2-6-4-枚举命名" class="headerlink" title="2.6.4.枚举命名"></a>2.6.4.枚举命名</h3><h4 id="48-不要在枚举值前加前缀。"><a href="#48-不要在枚举值前加前缀。" class="headerlink" title="48.不要在枚举值前加前缀。"></a>48.不要在枚举值前加前缀。</h4><p>例如：不要写成如下形式</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Teams</span><br><span class="line">&#123;</span><br><span class="line">    TeamsAlpha,</span><br><span class="line">    TeamsBeta,</span><br><span class="line">    TeamsDelta</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>应该写为：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Teams</span><br><span class="line">&#123;</span><br><span class="line">    Alpha,</span><br><span class="line">    Beta,</span><br><span class="line">    Delta</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="49-不要在枚举类型加后缀Enum。"><a href="#49-不要在枚举类型加后缀Enum。" class="headerlink" title="49.不要在枚举类型加后缀Enum。"></a>49.不要在枚举类型加后缀Enum。</h4><h4 id="50-不要在Flags枚举类型加后缀Flags。"><a href="#50-不要在Flags枚举类型加后缀Flags。" class="headerlink" title="50.不要在Flags枚举类型加后缀Flags。"></a>50.不要在Flags枚举类型加后缀Flags。</h4><h4 id="51-用单数词作为枚举名称，除非它是Flags枚举类型。"><a href="#51-用单数词作为枚举名称，除非它是Flags枚举类型。" class="headerlink" title="51.用单数词作为枚举名称，除非它是Flags枚举类型。"></a>51.用单数词作为枚举名称，除非它是Flags枚举类型。</h4><h4 id="52-用复数词作为Flags枚举类型。"><a href="#52-用复数词作为Flags枚举类型。" class="headerlink" title="52.用复数词作为Flags枚举类型。"></a>52.用复数词作为Flags枚举类型。</h4><h2 id="2-7-类成员命名"><a href="#2-7-类成员命名" class="headerlink" title="2.7.类成员命名"></a>2.7.类成员命名</h2><h3 id="2-7-1-方法命名"><a href="#2-7-1-方法命名" class="headerlink" title="2.7.1.方法命名"></a>2.7.1.方法命名</h3><h4 id="53-方法名称应为动词或动词短语。"><a href="#53-方法名称应为动词或动词短语。" class="headerlink" title="53.方法名称应为动词或动词短语。"></a>53.方法名称应为动词或动词短语。</h4><p>应从使用者的角度命名，选择描述函数做什么的动词，而不是怎么做的动词。</p>
+<h3 id="2-7-2-属性命名"><a href="#2-7-2-属性命名" class="headerlink" title="2.7.2.属性命名"></a>2.7.2.属性命名</h3><h4 id="54-属性采用名词、名词短语或形容词命名。"><a href="#54-属性采用名词、名词短语或形容词命名。" class="headerlink" title="54.属性采用名词、名词短语或形容词命名。"></a>54.属性采用名词、名词短语或形容词命名。</h4><h4 id="55-不要让属性名称与Get方法的名称相匹配。"><a href="#55-不要让属性名称与Get方法的名称相匹配。" class="headerlink" title="55.不要让属性名称与Get方法的名称相匹配。"></a>55.不要让属性名称与Get方法的名称相匹配。</h4><p>例如：属性名为EmployeeRecord，同时有个方法名为GetEmployeeRecord。使用者将无从选择。</p>
+<h4 id="56-布尔类型属性，采用肯定语气命名。使用Is-Can或Has作前缀，如果他们能增加清晰性。"><a href="#56-布尔类型属性，采用肯定语气命名。使用Is-Can或Has作前缀，如果他们能增加清晰性。" class="headerlink" title="56.布尔类型属性，采用肯定语气命名。使用Is,Can或Has作前缀，如果他们能增加清晰性。"></a>56.布尔类型属性，采用肯定语气命名。使用Is,Can或Has作前缀，如果他们能增加清晰性。</h4><p>例如：使用CanSeek而不是CantSeek。</p>
+<h4 id="57-考虑属性使用与其类型相同的名称。"><a href="#57-考虑属性使用与其类型相同的名称。" class="headerlink" title="57.考虑属性使用与其类型相同的名称。"></a>57.考虑属性使用与其类型相同的名称。</h4><p>例如：属性类型为CacheLevel，其名称也为CacheLevel。</p>
+<h3 id="2-7-3-事件命名"><a href="#2-7-3-事件命名" class="headerlink" title="2.7.3.事件命名"></a>2.7.3.事件命名</h3><h4 id="58-事件采用动词或动词短语命名。"><a href="#58-事件采用动词或动词短语命名。" class="headerlink" title="58.事件采用动词或动词短语命名。"></a>58.事件采用动词或动词短语命名。</h4><h4 id="59-让事件名称拥有前后的事件概念，采用现在进行时或过去时。"><a href="#59-让事件名称拥有前后的事件概念，采用现在进行时或过去时。" class="headerlink" title="59.让事件名称拥有前后的事件概念，采用现在进行时或过去时。"></a>59.让事件名称拥有前后的事件概念，采用现在进行时或过去时。</h4><p>例如：在窗口关闭之前的事件，被称为Closing。</p>
+<p>例如：在窗口关闭之后的事件，被称为Closed。</p>
+<h4 id="60-不要在事件名称中使用Before、After前缀或后缀，来标示前后事件。"><a href="#60-不要在事件名称中使用Before、After前缀或后缀，来标示前后事件。" class="headerlink" title="60.不要在事件名称中使用Before、After前缀或后缀，来标示前后事件。"></a>60.不要在事件名称中使用Before、After前缀或后缀，来标示前后事件。</h4><h4 id="61-使用两个参数Sender，e作为事件处理参数。Sender类型为object，e类型为EventArs或其继承类型。"><a href="#61-使用两个参数Sender，e作为事件处理参数。Sender类型为object，e类型为EventArs或其继承类型。" class="headerlink" title="61.使用两个参数Sender，e作为事件处理参数。Sender类型为object，e类型为EventArs或其继承类型。"></a>61.使用两个参数Sender，e作为事件处理参数。Sender类型为object，e类型为EventArs或其继承类型。</h4><h4 id="62-EventHandler，EventArgs相关命名见一般类型命名。"><a href="#62-EventHandler，EventArgs相关命名见一般类型命名。" class="headerlink" title="62.EventHandler，EventArgs相关命名见一般类型命名。"></a>62.EventHandler，EventArgs相关命名见一般类型命名。</h4><h3 id="2-7-4-字段命名"><a href="#2-7-4-字段命名" class="headerlink" title="2.7.4.字段命名"></a>2.7.4.字段命名</h3><h4 id="63-采用名词或名词短语命名。"><a href="#63-采用名词或名词短语命名。" class="headerlink" title="63.采用名词或名词短语命名。"></a>63.采用名词或名词短语命名。</h4><h2 id="2-8-参数命名"><a href="#2-8-参数命名" class="headerlink" title="2.8.参数命名"></a>2.8.参数命名</h2><h4 id="64-使用描述性的名称。在大多数情形下，参数类型及其名称，应能确定参数的用途。"><a href="#64-使用描述性的名称。在大多数情形下，参数类型及其名称，应能确定参数的用途。" class="headerlink" title="64.使用描述性的名称。在大多数情形下，参数类型及其名称，应能确定参数的用途。"></a>64.使用描述性的名称。在大多数情形下，参数类型及其名称，应能确定参数的用途。</h4><h4 id="65-命名应该基于参数的含义而不是类型。"><a href="#65-命名应该基于参数的含义而不是类型。" class="headerlink" title="65.命名应该基于参数的含义而不是类型。"></a>65.命名应该基于参数的含义而不是类型。</h4><h1 id="3-函数编码"><a href="#3-函数编码" class="headerlink" title="3.函数编码"></a>3.函数编码</h1><p>为了增强程序清晰新、可读性，应遵循以下规定。</p>
+<h2 id="3-1-空格、空行与缩进的使用"><a href="#3-1-空格、空行与缩进的使用" class="headerlink" title="3.1.空格、空行与缩进的使用"></a>3.1.空格、空行与缩进的使用</h2><h4 id="66-函数参数在”-”后需要空格。"><a href="#66-函数参数在”-”后需要空格。" class="headerlink" title="66.函数参数在”,”后需要空格。"></a>66.函数参数在”,”后需要空格。</h4><p>例如：Function(param1, param2, param3);</p>
+<h4 id="67-各种双目操作符，比如“-”、“-lt-“等，前后需要有空格。"><a href="#67-各种双目操作符，比如“-”、“-lt-“等，前后需要有空格。" class="headerlink" title="67.各种双目操作符，比如“=”、“&lt;“等，前后需要有空格。"></a>67.各种双目操作符，比如“=”、“&lt;“等，前后需要有空格。</h4><h4 id="68-if-while等关键字后面需要有空格。"><a href="#68-if-while等关键字后面需要有空格。" class="headerlink" title="68.if, while等关键字后面需要有空格。"></a>68.if, while等关键字后面需要有空格。</h4><h4 id="69-每次使用嵌套，嵌套体的所有内容必须缩进，使用Tab作为缩进符号。"><a href="#69-每次使用嵌套，嵌套体的所有内容必须缩进，使用Tab作为缩进符号。" class="headerlink" title="69.每次使用嵌套，嵌套体的所有内容必须缩进，使用Tab作为缩进符号。"></a>69.每次使用嵌套，嵌套体的所有内容必须缩进，使用Tab作为缩进符号。</h4><h4 id="70-每个函数之间空两行。"><a href="#70-每个函数之间空两行。" class="headerlink" title="70.每个函数之间空两行。"></a>70.每个函数之间空两行。</h4><h4 id="71-适当的增加空行，以区分方法内的大块逻辑。"><a href="#71-适当的增加空行，以区分方法内的大块逻辑。" class="headerlink" title="71.适当的增加空行，以区分方法内的大块逻辑。"></a>71.适当的增加空行，以区分方法内的大块逻辑。</h4><p>有时候在同一个方法中有明显的程序功能归组情况，而又不需要划分到单独的方法，此时应当用空行加以区分，并加注释。</p>
+<h2 id="3-2-一般编码约定"><a href="#3-2-一般编码约定" class="headerlink" title="3.2.一般编码约定"></a>3.2.一般编码约定</h2><h4 id="72-代码行数不应超过80行。（不超出两屏长度）"><a href="#72-代码行数不应超过80行。（不超出两屏长度）" class="headerlink" title="72.代码行数不应超过80行。（不超出两屏长度）"></a>72.代码行数不应超过80行。（不超出两屏长度）</h4><p>行数过多的代码不易于阅读，这也说明了模块化分可能存在问题。应该考虑将一个大的方法体拆分为更小的方法，以增加代码的清晰性。</p>
+<h4 id="73-一个代码行长度不应超过80个字符。（不超出一屏宽度）"><a href="#73-一个代码行长度不应超过80个字符。（不超出一屏宽度）" class="headerlink" title="73.一个代码行长度不应超过80个字符。（不超出一屏宽度）"></a>73.一个代码行长度不应超过80个字符。（不超出一屏宽度）</h4><p>过长的代码行不易于阅读，当一行的确需要写很长时，应当折行书写。</p>
+<h4 id="74-一般情况下不可以使用goto语句，除非goto能够加强程序的清晰性。"><a href="#74-一般情况下不可以使用goto语句，除非goto能够加强程序的清晰性。" class="headerlink" title="74. 一般情况下不可以使用goto语句，除非goto能够加强程序的清晰性。"></a>74. 一般情况下不可以使用goto语句，除非goto能够加强程序的清晰性。</h4><p>有时需要一次跳出多层循环，使用goto更为清晰。</p>
+<h4 id="75-诸如for、if、foreach、while等嵌套层数不要超过3层，try-catch除外。"><a href="#75-诸如for、if、foreach、while等嵌套层数不要超过3层，try-catch除外。" class="headerlink" title="75.诸如for、if、foreach、while等嵌套层数不要超过3层，try-catch除外。"></a>75.诸如for、if、foreach、while等嵌套层数不要超过3层，try-catch除外。</h4><p>主体逻辑代码嵌套过深，不易于阅读及理解。这也说明了逻辑或模块化分可能存在问题。应考虑修改逻辑，或将嵌套内的程序划分到一个更小的方法中。以增加清晰性。</p>
+<h4 id="76-变量在离其最近使用的地方声明。"><a href="#76-变量在离其最近使用的地方声明。" class="headerlink" title="76.变量在离其最近使用的地方声明。"></a>76.变量在离其最近使用的地方声明。</h4><p>不要采用C或Pascal等语言在函数开头声明参数的方式。应该在使用时声明。</p>
+<h4 id="77-同一个类型的不同方法中不要出现重复代码。"><a href="#77-同一个类型的不同方法中不要出现重复代码。" class="headerlink" title="77.同一个类型的不同方法中不要出现重复代码。"></a>77.同一个类型的不同方法中不要出现重复代码。</h4><p>同一个类型的不同方法中出现大块的重复性代码，说明模块划分出现了问题，应当将重复性的代码划分到一个更小的方法中。以增加清晰性。</p>
+<h1 id="4-异常处理"><a href="#4-异常处理" class="headerlink" title="4.异常处理"></a>4.异常处理</h1><h4 id="78-在框架代码中，不要通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。"><a href="#78-在框架代码中，不要通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。" class="headerlink" title="78.在框架代码中，不要通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。"></a>78.在框架代码中，不要通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。</h4><p>你可以捕获上述的异常，如果捕获的目的是重新抛出异常，或将异常交给其他线程处理。下面展示了一个错误处理的例子：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BadExceptionHandlingExample1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DoWork</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 做一些可能抛出异常的工作</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MethodWithBadHandler</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">try</span> </span><br><span class="line">        &#123;</span><br><span class="line">            DoWork();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 淹没了异常并继续执行</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="79-在应用代码中，避免通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。有些情况下在应用中淹没错误是可以接受的，但是这种情况很少见。"><a href="#79-在应用代码中，避免通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。有些情况下在应用中淹没错误是可以接受的，但是这种情况很少见。" class="headerlink" title="79.在应用代码中，避免通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。有些情况下在应用中淹没错误是可以接受的，但是这种情况很少见。"></a>79.在应用代码中，避免通过捕获非特定异常的方式（如：Exception、SystemException），淹没（swallow）错误。有些情况下在应用中淹没错误是可以接受的，但是这种情况很少见。</h4><p>应用程序不应淹没可能造成意外状态的异常，如果你不能确认所有异常造成的可能结果，你应当让程序终止而不是淹没异常。</p>
+<h4 id="80-捕获特定的异常，如果你理解为什么它会从给定的上下文中抛出。"><a href="#80-捕获特定的异常，如果你理解为什么它会从给定的上下文中抛出。" class="headerlink" title="80.捕获特定的异常，如果你理解为什么它会从给定的上下文中抛出。"></a>80.捕获特定的异常，如果你理解为什么它会从给定的上下文中抛出。</h4><p>你应该只捕获那些你可以恢复的异常。例如：打开不存在文件造成的FileNotFoundException可以被应用程序处理，因为它可以将问题告知用户，并让用户设置其他文件名。而打开文件请求抛出的ExcutionEngineException不应当被处理，因为低层发生的问题无法被知晓，并且应用程序也不能确认继续运行是否安全。</p>
+<h4 id="81-不要过度使用catch。异常应当尽可能向调用堆栈上层传递。"><a href="#81-不要过度使用catch。异常应当尽可能向调用堆栈上层传递。" class="headerlink" title="81.不要过度使用catch。异常应当尽可能向调用堆栈上层传递。"></a>81.不要过度使用catch。异常应当尽可能向调用堆栈上层传递。</h4><p>捕获无法正确处理的异常，会隐藏重要的调试信息。</p>
+<h4 id="82-将清理代码放在finally块中，而不是catch块中。对于书写优良的代码，try-finally比try-catch更为常见。"><a href="#82-将清理代码放在finally块中，而不是catch块中。对于书写优良的代码，try-finally比try-catch更为常见。" class="headerlink" title="82.将清理代码放在finally块中，而不是catch块中。对于书写优良的代码，try-finally比try-catch更为常见。"></a>82.将清理代码放在finally块中，而不是catch块中。对于书写优良的代码，try-finally比try-catch更为常见。</h4><p>catch的目的是为了让你处理异常（例如，记录非致命错误）。finally的目的是为了让你执行清理代码而不管异常是否抛出。如果你分配了有限的资源，比如数据库联接或stream，你应当将释放它们的代码放在finally块中。</p>
+<h4 id="83-当捕获并重新抛出异常时，使用空的throw。这是保存调用堆栈的最好的方法。"><a href="#83-当捕获并重新抛出异常时，使用空的throw。这是保存调用堆栈的最好的方法。" class="headerlink" title="83.当捕获并重新抛出异常时，使用空的throw。这是保存调用堆栈的最好的方法。"></a>83.当捕获并重新抛出异常时，使用空的throw。这是保存调用堆栈的最好的方法。</h4><p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MethodWithBadCatch</span>(<span class="params">Object anObject</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span> </span><br><span class="line">    &#123;</span><br><span class="line">	    <span class="comment">// 引起异常的方法</span></span><br><span class="line">        DoWork(anObject);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (ArgumentNullException e)</span><br><span class="line">    &#123;</span><br><span class="line">        System.Diagnostics.Debug.Write(e.Message);</span><br><span class="line">        <span class="comment">// 这样是错误的</span></span><br><span class="line">        <span class="comment">// 会造成跟踪堆栈指向此处为错误地址，而非指向DoWork。</span></span><br><span class="line">        <span class="keyword">throw</span> e; </span><br><span class="line">        <span class="comment">// 应该直接写成</span></span><br><span class="line">        <span class="comment">// throw;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-注释规范"><a href="#5-注释规范" class="headerlink" title="5.注释规范"></a>5.注释规范</h1><h2 id="5-1-C-标准-注释的使用"><a href="#5-1-C-标准-注释的使用" class="headerlink" title="5.1.C#标准///注释的使用"></a>5.1.C#标准///注释的使用</h2><h4 id="84-每个类必须注释，采用C-标准-注释，并在Summary中写明此类的主要功能，根据需要在Remark中进行详细描述，如关键设计思路。"><a href="#84-每个类必须注释，采用C-标准-注释，并在Summary中写明此类的主要功能，根据需要在Remark中进行详细描述，如关键设计思路。" class="headerlink" title="84.每个类必须注释，采用C#标准///注释，并在Summary中写明此类的主要功能，根据需要在Remark中进行详细描述，如关键设计思路。"></a>84.每个类必须注释，采用C#标准///注释，并在Summary中写明此类的主要功能，根据需要在Remark中进行详细描述，如关键设计思路。</h4><h4 id="85-每个属性必须注释，采用C-标准-注释，并在Summary中写明此属性的含义。"><a href="#85-每个属性必须注释，采用C-标准-注释，并在Summary中写明此属性的含义。" class="headerlink" title="85.每个属性必须注释，采用C#标准///注释，并在Summary中写明此属性的含义。"></a>85.每个属性必须注释，采用C#标准///注释，并在Summary中写明此属性的含义。</h4><h4 id="86-每个方法必须注释，采用C-标准-注释，并在Summary中写明此函数主要功能。根据需要在Remark中进行详细描述。"><a href="#86-每个方法必须注释，采用C-标准-注释，并在Summary中写明此函数主要功能。根据需要在Remark中进行详细描述。" class="headerlink" title="86.每个方法必须注释，采用C#标准///注释，并在Summary中写明此函数主要功能。根据需要在Remark中进行详细描述。"></a>86.每个方法必须注释，采用C#标准///注释，并在Summary中写明此函数主要功能。根据需要在Remark中进行详细描述。</h4><h2 id="5-2-一般注释"><a href="#5-2-一般注释" class="headerlink" title="5.2.一般注释"></a>5.2.一般注释</h2><h4 id="87-当代码无法通过直接阅读而清晰获理解它的功能的时候，需要加注释。"><a href="#87-当代码无法通过直接阅读而清晰获理解它的功能的时候，需要加注释。" class="headerlink" title="87.当代码无法通过直接阅读而清晰获理解它的功能的时候，需要加注释。"></a>87.当代码无法通过直接阅读而清晰获理解它的功能的时候，需要加注释。</h4><p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (password == “<span class="number">12345</span>”) <span class="comment">// 这是超级密码，通过后拥有管理员权限</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="88-当一段代码有单一目的，而没有分隔为一个函数的时候，用注释标明分段功能。"><a href="#88-当一段代码有单一目的，而没有分隔为一个函数的时候，用注释标明分段功能。" class="headerlink" title="88.当一段代码有单一目的，而没有分隔为一个函数的时候，用注释标明分段功能。"></a>88.当一段代码有单一目的，而没有分隔为一个函数的时候，用注释标明分段功能。</h4><p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加用户</span></span><br><span class="line">Line1;</span><br><span class="line">Line2;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加用户组</span></span><br><span class="line">Line1;</span><br><span class="line">Line2;</span><br></pre></td></tr></table></figure>
+
+<h4 id="89-当一个嵌套很长，或者有多个嵌套时，需要在结尾加上注释。"><a href="#89-当一个嵌套很长，或者有多个嵌套时，需要在结尾加上注释。" class="headerlink" title="89.当一个嵌套很长，或者有多个嵌套时，需要在结尾加上注释。"></a>89.当一个嵌套很长，或者有多个嵌套时，需要在结尾加上注释。</h4><p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> （a &gt; b）</span><br><span class="line">&#123;</span><br><span class="line">    ......</span><br><span class="line">&#125; <span class="comment">// end if (a &gt; b)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-3-其他注释"><a href="#5-3-其他注释" class="headerlink" title="5.3.其他注释"></a>5.3.其他注释</h2><h4 id="90-在准备添加代码的地方加入-TODO-注释。"><a href="#90-在准备添加代码的地方加入-TODO-注释。" class="headerlink" title="90.在准备添加代码的地方加入//TODO 注释。"></a>90.在准备添加代码的地方加入//TODO 注释。</h4><h4 id="91-类似功能的一组函数，需要用-region来包围起来，并做说明。"><a href="#91-类似功能的一组函数，需要用-region来包围起来，并做说明。" class="headerlink" title="91.类似功能的一组函数，需要用#region来包围起来，并做说明。"></a>91.类似功能的一组函数，需要用#region来包围起来，并做说明。</h4><p>例如：一组函数都是和用户帐务操作有关的。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">region</span> 用户帐务操作相关函数</span></span><br><span class="line">Function1;</span><br><span class="line">......</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endregion</span></span></span><br></pre></td></tr></table></figure>
+
+<h1 id="6-日志规范"><a href="#6-日志规范" class="headerlink" title="6.日志规范"></a>6.日志规范</h1><h4 id="92-对于包含方法成员的类，尽可能使用log4net，以方便程序调试。Log成员定义写在类代码的第一行，内容如下："><a href="#92-对于包含方法成员的类，尽可能使用log4net，以方便程序调试。Log成员定义写在类代码的第一行，内容如下：" class="headerlink" title="92.对于包含方法成员的类，尽可能使用log4net，以方便程序调试。Log成员定义写在类代码的第一行，内容如下："></a>92.对于包含方法成员的类，尽可能使用log4net，以方便程序调试。Log成员定义写在类代码的第一行，内容如下：</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);</span><br></pre></td></tr></table></figure>
+
+<h4 id="93-需要加条件判断是否需要记录log，以增加程序性能，除非log直接输出简单字符串。"><a href="#93-需要加条件判断是否需要记录log，以增加程序性能，除非log直接输出简单字符串。" class="headerlink" title="93.需要加条件判断是否需要记录log，以增加程序性能，除非log直接输出简单字符串。"></a>93.需要加条件判断是否需要记录log，以增加程序性能，除非log直接输出简单字符串。</h4><p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log.Debug(“简单字符串”); <span class="comment">// 不需要判断</span></span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (log.IsDebugEnabled) <span class="comment">// 有字符串等操作，需要判断</span></span><br><span class="line">    log.Debug(<span class="string">"成功添加用户:"</span> + user.UserID);</span><br></pre></td></tr></table></figure>
+
+<h4 id="94-日志级别："><a href="#94-日志级别：" class="headerlink" title="94.日志级别："></a>94.日志级别：</h4><ul>
+<li>Fatal级：程序重大错误，以致无法启动或继续运行。</li>
+<li>Error级：程序本身出错，或加载资源错误。注意此错误不是用户造成的错误，比如输入密码错。</li>
+<li>Warning级：用户的一些错误可以记录到此级别，比如用户名密码输入错误。</li>
+<li>Info级：程序运行时，会将log开到这个级别。此级别记录让用户看到的日志信息。比如程序启动，重要配置文件加载，访问某个页面等较大的事件。</li>
+<li>Debug级：琐碎的方法调用过程记录。诸如方法进入、返回，方法内的重要事件。</li>
+</ul>
+<h4 id="95-重要函数（比如Page-Load）记录用时，可使用StopWatch。"><a href="#95-重要函数（比如Page-Load）记录用时，可使用StopWatch。" class="headerlink" title="95.重要函数（比如Page_Load）记录用时，可使用StopWatch。"></a>95.重要函数（比如Page_Load）记录用时，可使用StopWatch。</h4><h4 id="96-公共（public）方法或属性内的日志，需要记录方法或属性名。"><a href="#96-公共（public）方法或属性内的日志，需要记录方法或属性名。" class="headerlink" title="96.公共（public）方法或属性内的日志，需要记录方法或属性名。"></a>96.公共（public）方法或属性内的日志，需要记录方法或属性名。</h4><p>例如：log.Debug(“MethodName 开始准备数据表格”);</p>
+<h4 id="97-公共-public-方法，在方法代码第一行记录日志，标明此方法被调用并记下传入参数。（即进入时记录。）"><a href="#97-公共-public-方法，在方法代码第一行记录日志，标明此方法被调用并记下传入参数。（即进入时记录。）" class="headerlink" title="97.公共(public)方法，在方法代码第一行记录日志，标明此方法被调用并记下传入参数。（即进入时记录。）"></a>97.公共(public)方法，在方法代码第一行记录日志，标明此方法被调用并记下传入参数。（即进入时记录。）</h4><p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AddUser</span>(<span class="params"> <span class="keyword">string</span> userName, <span class="keyword">string</span> password</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (log.IsDebugEnabled)</span><br><span class="line">        log.Debug(“AddUser调用 username:” + userName  + “, password:” + password);</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="98-公共-public-方法返回前，记录日志，标明此方法结束并记下返回结果。如果返回内容过于复杂，比如为DataSet，可以简单记录其特征（记录数）。如果没有返回结果，比如void方法，直接标明返回即可。（即返回时记录。）"><a href="#98-公共-public-方法返回前，记录日志，标明此方法结束并记下返回结果。如果返回内容过于复杂，比如为DataSet，可以简单记录其特征（记录数）。如果没有返回结果，比如void方法，直接标明返回即可。（即返回时记录。）" class="headerlink" title="98.公共(public)方法返回前，记录日志，标明此方法结束并记下返回结果。如果返回内容过于复杂，比如为DataSet，可以简单记录其特征（记录数）。如果没有返回结果，比如void方法，直接标明返回即可。（即返回时记录。）"></a>98.公共(public)方法返回前，记录日志，标明此方法结束并记下返回结果。如果返回内容过于复杂，比如为DataSet，可以简单记录其特征（记录数）。如果没有返回结果，比如void方法，直接标明返回即可。（即返回时记录。）</h4><p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log.Debug(“AddUser 成功返回”);</span><br></pre></td></tr></table></figure>
+
+<h4 id="99-在捕获异常时，需要记录日志，以及异常内容。（即截获异常时记录。）"><a href="#99-在捕获异常时，需要记录日志，以及异常内容。（即截获异常时记录。）" class="headerlink" title="99.在捕获异常时，需要记录日志，以及异常内容。（即截获异常时记录。）"></a>99.在捕获异常时，需要记录日志，以及异常内容。（即截获异常时记录。）</h4><p>例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">catch</span>(Exception ex)</span><br><span class="line">    log.Debug(“AddUser出错”, ex);</span><br></pre></td></tr></table></figure>
+
+<h4 id="100-在方法内有重要逻辑过程需要记录时，记录日志。（即重要逻辑记录。）"><a href="#100-在方法内有重要逻辑过程需要记录时，记录日志。（即重要逻辑记录。）" class="headerlink" title="100.在方法内有重要逻辑过程需要记录时，记录日志。（即重要逻辑记录。）"></a>100.在方法内有重要逻辑过程需要记录时，记录日志。（即重要逻辑记录。）</h4><h4 id="101-在对外提供接口，而接口实现组件可由第三方开发时。需要在接口调用前后记录日志。（即三方组件调用时记录。）"><a href="#101-在对外提供接口，而接口实现组件可由第三方开发时。需要在接口调用前后记录日志。（即三方组件调用时记录。）" class="headerlink" title="101.在对外提供接口，而接口实现组件可由第三方开发时。需要在接口调用前后记录日志。（即三方组件调用时记录。）"></a>101.在对外提供接口，而接口实现组件可由第三方开发时。需要在接口调用前后记录日志。（即三方组件调用时记录。）</h4><p>此条规则可以帮助我们迅速定位第三方错误，而不会因为两方都未正确记录日志而纠缠不清。</p>
+<h4 id="102-最外层代码（如Page-Load）要在最外层写try-catch-Excpetion-的代码，并记录异常。如果不知道如何处理，直接throw。"><a href="#102-最外层代码（如Page-Load）要在最外层写try-catch-Excpetion-的代码，并记录异常。如果不知道如何处理，直接throw。" class="headerlink" title="102.最外层代码（如Page_Load）要在最外层写try,catch(Excpetion)的代码，并记录异常。如果不知道如何处理，直接throw。"></a>102.最外层代码（如Page_Load）要在最外层写try,catch(Excpetion)的代码，并记录异常。如果不知道如何处理，直接throw。</h4>
+      
+       <hr><span style="font-style: italic;color: gray;"> 免责声明：本页面内容均来源于站内编辑发布，部分信息来源互联网，并不意味着本站赞同其观点或者证实其内容的真实性，如涉及版权等问题，请立即联系客服进行更改或删除，保证您的合法权益。转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。也可以邮件至 sblig@126.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+<h2>推荐阅读:</h2>
+<ul class="list-paddingleft-2" style="list-style-type: disc;" id="pushtsua_recommend_list">
+</ul>
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>C#编码规范</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="知识铺">知识铺</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-22, 13:16:37</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-22, 13:16:46</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="https://blog.zshipu.com/tlg/2019/11/22/C-编码规范/" title="C#编码规范">https://blog.zshipu.com/tlg/2019/11/22/C-编码规范/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    //去除尾部匹配正则数组的字符串
+    String.prototype.trimEnd = function(regStr)
+    {
+        var result = this;
+        if(regStr==undefined||regStr==null||regStr=="")
+        {
+            return result;
+        }
+        var array = regStr.split(',');
+
+        if(array.length > 0){
+
+            var c = array.shift();
+            var str= this;
+            var i = str.length;
+            var rg = new RegExp(c);
+            var matchArr = str.match(rg);
+
+            if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+            {
+                var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                    .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                    .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                    .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                    .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                    .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                    .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                    .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                matchStr = matchStr + '$';
+                result = str.replace(new RegExp(matchStr), "");
+            }
+
+            if(array.length > 0){
+                return result.trimEnd(array.join())
+            }
+            else{
+                return result;
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+    var hreftrimend = '#.*$,\\?.*$,index.html$'
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'ec3adfa1a072fdaa4d91',
+            clientSecret: '7a84a35d6d8bce205398c3d5d7f6ee1ce8e1ab53',
+            repo: 'zspblogcomment',
+            owner: 'liliang8858',
+            admin: ['liliang8858'],
+            id: md5(location.href.trimEnd(hreftrimend)),// decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('20',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278144647&web_id=1278144647"></script>
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://beian.miit.gov.cn">浙 ICP 备19032823号-1</a> |
+					<a class="Footer-item" target="_blank" rel="noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431"><img src="https://zshipu.com/img/ghs.png">浙公网安备 33010602010431号</a>
+					| 知识铺</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/liliang8858/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="https://zshipu.com/tongji/tusa.js"></script>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#go','#web',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/img/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+<!--    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=110 src="//music.163.com/outchain/player?type=0&id=962982601&auto=1&height=90"></iframe>-->
+</div>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5db42fab89870e49"></script>
+
+<div class="site-nav" id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</html>

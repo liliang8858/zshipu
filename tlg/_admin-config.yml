@@ -1,0 +1,7 @@
+options:
+  imagePath: /images
+  imgRoot: 'https:\/\/blog.zshipu.com/tlg'
+  imgUpMsg: 知识铺-
+  lineNumbers: false
+editor:
+  lineNumbers: false

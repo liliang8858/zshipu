@@ -1,0 +1,43 @@
+
+html,body{
+    height: 100%;
+    font-family: vibur;
+    font-size: 52px;
+    background-color: #222;
+}
+
+body{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+b{
+    color: #fee;
+    text-shadow: 0 -40px 100px,
+                 0 0 2px,
+                 0 0 52px #f78fb3,
+                 0 0 26px #f78fb3,
+                 0 0 5px  #f78fb3,
+                 0 10px 3px #000;
+}
+
+b p {
+    letter-spacing: 4px;
+    animation: blink 2s linear infinite ;
+
+}
+
+
+@keyframes blink{
+    78%,81%,83%,93%{
+        color: inherit;
+        text-shadow: inherit;
+    }
+    80%,82%,93%{
+        color: #333;
+        text-shadow: none;
+    }
+}

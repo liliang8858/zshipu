@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <pre>
+        ├── README.MD                       //帮助
+    ├── assets                              //静态资源
+    ├── css                                 //注入js样式
+    │   └── custom.css
+    ├── js
+    │   ├── background
+    │   │   ├── background.js               //背景页js
+    │   │   ├── publish.js                  //发文js
+    │   │   ├── teaConfig.js                //tea统计配置
+    │   │   └── testData.js                 //模拟数据
+    │   ├── content                         //以下为content
+    │   │   ├── baijia                      
+    │   │   │   ├── baijia.js               //百家号注入js
+    │   │   │   ├── copyArticle.js          //百家号复制文章
+    │   │   │   └── copyButton.css          //复制按钮css
+    │   │   ├── btime.js                    //北京时间注入js
+    │   │   ├── dayu.js                     //大鱼注入js
+    │   │   ├── ifeng.js                    //大风注入js
+    │   │   ├── jianmei                 
+    │   │   │   ├── fillCopy.js             //简媒复制文章js
+    │   │   │   ├── jianmedia.js            //插件版本检测
+    │   │   │   ├── jianmediaClearCookies.js    //授权和进入后台添加清除cookie
+    │   │   │   ├── jianmediaErrList.js     //主站首页异常账号提醒
+    │   │   │   ├── listenPulish.js         //检测发文按钮
+    │   │   │   └── videoPublish.js         //检测视频按钮
+    │   │   ├── jianshu
+    │   │   │   ├── copyArticle.js          //简书复制文章
+    │   │   │   └── copyButton.css          //复制文章样式
+    │   │   ├── kuaichuan.js                //快船号注入js
+    │   │   ├── login-qq.js                 //qq登陆页注入
+    │   │   ├── netease.js                  //网易注入js
+    │   │   ├── qq.js                       //qq登陆后页面注入js
+    │   │   ├── qtt                 
+    │   │   │   └── qtt.js                  //趣头条注入js
+    │   │   ├── shimo                       //石墨复制文章 已废弃
+    │   │   │   ├── copyArticle.js
+    │   │   │   └── copyButton.css
+    │   │   ├── sina.js                     //新浪注入js
+    │   │   ├── sohu-create.js              //搜狐其他跳转页注入js
+    │   │   ├── sohu-login.js               //搜狐登陆页注入js
+    │   │   ├── sohu-main.js                //搜狐登陆后页面注入js
+    │   │   ├── toutiao
+    │   │   │   ├── copyButton.css          //头条复制文章按钮样式
+    │   │   │   ├── hideThirdLogin.css      //头条隐藏第三方登陆样式
+    │   │   │   └── toutiao.js              //头条注入js
+    │   │   ├── weibo
+    │   │   │   ├── weibo.css               //微博隐藏第三方按钮样式
+    │   │   │   └── weibo.js                //微博注入js
+    │   │   ├── wx  
+    │   │   │   ├── wxCopyArticle.css       //微信公众号复制文章样式
+    │   │   │   └── wxCopyArticle.js        //微信公众号复制文章js
+    │   │   ├── yidian
+    │   │   │   ├── linktomedia.js          //一点号登陆后跳转到首页js
+    │   │   │   └── yidian.js               //一点号注入js
+    │   │   └── zhihu                       //知乎复制文章，已废弃
+    │   │       ├── copyArticle.js          
+    │   │       └── copyButton.css
+    │   ├── iframe
+    │   │   ├── dayu.js                     //大鱼登陆框iframe注入
+    │   │   ├── ifeng.js                    //大风登陆框iframe注入
+    │   │   └── netease.js                  //大风登陆框iframe注入
+    │   ├── lib                             //第三方库
+    │   │   ├── aes.min.js
+    │   │   ├── copy.js
+    │   │   ├── crc32.js
+    │   │   ├── handlebars.js
+    │   │   ├── jquery-3.2.1.min.js
+    │   │   ├── md5-file.js
+    │   │   ├── sha1-0.js
+    │   │   ├── sha1-1.js
+    │   │   ├── sha1-2.js
+    │   │   ├── sha1-3.js
+    │   │   ├── tea.min.js
+    │   │   └── template-web.js
+    │   └── util
+    │       ├── bg_util.js                  //背景页 传递消息工具类
+    │       └── content_util.js             //注入页 传递消息工具类
+    ├── manifest.json                       //清单文件
+    ├── popup
+    │   ├── css
+    │   │   ├── popup-accounts-wrap.css
+    │   │   ├── popup-login-wrap.css
+    │   │   ├── popup-main-wrap.css
+    │   │   └── popup.css
+    │   ├── img                             //popup静态资源
+    │   │   ├── account_add.png     
+    │   │   ├── default_avatar.png
+    │   │   ├── ic_add.png
+    │   │   ├── ic_help.png
+    │   │   ├── ic_next.png
+    │   │   ├── ic_return.png
+    │   │   ├── im_members.png
+    │   │   ├── im_members2.png
+    │   │   ├── im_weibo.png
+    │   │   ├── login_bg.png
+    │   │   ├── logo.png
+    │   │   ├── progress_normal.png
+    │   │   ├── progress_press.png
+    │   │   ├── tabar_account_normal.png
+    │   │   ├── tabar_account_press.png
+    │   │   ├── tabar_data_normal.png
+    │   │   ├── tabar_data_press.png
+    │   │   ├── tabar_mine_normal.png
+    │   │   └── tabar_mine_press.png
+    │   ├── popup.html                      
+    │   ├── popup.js
+    │   └── teaConfig.js                    //popup中tea统计的封装
+    └── slide                               //简媒首页右侧异常提醒样式和js
+        ├── abnormal
+        │   ├── abnormal.css
+        │   └── abnormal.js
+        ├── installed-logined.js
+        └── installed-nologin.js
+    </pre>
+</body>
+</html>

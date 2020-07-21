@@ -1,0 +1,122 @@
+#jianmei-abnormal p{
+    margin:0px;
+    padding:0px;
+    letter-spacing:0px;
+}
+#jianmei-abnormal{
+    display:none;
+    width:385px;
+    border:1px solid red;
+    position:fixed;
+    top:10px;
+    right:20px;
+    padding:0 20px;
+    background-color:#fff;
+    border:1px solid #aaa;
+    box-shadow:2px 2px 2px #ccc;
+    z-index:10000;
+    /* display: none; */
+}
+#jianmei-abnormal .jianmei-header{
+    height:55px;
+    display:flex;
+    justify-content:space-around;
+    border-bottom:1px solid rgba(108,123,138,.1);
+}
+#jianmei-abnormal .jianmei-header div:nth-child(1){
+    font-size:16px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(34,34,34,1);
+    line-height:55px;
+}
+#jianmei-abnormal .jianmei-header div:nth-child(2){
+    font-size:12px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(236,147,1,1);
+    line-height:55px;
+}
+#jianmei-abnormal .jianmei-footer{
+    display:flex;
+    justify-content:space-between;
+    margin:15px auto;
+}
+#jianmei-abnormal .jianmei-footer img{
+    width:64px;
+    height:20px
+}
+#jianmei-abnormal .jianmei-close{
+    font-size:14px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(93,100,121,1);
+    line-height:20px;
+    cursor:pointer;
+}
+.jianmei-list{
+    overflow-y:scroll;
+    max-height:210px;
+}
+.jianmei-list::-webkit-scrollbar {display:none}
+.jianmei-list .account-list-item{
+    border-bottom: 1px solid rgba(108,123,138,.1);
+    padding-top:15px;
+    padding-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+}
+.jianmei-list .account-list-item.abnormal .r-part p:nth-child(2){
+    color:rgba(255,61,23,1);
+}
+.jianmei-list .account-list-item.abnormal .r-part p:nth-child(2)::before{
+    background-color:rgba(255,61,23,1);
+}
+.jianmei-list .account-list-item .l-part{
+    display:flex;
+    justify-content:space-between;
+}
+.jianmei-list .account-list-item .l-part img.account_img{
+    width:38px;
+    height:38px;
+    display:block;
+    margin-right: 15px;
+}
+.jianmei-list .account-list-item .l-part img.plateform_img{
+    width:14px;
+    height:14px;
+    vertical-align: middle;
+    margin-right:3px;
+    display:inline-block;
+}
+.jianmei-list .account-list-item .l-part .account_name{
+    margin-bottom:5px;
+}
+.jianmei-list .account-list-item .r-part p:nth-child(1){
+    font-size:12px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(65,94,173,1);
+    line-height:20px;
+    cursor: pointer;
+}
+.jianmei-list .account-list-item .r-part p:nth-child(2){
+    font-size:9px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(20,210,184,1);
+    line-height:17px;
+    transform: scale(.8);
+    position:relative;
+    right:-4px;
+}
+.jianmei-list .account-list-item .r-part p:nth-child(2)::before{
+    content:'';
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:rgba(80,227,194,1);
+    border-radius: 50%;
+    left:-10px;
+    top:5px;
+}

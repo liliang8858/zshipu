@@ -1,0 +1,27 @@
+baseurl: "https://blog.zshipu.com/article"
+languageCode: "zh-CN"
+title: "知识铺"
+copyright: "<a class=\"Footer-item\" target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://beian.miit.gov.cn\">浙 ICP 备19032823号-1</a> |<a class=\"Footer-item\" target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602010431\"><img src=\"https://zshipu.com/img/ghs.png\">浙公网安备 33010602010431号</a> | 知识铺 2019."
+theme: "hugo-theme-learn"
+canonifyurls: true
+RSSUri: "feed.xml"
+MetaDataFormat: "yaml"
+hasCJKLanguage: true
+
+taxonomies:
+  tag: "知识铺"
+  category: "知识"
+  doc: "blog"
+
+menu:
+  home:
+    - Name: "文章列表"
+      Weight: 1
+      Identifier: "post"
+      URL: "/post/"
+params:
+  Keywords: "知识，积累，点滴"
+  Description: "欢迎来到灵识-知识铺，打造一款精品的知识体系，有系统的知识体系，有灵魂的知识体系，大家都可参与的知识体系，会思考的知识体系。"
+  analytics: ""
+  themeVariant: "blue"
+

@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+
+	<body>
+		<div class="content content__issue-list">
+
+			<div cn="l.I.sb.filters_div" id="id_l.I.sb.filters_div" class="subcontent issues-sidebar">
+				<div cn="l.I.sb.s.psb.watchFoldersSideBar" id="id_l.I.sb.s.psb.watchFoldersSideBar" class="vert-list active">
+					<a cn="l.I.sb.s.psb.watchFolderSideBarTitle" id="id_l.I.sb.s.psb.watchFolderSideBarTitle" class="vert-list-title" href="javascript:void(0)">
+						<span class="arrow-r_grey"></span>
+						<span class="vert-list-title-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">项目</font></font></span>
+						<span class="  ring-tabs__btn__counter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span>
+					</a>
+					<ul class="vert-list-content">
+						<li class="vert-list-item no-pinned">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">没有固定项目</font>
+							</font>
+						</li>
+						<li class="vert-list-item vert-list-item-toggler ">
+							<a cn="l.I.sb.s.psb.showAll" id="id_l.I.sb.s.psb.showAll" class="more" href="javascript:void(0)">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">
+										47更多</font>
+								</font><span class="more-arrow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">▼</font></font></span>
+
+							</a>
+						</li>
+
+					</ul>
+				</div>
+				<div cn="l.I.sb.s.tsb.watchFoldersSideBar" id="id_l.I.sb.s.tsb.watchFoldersSideBar" class="vert-list ">
+					<a cn="l.I.sb.s.tsb.watchFolderSideBarTitle" id="id_l.I.sb.s.tsb.watchFolderSideBarTitle" class="vert-list-title" href="javascript:void(0)">
+						<span class="arrow-r_grey"></span>
+						<span class="vert-list-title-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">标签</font></font></span>
+						<span class="  ring-tabs__btn__counter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span>
+					</a>
+				</div>
+				<div cn="l.I.sb.s.sqsb.watchFoldersSideBar" id="id_l.I.sb.s.sqsb.watchFoldersSideBar" class="vert-list ">
+					<a cn="l.I.sb.s.sqsb.watchFolderSideBarTitle" id="id_l.I.sb.s.sqsb.watchFolderSideBarTitle" class="vert-list-title" href="javascript:void(0)">
+						<span class="arrow-r_grey"></span>
+						<span class="vert-list-title-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存的搜索</font></font></span>
+						<span class="  ring-tabs__btn__counter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span>
+					</a>
+				</div>
+				<span id="id_l.I.sb.s.ewfd.editWatchFolderDlg"></span>
+				<span id="id_l.I.sb.s.ct.createTagDlg"></span>
+				<span cn="l.I.sb.s.countIssuesTicker" id="id_l.I.sb.s.countIssuesTicker" interval="5000" class="hidden" cname="l.I.sb.s.countIssuesTicker"></span>
+
+				<div cn="l.I.sb.fb.filtersSideBar" id="id_l.I.sb.fb.filtersSideBar" class="vert-list ">
+					<a cn="l.I.sb.fb.filtersSideBarTitleDiv" id="id_l.I.sb.fb.filtersSideBarTitleDiv" class="vert-list-title" yt-analytics="sideBar:filtersToggled" href="javascript:void(0)">
+						<span class="arrow-r_grey"></span>
+						<span class="vert-list-title-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">过滤器</font></font></span>
+					</a>
+					<span cn="l.I.sb.fb.filtersReadyTicker" id="id_l.I.sb.fb.filtersReadyTicker" class="hidden"></span>
+				</div>
+				<span cn="l.I.sb.updateCountsTicker" id="id_l.I.sb.updateCountsTicker" class="hidden"></span>
+
+			</div>
+			<div class="center issues-center">
+				<div cn="l.I.c.issuesContent" id="id_l.I.c.issuesContent">
+					<div id="topToolbarWrapper" class="yt-toolbar issues-toolbar " style="min-height: 0px;">
+						<!--DO NOT  topToolbar parent DIV-->
+						<div cn="l.I.c.tb.topToolbar" id="id_l.I.c.tb.topToolbar" class="" style="">
+							<div class="issues-toolbar_r issues-toolbar_r_guest">
+								<div class="btn-group"><button cn="l.I.c.tb.vm.detailLevelSelect" id="id_l.I.c.tb.vm.detailLevelSelect" class="jt-menu-button ring-btn  view-mode" data-toggle-onclick="true">
+<span class="view_active" data-view-ord="0"></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+树视图</font></font><span class="ring-font-icon ring-font-icon_caret-down ring-font-icon_caret-down_indented yt-icon_caret-down"></span>
+</button>
+									<ul class="jt-menu">
+										<li>
+											<a cn="l.I.c.tb.vm.showHierarchy" id="id_l.I.c.tb.vm.showHierarchy" class="view hierarchy-mode" data-view-ord="0" href="javascript:void(0)">
+												<span class="check-mark"></span>
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														树视图
+
+													</font>
+												</font>
+											</a>
+										</li>
+										<li>
+											<a cn="l.I.c.tb.vm.detailLevelLink" p0="39-0" id="id_l.I.c.tb.vm.detailLevelLink_39_0" class="sb-change-dl-btn view" data-view-ord="10" href="javascript:void(0)">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														单线视图
+													</font>
+												</font>
+											</a>
+										</li>
+										<li>
+											<a cn="l.I.c.tb.vm.detailLevelLink" p0="39-1" id="id_l.I.c.tb.vm.detailLevelLink_39_1" class="sb-change-dl-btn view" data-view-ord="20" href="javascript:void(0)">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														紧凑的视图
+													</font>
+												</font>
+											</a>
+										</li>
+										<li>
+											<a cn="l.I.c.tb.vm.detailLevelLink" p0="39-2" id="id_l.I.c.tb.vm.detailLevelLink_39_2" class="sb-change-dl-btn view" data-view-ord="30" href="javascript:void(0)">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														详细的视图
+													</font>
+												</font>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="ring-btn-group edit-issue-btn">
+									<button cn="l.I.c.tb.printIssues" id="id_l.I.c.tb.printIssues" class="jt-button ring-btn  btn_wide" yt-analytics="topToolBarIssue:print">
+<span class="sb-toolbar-ico print font-icon icon-print"></span>
+</button>
+								</div>
+								<div class="ring-btn-group btn-group_last">
+									<button cn="l.I.c.tb.viewSettings" id="id_l.I.c.tb.viewSettings" class="jt-button ring-btn  btn_wide">
+<span class="sb-toolbar-ico sb-settings-ico font-icon icon-cog"></span>
+</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div cn="l.I.c.il.issueList" id="id_l.I.c.il.issueList" class="issues-wrapper oneLine hierarchyMode ui-sortable">
+						<a cn="l.I.c.il.resetCustomOrder" id="id_l.I.c.il.resetCustomOrder" class="reset-order hidden" href="javascript:void(0)">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">×</font>
+							</font>
+						</a>
+						<span cn="l.I.c.il.resetCustomOrderTip" id="id_l.I.c.il.resetCustomOrderTip" class="sort-action-icon reset-order-tooltip" style="display: none"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+重置自定义订单</font></font><span class="sort-action-arrow"></span>
+						</span>
+						<a cn="l.I.c.il.sbToggler" id="id_l.I.c.il.sbToggler" title="展开/折叠侧边栏（Ctrl + Shift + BACKSPACE）" class="sidebar-toggler" yt-analytics="sideBar:toggleClick" href="javascript:void(0)">
+							<div class="arrow-l-grey sidebar-toggler_arrow "></div>
+						</a>
+						<span id="id_l.I.c.il.sai.messageContent"></span>
+						<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.issueContainer" title="" class="issueContainer   sort-item issue-expanded  h-level-0 issue-selected" iid="25-2302770">
+							<table class="issue-wrp">
+								<tbody>
+									<tr>
+										<td class="issue-details issue-details_nostar">
+											<div class="issue-last-update ">
+												<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.collapse" title="坍方" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+													<span class="issue-toggler-ico"></span>
+												</a>
+
+												<span title="由gregoire waymel于2019年3月28日22:24报道"><span class="user-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">gregoire waymel</font></font></span>
+												</span>
+												<div>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">upd：</font>
+													</font><span class="user-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vitaly Provodin</font></font></span>
+												</div>
+												<div title="由Vitaly Provodin于2019年9月10日06:54更新" class="update-date ">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">
+															2019年9月10日06:54</font>
+													</font>
+												</div>
+											</div>
+
+											<div class="issue-info ">
+												<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1316">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">JBR-1316 </font>
+													</font>
+												</a>
+												<a class="issue-summary" tcd="false" title="打开带有SVG图片的Markdown文件会导致IDEA崩溃[JBR11]" href="/issue/JBR-1316">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">打开带有SVG图片的Markdown文件使IDEA崩溃[JBR11]</font>
+													</font>
+												</a>
+												<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2302770" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.IssueTagsInTitle.tags_25_2302770" class="tag-list tag-list_issues tag-list_expanded  hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+												</div>
+												<div cn="l.I.c.il.ih.i.vi.LinkPanel.linksPanel" p0="25-2302770" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.linksPanel_25_2302770" class="links-panel  ">
+													<ul class="links">
+														<li class="listCaption">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">
+																	涉及到：
+																</font>
+															</font>
+														</li>
+														<li id="link_$l0t__25_2302770_25_2301481" class="">
+															<a cn="l.I.c.il.ih.i.vi.LinkPanel.ol.tl" tp4="25-2302770" tp5="25-2302770" tp8="$l0t__25-2302770_25-2301481" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l0t__25_2302770_25_2301481.tl" class="link" href="/issue/JBR-1317">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">
+																		JBR-1317
+																	</font>
+																</font>
+															</a>
+															<div cn="l.I.c.il.ih.i.vi.LinkPanel.ol.pu" tp4="25-2302770" tp5="25-2302770" tp8="$l0t__25-2302770_25-2301481" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l0t__25_2302770_25_2301481.pu" class="jt-panel popupComponent issueContainer ">
+																<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l0t__25_2302770_25_2301481.p.linkPreview_$l0t__25_2302770_25_2301481"></span>
+																</div>
+															</div>
+														</li>
+
+														<li id="link_$l0t__25_2302770_25_2293297" class="">
+															<a cn="l.I.c.il.ih.i.vi.LinkPanel.ol.tl" tp4="25-2302770" tp5="25-2302770" tp8="$l0t__25-2302770_25-2293297" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l0t__25_2302770_25_2293297.tl" class="link" href="/issue/JBR-1318">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">
+																		JBR-1318
+																	</font>
+																</font>
+															</a>
+															<div cn="l.I.c.il.ih.i.vi.LinkPanel.ol.pu" tp4="25-2302770" tp5="25-2302770" tp8="$l0t__25-2302770_25-2293297" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l0t__25_2302770_25_2293297.pu" class="jt-panel popupComponent issueContainer ">
+																<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l0t__25_2302770_25_2293297.p.linkPreview_$l0t__25_2302770_25_2293297"></span>
+																</div>
+															</div>
+														</li>
+
+														<li id="link_$l0t__25_2302770_25_2248642" class="">
+															<a cn="l.I.c.il.ih.i.vi.LinkPanel.ol.tl" tp4="25-2302770" tp5="25-2302770" tp8="$l0t__25-2302770_25-2248642" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l0t__25_2302770_25_2248642.tl" class="link" href="/issue/JBR-1209">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">
+																		JBR-1209
+																	</font>
+																</font>
+															</a>
+															<div cn="l.I.c.il.ih.i.vi.LinkPanel.ol.pu" tp4="25-2302770" tp5="25-2302770" tp8="$l0t__25-2302770_25-2248642" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l0t__25_2302770_25_2248642.pu" class="jt-panel popupComponent issueContainer ">
+																<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l0t__25_2302770_25_2248642.p.linkPreview_$l0t__25_2302770_25_2248642"></span>
+																</div>
+															</div>
+														</li>
+
+														<li class="moreLinks"></li>
+													</ul>
+													<ul class="links">
+														<li class="listCaption">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">
+																	重复：
+																</font>
+															</font>
+														</li>
+														<li id="link_$l2s__25_2302770_25_2302367" class="resolved">
+															<a cn="l.I.c.il.ih.i.vi.LinkPanel.ol.tl" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2302367" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2302367.tl" class="link" href="/issue/PY-34941">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">
+																		PY-34941
+																	</font>
+																</font>
+															</a>
+															<div cn="l.I.c.il.ih.i.vi.LinkPanel.ol.pu" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2302367" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2302367.pu" class="jt-panel popupComponent issueContainer resolved">
+																<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2302367.p.linkPreview_$l2s__25_2302770_25_2302367"></span>
+																</div>
+															</div>
+														</li>
+
+														<li id="link_$l2s__25_2302770_25_2306524" class="resolved">
+															<a cn="l.I.c.il.ih.i.vi.LinkPanel.ol.tl" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2306524" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2306524.tl" class="link" href="/issue/PY-35056">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">
+																		PY-35056
+																	</font>
+																</font>
+															</a>
+															<div cn="l.I.c.il.ih.i.vi.LinkPanel.ol.pu" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2306524" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2306524.pu" class="jt-panel popupComponent issueContainer resolved">
+																<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2306524.p.linkPreview_$l2s__25_2302770_25_2306524"></span>
+																</div>
+															</div>
+														</li>
+
+														<li id="link_$l2s__25_2302770_25_2309001" class="resolved">
+															<a cn="l.I.c.il.ih.i.vi.LinkPanel.ol.tl" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2309001" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2309001.tl" class="link" href="/issue/PY-35111">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">
+																		PY-35111
+																	</font>
+																</font>
+															</a>
+															<div cn="l.I.c.il.ih.i.vi.LinkPanel.ol.pu" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2309001" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2309001.pu" class="jt-panel popupComponent issueContainer resolved">
+																<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2309001.p.linkPreview_$l2s__25_2302770_25_2309001"></span>
+																</div>
+															</div>
+														</li>
+
+														<li id="link_$l2s__25_2302770_25_2323298" class="resolved">
+															<a cn="l.I.c.il.ih.i.vi.LinkPanel.ol.tl" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2323298" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2323298.tl" class="link" href="/issue/PY-35347">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">
+																		PY-35347
+																	</font>
+																</font>
+															</a>
+															<div cn="l.I.c.il.ih.i.vi.LinkPanel.ol.pu" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2323298" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2323298.pu" class="jt-panel popupComponent issueContainer resolved">
+																<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2323298.p.linkPreview_$l2s__25_2302770_25_2323298"></span>
+																</div>
+															</div>
+														</li>
+
+														<li id="link_$l2s__25_2302770_25_2324748" class="resolved">
+															<a cn="l.I.c.il.ih.i.vi.LinkPanel.ol.tl" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2324748" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2324748.tl" class="link" href="/issue/PY-35377">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">
+																		PY-35377
+																	</font>
+																</font>
+															</a>
+															<div cn="l.I.c.il.ih.i.vi.LinkPanel.ol.pu" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2324748" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2324748.pu" class="jt-panel popupComponent issueContainer resolved">
+																<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2324748.p.linkPreview_$l2s__25_2302770_25_2324748"></span>
+																</div>
+															</div>
+														</li>
+
+														<li id="link_$l2s__25_2302770_25_2360227" class="resolved">
+															<a cn="l.I.c.il.ih.i.vi.LinkPanel.ol.tl" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2360227" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2360227.tl" class="link" href="/issue/PY-35926">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">
+																		PY-35926
+																	</font>
+																</font>
+															</a>
+															<div cn="l.I.c.il.ih.i.vi.LinkPanel.ol.pu" tp4="25-2302770" tp5="25-2302770" tp8="$l2s__25-2302770_25-2360227" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2360227.pu" class="jt-panel popupComponent issueContainer resolved">
+																<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.LinkPanel.ol_$l2s__25_2302770_25_2360227.p.linkPreview_$l2s__25_2302770_25_2360227"></span>
+																</div>
+															</div>
+														</li>
+
+														<li class="moreLinks"></li>
+													</ul>
+												</div>
+												<div class="description" tcd="true">
+													<div class="wiki text common-markdown">
+														<p>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">IU-191.6183.87，JRE 11.0.2 9-b159.30x64 JetBrains sro，OS Linux（amd64）v5.0.3-200.fc29.x86_64，屏幕1920x1200</font>
+															</font>
+														</p>
+														<p>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">当我使用JBR11启动Intellij时，我打开一个Markdown文件，其中包含一个小的svg图片IDEA崩溃。</font>
+															</font>
+														</p>
+														<p>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">此类内容的示例：</font>
+															</font>
+														</p>
+														<pre class="wikicode"><code class="language-text">Flow chart look like ![this](docs/flows.svg)
+</code></pre>
+														<p>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">现在：</font>
+															</font>
+														</p>
+														<ul class="wiki-list0">
+															<li>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">该文件在IDEA标准（2019.1非JBR11）上正常开启</font>
+																</font>
+															</li>
+															<li>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">SVG文件在IDEA JBR11上正确打开</font>
+																</font>
+															</li>
+														</ul>
+													</div>
+												</div>
+												<div cn="l.I.c.il.ih.i.vi.atchs.attachmentsPanel" p0="25-2302770" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.atchs.attachmentsPanel_25_2302770" class="attach-wrapper   has-attachments  ">
+													<div class="attachment-list">
+														<div class="attach  " title="由gregoire waymel添加，2019年3月28日">
+															<div cn="l.I.c.il.ih.i.vi.atchs.a.at.thumbnail" tp4="25-2302770" tp5="25-2302770" tp8="74-642728" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.atchs.a_74_642728.at.thumbnail" class="attach-thumb">
+																<img src="/_classpath/smartui/img/default-document-icon.png" title="由gregoire waymel添加，2019年3月28日" class="pic">
+															</div>
+															<span class="attach-mask"></span>
+															<a cn="l.I.c.il.ih.i.vi.atchs.a.zoom" tp4="25-2302770" tp5="25-2302770" tp8="74-642728" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.atchs.a_74_642728.zoom" title="" class=" attach-zoom" href="/_persistent/idea_log.log?file=74-642728&amp;c=true">
+															</a>
+															<div class="attach-info">
+																<a cn="l.I.c.il.ih.i.vi.atchs.a.attach" tp4="25-2302770" tp5="25-2302770" tp8="74-642728" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.atchs.a_74_642728.attach" class=" panel-attach attach-lnk" target="_blank" href="/_persistent/idea_log.log?file=74-642728&amp;c=true">
+																	<font style="vertical-align: inherit;">
+																		<font style="vertical-align: inherit;">
+																			idea_log.log&nbsp; </font>
+																	</font><span class="attach-size"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（314 B）</font></font></span>
+																</a>
+															</div>
+														</div>
+
+														<div class="attach  " title="由gregoire waymel添加，2019年3月28日">
+															<div cn="l.I.c.il.ih.i.vi.atchs.a.at.thumbnail" tp4="25-2302770" tp5="25-2302770" tp8="74-642729" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.atchs.a_74_642729.at.thumbnail" class="attach-thumb">
+																<img src="/_classpath/smartui/img/default-document-icon.png" title="由gregoire waymel添加，2019年3月28日" class="pic">
+															</div>
+															<span class="attach-mask"></span>
+															<a cn="l.I.c.il.ih.i.vi.atchs.a.zoom" tp4="25-2302770" tp5="25-2302770" tp8="74-642729" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.atchs.a_74_642729.zoom" title="" class=" attach-zoom" href="/_persistent/java_error_in_IDEA_5034.log?file=74-642729&amp;c=true">
+															</a>
+															<div class="attach-info">
+																<a cn="l.I.c.il.ih.i.vi.atchs.a.attach" tp4="25-2302770" tp5="25-2302770" tp8="74-642729" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.atchs.a_74_642729.attach" class=" panel-attach attach-lnk" target="_blank" href="/_persistent/java_error_in_IDEA_5034.log?file=74-642729&amp;c=true">
+																	<font style="vertical-align: inherit;">
+																		<font style="vertical-align: inherit;">
+																			java_error_in_IDEA_5034.log&nbsp; </font>
+																	</font><span class="attach-size"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（161 KB）</font></font></span>
+																</a>
+															</div>
+														</div>
+
+													</div>
+													<span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.atchs.ua_25_2302770.updateAttachmentDlg"></span>
+													<div id="imageToolDialog" class="jt-dialog image-tool-container">
+														<div class="image-tool-close"></div>
+														<div class="jt-panel-content" id="imageToolBody">
+															<div class="image-tool-loader"><span class="progress-icon"></span>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">载入中...</font>
+																</font>
+															</div>
+															<yt-image-tool-mps-wrapper config="$root.imageToolWrapperConfig">
+															</yt-image-tool-mps-wrapper>
+														</div>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div id="ip_25_2302770" class="dtbl">
+								<div class="issue-actions">
+									<a cn="l.I.c.il.ih.i.vi.ip.IssueAttachment.previewAttachedFiles" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+										<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+									</a>
+									<div cn="l.I.c.il.ih.i.vi.ip.IssueAttachment.attachedFilesPopup" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+										<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.IssueAttachment.tpl.previewList_25_2302770"></span>
+										</div>
+									</div>
+									<div id="vite_25_2302770" class="poll   ">
+										<div class="poller   poll_disabled" title="您没有投票权限">
+											<span class="poller-ico font-icon icon-like-2"></span>
+											<span class="votes"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">26</font></font></span>
+										</div>
+									</div>
+									<span cn="l.I.c.il.ih.i.vi.ip.t.ct.commentsTitleRoot" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.t.ct.commentsTitleRoot">
+<div cn="l.I.c.il.ih.i.vi.ip.t.ct.toggleCommentsDiv" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.t.ct.toggleCommentsDiv" title="显示评论" class="toggleCommentsAnchor ">
+<span cn="l.I.c.il.ih.i.vi.ip.t.ct.toggleCommentsIco" tp4="25-2302770" tp5="25-2302770" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.t.ct.toggleCommentsIco" class="comments-toggler-ico font-icon icon-comment "></span>
+									<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+13</font></font></span>
+								</div>
+								</span>
+
+							</div>
+							<div class="properties-container">
+								<div class="properties">
+									<a cn="l.I.c.il.ih.i.vi.ip.cf.valueSelectorAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-2330enum[1]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_2330enum[1].valueSelectorAnchor" title="优先级：专业" class="attribute c18 disabled" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">
+												主要
+											</font>
+										</font>
+									</a>
+									<a cn="l.I.c.il.ih.i.vi.ip.cf.valueSelectorAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-2329enum[1]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_2329enum[1].valueSelectorAnchor" title="类型：错误" class="attribute c0 disabled" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">
+												Bug
+											</font>
+										</font>
+									</a>
+									<a title="受让人：安东塔拉索夫" class="attribute disabled" href="javascript:void(0)"><span class=" attribute-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Anton Tarasov</font></font></span></a>
+									<a cn="l.I.c.il.ih.i.vi.ip.cf.valueSelectorAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-2332ownedField[1]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_2332ownedField[1].valueSelectorAnchor" title="子系统：javafx" class="attribute c0 disabled" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">
+												javafx
+											</font>
+										</font>
+									</a>
+									<a cn="l.I.c.il.ih.i.vi.ip.cf.valueSelectorAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-2476state[1]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_2476state[1].valueSelectorAnchor" title="问题状态：等待回复" class="attribute c14 disabled" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">
+												等待回复
+											</font>
+										</font>
+									</a>
+									<a cn="l.I.c.il.ih.i.vi.ip.cf.valueSelectorAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-2336version[*]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_2336version[*].valueSelectorAnchor" title="迭代：没有修复版本" class="attribute c0 disabled" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">
+
+												否修复版本
+											</font>
+										</font>
+									</a>
+									<div cn="l.I.c.il.ih.i.vi.ip.cf.textEditorContainer" tp4="25-2302770" tp5="25-2302770" tp8="_113-1089string" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__113_1089string.textEditorContainer" class="attribute disabled">
+										<div cn="l.I.c.il.ih.i.vi.ip.cf.textContent" tp4="25-2302770" tp5="25-2302770" tp8="_113-1089string" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__113_1089string.textContent" title="OpenJDK问题：没有openjdk问题" class="cf-wrapper">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">
+													没有openjdk问题
+												</font>
+											</font>
+										</div>
+									</div>
+									<a cn="l.I.c.il.ih.i.vi.ip.cf.valueSelectorAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-2517version[*]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_2517version[*].valueSelectorAnchor" title="IDEA修复版本：不知道修复版本" class="attribute c0 disabled" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">
+
+												不知道修复版本
+											</font>
+										</font>
+									</a>
+									<div class="regCC">
+										<span cn="l.I.c.il.ih.i.vi.ip.cf.MultiBuildDecorators.buildContentAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-2521build[*]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_2521build[*].MultiBuildDecorators.buildContentAnchor" class="attribute disabled"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">没有受影响的jre构建</font></font></span>
+
+									</div>
+									<div class="regCC">
+										<span cn="l.I.c.il.ih.i.vi.ip.cf.MultiBuildDecorators.buildContentAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-2518build[*]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_2518build[*].MultiBuildDecorators.buildContentAnchor" class="attribute disabled"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在jbre构建中没有固定</font></font></span>
+
+									</div>
+									<div class="regCC">
+										<span cn="l.I.c.il.ih.i.vi.ip.cf.MultiBuildDecorators.buildContentAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-3324build[*]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_3324build[*].MultiBuildDecorators.buildContentAnchor" class="attribute disabled"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在IDEA版本中没有修复</font></font></span>
+
+									</div>
+									<a title="测试员：没有测试员" class="attribute disabled" href="javascript:void(0)"><span class=" attribute-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">没有测试者</font></font></span></a>
+									<a cn="l.I.c.il.ih.i.vi.ip.cf.valueSelectorAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-3407enum[*]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_3407enum[*].valueSelectorAnchor" title="Java版本：11" class="attribute c0 disabled" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">
+
+												11
+											</font>
+										</font>
+									</a>
+									<a cn="l.I.c.il.ih.i.vi.ip.cf.valueSelectorAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-3479enum[1]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_3479enum[1].valueSelectorAnchor" title="OS系列：没有os系列" class="attribute c0 disabled" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">
+												No os family
+											</font>
+										</font>
+									</a>
+									<a cn="l.I.c.il.ih.i.vi.ip.cf.valueSelectorAnchor" tp4="25-2302770" tp5="25-2302770" tp8="_123-3554enum[1]" id="id_l.I.c.il.ih_25_2302770.i_25_2302770.vi.ip.cf__123_3554enum[1].valueSelectorAnchor" title="回归测试：无回归测试" class="attribute c0 disabled" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">
+												没有回归测试
+											</font>
+										</font>
+									</a>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2311808" tp5="25-2311808" id="id_l.I.c.il.ih_25_2311808.i_25_2311808.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-0 " iid="25-2311808">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2311808" tp5="25-2311808" id="id_l.I.c.il.ih_25_2311808.i_25_2311808.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Serge Baranov于2019年9月9日20:26更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2311808" tp5="25-2311808" id="id_l.I.c.il.ih_25_2311808.i_25_2311808.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2311808" tp5="25-2311808" id="id_l.I.c.il.ih_25_2311808.i_25_2311808.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1668">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1668 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="检测键盘布局与OS默认值冲突" href="/issue/JBR-1668">
+													<font style="vertical-align: inherit;">检测键盘布局与OS默认值冲突</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2311808" tp4="25-2311808" tp5="25-2311808" id="id_l.I.c.il.ih_25_2311808.i_25_2311808.vi.IssueTagsInTitle.tags_25_2311808" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="检测键盘布局与OS默认值冲突" href="/issue/JBR-1668">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2490474" tp5="25-2490474" id="id_l.I.c.il.ih_25_2490474.i_25_2490474.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-2490474">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2490474" tp5="25-2490474" id="id_l.I.c.il.ih_25_2490474.i_25_2490474.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Vladislav Beskrovny于2019年9月9日19:19更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2490474" tp5="25-2490474" id="id_l.I.c.il.ih_25_2490474.i_25_2490474.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2490474" tp5="25-2490474" id="id_l.I.c.il.ih_25_2490474.i_25_2490474.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1837">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1837 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="Linux：系统分配器中的内存泄漏是由不同线程中的大量DirectByteBuffer分配引起的" href="/issue/JBR-1837">
+													<font style="vertical-align: inherit;">Linux：系统分配器中的内存泄漏是由不同线程中的大量DirectByteBuffer分配引起的</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2490474" tp4="25-2490474" tp5="25-2490474" id="id_l.I.c.il.ih_25_2490474.i_25_2490474.vi.IssueTagsInTitle.tags_25_2490474" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="Linux：系统分配器中的内存泄漏是由不同线程中的大量DirectByteBuffer分配引起的" href="/issue/JBR-1837">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2458519" tp5="25-2458519" id="id_l.I.c.il.ih_25_2458519.i_25_2458519.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-2458519">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-2458519" tp5="25-2458519" id="id_l.I.c.il.ih_25_2458519.i_25_2458519.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-2458519" tp5="25-2458519" id="id_l.I.c.il.ih_25_2458519.i_25_2458519.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2458519.i_25_2458519.vi.IssueAttachment.tpl.previewList_25_2458519"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2458519" tp5="25-2458519" id="id_l.I.c.il.ih_25_2458519.i_25_2458519.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Artem Bochkarev于2019年9月9日19:16更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2458519" tp5="25-2458519" id="id_l.I.c.il.ih_25_2458519.i_25_2458519.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2458519" tp5="25-2458519" id="id_l.I.c.il.ih_25_2458519.i_25_2458519.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1794">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1794 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="外部文件选择器崩溃" href="/issue/JBR-1794">
+													<font style="vertical-align: inherit;">外部文件选择器崩溃</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2458519" tp4="25-2458519" tp5="25-2458519" id="id_l.I.c.il.ih_25_2458519.i_25_2458519.vi.IssueTagsInTitle.tags_25_2458519" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="外部文件选择器崩溃" href="/issue/JBR-1794">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2440936" tp5="25-2440936" id="id_l.I.c.il.ih_25_2440936.i_25_2440936.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-2440936">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-2440936" tp5="25-2440936" id="id_l.I.c.il.ih_25_2440936.i_25_2440936.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-2440936" tp5="25-2440936" id="id_l.I.c.il.ih_25_2440936.i_25_2440936.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2440936.i_25_2440936.vi.IssueAttachment.tpl.previewList_25_2440936"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2440936" tp5="25-2440936" id="id_l.I.c.il.ih_25_2440936.i_25_2440936.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Erik Axel Nielsen于2019年9月9日18:28更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2440936" tp5="25-2440936" id="id_l.I.c.il.ih_25_2440936.i_25_2440936.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2440936" tp5="25-2440936" id="id_l.I.c.il.ih_25_2440936.i_25_2440936.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1734">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1734 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="在带有JBR11的MacOS上，字母之间的空格似乎在2019.2" href="/issue/JBR-1734">
+													<font style="vertical-align: inherit;">在带有JBR11的MacOS上，字母之间的空格似乎在2019.2</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2440936" tp4="25-2440936" tp5="25-2440936" id="id_l.I.c.il.ih_25_2440936.i_25_2440936.vi.IssueTagsInTitle.tags_25_2440936" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="在带有JBR11的MacOS上，字母之间的空格似乎在2019.2" href="/issue/JBR-1734">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2430879" tp5="25-2430879" id="id_l.I.c.il.ih_25_2430879.i_25_2430879.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-2430879">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-2430879" tp5="25-2430879" id="id_l.I.c.il.ih_25_2430879.i_25_2430879.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-2430879" tp5="25-2430879" id="id_l.I.c.il.ih_25_2430879.i_25_2430879.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2430879.i_25_2430879.vi.IssueAttachment.tpl.previewList_25_2430879"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2430879" tp5="25-2430879" id="id_l.I.c.il.ih_25_2430879.i_25_2430879.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Arseniy Nisnevich于2019年9月9日17:46更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2430879" tp5="25-2430879" id="id_l.I.c.il.ih_25_2430879.i_25_2430879.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2430879" tp5="25-2430879" id="id_l.I.c.il.ih_25_2430879.i_25_2430879.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1680">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1680 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="转到上课/搜索到处等等。在KDE上输入时，视图不会重新绘制" href="/issue/JBR-1680">
+													<font style="vertical-align: inherit;">转到类/搜索到处/等等视图在KDE上键入时不会重新绘制</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2430879" tp4="25-2430879" tp5="25-2430879" id="id_l.I.c.il.ih_25_2430879.i_25_2430879.vi.IssueTagsInTitle.tags_25_2430879" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="转到上课/搜索到处等等。在KDE上输入时，视图不会重新绘制" href="/issue/JBR-1680">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2382380" tp5="25-2382380" id="id_l.I.c.il.ih_25_2382380.i_25_2382380.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-0 " iid="25-2382380">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-2382380" tp5="25-2382380" id="id_l.I.c.il.ih_25_2382380.i_25_2382380.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-2382380" tp5="25-2382380" id="id_l.I.c.il.ih_25_2382380.i_25_2382380.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2382380.i_25_2382380.vi.IssueAttachment.tpl.previewList_25_2382380"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2382380" tp5="25-2382380" id="id_l.I.c.il.ih_25_2382380.i_25_2382380.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Adrian Randall于2019年9月9日17:41更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2382380" tp5="25-2382380" id="id_l.I.c.il.ih_25_2382380.i_25_2382380.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2382380" tp5="25-2382380" id="id_l.I.c.il.ih_25_2382380.i_25_2382380.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1609">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1609 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="Jupyter Notebook最终导致IDEA在Mac OSX上无响应" href="/issue/JBR-1609">
+													<font style="vertical-align: inherit;">Jupyter笔记本电脑最终导致IDEA在Mac OSX上无响应</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2382380" tp4="25-2382380" tp5="25-2382380" id="id_l.I.c.il.ih_25_2382380.i_25_2382380.vi.IssueTagsInTitle.tags_25_2382380" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="Jupyter Notebook最终导致IDEA在Mac OSX上无响应" href="/issue/JBR-1609">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2382380" tp5="25-2483652" id="id_l.I.c.il.ih_25_2382380.i_25_2483652.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-1 " iid="25-2483652">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2382380" tp5="25-2483652" id="id_l.I.c.il.ih_25_2382380.i_25_2483652.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Elena Sayapina于2019年9月6日15:16更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														06年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2382380" tp5="25-2483652" id="id_l.I.c.il.ih_25_2382380.i_25_2483652.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2382380" tp5="25-2483652" id="id_l.I.c.il.ih_25_2382380.i_25_2483652.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1817">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1817 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="backport：[192] JBR-1609Jupyter笔记本最终导致IDEA在Mac OSX上无响应" href="/issue/JBR-1817">
+													<font style="vertical-align: inherit;">backport：[192] JBR-1609Jupyter笔记本最终导致IDEA在Mac OSX上无响应</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2483652" tp4="25-2382380" tp5="25-2483652" id="id_l.I.c.il.ih_25_2382380.i_25_2483652.vi.IssueTagsInTitle.tags_25_2483652" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="backport：[192] JBR-1609Jupyter笔记本最终导致IDEA在Mac OSX上无响应" href="/issue/JBR-1817">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2490294" tp5="25-2490294" id="id_l.I.c.il.ih_25_2490294.i_25_2490294.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-2490294">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2490294" tp5="25-2490294" id="id_l.I.c.il.ih_25_2490294.i_25_2490294.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Anton Tarasov于2019年9月9日17:39更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2490294" tp5="25-2490294" id="id_l.I.c.il.ih_25_2490294.i_25_2490294.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2490294" tp5="25-2490294" id="id_l.I.c.il.ih_25_2490294.i_25_2490294.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1834">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1834 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="[linux]运行时hidpi开关坏了" href="/issue/JBR-1834">
+													<font style="vertical-align: inherit;">[linux]运行时hidpi交换机坏了</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2490294" tp4="25-2490294" tp5="25-2490294" id="id_l.I.c.il.ih_25_2490294.i_25_2490294.vi.IssueTagsInTitle.tags_25_2490294" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="[linux]运行时hidpi开关坏了" href="/issue/JBR-1834">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2490294" tp5="25-2490347" id="id_l.I.c.il.ih_25_2490294.i_25_2490347.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-1 " iid="25-2490347">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2490294" tp5="25-2490347" id="id_l.I.c.il.ih_25_2490294.i_25_2490347.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Anton Tarasov于2019年9月9日18:03更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2490294" tp5="25-2490347" id="id_l.I.c.il.ih_25_2490294.i_25_2490347.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2490294" tp5="25-2490347" id="id_l.I.c.il.ih_25_2490294.i_25_2490347.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1836">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1836 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="backport：[193] JBR-1834 [linux]运行时hidpi交换机坏了" href="/issue/JBR-1836">
+													<font style="vertical-align: inherit;">backport：[193] JBR-1834 [linux]运行时hidpi交换机坏了</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2490347" tp4="25-2490294" tp5="25-2490347" id="id_l.I.c.il.ih_25_2490294.i_25_2490347.vi.IssueTagsInTitle.tags_25_2490347" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="backport：[193] JBR-1834 [linux]运行时hidpi交换机坏了" href="/issue/JBR-1836">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2490294" tp5="25-2490344" id="id_l.I.c.il.ih_25_2490294.i_25_2490344.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-1 " iid="25-2490344">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2490294" tp5="25-2490344" id="id_l.I.c.il.ih_25_2490294.i_25_2490344.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Anton Tarasov于2019年9月9日17:38更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2490294" tp5="25-2490344" id="id_l.I.c.il.ih_25_2490294.i_25_2490344.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2490294" tp5="25-2490344" id="id_l.I.c.il.ih_25_2490294.i_25_2490344.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1835">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1835 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="backport：[192] JBR-1834 [linux]运行时hidpi交换机坏了" href="/issue/JBR-1835">
+													<font style="vertical-align: inherit;">backport：[192] JBR-1834 [linux]运行时hidpi交换机坏了</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2490344" tp4="25-2490294" tp5="25-2490344" id="id_l.I.c.il.ih_25_2490294.i_25_2490344.vi.IssueTagsInTitle.tags_25_2490344" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="backport：[192] JBR-1834 [linux]运行时hidpi交换机坏了" href="/issue/JBR-1835">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1399544" tp5="25-1399544" id="id_l.I.c.il.ih_25_1399544.i_25_1399544.issueContainer" title="此问题与搜索条件不匹配" class="issueContainer issueContainer_oneline issue-unrelated sort-item    h-level-0 " iid="25-1399544">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-1399544" tp5="25-1399544" id="id_l.I.c.il.ih_25_1399544.i_25_1399544.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-1399544" tp5="25-1399544" id="id_l.I.c.il.ih_25_1399544.i_25_1399544.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_1399544.i_25_1399544.vi.IssueAttachment.tpl.previewList_25_1399544"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1399544" tp5="25-1399544" id="id_l.I.c.il.ih_25_1399544.i_25_1399544.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Arseniy Nisnevich于2019年9月9日14:08更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1399544" tp5="25-1399544" id="id_l.I.c.il.ih_25_1399544.i_25_1399544.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1399544" tp5="25-1399544" id="id_l.I.c.il.ih_25_1399544.i_25_1399544.vi.IssueId.iica" title="属于'IntelliJ IDEA'项目" class="issueId issueIdAnchor " href="/issue/IDEA-165950">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">IDEA-165950</font>
+												</font>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-1399544" tp4="25-1399544" tp5="25-1399544" id="id_l.I.c.il.ih_25_1399544.i_25_1399544.vi.IssueTagsInTitle.tags_25_1399544" class="tag-list tag-list_issues  tag-list_issues-shader " yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+												<span class="yt-tag c0">
+<a cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tagLink" p0="68-138999" tp4="25-1399544" tp5="25-1399544" id="id_l.I.c.il.ih_25_1399544.i_25_1399544.vi.IssueTagsInTitle.tagLink_68_138999" title="按标签过滤问题" class="yt-tag__link" yt-analytics="tag_widget:click_issues" href="/issues?q=tag%3A+%7BReSharper+2018.3%7D"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ReSharper 2018.3</font></font></a>
+</span>
+											</div>
+											<a class="issue-summary" tcd="false" title="国家键盘布局支持" href="/issue/IDEA-165950">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> 国家键盘布局支持</font>
+												</font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1399544" tp5="25-58024" id="id_l.I.c.il.ih_25_1399544.i_25_58024.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-1 " iid="25-58024">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1399544" tp5="25-58024" id="id_l.I.c.il.ih_25_1399544.i_25_58024.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Arseniy Nisnevich于2019年9月9日16:27更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1399544" tp5="25-58024" id="id_l.I.c.il.ih_25_1399544.i_25_58024.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1399544" tp5="25-58024" id="id_l.I.c.il.ih_25_1399544.i_25_58024.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-216">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-216 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="Windows：在德语键盘上，“代码” - >“带行注释的注释”的快捷方式不起作用" href="/issue/JBR-216">
+													<font style="vertical-align: inherit;">Windows：在德语键盘上，“代码” - &gt;“带行注释的注释”的快捷方式不起作用</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-58024" tp4="25-1399544" tp5="25-58024" id="id_l.I.c.il.ih_25_1399544.i_25_58024.vi.IssueTagsInTitle.tags_25_58024" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="Windows：在德语键盘上，“代码” - >“带行注释的注释”的快捷方式不起作用" href="/issue/JBR-216">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2490051" tp5="25-2490051" id="id_l.I.c.il.ih_25_2490051.i_25_2490051.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-0 " iid="25-2490051">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2490051" tp5="25-2490051" id="id_l.I.c.il.ih_25_2490051.i_25_2490051.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Elena Sayapina于2019年9月9日16:06更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2490051" tp5="25-2490051" id="id_l.I.c.il.ih_25_2490051.i_25_2490051.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2490051" tp5="25-2490051" id="id_l.I.c.il.ih_25_2490051.i_25_2490051.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1833">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1833 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="[backport to jbr8] JBR-1778编辑器中的字体不正确（总是斜体）" href="/issue/JBR-1833">
+													<font style="vertical-align: inherit;">[backport to jbr8] JBR-1778编辑器中的字体不正确（总是斜体）</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2490051" tp4="25-2490051" tp5="25-2490051" id="id_l.I.c.il.ih_25_2490051.i_25_2490051.vi.IssueTagsInTitle.tags_25_2490051" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="[backport to jbr8] JBR-1778编辑器中的字体不正确（总是斜体）" href="/issue/JBR-1833">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2490046" tp5="25-2490046" id="id_l.I.c.il.ih_25_2490046.i_25_2490046.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-0 " iid="25-2490046">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2490046" tp5="25-2490046" id="id_l.I.c.il.ih_25_2490046.i_25_2490046.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Elena Sayapina于2019年9月9日16:06更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2490046" tp5="25-2490046" id="id_l.I.c.il.ih_25_2490046.i_25_2490046.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2490046" tp5="25-2490046" id="id_l.I.c.il.ih_25_2490046.i_25_2490046.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1832">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1832 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="[backport to jbr8] JBR-1645 javax / swing / JTextArea / TestTabSize.java：标签宽度计算错误" href="/issue/JBR-1832">
+													<font style="vertical-align: inherit;">[backport to jbr8] JBR-1645 javax / swing / JTextArea / TestTabSize.java：选项卡宽度计算错误</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2490046" tp4="25-2490046" tp5="25-2490046" id="id_l.I.c.il.ih_25_2490046.i_25_2490046.vi.IssueTagsInTitle.tags_25_2490046" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="[backport to jbr8] JBR-1645 javax / swing / JTextArea / TestTabSize.java：标签宽度计算错误" href="/issue/JBR-1832">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2410326" tp5="25-2410326" id="id_l.I.c.il.ih_25_2410326.i_25_2410326.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-0 " iid="25-2410326">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2410326" tp5="25-2410326" id="id_l.I.c.il.ih_25_2410326.i_25_2410326.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Elena Sayapina于2019年9月9日15:53更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2410326" tp5="25-2410326" id="id_l.I.c.il.ih_25_2410326.i_25_2410326.vi.olip.oneLineIssuePriority" title="表明，塞" class="priority attribute c20">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														小号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2410326" tp5="25-2410326" id="id_l.I.c.il.ih_25_2410326.i_25_2410326.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1645">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1645</font>
+												</font>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2410326" tp4="25-2410326" tp5="25-2410326" id="id_l.I.c.il.ih_25_2410326.i_25_2410326.vi.IssueTagsInTitle.tags_25_2410326" class="tag-list tag-list_issues  tag-list_issues-shader " yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+												<span class="yt-tag c11">
+<a cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tagLink" p0="68-3044" tp4="25-2410326" tp5="25-2410326" id="id_l.I.c.il.ih_25_2410326.i_25_2410326.vi.IssueTagsInTitle.tagLink_68_3044" title="按标签过滤问题" class="yt-tag__link" yt-analytics="tag_widget:click_issues" href="/issues?q=tag%3A+regression"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">回归</font></font></a>
+</span>
+											</div>
+											<a class="issue-summary" tcd="false" title="javax / swing / JTextArea / TestTabSize.java：标签宽度计算错误" href="/issue/JBR-1645">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> javax / swing / JTextArea / TestTabSize.java：标签宽度计算错误</font>
+												</font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2471514" tp5="25-2471514" id="id_l.I.c.il.ih_25_2471514.i_25_2471514.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-0 " iid="25-2471514">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-2471514" tp5="25-2471514" id="id_l.I.c.il.ih_25_2471514.i_25_2471514.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-2471514" tp5="25-2471514" id="id_l.I.c.il.ih_25_2471514.i_25_2471514.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2471514.i_25_2471514.vi.IssueAttachment.tpl.previewList_25_2471514"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2471514" tp5="25-2471514" id="id_l.I.c.il.ih_25_2471514.i_25_2471514.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Elena Sayapina于2019年9月9日15:53更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2471514" tp5="25-2471514" id="id_l.I.c.il.ih_25_2471514.i_25_2471514.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2471514" tp5="25-2471514" id="id_l.I.c.il.ih_25_2471514.i_25_2471514.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1778">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1778</font>
+												</font>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2471514" tp4="25-2471514" tp5="25-2471514" id="id_l.I.c.il.ih_25_2471514.i_25_2471514.vi.IssueTagsInTitle.tags_25_2471514" class="tag-list tag-list_issues  tag-list_issues-shader " yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+												<span class="yt-tag c11">
+<a cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tagLink" p0="68-3044" tp4="25-2471514" tp5="25-2471514" id="id_l.I.c.il.ih_25_2471514.i_25_2471514.vi.IssueTagsInTitle.tagLink_68_3044" title="按标签过滤问题" class="yt-tag__link" yt-analytics="tag_widget:click_issues" href="/issues?q=tag%3A+regression"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">回归</font></font></a>
+</span>
+											</div>
+											<a class="issue-summary" tcd="false" title="编辑器中的字体不正确（总是斜体）" href="/issue/JBR-1778">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> 编辑器中的字体不正确（总是斜体）</font>
+												</font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2400970" tp5="25-2400970" id="id_l.I.c.il.ih_25_2400970.i_25_2400970.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-0 " iid="25-2400970">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2400970" tp5="25-2400970" id="id_l.I.c.il.ih_25_2400970.i_25_2400970.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Elena Sayapina于2019年9月9日15:33更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2400970" tp5="25-2400970" id="id_l.I.c.il.ih_25_2400970.i_25_2400970.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2400970" tp5="25-2400970" id="id_l.I.c.il.ih_25_2400970.i_25_2400970.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1631">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1631 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="[bkp to JBR8] JBR-1624字体渲染在2019.2 EAP（Fira Code）中被破坏" href="/issue/JBR-1631">
+													<font style="vertical-align: inherit;">[bkp到JBR8] JBR-1624字体渲染在2019.2 EAP（Fira代码）中被破坏</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2400970" tp4="25-2400970" tp5="25-2400970" id="id_l.I.c.il.ih_25_2400970.i_25_2400970.vi.IssueTagsInTitle.tags_25_2400970" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="[bkp to JBR8] JBR-1624字体渲染在2019.2 EAP（Fira Code）中被破坏" href="/issue/JBR-1631">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2382569" tp5="25-2382569" id="id_l.I.c.il.ih_25_2382569.i_25_2382569.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-2382569">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-2382569" tp5="25-2382569" id="id_l.I.c.il.ih_25_2382569.i_25_2382569.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-2382569" tp5="25-2382569" id="id_l.I.c.il.ih_25_2382569.i_25_2382569.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2382569.i_25_2382569.vi.IssueAttachment.tpl.previewList_25_2382569"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2382569" tp5="25-2382569" id="id_l.I.c.il.ih_25_2382569.i_25_2382569.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Vitaly Provodin于2019年9月9日14:52更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2382569" tp5="25-2382569" id="id_l.I.c.il.ih_25_2382569.i_25_2382569.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2382569" tp5="25-2382569" id="id_l.I.c.il.ih_25_2382569.i_25_2382569.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1579">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1579</font>
+												</font>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2382569" tp4="25-2382569" tp5="25-2382569" id="id_l.I.c.il.ih_25_2382569.i_25_2382569.vi.IssueTagsInTitle.tags_25_2382569" class="tag-list tag-list_issues  tag-list_issues-shader " yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+												<span class="yt-tag c11">
+<a cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tagLink" p0="68-3044" tp4="25-2382569" tp5="25-2382569" id="id_l.I.c.il.ih_25_2382569.i_25_2382569.vi.IssueTagsInTitle.tagLink_68_3044" title="按标签过滤问题" class="yt-tag__link" yt-analytics="tag_widget:click_issues" href="/issues?q=tag%3A+regression"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">回归</font></font></a>
+</span>
+											</div>
+											<a class="issue-summary" tcd="false" title="sun / misc / CopyMemory.java在sun.misc.Unsafe.putByte（Ljava / lang / Object; JB）V + 0崩溃" href="/issue/JBR-1579">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> sun / misc / CopyMemory.java在sun.misc.Unsafe.putByte（Ljava / lang / Object; JB）V + 0崩溃</font>
+												</font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1697198" tp5="25-1697198" id="id_l.I.c.il.ih_25_1697198.i_25_1697198.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-1697198">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-1697198" tp5="25-1697198" id="id_l.I.c.il.ih_25_1697198.i_25_1697198.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-1697198" tp5="25-1697198" id="id_l.I.c.il.ih_25_1697198.i_25_1697198.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_1697198.i_25_1697198.vi.IssueAttachment.tpl.previewList_25_1697198"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1697198" tp5="25-1697198" id="id_l.I.c.il.ih_25_1697198.i_25_1697198.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Vitaly Provodin于2019年9月9日14:45更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1697198" tp5="25-1697198" id="id_l.I.c.il.ih_25_1697198.i_25_1697198.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1697198" tp5="25-1697198" id="id_l.I.c.il.ih_25_1697198.i_25_1697198.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-484">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-484 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="java无法获取锁定文件警告" href="/issue/JBR-484">
+													<font style="vertical-align: inherit;">java无法获取锁定文件警告</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-1697198" tp4="25-1697198" tp5="25-1697198" id="id_l.I.c.il.ih_25_1697198.i_25_1697198.vi.IssueTagsInTitle.tags_25_1697198" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="java无法获取锁定文件警告" href="/issue/JBR-484">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2475845" tp5="25-2475845" id="id_l.I.c.il.ih_25_2475845.i_25_2475845.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-2475845">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-2475845" tp5="25-2475845" id="id_l.I.c.il.ih_25_2475845.i_25_2475845.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-2475845" tp5="25-2475845" id="id_l.I.c.il.ih_25_2475845.i_25_2475845.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2475845.i_25_2475845.vi.IssueAttachment.tpl.previewList_25_2475845"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2475845" tp5="25-2475845" id="id_l.I.c.il.ih_25_2475845.i_25_2475845.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Vitaly Provodin于2019年9月9日14:40更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2475845" tp5="25-2475845" id="id_l.I.c.il.ih_25_2475845.i_25_2475845.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2475845" tp5="25-2475845" id="id_l.I.c.il.ih_25_2475845.i_25_2475845.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1788">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="Mac上的文件选择器位于屏幕的中央" href="/issue/JBR-1788">
+													<font style="vertical-align: inherit;">Mac上的</font>
+												</a>
+												<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2475845" tp5="25-2475845" id="id_l.I.c.il.ih_25_2475845.i_25_2475845.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1788">
+													<font style="vertical-align: inherit;">JBR-1788 </font>
+												</a>
+												<a class="issue-summary" tcd="false" title="Mac上的文件选择器位于屏幕的中央" href="/issue/JBR-1788">
+													<font style="vertical-align: inherit;">文件选择器位于屏幕的中央</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2475845" tp4="25-2475845" tp5="25-2475845" id="id_l.I.c.il.ih_25_2475845.i_25_2475845.vi.IssueTagsInTitle.tags_25_2475845" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="Mac上的文件选择器位于屏幕的中央" href="/issue/JBR-1788">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2451244" tp5="25-2451244" id="id_l.I.c.il.ih_25_2451244.i_25_2451244.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-0 " iid="25-2451244">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2451244" tp5="25-2451244" id="id_l.I.c.il.ih_25_2451244.i_25_2451244.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Arseniy Nisnevich于2019年9月9日14:38更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2451244" tp5="25-2451244" id="id_l.I.c.il.ih_25_2451244.i_25_2451244.vi.olip.oneLineIssuePriority" title="危急" class="priority attribute c19">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														C
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2451244" tp5="25-2451244" id="id_l.I.c.il.ih_25_2451244.i_25_2451244.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1721">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1721 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="无法在macOS 10.15上打开项目" href="/issue/JBR-1721">
+													<font style="vertical-align: inherit;">在macOS 10.15上打开项目</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2451244" tp4="25-2451244" tp5="25-2451244" id="id_l.I.c.il.ih_25_2451244.i_25_2451244.vi.IssueTagsInTitle.tags_25_2451244" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="无法在macOS 10.15上打开项目" href="/issue/JBR-1721">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2451244" tp5="25-2469819" id="id_l.I.c.il.ih_25_2451244.i_25_2469819.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-1 " iid="25-2469819">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2451244" tp5="25-2469819" id="id_l.I.c.il.ih_25_2451244.i_25_2469819.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Vitaly Provodin于2019年9月9日11:53更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2451244" tp5="25-2469819" id="id_l.I.c.il.ih_25_2451244.i_25_2469819.vi.olip.oneLineIssuePriority" title="危急" class="priority attribute c19">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														C
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2451244" tp5="25-2469819" id="id_l.I.c.il.ih_25_2451244.i_25_2469819.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1768">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1768 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="backport：JBR-1721在macOS 10.15上打开项目" href="/issue/JBR-1768">
+													<font style="vertical-align: inherit;">backport：JBR-1721在macOS 10.15上打开项目</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2469819" tp4="25-2451244" tp5="25-2469819" id="id_l.I.c.il.ih_25_2451244.i_25_2469819.vi.IssueTagsInTitle.tags_25_2469819" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="backport：JBR-1721在macOS 10.15上打开项目" href="/issue/JBR-1768">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2368291" tp5="25-2368291" id="id_l.I.c.il.ih_25_2368291.i_25_2368291.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-2368291">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2368291" tp5="25-2368291" id="id_l.I.c.il.ih_25_2368291.i_25_2368291.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Arseniy Nisnevich于2019年9月9日14:35更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2368291" tp5="25-2368291" id="id_l.I.c.il.ih_25_2368291.i_25_2368291.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2368291" tp5="25-2368291" id="id_l.I.c.il.ih_25_2368291.i_25_2368291.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1705">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1705</font>
+												</font>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2368291" tp4="25-2368291" tp5="25-2368291" id="id_l.I.c.il.ih_25_2368291.i_25_2368291.vi.IssueTagsInTitle.tags_25_2368291" class="tag-list tag-list_issues  tag-list_issues-shader " yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+												<span class="yt-tag c11">
+<a cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tagLink" p0="68-3044" tp4="25-2368291" tp5="25-2368291" id="id_l.I.c.il.ih_25_2368291.i_25_2368291.vi.IssueTagsInTitle.tagLink_68_3044" title="按标签过滤问题" class="yt-tag__link" yt-analytics="tag_widget:click_issues" href="/issues?q=tag%3A+regression"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">回归</font></font></a>
+</span>
+											</div>
+											<a class="issue-summary" tcd="false" title="无法通过键盘解除'Nothing to commit'弹出窗口" href="/issue/JBR-1705">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> 无法通过键盘解除'Nothing to commit'弹出窗口</font>
+												</font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1471753" tp5="25-1471753" id="id_l.I.c.il.ih_25_1471753.i_25_1471753.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-1471753">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-1471753" tp5="25-1471753" id="id_l.I.c.il.ih_25_1471753.i_25_1471753.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-1471753" tp5="25-1471753" id="id_l.I.c.il.ih_25_1471753.i_25_1471753.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_1471753.i_25_1471753.vi.IssueAttachment.tpl.previewList_25_1471753"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1471753" tp5="25-1471753" id="id_l.I.c.il.ih_25_1471753.i_25_1471753.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Vitaly Provodin于2019年9月9日14:24更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1471753" tp5="25-1471753" id="id_l.I.c.il.ih_25_1471753.i_25_1471753.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1471753" tp5="25-1471753" id="id_l.I.c.il.ih_25_1471753.i_25_1471753.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-251">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-251</font>
+												</font>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-1471753" tp4="25-1471753" tp5="25-1471753" id="id_l.I.c.il.ih_25_1471753.i_25_1471753.vi.IssueTagsInTitle.tags_25_1471753" class="tag-list tag-list_issues  tag-list_issues-shader " yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+												<span class="yt-tag c0">
+<a cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tagLink" p0="68-58675" tp4="25-1471753" tp5="25-1471753" id="id_l.I.c.il.ih_25_1471753.i_25_1471753.vi.IssueTagsInTitle.tagLink_68_58675" title="按标签过滤问题" class="yt-tag__link" yt-analytics="tag_widget:click_issues" href="/issues?q=tag%3A+NewWebHelp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NewWebHelp</font></font></a>
+</span>
+											</div>
+											<a class="issue-summary" tcd="false" title="mac OS上缓慢的getLocalHostName" href="/issue/JBR-251">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> mac OS上缓慢的getLocalHostName</font>
+												</font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1002305" tp5="25-1002305" id="id_l.I.c.il.ih_25_1002305.i_25_1002305.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-1002305">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-1002305" tp5="25-1002305" id="id_l.I.c.il.ih_25_1002305.i_25_1002305.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-1002305" tp5="25-1002305" id="id_l.I.c.il.ih_25_1002305.i_25_1002305.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_1002305.i_25_1002305.vi.IssueAttachment.tpl.previewList_25_1002305"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1002305" tp5="25-1002305" id="id_l.I.c.il.ih_25_1002305.i_25_1002305.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Vitaly Provodin于2019年9月9日14:19更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1002305" tp5="25-1002305" id="id_l.I.c.il.ih_25_1002305.i_25_1002305.vi.olip.oneLineIssuePriority" title="重大的" class="priority attribute c18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														中号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1002305" tp5="25-1002305" id="id_l.I.c.il.ih_25_1002305.i_25_1002305.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-526">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="在OS X上使用具有缩放分辨率的4K显示器时，IDE速度非常慢" href="/issue/JBR-526">
+													<font style="vertical-align: inherit;">在OS X上使用具有缩放分辨率的4K显示器时，</font>
+												</a>
+												<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1002305" tp5="25-1002305" id="id_l.I.c.il.ih_25_1002305.i_25_1002305.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-526">
+													<font style="vertical-align: inherit;">JBR-526 </font>
+												</a>
+												<a class="issue-summary" tcd="false" title="在OS X上使用具有缩放分辨率的4K显示器时，IDE速度非常慢" href="/issue/JBR-526">
+													<font style="vertical-align: inherit;">IDE速度非常慢</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-1002305" tp4="25-1002305" tp5="25-1002305" id="id_l.I.c.il.ih_25_1002305.i_25_1002305.vi.IssueTagsInTitle.tags_25_1002305" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="在OS X上使用具有缩放分辨率的4K显示器时，IDE速度非常慢" href="/issue/JBR-526">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1002305" tp5="25-1710503" id="id_l.I.c.il.ih_25_1002305.i_25_1710503.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-1 " iid="25-1710503">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1002305" tp5="25-1710503" id="id_l.I.c.il.ih_25_1002305.i_25_1710503.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Elena Sayapina于2019年4月26日07:44更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														4月26日</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1002305" tp5="25-1710503" id="id_l.I.c.il.ih_25_1002305.i_25_1710503.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1002305" tp5="25-1710503" id="id_l.I.c.il.ih_25_1002305.i_25_1710503.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-482">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-482 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="Java_sun_font_CStrike_getNativeGlyphOutline在滚动时花费了太多时间" href="/issue/JBR-482">
+													<font style="vertical-align: inherit;">Java_sun_font_CStrike_getNativeGlyphOutline在滚动时花费了太多时间</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-1710503" tp4="25-1002305" tp5="25-1710503" id="id_l.I.c.il.ih_25_1002305.i_25_1710503.vi.IssueTagsInTitle.tags_25_1710503" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="Java_sun_font_CStrike_getNativeGlyphOutline在滚动时花费了太多时间" href="/issue/JBR-482">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1002305" tp5="25-1770952" id="id_l.I.c.il.ih_25_1002305.i_25_1770952.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-1 " iid="25-1770952">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1002305" tp5="25-1770952" id="id_l.I.c.il.ih_25_1002305.i_25_1770952.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Elena Sayapina于2019年4月26日07:44更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														4月26日</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1002305" tp5="25-1770952" id="id_l.I.c.il.ih_25_1002305.i_25_1770952.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1002305" tp5="25-1770952" id="id_l.I.c.il.ih_25_1002305.i_25_1770952.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-578">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-578 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="OGLRenderQueue.flushNow() executes too many times" href="/issue/JBR-578">
+													<font style="vertical-align: inherit;">OGLRenderQueue.flushNow（）执行次数过多</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-1770952" tp4="25-1002305" tp5="25-1770952" id="id_l.I.c.il.ih_25_1002305.i_25_1770952.vi.IssueTagsInTitle.tags_25_1770952" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="OGLRenderQueue.flushNow（）执行次数过多" href="/issue/JBR-578">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1002305" tp5="25-1777887" id="id_l.I.c.il.ih_25_1002305.i_25_1777887.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-1 " iid="25-1777887">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-1002305" tp5="25-1777887" id="id_l.I.c.il.ih_25_1002305.i_25_1777887.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-1002305" tp5="25-1777887" id="id_l.I.c.il.ih_25_1002305.i_25_1777887.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_1002305.i_25_1777887.vi.IssueAttachment.tpl.previewList_25_1777887"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1002305" tp5="25-1777887" id="id_l.I.c.il.ih_25_1002305.i_25_1777887.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Vitaly Provodin于2018年4月4日更新05:26" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														4月4日18日</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1002305" tp5="25-1777887" id="id_l.I.c.il.ih_25_1002305.i_25_1777887.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1002305" tp5="25-1777887" id="id_l.I.c.il.ih_25_1002305.i_25_1777887.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-584">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-584 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="Retaining objects in HashMap causes some performance drop" href="/issue/JBR-584">
+													<font style="vertical-align: inherit;">在HashMap中保留对象会导致性能下降</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-1777887" tp4="25-1002305" tp5="25-1777887" id="id_l.I.c.il.ih_25_1002305.i_25_1777887.vi.IssueTagsInTitle.tags_25_1777887" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="在HashMap中保留对象会导致性能下降" href="/issue/JBR-584">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1002305" tp5="25-1892406" id="id_l.I.c.il.ih_25_1002305.i_25_1892406.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-1 " iid="25-1892406">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-1002305" tp5="25-1892406" id="id_l.I.c.il.ih_25_1002305.i_25_1892406.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-1002305" tp5="25-1892406" id="id_l.I.c.il.ih_25_1002305.i_25_1892406.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_1002305.i_25_1892406.vi.IssueAttachment.tpl.previewList_25_1892406"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1002305" tp5="25-1892406" id="id_l.I.c.il.ih_25_1002305.i_25_1892406.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Elena Sayapina于2019年4月26日07:44更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														4月26日</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1002305" tp5="25-1892406" id="id_l.I.c.il.ih_25_1002305.i_25_1892406.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1002305" tp5="25-1892406" id="id_l.I.c.il.ih_25_1002305.i_25_1892406.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-686">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-686 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="OGL Glyph cache is too small for IDEA editor" href="/issue/JBR-686">
+													<font style="vertical-align: inherit;">OGL Glyph缓存对于IDEA编辑器来说太小了</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-1892406" tp4="25-1002305" tp5="25-1892406" id="id_l.I.c.il.ih_25_1002305.i_25_1892406.vi.IssueTagsInTitle.tags_25_1892406" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="对于IDEA编辑器，OGL字形缓存太小" href="/issue/JBR-686">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-1002305" tp5="25-2488368" id="id_l.I.c.il.ih_25_1002305.i_25_2488368.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-1 " iid="25-2488368">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-1002305" tp5="25-2488368" id="id_l.I.c.il.ih_25_1002305.i_25_2488368.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Arseniy Nisnevich于2019年9月6日16:03更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														06年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-1002305" tp5="25-2488368" id="id_l.I.c.il.ih_25_1002305.i_25_2488368.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-1002305" tp5="25-2488368" id="id_l.I.c.il.ih_25_1002305.i_25_2488368.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1827">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1827 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="HiDPI: hanging while typing with CJK input methods" href="/issue/JBR-1827">
+													<font style="vertical-align: inherit;">HiDPI：用CJK输入法打字时挂起</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2488368" tp4="25-1002305" tp5="25-2488368" id="id_l.I.c.il.ih_25_1002305.i_25_2488368.vi.IssueTagsInTitle.tags_25_2488368" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="HiDPI：用CJK输入法输入时挂起" href="/issue/JBR-1827">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2489857" tp5="25-2489857" id="id_l.I.c.il.ih_25_2489857.i_25_2489857.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item    h-level-0 " iid="25-2489857">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-2489857" tp5="25-2489857" id="id_l.I.c.il.ih_25_2489857.i_25_2489857.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-2489857" tp5="25-2489857" id="id_l.I.c.il.ih_25_2489857.i_25_2489857.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2489857.i_25_2489857.vi.IssueAttachment.tpl.previewList_25_2489857"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2489857" tp5="25-2489857" id="id_l.I.c.il.ih_25_2489857.i_25_2489857.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Anton Makeev于2019年9月9日14:10更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2489857" tp5="25-2489857" id="id_l.I.c.il.ih_25_2489857.i_25_2489857.vi.olip.oneLineIssuePriority" title="正常" class="priority attribute c17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														ñ
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2489857" tp5="25-2489857" id="id_l.I.c.il.ih_25_2489857.i_25_2489857.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1831">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1831 </font>
+												</font>
+											</a>
+											<font style="vertical-align: inherit;">
+												<a class="issue-summary" tcd="false" title="Crash after closing a model dialog (change info) with ESC" href="/issue/JBR-1831">
+													<font style="vertical-align: inherit;">使用ESC关闭模型对话框（更改信息）后发生崩溃</font>
+												</a>
+											</font>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2489857" tp4="25-2489857" tp5="25-2489857" id="id_l.I.c.il.ih_25_2489857.i_25_2489857.vi.IssueTagsInTitle.tags_25_2489857" class="tag-list tag-list_issues  tag-list_issues-shader hidden" yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+											</div>
+											<a class="issue-summary" tcd="false" title="使用ESC关闭模型对话框（更改信息）后崩溃" href="/issue/JBR-1831">
+												<font style="vertical-align: inherit;"></font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div cn="l.I.c.il.ih.i.issueContainer" tp4="25-2378170" tp5="25-2378170" id="id_l.I.c.il.ih_25_2378170.i_25_2378170.issueContainer" title="" class="issueContainer issueContainer_oneline  sort-item  resolved  h-level-0 " iid="25-2378170">
+						<table class="issue-wrp">
+							<tbody>
+								<tr>
+									<td class="issue-details issue-details_nostar">
+										<div class="issue-last-update issue-last-update_oneline">
+											<a cn="l.I.c.il.ih.i.vi.IssueAttachment.previewAttachedFiles" tp4="25-2378170" tp5="25-2378170" id="id_l.I.c.il.ih_25_2378170.i_25_2378170.vi.IssueAttachment.previewAttachedFiles" class="issue-attachment-link" href="javascript:void(0)">
+												<span class="issue-attachment-ico font-icon icon-paper-clip2"></span>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueAttachment.attachedFilesPopup" tp4="25-2378170" tp5="25-2378170" id="id_l.I.c.il.ih_25_2378170.i_25_2378170.vi.IssueAttachment.attachedFilesPopup" class="jt-panel popupComponent">
+												<div class="jt-panel-content"><span id="id_l.I.c.il.ih_25_2378170.i_25_2378170.vi.IssueAttachment.tpl.previewList_25_2378170"></span>
+												</div>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.collapse" tp4="25-2378170" tp5="25-2378170" id="id_l.I.c.il.ih_25_2378170.i_25_2378170.vi.collapse" title="扩大" class="issue-toggler toggleDescrAnchor" href="javascript:void(0)">
+												<span class="issue-toggler-ico"></span>
+											</a>
+
+											<div title="由Pavel Karateev于2019年9月9日13:40更新" class="update-date update-date_compact">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														09年9月</font>
+												</font>
+											</div>
+										</div>
+
+										<div class="issue-info issue-info_oneline">
+											<div cn="l.I.c.il.ih.i.vi.olip.oneLineIssuePriority" tp4="25-2378170" tp5="25-2378170" id="id_l.I.c.il.ih_25_2378170.i_25_2378170.vi.olip.oneLineIssuePriority" title="表明，塞" class="priority attribute c20">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">
+														小号
+													</font>
+												</font>
+											</div>
+											<a cn="l.I.c.il.ih.i.vi.IssueId.iica" tp4="25-2378170" tp5="25-2378170" id="id_l.I.c.il.ih_25_2378170.i_25_2378170.vi.IssueId.iica" title="属于'JetBrains Runtime'的项目" class="issueId issueIdAnchor " href="/issue/JBR-1649">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">JBR-1649</font>
+												</font>
+											</a>
+											<div cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tags" p0="25-2378170" tp4="25-2378170" tp5="25-2378170" id="id_l.I.c.il.ih_25_2378170.i_25_2378170.vi.IssueTagsInTitle.tags_25_2378170" class="tag-list tag-list_issues  tag-list_issues-shader " yt-analytics="tag_widget:mouseover_issues" yt-analytics-on="mouseover">
+												<span class="yt-tag c11">
+<a cn="l.I.c.il.ih.i.vi.IssueTagsInTitle.tagLink" p0="68-3044" tp4="25-2378170" tp5="25-2378170" id="id_l.I.c.il.ih_25_2378170.i_25_2378170.vi.IssueTagsInTitle.tagLink_68_3044" title="按标签过滤问题" class="yt-tag__link" yt-analytics="tag_widget:click_issues" href="/issues?q=tag%3A+regression"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">回归</font></font></a>
+</span>
+											</div>
+											<a class="issue-summary" tcd="false" title="在全屏打开第二个项目时，会出现空栏重叠IDEA导航栏" href="/issue/JBR-1649">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> 在全屏打开第二个项目时，会出现空栏重叠IDEA导航栏</font>
+												</font>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+
+				<div cn="l.I.c.bb.bottomToolbar" id="id_l.I.c.bb.bottomToolbar" class="jt-toolbar jt-player jt-player_list">
+					<div class="jt-toolbar-d-right">
+						<div class="jt-toolbar-item-d borderNoneHover">
+							<div>
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">
+										发现：1578相关问题</font>
+								</font>
+							</div>
+						</div>
+						<div class="jt-toolbar-item-d">
+							<div>
+								<div class="jt-toolbar-item-d borderNoneHover">
+									<select name="l.I.c.bb.issuesPerPage" cn="l.I.c.bb.issuesPerPage" id="id_l.I.c.bb.issuesPerPage" class="jt-input jt-input jt-player-selector">
+										<option value="10">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">10</font>
+											</font>
+										</option>
+										<option selected="selected" value="25">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">25</font>
+											</font>
+										</option>
+										<option value="50">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">50</font>
+											</font>
+										</option>
+										<option value="100">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">100</font>
+											</font>
+										</option>
+									</select>
+								</div>
+								<div class="jt-toolbar-item-d borderNoneHover">
+									<div>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;"> 每页</font>
+										</font>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="jt-toolbar-item-d">
+							<div class="jt-toolbar-item-d">
+								<a cn="l.I.c.bb.firstPageLink" id="id_l.I.c.bb.firstPageLink" title="Ctrl + Shift + LEFT" class="jt-player-item sb-border-left3 jt-player-disabled sb-border-left3 jt-player-nav-btn" href="javascript:void(0)">
+									<span class="jt-player-ico jt-player-ico_prev"></span>
+									<span class="jt-player-ico jt-player-ico_prev"></span>
+
+								</a>
+							</div>
+							<div class="jt-toolbar-item-d">
+								<a cn="l.I.c.bb.prevPageLink" id="id_l.I.c.bb.prevPageLink" title="Ctrl + LEFT" class="jt-player-item jt-player-disabled jt-player-nav-btn" href="javascript:void(0)">
+									<span class="jt-player-ico jt-player-ico_prev"></span>
+								</a>
+								<div class="jt-toolbar-item-d">
+									<a cn="l.I.c.bb.pageLink" p0="0" id="id_l.I.c.bb.pageLink_0" class="jt-player-item sb-border-left3 jt-player-current" href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">1</font>
+										</font>
+									</a>
+								</div>
+								<div class="jt-toolbar-item-d">
+									<a cn="l.I.c.bb.pageLink" p0="1" id="id_l.I.c.bb.pageLink_1" class="jt-player-item  " href="/issues?q=project%3A+%7BJetBrains+Runtime%7D&amp;p=25">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">2</font>
+										</font>
+									</a>
+								</div>
+								<div class="jt-toolbar-item-d">
+									<a cn="l.I.c.bb.pageLink" p0="2" id="id_l.I.c.bb.pageLink_2" class="jt-player-item  " href="/issues?q=project%3A+%7BJetBrains+Runtime%7D&amp;p=50">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">3</font>
+										</font>
+									</a>
+								</div>
+								<div class="jt-toolbar-item-d">
+									<a cn="l.I.c.bb.pageLink" p0="3" id="id_l.I.c.bb.pageLink_3" class="jt-player-item  " href="/issues?q=project%3A+%7BJetBrains+Runtime%7D&amp;p=75">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">4</font>
+										</font>
+									</a>
+								</div>
+								<div class="jt-toolbar-item-d jt-player-text">
+									<div>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">...</font>
+										</font>
+									</div>
+								</div>
+							</div>
+							<div class="jt-toolbar-item-d">
+								<a cn="l.I.c.bb.nextPageLink" id="id_l.I.c.bb.nextPageLink" title="Ctrl + RIGHT" class="jt-player-item  jt-player-nav-btn" href="/issues?q=project%3A+%7BJetBrains+Runtime%7D&amp;p=25">
+									<span class="jt-player-ico jt-player-ico_next"></span>
+								</a>
+							</div>
+							<div class="jt-toolbar-item-d">
+								<a cn="l.I.c.bb.lastPageLink" id="id_l.I.c.bb.lastPageLink" title="Ctrl + Shift + RIGHT" class="jt-player-item sb-border-right3  jt-player-nav-btn" href="javascript:void(0)">
+									<span class="jt-player-ico jt-player-ico_next"></span>
+									<span class="jt-player-ico jt-player-ico_next"></span>
+
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		</div>
+	</body>
+
+</html>

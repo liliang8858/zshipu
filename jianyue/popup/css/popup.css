@@ -1,0 +1,344 @@
+ul {
+    margin: 0;
+    padding: 0px;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.jm_fl {
+    float: left;
+}
+
+.jm_fr {
+    float: right;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+.guard {
+    color: #474849ad;
+    font-size: 16px;
+    margin-top: 131px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft Yahei';
+}
+
+#jm_app {
+    width: 360px;
+    /* height: 480px; */
+    position: relative;
+}
+
+/* .jm_nav {
+    height: 45px;
+} */
+
+.jm_nav a {
+    width: 43%;
+    height: 28px;
+    line-height: 28px;
+    color: #c2cfdf;
+    text-align: center;
+    margin-top: 8px;
+    padding-left: 18px;
+    font-size: 14px;
+}
+
+.jm_nav a:nth-child(1) {
+    border-right: 1px solid #d6dadc;
+    background: url("/assets/user.png") no-repeat 34% center;
+}
+
+.jm_nav .jm_setting {
+    background: url("/assets/setting.png") no-repeat 34% center;
+}
+
+.jm_nav a:nth-child(1).jm_active {
+    color: rgb(127, 207, 234);
+    background: url("/assets/user-active.png") no-repeat 34% center;
+}
+
+.jm_nav .jm_setting.jm_active {
+    color: rgb(127, 207, 234);
+    background: url("/assets/setting-active.png") no-repeat 34% center;
+}
+
+
+.jm_section {
+    height: 100%;
+    background-color: #f4f8fb;
+}
+
+.jm_section>ul {
+    height: 100%;
+    overflow: hidden;
+}
+
+.jm_section .account {
+    height: 100%;
+    overflow: hidden;
+}
+
+.jm_section li {
+    display: none
+}
+
+.jm_section li .jm_login {
+    height: 100%;
+    display: none;
+    text-align: center;
+}
+
+.jm_section li .jm_login .jm_jump {
+    color: #ffffff;
+    width: 130px;
+    height: 34px;
+    border-radius: 6px;
+    background: linear-gradient(#2bd8d0, #2ab1e8);
+    border: none;
+    margin-top: 20px;
+}
+
+.jm_section li.jm_active {
+    display: block;
+}
+
+.jm_section .userInfo {
+    height: 96%;
+    text-align: center;
+    padding: 14px 0 0;
+    position: relative;
+}
+
+.jm_avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #cbc9c9;
+}
+
+.jm_user_img {
+    width: 54px;
+    height: auto;
+}
+
+.userInfo .jm_nickname {
+    margin: 6px 10px;
+}
+
+.userInfo .jm_nickname h5 {
+    float: left;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.jm_user_num {
+    color: #474849ad;
+    margin-top: 5px;
+}
+
+.userInfo .jm_nickname span {
+    display: block;
+}
+
+#user_tpl .jm_userStatus {
+    height: 51px;
+    border-top: 1px solid #e2e2e2;
+    background-color: #fff;
+    padding: 14px 18px;
+}
+
+#user_tpl .jm_userStatus:hover {
+    background-color: #f2f9fe;
+}
+
+#user_tpl .jm_userStatus:hover .jm_auth {
+    color: #46b3e8;
+    background: url("../assets/refresh-hover.png") no-repeat left center;
+}
+
+.jm_footer {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    background-color: #fff;
+    border-top: 1px solid #dbdbdd;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.jm_footer a {
+    color: #282828;
+    margin-right: 20px;
+    padding-left: 16px;
+}
+
+.jm_tpl {
+    height: 100%;
+    position: relative;
+}
+
+#user_tpl .user_footer a {
+    background: url("../assets/plus.png") no-repeat left center/16%;
+}
+
+.main {
+    height: 90%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.main::-webkit-scrollbar {
+    display: none;
+}
+
+.jm_userStatus .jm_nickname {
+    padding-left: 18px;
+}
+
+.jm_userStatus .jm_nickname .jm_nickname_title {
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.jm_name{
+    width: 100%;
+    display: flex;
+}
+
+.jm_nickname_title{
+    width: 80px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.jm_userStatus .jm_nickname .jm_uname {
+    margin: 0px 0 2px 0;
+}
+
+.atype{
+    font-size: 12px;
+    color: #03a7de;
+}
+
+.jm_userStatus .jm_nickname .jm_nickname_status {
+    font-size: 10px;
+    padding-left: 20px;
+    background: url("../assets/danger.png") no-repeat left center;
+    color: #e93b36;
+}
+
+.jm_userStatus .jm_auth {
+    color: #474849;
+    background: url("../assets/refresh.png") no-repeat left center;
+    padding-left: 22px;
+    margin-top: 18px;
+}
+
+#accounts_tpl {
+    display: none;
+    background-color: #fff;
+    border-top: 1px solid #e2e2e2;
+}
+
+#accounts_tpl .main>div {
+    float: left;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 14px;
+    margin-left: 30px;
+}
+
+#accounts_tpl .main>div:hover {
+    box-shadow: 0px 0px 15px #e7edf1;
+    cursor: pointer;
+}
+
+#accounts_tpl>div img {
+    width: 46%;
+}
+
+#accounts_tpl>div p {
+    padding-top: 4px;
+}
+
+#accounts_tpl>div:nth-child(3) img,
+#accounts_tpl>div:nth-child(5) img,
+#accounts_tpl>div:nth-child(6) img,
+#accounts_tpl>div:nth-child(9) img {
+    width: 46%;
+}
+
+
+.chrome-plugin-simple-tip {
+    position: fixed;
+    left: 20px;
+    padding: 16px 10px;
+    top: 30px;
+    color: white;
+    min-width: 150px;
+	max-width: 700px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 16px;
+    background: #70a800;
+    background-image: linear-gradient(to bottom, #95cc2a, #70a800);
+    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+	transition: top .4s;
+}
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+@-webkit-keyframes slideInLeft {
+    0% {
+        -webkit-transform: translate3d(-100%,0,0);
+        transform: translate3d(-100%,0,0);
+        visibility: visible
+    }
+
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0)
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        -webkit-transform: translate3d(-100%,0,0);
+        transform: translate3d(-100%,0,0);
+        visibility: visible
+    }
+
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0)
+    }
+}
+
+.slideInLeft {
+    -webkit-animation-name: slideInLeft;
+    animation-name: slideInLeft
+}

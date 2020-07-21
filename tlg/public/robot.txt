@@ -1,0 +1,4 @@
+# hexo robots.txt
+User-agent: *
+Allow: /
+Disallow: /vendors/

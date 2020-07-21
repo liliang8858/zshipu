@@ -1,0 +1,57 @@
+#accounts-wrap{
+    display:none;
+}
+#accounts-wrap header{
+    height:48px;
+    line-height: 48px;
+    border-bottom:1px solid rgba(246,246,248,1);
+    font-size:14px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(34,34,34,1);
+    position:relative;
+    text-align: center
+}
+#accounts-wrap header .back{
+    position:absolute;
+    top:3px;
+    left:20px;
+    display:block;
+    cursor: pointer;
+}
+#accounts-wrap section{
+    display:flex;
+    justify-content:flex-start;
+    flex:1;
+    flex-wrap: wrap;
+}
+#accounts-wrap section .item{
+    width:25%;
+    text-align:center;
+    margin-top:30px;
+    cursor: pointer;
+    position:relative;
+}
+#accounts-wrap section .item::after{
+    width:30px;
+    height:30px;
+    content:'';
+    background:url('../img/account_add.png') no-repeat;
+    position:absolute;
+    left:50%;
+    margin-left:-15px;
+    top:27px;
+}
+#accounts-wrap section .item p{
+    text-align:center;
+    margin-top:7px;
+}
+#accounts-wrap section .item img{
+    width:46px;
+    height:46px;
+}
+#accounts-wrap .bottom-block{
+    height:26px;
+    border-top:1px solid rgba(246,246,248,1);
+    margin-top: 10px;
+}
