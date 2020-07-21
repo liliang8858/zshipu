@@ -4,4 +4,3 @@
 /note/public
 node_modules
 *.log
-dist
